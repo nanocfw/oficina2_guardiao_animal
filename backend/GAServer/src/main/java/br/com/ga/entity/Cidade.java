@@ -1,12 +1,15 @@
-package com.guardiaoanimal.entity;
+package br.com.ga.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Cidade {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Cidade implements Serializable {
 
     @Id
     private int codigo;
@@ -66,10 +69,7 @@ public class Cidade {
             return false;
         }
         final Cidade other = (Cidade) obj;
-        if (this.codigo != other.codigo) {
-            return false;
-        }
-        return true;
+        return this.codigo == other.codigo;
     }
 
     public Cidade() {

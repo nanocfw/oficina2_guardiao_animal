@@ -1,5 +1,7 @@
-package com.guardiaoanimal.entity;
+package br.com.ga.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +11,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-
-class Animal {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Animal implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -107,10 +109,7 @@ class Animal {
             return false;
         }
         final Animal other = (Animal) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
+        return this.id == other.id;
     }
 
     public Animal() {

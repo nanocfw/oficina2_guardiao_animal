@@ -1,5 +1,7 @@
-package com.guardiaoanimal.entity;
+package br.com.ga.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.ElementCollection;
@@ -11,7 +13,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Pessoa {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -175,10 +178,7 @@ public class Pessoa {
             return false;
         }
         final Pessoa other = (Pessoa) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
+        return this.id == other.id;
     }
 
     public String getTelefone() {

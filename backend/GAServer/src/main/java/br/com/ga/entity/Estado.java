@@ -1,10 +1,13 @@
-package com.guardiaoanimal.entity;
+package br.com.ga.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-class Estado {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Estado implements Serializable {
 
     @Id
     private int codigo;
@@ -54,10 +57,7 @@ class Estado {
             return false;
         }
         final Estado other = (Estado) obj;
-        if (this.codigo != other.codigo) {
-            return false;
-        }
-        return true;
+        return this.codigo == other.codigo;
     }
 
     public Estado() {
