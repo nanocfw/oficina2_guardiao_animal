@@ -1,0 +1,67 @@
+/* reset de margens */
+* {
+    margin: 0;
+    padding:0;
+}
+
+/* para garantir que estes elementos ocuparão toda a tela */
+body, html {
+    font-family: Arial, Tahoma, sans-serif;
+}
+
+.main {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+img {
+    width: 100%;
+    height: 100vh;
+    opacity: 0.3;
+}
+
+.getCity {
+  top: 25%;
+  position: absolute;
+}
+
+.form {
+    border-radius: 20px;
+    padding: 10px 20px;
+    background-color: rgba(0,0,0,0.5)
+}
+
+.text {
+    color: #616161;
+}
+
+.material-icons {
+    margin-top: 10px;
+}
+
+.inline {
+    display: flex;
+    margin: 0 20px;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+@media screen and (max-width: 1000px) {
+   body { font-size: 80%; }
+}
+
+
+@media screen and (max-width: 750px) {
+   body { font-size: 60%; }
+}
+
+@media screen and (max-width: 500px) {
+   body { font-size: 40%; }
+}
+
+
