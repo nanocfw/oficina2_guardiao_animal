@@ -41,7 +41,7 @@ public class AnimalDaoImpl implements IAnimalDao {
 
     @Override
     public List<Animal> findList(int rowsReturn, int rowsIgnore) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.createQuery("SELECT a FROM Animal a").setFirstResult(rowsIgnore).setMaxResults(rowsReturn).getResultList();
     }
 
     @Override

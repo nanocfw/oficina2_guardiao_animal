@@ -20,7 +20,7 @@ import br.com.ga.dao.IAnimalDao;
 public class AnimalServiceImpl implements IAnimalService {
 
     @Autowired
-    private IAnimalDao animalDAO;
+    private IAnimalDao animalDao;
 
     @Override
     public Animal create(Animal animal) {
@@ -29,7 +29,7 @@ public class AnimalServiceImpl implements IAnimalService {
 
     @Override
     public Animal findById(int id) {
-       return animalDAO.findById(id);
+        return animalDao.findById(id);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class AnimalServiceImpl implements IAnimalService {
 
     @Override
     public List<Animal> findList(int rowsReturn, int rowsIgnore) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return animalDao.findList(rowsReturn, rowsIgnore);
     }
 
     @Override
