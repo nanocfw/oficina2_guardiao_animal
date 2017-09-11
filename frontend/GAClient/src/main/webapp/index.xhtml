@@ -25,133 +25,41 @@
         <script type="text/javascript" src="assets/js/code.jquery.com_jquery-3.2.1.min.js"></script>
         <!-- Import Materialize.js -->
         <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+        <!-- Import aux.js -->
+        <script type="text/javascript" src="assets/js/aux.js"></script>
 
         <ui:include src="/components/navbar.xhtml" />
 
-        <div class="main">
-            <img src="assets/images/pets.jpg"/>
+        <ui:include src="/components/main.xhtml"/>
 
-            <div class="core">
-                <h1 class="text-grey"> Encontre um <span class="text-orange">Guardião</span> para seu animal </h1>
-
-
-                <div class="form col s12 z-depth-3">
-                    <h5 class="white-text">Local:</h5>
-                    <div class="inline">
-                        <i class="icons white-text material-icons">location_on</i>
-                        <h:inputText class="white-text" a:placeholder="Buscar cidade desejada"></h:inputText>
-                    </div>
-
-                    <div class="center-align">
-                        <a href="" class="waves-effect waves-light btn deep-orange lighten-1">Buscar Guardião</a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="entrar" class="modalDialog">
-                <div>
-                    <a href="#close" title="Close" class="close">X</a>
-                    <div class="center-align">
-                        <h5 class="text-grey">Entre no Guardião Animal</h5>
-
-                        <br/>
-
-                        <h:form>
-                            <div class="inline">
-                                <i class="icons text-grey material-icons">mail_outline</i>
-                                <h:inputText class="text-grey" a:placeholder="Email"></h:inputText>
-                            </div>
-
-                            <div class="inline">
-                                <i class="icons text-grey material-icons">vpn_key</i>
-                                <h:inputText class="text-grey" a:placeholder="Senha"></h:inputText>
-                            </div>
-
-                            <div class="center-align">
-                                <a href="" class="waves-effect waves-light btn deep-orange lighten-1">Entrar</a>
-                            </div>
-                        </h:form>
-
-                        <br />
-
-                        <p>Não é membro? <a href="#cadastrar">Cadastre-se agora.</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="cadastrar" class="modalDialog">
-                <div>
-                    <a href="#close" title="Close" class="close">X</a>
-                    <div class="center-align">
-                        <h5 class="text-grey">Cadastre-se no Guardião Animal</h5>
-
-                        <br/>
-
-                        <h:form>
-                            <div class="inline">
-                                <i class="icons text-grey material-icons">perm_identity</i>
-                                <h:inputText class="text-grey" a:placeholder="Nome"></h:inputText>
-                            </div>
-
-                            <div class="inline">
-                                <i class="icons text-grey material-icons">person</i>
-                                <h:inputText class="text-grey" a:placeholder="Sobrenome"></h:inputText>
-                            </div>
-
-                            <div class="inline">
-                                <i class="icons text-grey material-icons">location_on</i>
-                                <h:inputText class="text-grey" a:placeholder="CEP"></h:inputText>
-                            </div>
-
-                            <div class="inline">
-                                <i class="icons text-grey material-icons">vpn_key</i>
-                                <h:inputText class="text-grey" a:placeholder="Email"></h:inputText>
-                            </div>
-
-                            <div class="inline">
-                                <i class="icons text-grey material-icons">vpn_key</i>
-                                <h:inputText class="text-grey" a:placeholder="Senha"></h:inputText>
-                            </div>
-
-                            <div class="center-align">
-                                <a href="" class="waves-effect waves-light btn deep-orange lighten-1">Cadastrar</a>
-                            </div>
-                        </h:form>
-
-                        <br />
-
-                        <p>Já é membro? <a href="#entrar">Entre agora.</a></p>
-                    </div>
-                </div>
-            </div>
-
+        <div id="guardiao" class="center-align">
+            <h1 class="text-grey"><span class="text-orange">Guardiões</span> na sua região </h1>
         </div>
 
-        <div class="section white">
-            <div class="row container">
-                <h2 class="header">Parallax</h2>
-                <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
+        <div class="inline">
+            <div class="column guardioes">
+                <ui:include src="/components/guardioes.xhtml"/>
+                <ui:include src="/components/guardioes.xhtml"/>
+                <ui:include src="/components/guardioes.xhtml"/>
+                <ui:include src="/components/guardioes.xhtml"/>
             </div>
-        </div> <div class="section white">
-            <div class="row container">
-                <h2 class="header">Parallax</h2>
-                <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
-            </div>
-        </div>
 
+            <ui:include src="/components/maps.xhtml"/>
+        </div>
 
         <ui:include src="/components/footer.xhtml"/>
 
-        <script type="text/javascript">
-            var $ = jQuery;
 
-            $(function () {
-                $(".button-collapse").sideNav();
-                $('.parallax').parallax();
-                $('.modal').modal();
+        <script>
+            var $doc = $('html, body');
+            $('.scroll').click(function () {
+                $doc.animate({
+                    scrollTop: $($.attr(this, 'href')).offset().top
+                }, 500);
+                return false;
             });
-        </script>
 
+        </script>
     </h:body>
 </html>
 
