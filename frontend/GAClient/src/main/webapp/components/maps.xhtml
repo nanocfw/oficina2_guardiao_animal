@@ -3,14 +3,14 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <div id="map"></div>
 
-<!--    <ul id="geoData">
+    <ul id="geoData" style="display: none">
         <li>Full Address: <span id="location"></span></li>
         <li>Postal Code: <span id="postal_code"></span></li>
         <li>Country: <span id="country"></span></li>
         <li>Latitude: <span id="lat"></span></li>
         <li>Longitude: <span id="lon"></span></li>
     </ul>
--->
+
     <script>
         //<![CDATA[ 
         function initMap() {
@@ -22,13 +22,11 @@
            
             var autocomplete = new google.maps.places.Autocomplete(input);
             autocomplete.bindTo('bounds', map);
-
             var infowindow = new google.maps.InfoWindow();
             var marker = new google.maps.Marker({
                 map: map,
                 anchorPoint: new google.maps.Point(0, -29)
             });
-
             autocomplete.addListener('place_changed', function () {
                 infowindow.close();
                 marker.setVisible(false);
@@ -37,7 +35,6 @@
                     window.alert("Autocomplete's returned place contains no geometry");
                     return;
                 }
-
                 // If the place has a geometry, then present it on a map.
                 if (place.geometry.viewport) {
                     map.fitBounds(place.geometry.viewport);
@@ -54,7 +51,6 @@
                 }));
                 marker.setPosition(place.geometry.location);
                 marker.setVisible(true);
-
                 var address = '';
                 if (place.address_components) {
                     address = [
@@ -63,10 +59,8 @@
                         (place.address_components[2] && place.address_components[2].short_name || '')
                     ].join(' ');
                 }
-
                 infowindow.setContent('<div><strong>' + place.name + '</strong><br/>' +  '</div>');
                 infowindow.open(map, marker);
-
                 //Location details
                 for (var i = 0; i < place.address_components.length; i++) {
                     if (place.address_components[i].types[0] === 'postal_code') {
@@ -81,9 +75,9 @@
                 document.getElementById('lon').innerHTML = place.geometry.location.lng();
             });
         }
-
+        //]]
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCONEgoiPhXnWsTWLE27z_wiNWxiq-j0VQ&libraries=places&callback=initMap" 
-            async defer >        //<![CDATA[         //]]></script>
+            async defer >//<![CDATA[         //]]></script>
 
 </ui:composition>
