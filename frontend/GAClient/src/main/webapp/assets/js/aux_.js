@@ -6,4 +6,3 @@ $(function () {
     });
     $('.modal').modal();
 });
-
