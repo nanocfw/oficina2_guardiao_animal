@@ -1,6 +1,9 @@
 var $ = jQuery;
 
 $(function () {
-    $(".button-collapse").sideNav();
+    $(".button-collapse").sideNav({
+        closeOnClick: true
+    });
     $('.modal').modal();
 });
+

@@ -139,6 +139,9 @@ p { font-size: 1.25em;}
 
 @media screen and (max-width: 750px) {
     body { font-size: 60%; }
+    .c-footer{
+        width: 70%;
+    }
     nav .nav-wrapper { padding: 0px; }
     .container .row {
         margin-left: -50px;
@@ -146,10 +149,19 @@ p { font-size: 1.25em;}
     .container .valor {
         margin-left: 15px;
     }
+    .modalDialog > div {
+        width: 300px;
+    }
 }
 
 @media screen and (max-width: 500px) {
     body { font-size: 50%; }
+}
+
+@media screen and (max-width: 500px) {
+    .modalDialog > div {
+        width: 250px;
+    }
 }
 
 
