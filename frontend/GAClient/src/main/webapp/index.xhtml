@@ -14,7 +14,10 @@
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css"  media="screen,projection"/> 
         <!--Import styles.css -->
-        <link type="text/css" rel="stylesheet" href="assets/css/styles.css"  media="screen,projection"/> 
+        <link type="text/css" rel="stylesheet" href="assets/css/styles.css" /> 
+        <!-- import preloader -->
+        <link type="text/css" rel="stylesheet" href="assets/css/preloader.css" /> 
+
     </h:head>
     <h:body>
         <!--Import jQuery-->
@@ -26,28 +29,37 @@
         <!-- Import aux_.js -->
         <script type="text/javascript" src="assets/js/aux_.js"></script>
 
+        <div id="loader-wrapper">
+            <div id="loader"></div>
 
-        <ui:include src="/components/navbar.xhtml" />
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
 
-        <ui:include src="/components/main.xhtml"/>
-
-        <div id="guardiao" class="center-align">
-            <h1 class="text-grey"><span class="text-orange">Guardiões</span> na sua região </h1>
         </div>
 
-        <div class="inline">
-            <div class="column guardioes">
-                <ui:include src="/components/guardioes.xhtml"/>
-                <ui:include src="/components/guardioes.xhtml"/>
-                <ui:include src="/components/guardioes.xhtml"/>
-                <ui:include src="/components/guardioes.xhtml"/>
+        <div id="content">
+            <ui:include src="/components/navbar.xhtml" />
+
+            <ui:include src="/components/main.xhtml"/>
+
+            <div id="guardiao" class="center-align">
+                <h1 class="text-grey"><span class="text-orange">Guardiões</span> na sua região </h1>
             </div>
 
-            <ui:include src="/components/maps.xhtml"/>
+            <div class="inline">
+                <div class="column guardioes">
+                    <ui:include src="/components/guardioes.xhtml"/>
+                    <ui:include src="/components/guardioes.xhtml"/>
+                    <ui:include src="/components/guardioes.xhtml"/>
+                    <ui:include src="/components/guardioes.xhtml"/>
+                </div>
+
+                <ui:include src="/components/maps.xhtml"/>
+            </div>
+
+            <ui:include src="/components/footer.xhtml"/>
         </div>
-
-        <ui:include src="/components/footer.xhtml"/>
-
+        
         <script>
             var $doc = $('html, body');
             $('.scroll').click(function () {
