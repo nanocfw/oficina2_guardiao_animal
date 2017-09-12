@@ -1,0 +1,85 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <div id="entrar" class="modalDialog">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <div class="center-align">
+                <h5 class="text-grey">Entre no Guardião Animal</h5>
+
+                <br/>
+
+                <h:form>
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">mail_outline</i>
+                        <h:inputText class="text-grey" a:placeholder="Email"></h:inputText>
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">vpn_key</i>
+                        <h:inputText class="text-grey" a:placeholder="Senha"></h:inputText>
+                    </div>
+
+                    <div class="center-align">
+                        <a href="" class="waves-effect waves-light btn deep-orange lighten-1">Entrar</a>
+                    </div>
+                </h:form>
+
+                <br />
+
+                <p>Não é membro? <a href="#cadastrar">Cadastre-se agora.</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="cadastrar" class="modalDialog">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <div class="center-align">
+                <h5 class="text-grey">Cadastre-se no Guardião Animal</h5>
+
+                <br/>
+
+                <h:form>
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">perm_identity</i>
+                        <h:inputText class="text-grey" a:placeholder="Nome"></h:inputText>
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">person</i>
+                        <h:inputText class="text-grey" a:placeholder="Sobrenome"></h:inputText>
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">location_on</i>
+                        <h:inputText class="text-grey" a:placeholder="CEP"></h:inputText>
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">mail_outline</i>
+                        <h:inputText class="text-grey" a:placeholder="Email"></h:inputText>
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">vpn_key</i>
+                        <h:inputText class="text-grey" a:placeholder="Senha"></h:inputText>
+                    </div>
+
+                    <div class="center-align">
+                        <a href="" class="waves-effect waves-light btn deep-orange lighten-1">Cadastrar</a>
+                    </div>
+                </h:form>
+
+                <br />
+
+                <p>Já é membro? <a href="#entrar">Entre agora.</a></p>
+            </div>
+        </div>
+    </div>
+</ui:composition>

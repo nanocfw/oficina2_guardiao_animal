@@ -40,8 +40,12 @@
         <div id="content">
             <ui:include src="/components/navbar.xhtml" />
 
-            <ui:include src="/components/main.xhtml"/>
-
+            <div class="main">
+                <ui:include src="/components/main.xhtml"/>
+                <ui:include src="/components/searchCity.xhtml"/>
+                <ui:include src="/components/loginRegister.xhtml"/>
+            </div>
+            
             <div id="guardiao" class="center-align">
                 <h1 class="text-grey"><span class="text-orange">Guardiões</span> na sua região </h1>
             </div>
@@ -59,7 +63,7 @@
 
             <ui:include src="/components/footer.xhtml"/>
         </div>
-        
+
         <script>
             var $doc = $('html, body');
             $('.scroll').click(function () {

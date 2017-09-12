@@ -1,0 +1,23 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <div class="core">
+        <h1 class="text-grey"> Encontre um <span class="text-orange">Guardião</span> para seu animal </h1>
+        <div class="form col s12 z-depth-3">
+            <h5 class="white-text">Local:</h5>
+            <div class="inline">
+                <i class="icons white-text material-icons">location_on</i>
+                <h:inputText id="address" onkeypress="enter(event)" class="white-text controls" a:placeholder="Buscar cidade desejada"></h:inputText>
+            </div>
+
+            <div class="center-align">
+                <a id="submit" href="#guardiao" type="button" class="scroll waves-effect waves-light btn deep-orange lighten-1">Buscar Guardião</a>
+            </div>
+        </div>
+    </div>
+</ui:composition>

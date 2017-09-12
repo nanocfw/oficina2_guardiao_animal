@@ -6,99 +6,14 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <div class="main">
-        <img class="main-img" src="assets/images/pets.jpg"/>
-
-        <div class="core">
-            <h1 class="text-grey"> Encontre um <span class="text-orange">Guardião</span> para seu animal </h1>
-                <div class="form col s12 z-depth-3">
-                    <h5 class="white-text">Local:</h5>
-                    <div class="inline">
-                        <i class="icons white-text material-icons">location_on</i>
-                        <h:inputText id="address" onkeypress="enter(event)" class="white-text controls" a:placeholder="Buscar cidade desejada"></h:inputText>
-                    </div>
-
-                    <div class="center-align">
-                        <a id="submit" href="#guardiao" type="button" class="scroll waves-effect waves-light btn deep-orange lighten-1">Buscar Guardião</a>
-                    </div>
-                </div>
-        </div>
-
-        <div id="entrar" class="modalDialog">
-            <div>
-                <a href="#close" title="Close" class="close">X</a>
-                <div class="center-align">
-                    <h5 class="text-grey">Entre no Guardião Animal</h5>
-
-                    <br/>
-
-                    <h:form>
-                        <div class="inline">
-                            <i class="icons text-grey material-icons">mail_outline</i>
-                            <h:inputText class="text-grey" a:placeholder="Email"></h:inputText>
-                        </div>
-
-                        <div class="inline">
-                            <i class="icons text-grey material-icons">vpn_key</i>
-                            <h:inputText class="text-grey" a:placeholder="Senha"></h:inputText>
-                        </div>
-
-                        <div class="center-align">
-                            <a href="" class="waves-effect waves-light btn deep-orange lighten-1">Entrar</a>
-                        </div>
-                    </h:form>
-
-                    <br />
-
-                    <p>Não é membro? <a href="#cadastrar">Cadastre-se agora.</a></p>
-                </div>
-            </div>
-        </div>
-
-        <div id="cadastrar" class="modalDialog">
-            <div>
-                <a href="#close" title="Close" class="close">X</a>
-                <div class="center-align">
-                    <h5 class="text-grey">Cadastre-se no Guardião Animal</h5>
-
-                    <br/>
-
-                    <h:form>
-                        <div class="inline">
-                            <i class="icons text-grey material-icons">perm_identity</i>
-                            <h:inputText class="text-grey" a:placeholder="Nome"></h:inputText>
-                        </div>
-
-                        <div class="inline">
-                            <i class="icons text-grey material-icons">person</i>
-                            <h:inputText class="text-grey" a:placeholder="Sobrenome"></h:inputText>
-                        </div>
-
-                        <div class="inline">
-                            <i class="icons text-grey material-icons">location_on</i>
-                            <h:inputText class="text-grey" a:placeholder="CEP"></h:inputText>
-                        </div>
-
-                        <div class="inline">
-                            <i class="icons text-grey material-icons">vpn_key</i>
-                            <h:inputText class="text-grey" a:placeholder="Email"></h:inputText>
-                        </div>
-
-                        <div class="inline">
-                            <i class="icons text-grey material-icons">vpn_key</i>
-                            <h:inputText class="text-grey" a:placeholder="Senha"></h:inputText>
-                        </div>
-
-                        <div class="center-align">
-                            <a href="" class="waves-effect waves-light btn deep-orange lighten-1">Cadastrar</a>
-                        </div>
-                    </h:form>
-
-                    <br />
-
-                    <p>Já é membro? <a href="#entrar">Entre agora.</a></p>
-                </div>
-            </div>
-        </div>
+    <div class="slider">
+        <ul class="slides slide-main white">
+            <li>
+                <img class="main-img" src="assets/images/grupodeanimais1.jpg"/>  <!-- random image -->
+            </li>
+            <li>
+                <img class="main-img" src="assets/images/pets.jpg"/>  <!-- random image -->
+            </li>
+        </ul>
     </div>
 </ui:composition>

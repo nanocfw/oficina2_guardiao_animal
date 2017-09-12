@@ -28,16 +28,21 @@ p { font-size: 1.25em;}
     justify-content: center;
 }
 
-.main-img {
+.slide-main {
     width: 100%;
     height: 100vh;
+}
+
+.main-img {
     opacity: 0.5;
+    margin-top: -40px
 }
 
 .core {
     top: 25%;
     position: absolute;
     margin: 2%;
+    z-index: 2;
 }
 
 .form {
@@ -61,12 +66,13 @@ p { font-size: 1.25em;}
 
 .inline {
     display: flex;
-    margin: 0 20px;
 }
 
 .guardioes {
     margin: 2%;
     width: 50%;
+    overflow-y: auto;
+    max-height: 80vh;
 }
 
 .modalDialog {
@@ -77,7 +83,7 @@ p { font-size: 1.25em;}
     bottom: 0;
     left: 0;
     background: rgba(0,0,0,0.8);
-    z-index: 9;
+    z-index: 3;
     opacity:0;
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
