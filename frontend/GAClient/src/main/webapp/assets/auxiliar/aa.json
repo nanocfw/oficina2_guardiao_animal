@@ -2,42 +2,54 @@
     {
         "Id": 1,
         "nome": "Fulano de tal",
+        "descricao": "Especialista em cuidar de x animais.",
         "cidade": "Dois Vizinhos - Paraná",
+        "valor": 20,
         "Latitude": -25.7464549,
         "Longitude": -53.06157339
     },
     {
         "Id": 2,
         "nome": "Fulano de tal",
+        "descricao": "Especialista em cuidar de x animais.",
         "cidade": "Dois Vizinhos - Paraná",
+        "valor": 50,
         "Latitude": -25.7444549,
         "Longitude": -53.06157339
     },
     {
         "Id": 3,
         "nome": "Fulano de tal",
+        "descricao": "Especialista em cuidar de x animais.",
         "cidade": "Dois Vizinhos - Paraná",
+        "valor": 70,
         "Latitude": -25.7464549,
         "Longitude": -53.05157339
     },
     {
         "Id": 4,
         "nome": "Fulano de tal",
+        "descricao": "Especialista em cuidar de x animais.",
         "cidade": "Dois Vizinhos - Paraná",
+        "valor": 30,
         "Latitude": -25.7564549,
         "Longitude": -53.06157339
     },
     {
         "Id": 5,
         "nome": "Fulano de tal",
+        "descricao": "Especialista em cuidar de x animais.",
         "cidade": "Dois Vizinhos - Paraná",
+        "valor": 10,
         "Latitude": -25.7294549,
         "Longitude": -53.06157339
     },
     {
         "Id": 6,
         "nome": "Fulano de tal",
+        "descricao": "Especialista em cuidar de x animais.",
         "cidade": "Dois Vizinhos - Paraná",
+        "valor": 25,
         "Latitude": -25.7624549,
         "Longitude": -53.06157339
     }

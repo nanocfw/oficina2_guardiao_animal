@@ -4,31 +4,6 @@
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <div class="container">
-        <div class="col s12 m8 offset-m2 l6 offset-l3">
-            <div class="card-panel grey lighten-5 z-depth-1">
-                <div class="inline">
-                    <div class="row valign-wrapper">
-                        <div class="col s2">
-                            <img src="assets/images/img.jpg" alt="" class="circle responsive-img"/>
-                        </div>
-                        <div class="col s10">
-                            <h5 class="grey-text">Fulano de tal</h5>
-                            <span class="black-text">
-                                Especialista em cuidar de x animais.
-                            </span>
-                            <br />
-                            <span class="grey-text">
-                                Dois Vizinhos - Paraná
-                            </span>
-                        </div>
-                    </div>
-                    <div class="valor row halign-wrapper">
-                        <h5 class="orange-text" style="margin-bottom: 0">R$25</h5>
-                        <span class="grey-text">por noite</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script type="text/javascript" src="assets/js/getGuardioes.js"></script>
+    <div id="guardioes" class="column guardioes"><script>getGuardioes();</script></div>
 </ui:composition>

@@ -28,7 +28,7 @@
         <script type="text/javascript" src="assets/js/materialize.min.js"></script>
         <!-- Import aux_.js -->
         <script type="text/javascript" src="assets/js/aux_.js"></script>
-
+        
         <div id="loader-wrapper">
             <div id="loader"></div>
 
@@ -50,14 +50,9 @@
                 <h1 class="text-grey"><span class="text-orange">Guardiões</span> na sua região </h1>
             </div>
 
-            <div class="inline">
-                <div class="column guardioes">
-                    <ui:include src="/components/guardioes.xhtml"/>
-                    <ui:include src="/components/guardioes.xhtml"/>
-                    <ui:include src="/components/guardioes.xhtml"/>
-                    <ui:include src="/components/guardioes.xhtml"/>
-                </div>
-
+            <div id="inline" class="inline">
+                <ui:include src="/components/guardioes.xhtml"/>
+                
                 <ui:include src="/components/maps.xhtml"/>
             </div>
 

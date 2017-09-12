@@ -1,5 +1,6 @@
 var $ = jQuery;
 
+// Materialize functions
 $(function () {
     $(".button-collapse").sideNav({
         closeOnClick: true
@@ -9,12 +10,13 @@ $(function () {
         interval: 3000,
         transition: 1000,
         indicators: false,
-        height: 100+'vh'
+        height: 100 + 'vh'
     });
     $('.modal').modal();
 });
 
 
+// type enter to scroll on main page function
 function enter(event) {
     let key = event.key;
     if (key === "Enter" && ($('#location')[0].innerHTML) !== "") {
@@ -25,9 +27,8 @@ function enter(event) {
     }
 }
 
+// preload function
 $(document).ready(function () {
-
-    // Fakes the loading setting a timeout
     setTimeout(function () {
         $('body').addClass('loaded');
     }, 2500);
