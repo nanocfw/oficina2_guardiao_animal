@@ -28,7 +28,7 @@
         <script type="text/javascript" src="assets/js/materialize.min.js"></script>
         <!-- Import aux_.js -->
         <script type="text/javascript" src="assets/js/aux_.js"></script>
-
+        
         <div id="loader-wrapper">
             <div id="loader"></div>
 
@@ -41,8 +41,18 @@
             <ui:include src="/components/navbar.xhtml" />
 
             <div class="main">
-                <img class="main-img" src="assets/images/pets.jpg"/>
+                <img class="main-img" src="assets/images/grupodeanimais.jpg"/>
                 <ui:include src="/components/loginRegister.xhtml"/>
+            </div>
+            
+            <div id="guardiao" class="center-align">
+                <h1 class="text-grey"><span class="text-orange">Guardiões</span> na sua região </h1>
+            </div>
+
+            <div id="inline" class="inline">
+                <ui:include src="/components/guardioes.xhtml"/>
+                
+                <ui:include src="/components/maps.xhtml"/>
             </div>
 
             <ui:include src="/components/footer.xhtml"/>
@@ -60,4 +70,3 @@
         </script>
     </h:body>
 </html>
-
