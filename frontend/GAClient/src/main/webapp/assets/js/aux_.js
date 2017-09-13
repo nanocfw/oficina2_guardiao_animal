@@ -31,6 +31,6 @@ function enter(event) {
 $(document).ready(function () {
     setTimeout(function () {
         $('body').addClass('loaded');
-    }, 2500);
+    }, 2000);
 
 });
