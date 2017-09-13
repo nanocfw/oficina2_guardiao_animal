@@ -15,15 +15,15 @@ import java.util.List;
 public interface IPersonDao
 {
 
-    Person create(final Person person);
+    Person create(final Person person) throws Exception;
 
-    Person findById(final int id);
+    Person findById(final long id);
 
-    Person update(Person person);
+    Person update(Person person) throws Exception;
 
     Person findByEmailPassword(String email, String password);
 
     List<Person> findList(boolean listClients, final int rowsReturn, int rowsIgnore);
 
-    boolean delete(final int id);
+    void delete(final Person person) throws Exception;
 }

@@ -8,48 +8,55 @@ package br.com.ga.service.implementations;
 import br.com.ga.entity.Person;
 import java.util.List;
 import br.com.ga.service.IPersonService;
+import br.com.ga.dao.IPersonDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Marciano
  */
+@Service
 public class PersonServiceImpl implements IPersonService
 {
 
+    @Autowired
+    IPersonDao personDao;
+
     @Override
-    public Person create(Person person)
+    public Person create(Person person) throws Exception
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return personDao.create(person);
     }
 
     @Override
-    public Person findById(int id)
+    public Person findById(long id)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return personDao.findById(id);
     }
 
     @Override
-    public Person update(Person person)
+    public Person update(Person person) throws Exception
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return personDao.update(person);
     }
 
     @Override
     public List<Person> findList(boolean listClients, int rowsReturn, int rowsIgnore)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return personDao.findList(listClients, rowsReturn, rowsIgnore);
     }
 
     @Override
-    public boolean delete(int id)
+    public void delete(Person person) throws Exception
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        personDao.delete(person);
     }
 
     @Override
     public Person findByEmailPassword(String email, String password)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return personDao.findByEmailPassword(email, password);
     }
 
 }

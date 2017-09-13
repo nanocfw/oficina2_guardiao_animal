@@ -5,6 +5,7 @@
  */
 package br.com.ga.dao.implementations;
 
+import br.com.ga.Exceptions.EntityNotFound;
 import br.com.ga.entity.Animal;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -26,7 +27,7 @@ public class AnimalDaoImpl implements IAnimalDao
     private EntityManager em;
 
     @Override
-    public Animal create(Animal animal)
+    public Animal create(Animal animal) throws Exception
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -38,7 +39,7 @@ public class AnimalDaoImpl implements IAnimalDao
     }
 
     @Override
-    public Animal update(Animal animal)
+    public Animal update(Animal animal) throws Exception
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -50,8 +51,11 @@ public class AnimalDaoImpl implements IAnimalDao
     }
 
     @Override
-    public boolean delete(int id)
+    public void delete(Animal animal) throws Exception
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (animal.getId() <= 0)
+            throw new EntityNotFound("Entidade não possui Id");
+
+        em.remove(animal);
     }
 }
