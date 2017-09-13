@@ -1,9 +1,12 @@
 package br.com.ga.entity;
 
+import br.com.ga.entity.enums.AnimalSize;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,108 +15,134 @@ import javax.persistence.TemporalType;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Animal implements Serializable {
+public class Animal implements Serializable
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nome;
-    private String especie;
-    private String raca;
-    private String porte;
-    private int temperamento;
-    @Temporal(TemporalType.DATE)
-    private Date dataNascimento;
-    private double peso;
+    private String name;
+    private String type;
+    private String specie;
 
-    public int getId() {
+    @Enumerated(EnumType.ORDINAL)
+    private AnimalSize size;
+
+    private int temperament;
+    @Temporal(TemporalType.DATE)
+    private Date birthDate;
+    private double wheight;
+
+    public Animal()
+    {
+        super();
+    }
+
+    public int getId()
+    {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName()
+    {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name)
+    {
+        this.name = name;
     }
 
-    public String getEspecie() {
-        return especie;
+    public String getType()
+    {
+        return type;
     }
 
-    public void setEspecie(String especie) {
-        this.especie = especie;
+    public void setType(String type)
+    {
+        this.type = type;
     }
 
-    public String getRaca() {
-        return raca;
+    public String getSpecie()
+    {
+        return specie;
     }
 
-    public void setRaca(String raca) {
-        this.raca = raca;
+    public void setSpecie(String specie)
+    {
+        this.specie = specie;
     }
 
-    public String getPorte() {
-        return porte;
+    public AnimalSize getSize()
+    {
+        return size;
     }
 
-    public void setPorte(String porte) {
-        this.porte = porte;
+    public void setSize(AnimalSize size)
+    {
+        this.size = size;
     }
 
-    public int getTemperamento() {
-        return temperamento;
+    public int getTemperament()
+    {
+        return temperament;
     }
 
-    public void setTemperamento(int temperamento) {
-        this.temperamento = temperamento;
+    public void setTemperament(int temperament)
+    {
+        this.temperament = temperament;
     }
 
-    public Date getDataNascimento() {
-        return dataNascimento;
+    public Date getBirthDate()
+    {
+        return birthDate;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setBirthDate(Date birthDate)
+    {
+        this.birthDate = birthDate;
     }
 
-    public double getPeso() {
-        return peso;
+    public double getWheight()
+    {
+        return wheight;
     }
 
-    public void setPeso(double peso) {
-        this.peso = peso;
+    public void setWheight(double wheight)
+    {
+        this.wheight = wheight;
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int hash = 5;
-        hash = 83 * hash + this.id;
+        hash = 13 * hash + this.id;
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+        {
             return true;
         }
-        if (obj == null) {
+        if (obj == null)
+        {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
+        {
             return false;
         }
         final Animal other = (Animal) obj;
         return this.id == other.id;
-    }
-
-    public Animal() {
-        super();
     }
 
 }

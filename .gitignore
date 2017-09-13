@@ -1,2 +1,4 @@
 backend/GAServer/target
 frontend/GAClient/target
+/backend/GAServer/application.properties
+oficina2.ppk
