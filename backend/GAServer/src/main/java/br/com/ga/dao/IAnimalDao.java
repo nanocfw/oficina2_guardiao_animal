@@ -12,7 +12,8 @@ import java.util.List;
  *
  * @author Marciano
  */
-public interface IAnimalDao {
+public interface IAnimalDao
+{
 
     Animal create(final Animal animal);
 

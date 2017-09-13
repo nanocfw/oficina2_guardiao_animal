@@ -19,33 +19,39 @@ import br.com.ga.dao.IAnimalDao;
  */
 @Transactional
 @Repository
-public class AnimalDaoImpl implements IAnimalDao {
+public class AnimalDaoImpl implements IAnimalDao
+{
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    public Animal create(Animal animal) {
+    public Animal create(Animal animal)
+    {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Animal findById(int id) {
+    public Animal findById(int id)
+    {
         return (Animal) em.createQuery("SELECT a FROM Animal a WHERE a.id = :id").setParameter("id", id).getSingleResult();
     }
 
     @Override
-    public Animal update(Animal animal) {
+    public Animal update(Animal animal)
+    {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Animal> findList(int rowsReturn, int rowsIgnore) {
+    public List<Animal> findList(int rowsReturn, int rowsIgnore)
+    {
         return em.createQuery("SELECT a FROM Animal a").setFirstResult(rowsIgnore).setMaxResults(rowsReturn).getResultList();
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(int id)
+    {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

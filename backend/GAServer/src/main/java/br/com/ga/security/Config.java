@@ -16,26 +16,33 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @author Marciano
  */
 @EnableWebSecurity
-public class Config extends WebSecurityConfigurerAdapter {
+public class Config extends WebSecurityConfigurerAdapter
+{
 
     private static final String ADMIN = "ADMIN";
-    private static final String USER = "USER";
+//    private static final String CLIENTE = "CLIENTE";
+//    private static final String PRESTADOR = "PRESTADOR";
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception
+    {
         http.authorizeRequests()
-                .antMatchers("/ga/**").hasRole(USER)
-                .antMatchers("/admin/**").hasRole(ADMIN)
+                .antMatchers("/**").hasRole(ADMIN)
+                //                .antMatchers("/ga/**").hasRole(PRESTADOR)
+                //                .antMatchers("/ga/client/**").hasRole(CLIENTE)
                 .and()
                 .formLogin();
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
+    {
         auth.inMemoryAuthentication()
-                .withUser("admin").password("@Of1c1n42").roles(USER, ADMIN)
-                .and()
-                .withUser("user").password("senha").roles(USER);
+                .withUser("admin").password("admin").roles(ADMIN) //                .and()
+                //                .withUser("prestador").password("prestador").roles(PRESTADOR)
+                //                .and()
+                //                .withUser("cliente").password("cliente").roles(CLIENTE)
+                ;
     }
 
 }
