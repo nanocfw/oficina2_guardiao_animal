@@ -26,8 +26,10 @@
         <script type="text/javascript" src="assets/js/jquery-ui.min.js"></script> 
         <!-- Import Materialize.js -->
         <script type="text/javascript" src="assets/js/materialize.min.js"></script>
-        <!-- Import aux_.js -->
-        <script type="text/javascript" src="assets/js/aux_.js"></script>
+        <!-- Import index.js -->
+        <script type="text/javascript" src="assets/js/index.js"></script>
+        <!-- Import mapsIndex.js -->
+        <script type="text/javascript" src="assets/js/mapsIndex.js"></script>
 
         <div id="loader-wrapper">
             <div id="loader"></div>
@@ -42,7 +44,10 @@
 
             <div class="main">
                 <img class="main-img" src="assets/images/pets.jpg"/>
+                <ui:include src="components/searchCity.xhtml"/>
+                <div id="map" style="display: none"></div>
                 <ui:include src="/components/loginRegister.xhtml"/>
+
             </div>
 
             <div id="guardiao" class="center-align">
@@ -57,7 +62,7 @@
                         <h5 class="grey-text">Procurando prestador de serviço para seu animalzinho?</h5>
                         <img src="assets/images/encontrar.png"/>
                     </div>
-                    
+
                 </div>
 
                 <div class="border col s6">
@@ -78,6 +83,9 @@
                 return false;
             });
 
+        </script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCONEgoiPhXnWsTWLE27z_wiNWxiq-j0VQ&amp;libraries=places&amp;callback=getCity">
         </script>
     </h:body>
 </html>

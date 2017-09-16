@@ -2,17 +2,18 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <script type="text/javascript" src="assets/js/maps.js"></script>
-    <div id="map"></div>
+    <script type="text/javascript" src="assets/js/mapsSearch.js"></script>
 
     <ul id="geoData" style="display: none">
-        <li>Full Address: <span id="location"></span></li>
+        <li>Full Address: <span id="loc"></span></li>
         <li>Postal Code: <span id="postal_code"></span></li>
         <li>Country: <span id="country"></span></li>
         <li>Latitude: <span id="lat"></span></li>
         <li>Longitude: <span id="lon"></span></li>
     </ul>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCONEgoiPhXnWsTWLE27z_wiNWxiq-j0VQ&amp;libraries=places&amp;callback=initMap">
+    <div id="map"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZFvkr4Q2sAvLnfWrCttEn66VcAnRz8DE&amp;libraries=places&amp;callback=initMap">
     </script>
 </ui:composition>

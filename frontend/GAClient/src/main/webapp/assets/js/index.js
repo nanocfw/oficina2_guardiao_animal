@@ -15,22 +15,10 @@ $(function () {
     $('.modal').modal();
 });
 
-
-// type enter to scroll on main page function
-function enter(event) {
-    let key = event.key;
-    if (key === "Enter" && ($('#location')[0].innerHTML) !== "") {
-        var $doc = $('html, body');
-        $doc.animate({
-            scrollTop: $($.attr($('.scroll')[0], 'href')).offset().top
-        }, 500);
-    }
-}
-
 // preload function
 $(document).ready(function () {
     setTimeout(function () {
         $('body').addClass('loaded');
-    }, 2000);
+    }, 0);
 
 });
