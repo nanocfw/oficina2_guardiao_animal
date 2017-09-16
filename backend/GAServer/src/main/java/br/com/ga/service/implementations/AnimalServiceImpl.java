@@ -17,34 +17,40 @@ import br.com.ga.dao.IAnimalDao;
  * @author Marciano
  */
 @Service
-public class AnimalServiceImpl implements IAnimalService {
+public class AnimalServiceImpl implements IAnimalService
+{
 
     @Autowired
     private IAnimalDao animalDao;
 
     @Override
-    public Animal create(Animal animal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Animal create(Animal animal) throws Exception
+    {
+        return animalDao.create(animal);
     }
 
     @Override
-    public Animal findById(int id) {
+    public Animal findById(int id)
+    {
         return animalDao.findById(id);
     }
 
     @Override
-    public Animal update(Animal animal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Animal update(Animal animal) throws Exception
+    {
+        return animalDao.update(animal);
     }
 
     @Override
-    public List<Animal> findList(int rowsReturn, int rowsIgnore) {
+    public List<Animal> findList(int rowsReturn, int rowsIgnore)
+    {
         return animalDao.findList(rowsReturn, rowsIgnore);
     }
 
     @Override
-    public boolean delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(Animal animal) throws Exception
+    {
+        animalDao.delete(animal);
     }
 
 }

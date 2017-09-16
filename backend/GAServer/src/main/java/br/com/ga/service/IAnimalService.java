@@ -12,15 +12,16 @@ import java.util.List;
  *
  * @author Marciano
  */
-public interface IAnimalService {
+public interface IAnimalService
+{
 
-    Animal create(final Animal animal);
+    Animal create(final Animal animal) throws Exception;
 
     Animal findById(final int id);
 
-    Animal update(Animal animal);
+    Animal update(Animal animal) throws Exception;
 
     List<Animal> findList(final int rowsReturn, int rowsIgnore);
 
-    boolean delete(final int id);
+    void delete(final Animal animal) throws Exception;
 }

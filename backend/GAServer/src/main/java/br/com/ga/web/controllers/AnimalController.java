@@ -31,7 +31,7 @@ public class AnimalController
 
     @ResponseStatus(HttpStatus.OK) //Por padrão responde com o status code 200 success
     @RequestMapping(
-            value = "ga/animal/{animalId}",
+            value = "ga/animal/find/{animalId}",
             //Mapeia as requisições GET para localhost:8080/person/
             //recebendo um ID como @PathVariable
             method = RequestMethod.GET,
@@ -44,7 +44,7 @@ public class AnimalController
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = "ga/animals/{rowsReturn}/{rowsIgnore}",
+            value = "ga/animal/list/{rowsReturn}/{rowsIgnore}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Animal> getList(
