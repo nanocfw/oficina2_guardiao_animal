@@ -14,8 +14,8 @@
         "descricao": "Especialista em cuidar de x animais.",
         "cidade": "Bom Despacho",
         "valor": 50,
-        "Latitude": -19.7369189,
-        "Longitude": -45.2510125
+        "Latitude": -19.7366189,
+        "Longitude": -45.2540125
     },
     {
         "Id": 3,
@@ -23,8 +23,8 @@
         "descricao": "Especialista em cuidar de x animais.",
         "cidade": "Bom Despacho",
         "valor": 70,
-        "Latitude": -19.7369189,
-        "Longitude": -45.2510125
+        "Latitude": -19.7329189,
+        "Longitude": -45.2710125
     },
     {
         "Id": 4,

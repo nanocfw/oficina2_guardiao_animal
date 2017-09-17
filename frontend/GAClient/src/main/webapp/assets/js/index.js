@@ -5,13 +5,6 @@ $(function () {
     $(".button-collapse").sideNav({
         closeOnClick: true
     });
-    $('.slider').slider({
-        full_width: true,
-        interval: 3000,
-        transition: 1000,
-        indicators: false,
-        height: 100 + 'vh'
-    });
     $('.modal').modal();
 });
 

@@ -1,10 +1,11 @@
-var enter = (event) => {};
+var enter = (event) => {
+};
 getCity = () => {
     var latitude = parseFloat(window.localStorage.getItem('lat'));
     var longitude = parseFloat(window.localStorage.getItem('lon'));
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: latitude, lng: longitude},
-        zoom: 14,
+        zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
     options = {
@@ -29,7 +30,7 @@ getData = (map, options) => {
         var place = autocomplete.getPlace();
         if (!place.geometry) {
             return window.alert("Autocomplete's returned place contains no geometry");
-            
+
         }
 
         // If the place has a geometry, then present it on a map.
@@ -37,7 +38,7 @@ getData = (map, options) => {
             map.fitBounds(place.geometry.viewport);
         } else {
             map.setCenter(place.geometry.location);
-            map.setZoom(17);
+            map.setZoom(13);
         }
 
         for (var i = 0; i < place.address_components.length; i++) {
@@ -53,7 +54,8 @@ getData = (map, options) => {
         lon = place.geometry.location.lng();
 
         setCity(postal_code, country, loc, lat, lon);
-
+        
+        getGuardioes();
     });
 
 };

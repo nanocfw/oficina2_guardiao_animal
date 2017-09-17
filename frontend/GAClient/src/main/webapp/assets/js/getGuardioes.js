@@ -2,12 +2,12 @@
 getGuardioes = () => {
     $.getJSON('assets/auxiliar/aa.json', function (pontos) {
         let guardioes = "";
-        
+
         $.each(pontos, function (index, ponto) {
-            
+
             var city = window.localStorage.getItem('loc');
             var cityJson = ponto.cidade;
-            
+
             if (city.match(cityJson)) {
                 let guardiao = `<li id="guardiao" class="container" opacity="0">
                 <div class="col s12 m8 offset-m2 l6 offset-l3">
@@ -38,17 +38,20 @@ getGuardioes = () => {
             </li>`;
                 guardioes += guardiao;
             }
-
         });
-        for (i = 0; i < guardioes.length; i++) {
-            return document.querySelector('#guardioes').innerHTML = guardioes;
+        if (guardioes === "") {
+            return document.querySelector('#guardioes').innerHTML = "";
+        } else {
+            for (i = 0; i < guardioes.length; i++) {
+                return document.querySelector('#guardioes').innerHTML = guardioes;
+            }
         }
     });
 }
 ;
 
-getMarkers = (icon = 'assets/images/mark.png') => {
-    
+getMarkers = (map, icon = 'assets/images/mark.png') => {
+
     $.getJSON('assets/auxiliar/aa.json', function (pontos) {
 
         $.each(pontos, function (index, ponto) {
@@ -56,7 +59,7 @@ getMarkers = (icon = 'assets/images/mark.png') => {
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(ponto.Latitude, ponto.Longitude),
                 // title: "Meu ponto personalizado! ID: " + ponto.Id.toString(),
-                setMap: map,
+                map: map,
                 draggable: false,
                 optimized: false,
                 icon: icon
@@ -65,16 +68,12 @@ getMarkers = (icon = 'assets/images/mark.png') => {
             var infowindow = new google.maps.InfoWindow(), marker;
 
             google.maps.event.addListener(marker, 'mouseover', function () {
-                var city = window.localStorage.getItem('loc');
-                var cityJson = ponto.cidade;
-                if (city.match(cityJson)) {
 
-                    infowindow.setContent(`<p class="markMaps"> ID: ${ponto.Id} - ${ponto.nome} <br/> R$${ponto.valor}/Diaria <br/> 
+                infowindow.setContent(`<p class="markMaps"> ID: ${ponto.Id} - ${ponto.nome} <br/> R$${ponto.valor}/Diaria <br/> 
                         ${ponto.cidade} </p>`);
-                    infowindow.open(map, marker);
+                infowindow.open(map, marker);
 
-                    marker.setIcon("assets/images/mark1.png");
-                }
+                marker.setIcon("assets/images/mark1.png");
             });
             google.maps.event.addListener(marker, 'mouseout', function () {
                 infowindow.close(map, marker);
@@ -83,8 +82,3 @@ getMarkers = (icon = 'assets/images/mark.png') => {
         });
     });
 };
-
-(() => onchange = () => {
-    getGuardioes(); 
-    getMarkers();
-})();

@@ -1,36 +1,30 @@
+(() => document.getElementById("address").value = window.localStorage.getItem('loc'))();
+
 initMap = () => {
-    var latitude = parseFloat(window.localStorage.getItem('lat'));
-    var longitude = parseFloat(window.localStorage.getItem('lon'));
-    var map = new google.maps.Map(document.getElementById('map'), {
+    let latitude = parseFloat(window.localStorage.getItem('lat'));
+    let longitude = parseFloat(window.localStorage.getItem('lon'));
+    let map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: latitude, lng: longitude},
-        zoom: 14,
+        zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
     options = {
         types: ['(cities)']
     };
-
-    var marker = new google.maps.Marker({
-        map: map
-
-    });
-
     getData(map, options);
+    getMarkers(map);
 };
-
 
 getCity = (event) => {
     let key = event.key;
     if (key === "Enter" && ($('#address')[0].value) !== "") {
-        var city = window.localStorage.getItem('loc');
-        var actualCity = ($('#address')[0].value);
+        let city = window.localStorage.getItem('loc');
+        let actualCity = ($('#address')[0].value);
 
         if (city.match(actualCity)) {
             console.log($('#address')[0].value);
+            getGuardioes();
             Materialize.fadeInImage('#guardioes');
         }
     }
 };
-
-
-(() => document.getElementById("address").value = window.localStorage.getItem('loc'))();
