@@ -5,6 +5,8 @@
  */
 package br.com.ga.service.implementations;
 
+import br.com.ga.Exceptions.EmailInUse;
+import br.com.ga.Exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import java.util.List;
 import br.com.ga.service.IPersonService;
@@ -24,21 +26,18 @@ public class PersonServiceImpl implements IPersonService
     IPersonDao personDao;
 
     @Override
-    public Person create(Person person) throws Exception
-    {
-        return personDao.create(person);
-    }
-
-    @Override
-    public Person findById(long id)
+    public Person findById(long id) throws Exception
     {
         return personDao.findById(id);
     }
 
     @Override
-    public Person update(Person person) throws Exception
+    public Person createUpdate(Person person) throws Exception
     {
-        return personDao.update(person);
+        if (emailInUse(person.getId(), person.getEmail()))
+            throw new EmailInUse();
+
+        return personDao.createUpdate(person);
     }
 
     @Override
@@ -50,13 +49,22 @@ public class PersonServiceImpl implements IPersonService
     @Override
     public void delete(Person person) throws Exception
     {
+        if (person.getId() <= 0)
+            throw new EntityNotFound("Entidade não possui Id");
+
         personDao.delete(person);
     }
 
     @Override
-    public Person findByEmailPassword(String email, String password)
+    public Person findByEmailPassword(String email, String password) throws Exception
     {
         return personDao.findByEmailPassword(email, password);
+    }
+
+    @Override
+    public boolean emailInUse(long currentId, String email)
+    {
+        return personDao.emailInUse(currentId, email);
     }
 
 }

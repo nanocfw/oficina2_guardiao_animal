@@ -23,7 +23,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 public class Config extends WebSecurityConfigurerAdapter
 {
 
-    private static String REALM = "MY_TEST_REALM";
+    private static final String REALM = "REALM";
     private static final String ADMIN = "ADMIN";
 
     @Override

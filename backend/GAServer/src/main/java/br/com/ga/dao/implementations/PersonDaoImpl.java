@@ -5,11 +5,13 @@
  */
 package br.com.ga.dao.implementations;
 
+import br.com.ga.Exceptions.EmailInUse;
 import br.com.ga.Exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import java.util.List;
 import br.com.ga.dao.IPersonDao;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
@@ -28,48 +30,53 @@ public class PersonDaoImpl implements IPersonDao
     private EntityManager em;
 
     @Override
-    public Person create(Person person) throws Exception
+    public Person createUpdate(Person person) throws Exception
     {
-        em.persist(person);
+        em.merge(person);
         return person;
     }
 
     @Override
-    public Person findById(long id)
+    public Person findById(long id) throws Exception
     {
         TypedQuery<Person> qry = em
                 .createQuery("SELECT p FROM Person p WHERE p.id = :id", Person.class);
-        return (Person) qry
-                .setParameter("id", id)
-                .getSingleResult();
+        try
+        {
+            return (Person) qry
+                    .setParameter("id", id)
+                    .getSingleResult();
+        } catch (NoResultException ex)
+        {
+            throw new EntityNotFound();
+        }
     }
 
     @Override
-    public Person update(Person person) throws Exception
-    {
-        if (person.getId() <= 0)
-            throw new EntityNotFound("Entidade não possui Id");
-
-        em.persist(person);
-        return person;
-    }
-
-    @Override
-    public Person findByEmailPassword(String email, String password)
+    public Person findByEmailPassword(String email, String password) throws Exception
     {
         TypedQuery<Person> qry = em
-                .createQuery("SELECT p FROM Person p WHERE p.email = :email AND p.pasword = :password", Person.class);
-        return qry
-                .setParameter("email", email)
-                .setParameter("password", password)
-                .getSingleResult();
+                .createQuery("SELECT p FROM Person p WHERE p.email = :email AND p.pasword = :password",
+                        Person.class);
+        try
+        {
+            return qry
+                    .setParameter("email", email)
+                    .setParameter("password", password)
+                    .getSingleResult();
+        } catch (NoResultException ex)
+        {
+            throw new EntityNotFound();
+        }
     }
 
     @Override
     public List<Person> findList(boolean listClients, int rowsReturn, int rowsIgnore)
     {
         return em
-                .createQuery("SELECT p FROM Person p")
+                .createQuery("SELECT p FROM Person p WHERE p.serviceProvider = :service_provider")
+                .setParameter("service_provider", !listClients)
+                // caso não deva listar os clientes, filtra para exibir somente entidades que possuem serviceProvider == true
                 .setFirstResult(rowsIgnore)
                 .setMaxResults(rowsReturn)
                 .getResultList();
@@ -78,10 +85,18 @@ public class PersonDaoImpl implements IPersonDao
     @Override
     public void delete(Person person) throws Exception
     {
-        if (person.getId() <= 0)
-            throw new EntityNotFound("Entidade não possui Id");
-
         em.remove(person);
+    }
+
+    @Override
+    public boolean emailInUse(long currentId, String email)
+    {
+        TypedQuery<Person> qry = em
+                .createQuery("SELECT p FROM Person p WHERE p.email = :email AND p.id <> :currentId", Person.class);
+        return qry
+                .setParameter("email", email)
+                .setParameter("currentId", currentId)
+                .getResultList().size() > 0;
     }
 
 }

@@ -5,8 +5,8 @@
  */
 package br.com.ga.web.controllers;
 
+import br.com.ga.dao.IAnimalDao;
 import br.com.ga.entity.Animal;
-import br.com.ga.service.IAnimalService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,12 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Marciano
  */
 @RestController
-//Mapeia as requisições de localhost:8080/person/
 public class AnimalController
 {
 
     @Autowired
-    private IAnimalService animalService;
+    private IAnimalDao animalDao;
 
     @ResponseStatus(HttpStatus.OK) //Por padrão responde com o status code 200 success
     @RequestMapping(
@@ -39,7 +38,7 @@ public class AnimalController
     // Produz JSON como retorno
     public Animal get(@PathVariable(value = "animalId") int animalId)
     {
-        return animalService.findById(animalId);
+        return animalDao.findById(animalId);
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -51,6 +50,6 @@ public class AnimalController
             @PathVariable(value = "rowsReturn") int rowsReturn,
             @PathVariable(value = "rowsIgnore") int rowsIgnore)
     {
-        return animalService.findList(rowsReturn, rowsIgnore);
+        return animalDao.findList(rowsReturn, rowsIgnore);
     }
 }

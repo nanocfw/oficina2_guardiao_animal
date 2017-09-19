@@ -9,16 +9,17 @@ package br.com.ga.Exceptions;
  *
  * @author Marciano
  */
-public class EntityNotFound extends Exception
+public class EmailInUse extends Exception
 {
 
-    public EntityNotFound()
+    public EmailInUse()
     {
-        super("Registro não encontrado.");
+        super("E-Mail em uso.");
     }
 
-    public EntityNotFound(String message)
+    public EmailInUse(String msg)
     {
-        super(message);
+        super(msg);
     }
+
 }
