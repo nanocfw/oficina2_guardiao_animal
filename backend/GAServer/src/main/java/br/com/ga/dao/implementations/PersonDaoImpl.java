@@ -9,7 +9,7 @@ import br.com.ga.Exceptions.EmailInUse;
 import br.com.ga.Exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import java.util.List;
-import br.com.ga.dao.IPersonDao;
+import br.com.ga.dao.intf.IPersonDao;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;

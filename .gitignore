@@ -2,3 +2,5 @@ backend/GAServer/target
 frontend/GAClient/target
 /backend/GAServer/application.properties
 oficina2.ppk
+/frontend/GAClient/src/main/java/br/com/ga/Exceptions/
+/frontend/GAClient/src/main/java/br/com/ga/entity/

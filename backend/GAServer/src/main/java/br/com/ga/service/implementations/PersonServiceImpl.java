@@ -9,8 +9,8 @@ import br.com.ga.Exceptions.EmailInUse;
 import br.com.ga.Exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import java.util.List;
-import br.com.ga.service.IPersonService;
-import br.com.ga.dao.IPersonDao;
+import br.com.ga.service.intf.IPersonService;
+import br.com.ga.dao.intf.IPersonDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

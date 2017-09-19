@@ -5,7 +5,7 @@
  */
 package br.com.ga.web.controllers;
 
-import br.com.ga.dao.IAnimalDao;
+import br.com.ga.dao.intf.IAnimalDao;
 import br.com.ga.entity.Animal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

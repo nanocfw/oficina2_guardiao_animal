@@ -6,11 +6,11 @@
 package br.com.ga.service.implementations;
 
 import br.com.ga.entity.Animal;
-import br.com.ga.service.IAnimalService;
+import br.com.ga.service.intf.IAnimalService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import br.com.ga.dao.IAnimalDao;
+import br.com.ga.dao.intf.IAnimalDao;
 
 /**
  *

@@ -5,9 +5,9 @@
  */
 package br.com.ga.web.controllers;
 
-import br.com.ga.dao.IPersonDao;
+import br.com.ga.dao.intf.IPersonDao;
 import br.com.ga.entity.Person;
-import br.com.ga.service.IPersonService;
+import br.com.ga.service.intf.IPersonService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

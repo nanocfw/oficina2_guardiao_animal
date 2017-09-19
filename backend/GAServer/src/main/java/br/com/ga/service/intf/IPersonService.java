@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.ga.dao;
+package br.com.ga.service.intf;
 
 import br.com.ga.entity.Person;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Marciano
  */
-public interface IPersonDao
+public interface IPersonService
 {
 
     Person createUpdate(final Person person) throws Exception;
