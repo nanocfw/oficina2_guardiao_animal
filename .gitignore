@@ -4,3 +4,4 @@ frontend/GAClient/target
 oficina2.ppk
 /frontend/GAClient/src/main/java/br/com/ga/Exceptions/
 /frontend/GAClient/src/main/java/br/com/ga/entity/
+/frontend/GAClient/src/main/java/br/com/ga/service/intf/

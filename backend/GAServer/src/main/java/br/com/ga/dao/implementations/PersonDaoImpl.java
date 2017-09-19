@@ -32,8 +32,9 @@ public class PersonDaoImpl implements IPersonDao
     @Override
     public Person createUpdate(Person person) throws Exception
     {
-        em.merge(person);
-        return person;
+        Person p = em.merge(person);
+        em.flush();
+        return p;
     }
 
     @Override
@@ -86,6 +87,7 @@ public class PersonDaoImpl implements IPersonDao
     public void delete(Person person) throws Exception
     {
         em.remove(person);
+        em.flush();
     }
 
     @Override

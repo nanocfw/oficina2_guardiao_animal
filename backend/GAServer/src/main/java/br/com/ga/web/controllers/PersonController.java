@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Marciano
  */
 @RestController
+@RequestMapping("ga/person/")
 public class PersonController
 {
 
@@ -32,7 +33,7 @@ public class PersonController
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = "ga/person/{personId}",
+            value = "fetch/{personId}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Person get(@PathVariable(value = "personId") long animalId) throws Exception
@@ -42,7 +43,7 @@ public class PersonController
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = "ga/person/{listClients}/{rowsReturn}/{rowsIgnore}",
+            value = "fetch/{listClients}/{rowsReturn}/{rowsIgnore}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Person> getList(
@@ -55,8 +56,8 @@ public class PersonController
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = "ga/person/",
-            method = RequestMethod.PUT,
+            value = "save/",
+            method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Person createUpdate(@RequestBody Person p) throws Exception
     {
@@ -65,7 +66,7 @@ public class PersonController
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = "ga/person/",
+            value = "fetch/",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Person login(@RequestBody Person p) throws Exception
@@ -75,7 +76,7 @@ public class PersonController
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = "ga/person/{email}/{currentId}",
+            value = "fetch/{email}/{currentId}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean emailInUse(
@@ -87,7 +88,7 @@ public class PersonController
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = "ga/person/",
+            value = "delete/",
             method = RequestMethod.DELETE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public void delete(Person p) throws Exception
