@@ -25,6 +25,8 @@
                         <h:inputText class="text-grey" a:placeholder="Senha"></h:inputText>
                     </div>
 
+                    
+                        <br/>
                     <div class="center-align">
                         <a href="" class="waves-effect waves-light btn deep-orange lighten-1">Entrar</a>
                     </div>
@@ -38,6 +40,10 @@
     </div>
 
     <div id="cadastrar" class="modalDialog">
+        <!-- autocomplete js -->
+        <script src="assets/js/teleport-autocomplete-min.js"></script>
+        <!-- autocomplete css -->
+        <link type="text/css" rel="stylesheet" href="assets/css/teleport-autocomplete-min.css" /> 
         <div>
             <a href="#close" title="Close" class="close">X</a>
             <div class="center-align">
@@ -58,7 +64,17 @@
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">location_on</i>
-                        <h:inputText class="text-grey" a:placeholder="CEP"></h:inputText>
+                        <input id="endereco" class="endereco" placeholder="Endereço" tabindex="1"></input>
+                    </div>
+                    <div style="display: none" class="inline">
+                        <i class="icons text-grey material-icons">location_on</i>
+                        <input id="cidade" class="text-grey" placeholder="Cidade" tabindex="1"></input>
+                    </div>
+                    <div style="display: none" class="inline">
+                        <i class="icons text-grey material-icons">location_on</i>
+                        <input id="estado" class="text-grey" placeholder="Estado"></input>
+                        <i class="icons text-grey material-icons">location_on</i>
+                        <input id="pais" class="text-grey" placeholder="Pais"></input>
                     </div>
 
                     <div class="inline">
@@ -70,6 +86,8 @@
                         <i class="icons text-grey material-icons">vpn_key</i>
                         <h:inputText class="text-grey" a:placeholder="Senha"></h:inputText>
                     </div>
+                    
+                    <br />
 
                     <div class="center-align">
                         <a href="" class="waves-effect waves-light btn deep-orange lighten-1">Cadastrar</a>
@@ -82,4 +100,16 @@
             </div>
         </div>
     </div>
+    <script>
+        TeleportAutocomplete.init('.endereco').on('change', function (value) {
+
+        if (value.name !== "" &amp;&amp; value.admin1Division !== "" &amp;&amp; value.country !== "") {
+            document.getElementById("cidade").value = value.name;
+            document.getElementById("estado").value = value.admin1Division;
+            document.getElementById("pais").value = value.country;
+            
+            console.log(value.name, value.admin1Division, value.country)
+        }
+      });
+    </script>
 </ui:composition>

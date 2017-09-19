@@ -14,7 +14,7 @@ nav .nav-wrapper {
     padding: 0 50px;
 }
 
-h1 {
+h1, h2 {
     font-size: 3em;
 }
 
@@ -26,6 +26,7 @@ p { font-size: 1.25em;}
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    height: 100vh;
 }
 
 .border {
@@ -69,6 +70,23 @@ p { font-size: 1.25em;}
 .text-orange {
     color: #ff7043;
 }
+
+.big-button {
+    width: 50vw;
+    margin: 10%;
+    height: 50vh;
+    padding: 15%;
+    border-radius: 50px;
+}
+
+.full-height {
+    height: 90vh !important;
+}
+
+.bg-color {
+    background-color: #ebeeef;
+}
+
 .icons {
     margin-top: 10px;
     margin-right: 5px;
@@ -76,6 +94,8 @@ p { font-size: 1.25em;}
 
 .inline {
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .guardioes {
@@ -178,6 +198,21 @@ p { font-size: 1.25em;}
 
 .close:hover { background: #ff7043; }
 
+.div-hov:hover {
+    background-color: white !important;
+    color: #ff7043
+}
+
+.div-hover:hover ~ html {
+    background-color: #ff7043;
+}
+
+@media screen and (max-width: 1250px) {
+    .big-button {
+        height: 40vh;
+    }
+}
+
 @media screen and (max-width: 1050px) {
     body { font-size: 80%; }
     p, h5, img { font-size: 2em;}
@@ -185,6 +220,12 @@ p { font-size: 1.25em;}
 }
 
 @media screen and (max-width: 750px) {
+    h4, h3 {
+        font-size: 2rem;
+    }
+    .big-button {
+        height: 30vh;
+    }
     body { font-size: 60%; }
     .c-footer{
         width: 70%;
@@ -201,14 +242,24 @@ p { font-size: 1.25em;}
     }
 }
 
-@media screen and (max-width: 500px) {
-    body { font-size: 50%; }
+@media screen and (max-width: 600px) {
+    h4, h3 {
+        font-size: 1.5rem;
+    }
+    .big-button {
+        height: 25vh;
+    }
 }
 
 @media screen and (max-width: 500px) {
+    body { font-size: 50%; }
     .modalDialog > div {
         width: 250px;
     }
+    h4, h3 {
+        font-size: 1rem;
+    }
+
 }
 
 

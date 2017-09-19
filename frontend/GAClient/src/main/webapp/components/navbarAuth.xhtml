@@ -1,0 +1,39 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <nav>
+        <div class="nav-wrapper deep-orange lighten-1">
+            <a href="index.xhtml" class="brand-logo">Logo</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="searchGuardiao.xhtml" class="waves-effect waves-light btn deep-orange lighten-1">Encontre um Guardião</a></li>
+                <li><a href="#entrar" class="waves-effect waves-light btn deep-orange lighten-1">Seja um Guardião</a></li>
+                <li><a href="#!" class="waves-effect waves-light btn deep-orange lighten-1 dropdown-button" data-activates="dropdown" data-beloworigin="true">Fernando</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="searchGuardiao.xhtml" class="waves-effect waves-light btn deep-orange lighten-1">Encontre um Guardião</a></li>
+                <li><a href="#entrar" class="waves-effect waves-light btn deep-orange lighten-1">Seja um Guardião</a></li>
+                <li><a href="#!" class="waves-effect waves-light btn deep-orange lighten-1 dropdown-button" data-activates="dropdown-mobile" data-beloworigin="true">Fernando</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Dropdown Structure -->
+    <ul id="dropdown" class="dropdown-content collection">
+        <li><a href="#!">Painel de Controle</a></li>
+        <li><a href="#!">Perfil</a></li>
+        <li><a href="#!">Configurações</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">Sair</a></li>
+    </ul>
+
+    <ul id="dropdown-mobile" class="dropdown-content collection">
+        <li><a href="#!">Painel de Controle</a></li>
+        <li><a href="#!">Perfil</a></li>
+        <li><a href="#!">Configurações</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">Sair</a></li>
+    </ul>
+</ui:composition>

@@ -40,7 +40,7 @@ getGuardioes = () => {
             }
         });
         if (guardioes === "") {
-            return document.querySelector('#guardioes').innerHTML = "";
+            return document.querySelector('#guardioes').innerHTML = `<h4 class="text-grey center-align">Desculpe, nenhum <span class="text-orange">Guardião</span> foi encontrado nesta regiao.</h4>`;
         } else {
             for (i = 0; i < guardioes.length; i++) {
                 return document.querySelector('#guardioes').innerHTML = guardioes;
