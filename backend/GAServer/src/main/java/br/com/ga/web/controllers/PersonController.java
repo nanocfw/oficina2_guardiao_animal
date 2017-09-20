@@ -10,7 +10,7 @@ import br.com.ga.Exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
 import br.com.ga.web.response.ResponseData;
-import br.com.ga.web.response.ResponseCodes;
+import br.com.ga.web.response.ResponseCode;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,13 +43,13 @@ public class PersonController
     {
         try
         {
-            return new ResponseData(Person.class, personService.findById(animalId), ResponseCodes.FOUND);
+            return new ResponseData(Person.class, personService.findById(animalId), ResponseCode.FOUND);
         } catch (EntityNotFound e)
         {
-            return new ResponseData(Person.class, ResponseCodes.NOT_FOUND, EntityNotFound.class, e.getMessage());
+            return new ResponseData(Person.class, ResponseCode.NOT_FOUND, EntityNotFound.class, e.getMessage());
         } catch (Exception e)
         {
-            return new ResponseData(Person.class, ResponseCodes.NOT_FOUND, e.getClass(), e.getMessage());
+            return new ResponseData(Person.class, ResponseCode.NOT_FOUND, e.getClass(), e.getMessage());
         }
     }
 
@@ -75,13 +75,13 @@ public class PersonController
     {
         try
         {
-            return new ResponseData(Person.class, personService.createUpdate(p), ResponseCodes.CREATED);
+            return new ResponseData(Person.class, personService.createUpdate(p), ResponseCode.CREATED);
         } catch (EmailInUse e)
         {
-            return new ResponseData(Person.class, ResponseCodes.ERROR, EmailInUse.class, e.getMessage());
+            return new ResponseData(Person.class, ResponseCode.ERROR, EmailInUse.class, e.getMessage());
         } catch (Exception ex)
         {
-            return new ResponseData(Person.class, ResponseCodes.ERROR, ex.getClass(), ex.getMessage());
+            return new ResponseData(Person.class, ResponseCode.ERROR, ex.getClass(), ex.getMessage());
         }
     }
 
@@ -94,13 +94,13 @@ public class PersonController
     {
         try
         {
-            return new ResponseData(Person.class, personService.findByEmailPassword(p.getEmail(), p.getPasword()), ResponseCodes.FOUND);
+            return new ResponseData(Person.class, personService.findByEmailPassword(p.getEmail(), p.getPasword()), ResponseCode.FOUND);
         } catch (EntityNotFound e)
         {
-            return new ResponseData(Person.class, ResponseCodes.NOT_FOUND, EntityNotFound.class, e.getMessage());
+            return new ResponseData(Person.class, ResponseCode.NOT_FOUND, EntityNotFound.class, e.getMessage());
         } catch (Exception e)
         {
-            return new ResponseData(Person.class, ResponseCodes.NOT_FOUND, e.getClass(), e.getMessage());
+            return new ResponseData(Person.class, ResponseCode.NOT_FOUND, e.getClass(), e.getMessage());
         }
     }
 

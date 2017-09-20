@@ -14,7 +14,7 @@ public class ResponseData
 
     private Class<?> objectClass;
     private Object value;
-    private ResponseCodes status;
+    private ResponseCode status;
     private Class<?> exceptionType;
     private String exceptionMessage;
 
@@ -38,12 +38,12 @@ public class ResponseData
         this.value = value;
     }
 
-    public ResponseCodes getStatus()
+    public ResponseCode getStatus()
     {
         return status;
     }
 
-    public void setStatus(ResponseCodes status)
+    public void setStatus(ResponseCode status)
     {
         this.status = status;
     }
@@ -73,14 +73,14 @@ public class ResponseData
         super();
     }
 
-    public ResponseData(Class<?> objectClass, Object value, ResponseCodes status)
+    public ResponseData(Class<?> objectClass, Object value, ResponseCode status)
     {
         this.objectClass = objectClass;
         this.value = value;
         this.status = status;
     }
 
-    public ResponseData(Class<?> objectClass, ResponseCodes status, Class<?> exceptionType, String exceptionMessage)
+    public ResponseData(Class<?> objectClass, ResponseCode status, Class<?> exceptionType, String exceptionMessage)
     {
         this.objectClass = objectClass;
         this.status = status;
@@ -88,7 +88,7 @@ public class ResponseData
         this.exceptionMessage = exceptionMessage;
     }
 
-    public ResponseData(Class<?> objectClass, Object value, ResponseCodes status, Class<?> exceptionType)
+    public ResponseData(Class<?> objectClass, Object value, ResponseCode status, Class<?> exceptionType)
     {
         this.objectClass = objectClass;
         this.value = value;
@@ -96,7 +96,7 @@ public class ResponseData
         this.exceptionType = exceptionType;
     }
 
-    public ResponseData(Class<?> objectClass, Object value, ResponseCodes status, Class<?> exceptionType, String exceptionMessage)
+    public ResponseData(Class<?> objectClass, Object value, ResponseCode status, Class<?> exceptionType, String exceptionMessage)
     {
         this.objectClass = objectClass;
         this.value = value;

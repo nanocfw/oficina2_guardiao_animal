@@ -9,7 +9,7 @@ package br.com.ga.web.response;
  *
  * @author Marciano
  */
-public enum ResponseCodes
+public enum ResponseCode
 {
     OK, CREATED, ERROR, FOUND, NOT_FOUND;
 };

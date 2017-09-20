@@ -9,7 +9,7 @@ import br.com.ga.Exceptions.EmailInUse;
 import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
 import br.com.ga.web.response.ResponseData;
-import br.com.ga.web.response.ResponseCodes;
+import br.com.ga.web.response.ResponseCode;
 import java.util.List;
 
 /**
@@ -25,7 +25,7 @@ public class PersonServiceImpl extends Service implements IPersonService
         final String uri = "person/save/";
         BasicAuthRestTemplate r = getNewRestTemplate();
         ResponseData response = r.postForObject(getServerURL() + uri, person, ResponseData.class);
-        if (response.getStatus() == ResponseCodes.CREATED)
+        if (response.getStatus() == ResponseCode.CREATED)
             return (Person) response.getValue();
 
         if (response.getExceptionType() == EmailInUse.class)
