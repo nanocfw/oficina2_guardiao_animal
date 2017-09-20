@@ -5,9 +5,8 @@
  */
 package br.com.ga.client.implementations;
 
-import java.nio.charset.Charset;
-import org.apache.commons.codec.binary.Base64;
-import org.springframework.http.HttpHeaders;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 /**
  *
@@ -37,19 +36,12 @@ public abstract class Service
         password = "admin";
     }
 
-    public HttpHeaders getAuthHeader()
+    public BasicAuthRestTemplate getNewRestTemplate()
     {
-        return new HttpHeaders()
-        {
-            {
-                String auth = userName + ":" + password;
-                byte[] encodedAuth;
-                
-                encodedAuth = Base64.encodeBase64(
-                        auth.getBytes(Charset.forName("US-ASCII")));
-                String authHeader = "Basic " + new String(encodedAuth);
-                set("Authorization", authHeader);
-            }
-        };
+        BasicAuthRestTemplate restTemplate = new BasicAuthRestTemplate(userName, password);
+        MappingJackson2HttpMessageConverter jsonHttpMessageConverter = new MappingJackson2HttpMessageConverter();
+        jsonHttpMessageConverter.getObjectMapper().configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        restTemplate.getMessageConverters().add(jsonHttpMessageConverter);
+        return restTemplate;
     }
 }

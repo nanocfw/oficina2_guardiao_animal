@@ -5,9 +5,12 @@
  */
 package br.com.ga.web.controllers;
 
-import br.com.ga.dao.intf.IPersonDao;
+import br.com.ga.Exceptions.EmailInUse;
+import br.com.ga.Exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
+import br.com.ga.web.response.ResponseData;
+import br.com.ga.web.response.ResponseCodes;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,9 +39,18 @@ public class PersonController
             value = "fetch/{personId}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person get(@PathVariable(value = "personId") long animalId) throws Exception
+    public ResponseData get(@PathVariable(value = "personId") long animalId)
     {
-        return personService.findById(animalId);
+        try
+        {
+            return new ResponseData(Person.class, personService.findById(animalId), ResponseCodes.FOUND);
+        } catch (EntityNotFound e)
+        {
+            return new ResponseData(Person.class, ResponseCodes.NOT_FOUND, EntityNotFound.class, e.getMessage());
+        } catch (Exception e)
+        {
+            return new ResponseData(Person.class, ResponseCodes.NOT_FOUND, e.getClass(), e.getMessage());
+        }
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -59,9 +71,18 @@ public class PersonController
             value = "save/",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person createUpdate(@RequestBody Person p) throws Exception
+    public ResponseData createUpdate(@RequestBody Person p)
     {
-        return personService.createUpdate(p);
+        try
+        {
+            return new ResponseData(Person.class, personService.createUpdate(p), ResponseCodes.CREATED);
+        } catch (EmailInUse e)
+        {
+            return new ResponseData(Person.class, ResponseCodes.ERROR, EmailInUse.class, e.getMessage());
+        } catch (Exception ex)
+        {
+            return new ResponseData(Person.class, ResponseCodes.ERROR, ex.getClass(), ex.getMessage());
+        }
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -69,9 +90,18 @@ public class PersonController
             value = "fetch/",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person login(@RequestBody Person p) throws Exception
+    public ResponseData login(@RequestBody Person p)
     {
-        return personService.findByEmailPassword(p.getEmail(), p.getPasword());
+        try
+        {
+            return new ResponseData(Person.class, personService.findByEmailPassword(p.getEmail(), p.getPasword()), ResponseCodes.FOUND);
+        } catch (EntityNotFound e)
+        {
+            return new ResponseData(Person.class, ResponseCodes.NOT_FOUND, EntityNotFound.class, e.getMessage());
+        } catch (Exception e)
+        {
+            return new ResponseData(Person.class, ResponseCodes.NOT_FOUND, e.getClass(), e.getMessage());
+        }
     }
 
     @ResponseStatus(HttpStatus.OK)

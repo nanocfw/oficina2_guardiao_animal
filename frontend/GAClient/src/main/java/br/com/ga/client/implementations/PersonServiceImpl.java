@@ -5,10 +5,12 @@
  */
 package br.com.ga.client.implementations;
 
+import br.com.ga.Exceptions.EmailInUse;
 import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
+import br.com.ga.web.response.ResponseData;
+import br.com.ga.web.response.ResponseCodes;
 import java.util.List;
-import org.springframework.web.client.RestTemplate;
 
 /**
  *
@@ -21,8 +23,15 @@ public class PersonServiceImpl extends Service implements IPersonService
     public Person createUpdate(Person person) throws Exception
     {
         final String uri = "person/save/";
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForObject(getServerURL() + uri, person, Person.class);
+        BasicAuthRestTemplate r = getNewRestTemplate();
+        ResponseData response = r.postForObject(getServerURL() + uri, person, ResponseData.class);
+        if (response.getStatus() == ResponseCodes.CREATED)
+            return (Person) response.getValue();
+
+        if (response.getExceptionType() == EmailInUse.class)
+            throw new EmailInUse(response.getExceptionMessage());
+
+        throw new Exception("ExceptionClass: " + response.getExceptionType().toString() + " Message: " + response.getExceptionMessage());
     }
 
     @Override
