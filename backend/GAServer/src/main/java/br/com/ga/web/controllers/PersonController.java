@@ -39,17 +39,18 @@ public class PersonController
             value = "fetch/{personId}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData get(@PathVariable(value = "personId") long animalId)
+    public ResponseData<Person> get(@PathVariable(value = "personId") long animalId)
     {
         try
         {
-            return new ResponseData(Person.class, personService.findById(animalId), ResponseCode.FOUND);
+            Person person = personService.findById(animalId);
+            return new ResponseData<>(Person.class, person, ResponseCode.FOUND);
         } catch (EntityNotFound e)
         {
-            return new ResponseData(Person.class, ResponseCode.NOT_FOUND, EntityNotFound.class, e.getMessage());
+            return new ResponseData<>(Person.class, ResponseCode.NOT_FOUND, EntityNotFound.class, e.getMessage());
         } catch (Exception e)
         {
-            return new ResponseData(Person.class, ResponseCode.NOT_FOUND, e.getClass(), e.getMessage());
+            return new ResponseData<>(Person.class, ResponseCode.NOT_FOUND, e.getClass(), e.getMessage());
         }
     }
 
@@ -71,17 +72,18 @@ public class PersonController
             value = "save/",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData createUpdate(@RequestBody Person p)
+    public ResponseData<Person> createUpdate(@RequestBody Person p)
     {
         try
         {
-            return new ResponseData(Person.class, personService.createUpdate(p), ResponseCode.CREATED);
+            Person person = personService.createUpdate(p);
+            return new ResponseData<>(Person.class, person, ResponseCode.CREATED);
         } catch (EmailInUse e)
         {
-            return new ResponseData(Person.class, ResponseCode.ERROR, EmailInUse.class, e.getMessage());
+            return new ResponseData<>(Person.class, ResponseCode.ERROR, EmailInUse.class, e.getMessage());
         } catch (Exception ex)
         {
-            return new ResponseData(Person.class, ResponseCode.ERROR, ex.getClass(), ex.getMessage());
+            return new ResponseData<>(Person.class, ResponseCode.ERROR, ex.getClass(), ex.getMessage());
         }
     }
 
@@ -90,17 +92,18 @@ public class PersonController
             value = "fetch/",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData login(@RequestBody Person p)
+    public ResponseData<Person> login(@RequestBody Person p)
     {
         try
         {
-            return new ResponseData(Person.class, personService.findByEmailPassword(p.getEmail(), p.getPasword()), ResponseCode.FOUND);
+            Person person = personService.findByEmailPassword(p.getEmail(), p.getPasword());
+            return new ResponseData<>(Person.class, person, ResponseCode.FOUND);
         } catch (EntityNotFound e)
         {
-            return new ResponseData(Person.class, ResponseCode.NOT_FOUND, EntityNotFound.class, e.getMessage());
+            return new ResponseData<>(Person.class, ResponseCode.NOT_FOUND, EntityNotFound.class, e.getMessage());
         } catch (Exception e)
         {
-            return new ResponseData(Person.class, ResponseCode.NOT_FOUND, e.getClass(), e.getMessage());
+            return new ResponseData<>(Person.class, ResponseCode.NOT_FOUND, e.getClass(), e.getMessage());
         }
     }
 

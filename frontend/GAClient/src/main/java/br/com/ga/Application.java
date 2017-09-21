@@ -24,7 +24,7 @@ public class Application
         try
         {
             Person pe = new Person();
-            pe.setEmail("asddas12");
+            pe.setEmail("asddas1da2assdas");
             pe = p.createUpdate(pe);
         } catch (EmailInUse ex)
         {

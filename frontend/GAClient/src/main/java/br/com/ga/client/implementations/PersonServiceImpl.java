@@ -5,17 +5,25 @@
  */
 package br.com.ga.client.implementations;
 
+import ga.com.br.client.rest.BasicAuthRestTemplate;
+import ga.com.br.client.rest.Service;
 import br.com.ga.Exceptions.EmailInUse;
 import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
 import br.com.ga.web.response.ResponseData;
 import br.com.ga.web.response.ResponseCode;
 import java.util.List;
+import javax.ejb.Stateless;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 
 /**
  *
  * @author Marciano
  */
+@Stateless
 public class PersonServiceImpl extends Service implements IPersonService
 {
 
@@ -24,14 +32,26 @@ public class PersonServiceImpl extends Service implements IPersonService
     {
         final String uri = "person/save/";
         BasicAuthRestTemplate r = getNewRestTemplate();
-        ResponseData response = r.postForObject(getServerURL() + uri, person, ResponseData.class);
-        if (response.getStatus() == ResponseCode.CREATED)
-            return (Person) response.getValue();
+        ResponseEntity<ResponseData<Person>> response;
+        HttpEntity<Person> p = new HttpEntity<>(person);
 
-        if (response.getExceptionType() == EmailInUse.class)
-            throw new EmailInUse(response.getExceptionMessage());
+        response = r.exchange(
+                getServerURL() + uri,
+                HttpMethod.POST,
+                p,
+                new ParameterizedTypeReference<ResponseData<Person>>()
+        {
+        });
 
-        throw new Exception("ExceptionClass: " + response.getExceptionType().toString() + " Message: " + response.getExceptionMessage());
+        if (response.getBody().getStatus() == ResponseCode.CREATED)
+            return response.getBody().getValue();
+
+        if (response.getBody().getExceptionType() == EmailInUse.class)
+            throw new EmailInUse(response.getBody().getExceptionMessage());
+
+        throw new Exception(
+                "ExceptionClass: " + response.getBody().getExceptionType().toString()
+                + " Message: " + response.getBody().getExceptionMessage());
     }
 
     @Override

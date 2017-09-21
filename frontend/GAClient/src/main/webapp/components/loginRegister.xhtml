@@ -17,7 +17,7 @@
                 <h:form>
                     <div class="inline">
                         <i class="icons text-grey material-icons">mail_outline</i>
-                        <h:inputText class="text-grey" a:placeholder="Email"></h:inputText>
+                        <h:inputText  class="text-grey" a:placeholder="Email"></h:inputText>
                     </div>
 
                     <div class="inline">
@@ -25,8 +25,8 @@
                         <h:inputText class="text-grey" a:placeholder="Senha"></h:inputText>
                     </div>
 
-                    
-                        <br/>
+
+                    <br/>
                     <div class="center-align">
                         <a href="" class="waves-effect waves-light btn deep-orange lighten-1">Entrar</a>
                     </div>
@@ -54,17 +54,17 @@
                 <h:form>
                     <div class="inline">
                         <i class="icons text-grey material-icons">perm_identity</i>
-                        <h:inputText class="text-grey" a:placeholder="Nome"></h:inputText>
+                        <h:inputText value="#{personBean.currentPerson.name}" class="text-grey" a:placeholder="Nome"></h:inputText>
                     </div>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">person</i>
-                        <h:inputText class="text-grey" a:placeholder="Sobrenome"></h:inputText>
+                        <h:inputText value="#{personBean.currentPerson.lastName}" class="text-grey" a:placeholder="Sobrenome"></h:inputText>
                     </div>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">location_on</i>
-                        <input id="endereco" class="endereco" placeholder="Endereço" tabindex="1"></input>
+                        <input value="#{personBean.currentPerson.address}" id="endereco" class="endereco" placeholder="Endereço" tabindex="1"></input>
                     </div>
                     <div style="display: none" class="inline">
                         <i class="icons text-grey material-icons">location_on</i>
@@ -79,18 +79,20 @@
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">mail_outline</i>
-                        <h:inputText class="text-grey" a:placeholder="Email"></h:inputText>
+                        <h:inputText value="#{personBean.currentPerson.email}" class="text-grey" a:placeholder="Email"></h:inputText>
                     </div>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">vpn_key</i>
-                        <h:inputText class="text-grey" a:placeholder="Senha"></h:inputText>
-                    </div>
+                        <h:inputText value="#{personBean.currentPerson.pasword}" class="text-grey" a:placeholder="Senha"></h:inputText>
                     
+                    </div>
+
                     <br />
 
                     <div class="center-align">
                         <a href="" class="waves-effect waves-light btn deep-orange lighten-1">Cadastrar</a>
+                        <p:commandButton value="Salvar" action="#{personBean.createUpdate()}" ajax="false"></p:commandButton>
                     </div>
                 </h:form>
 
@@ -103,13 +105,13 @@
     <script>
         TeleportAutocomplete.init('.endereco').on('change', function (value) {
 
-        if (value.name !== "" &amp;&amp; value.admin1Division !== "" &amp;&amp; value.country !== "") {
-            document.getElementById("cidade").value = value.name;
-            document.getElementById("estado").value = value.admin1Division;
-            document.getElementById("pais").value = value.country;
-            
-            console.log(value.name, value.admin1Division, value.country)
-        }
-      });
+            if (value.name !== "" &amp;&amp; value.admin1Division !== "" &amp;&amp; value.country !== "") {
+                document.getElementById("cidade").value = value.name;
+                document.getElementById("estado").value = value.admin1Division;
+                document.getElementById("pais").value = value.country;
+
+                console.log(value.name, value.admin1Division, value.country)
+            }
+        });
     </script>
 </ui:composition>

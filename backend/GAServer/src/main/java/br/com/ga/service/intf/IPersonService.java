@@ -7,11 +7,13 @@ package br.com.ga.service.intf;
 
 import br.com.ga.entity.Person;
 import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author Marciano
  */
+@Local
 public interface IPersonService
 {
 

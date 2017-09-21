@@ -21,7 +21,7 @@ import javax.faces.bean.ViewScoped;
 public class PersonBean
 {
 
-    Person currentPerson;
+    private Person currentPerson;
 
     public Person getCurrentPerson()
     {

@@ -9,31 +9,31 @@ package br.com.ga.web.response;
  *
  * @author Marciano
  */
-public class ResponseData
+public class ResponseData<T>
 {
 
-    private Class<?> objectClass;
-    private Object value;
+    private Class<T> objectClass;
+    private T value;
     private ResponseCode status;
     private Class<?> exceptionType;
     private String exceptionMessage;
 
-    public Class<?> getObjectClass()
+    public Class<T> getObjectClass()
     {
         return objectClass;
     }
 
-    public void setObjectClass(Class<?> objectClass)
+    public void setObjectClass(Class<T> objectClass)
     {
         this.objectClass = objectClass;
     }
 
-    public Object getValue()
+    public T getValue()
     {
         return value;
     }
 
-    public void setValue(Object value)
+    public void setValue(T value)
     {
         this.value = value;
     }
@@ -73,14 +73,14 @@ public class ResponseData
         super();
     }
 
-    public ResponseData(Class<?> objectClass, Object value, ResponseCode status)
+    public ResponseData(Class<T> objectClass, T value, ResponseCode status)
     {
         this.objectClass = objectClass;
         this.value = value;
         this.status = status;
     }
 
-    public ResponseData(Class<?> objectClass, ResponseCode status, Class<?> exceptionType, String exceptionMessage)
+    public ResponseData(Class<T> objectClass, ResponseCode status, Class<?> exceptionType, String exceptionMessage)
     {
         this.objectClass = objectClass;
         this.status = status;
@@ -88,7 +88,7 @@ public class ResponseData
         this.exceptionMessage = exceptionMessage;
     }
 
-    public ResponseData(Class<?> objectClass, Object value, ResponseCode status, Class<?> exceptionType)
+    public ResponseData(Class<T> objectClass, T value, ResponseCode status, Class<?> exceptionType)
     {
         this.objectClass = objectClass;
         this.value = value;
@@ -96,7 +96,7 @@ public class ResponseData
         this.exceptionType = exceptionType;
     }
 
-    public ResponseData(Class<?> objectClass, Object value, ResponseCode status, Class<?> exceptionType, String exceptionMessage)
+    public ResponseData(Class<T> objectClass, T value, ResponseCode status, Class<?> exceptionType, String exceptionMessage)
     {
         this.objectClass = objectClass;
         this.value = value;
