@@ -1,8 +1,9 @@
 As pastas 
 {
     entity, 
+    entity/enums
     service/intf, 
-    web/response,
+    web/rest,
     exceptions
 }
 existentes no frontend são as mesmas que existem no backend, 

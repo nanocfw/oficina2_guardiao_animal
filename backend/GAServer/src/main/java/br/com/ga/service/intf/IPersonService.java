@@ -21,7 +21,7 @@ public interface IPersonService
 
     Person findById(final long id) throws Exception;
 
-    boolean emailInUse(long currentId, final String email);
+    boolean emailInUse(long currentId, final String email) throws Exception;
 
     Person findByEmailPassword(String email, String password) throws Exception;
 

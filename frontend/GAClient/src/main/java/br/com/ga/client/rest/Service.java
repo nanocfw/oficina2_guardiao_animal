@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ga.com.br.client.rest;
+package br.com.ga.client.rest;
 
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -31,7 +31,7 @@ public abstract class Service
 
     public Service()
     {
-        Service.serverURL = "http://localhost:8090/ga/";
+        Service.serverURL = "http://localhost:8090/";
         userName = "admin";
         password = "admin";
     }

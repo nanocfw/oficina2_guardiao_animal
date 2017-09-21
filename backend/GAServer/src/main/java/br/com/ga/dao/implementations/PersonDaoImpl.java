@@ -5,8 +5,8 @@
  */
 package br.com.ga.dao.implementations;
 
-import br.com.ga.Exceptions.EmailInUse;
-import br.com.ga.Exceptions.EntityNotFound;
+import br.com.ga.exceptions.EmailInUse;
+import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import java.util.List;
 import br.com.ga.dao.intf.IPersonDao;

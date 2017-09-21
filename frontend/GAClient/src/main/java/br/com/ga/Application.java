@@ -5,7 +5,7 @@
  */
 package br.com.ga;
 
-import br.com.ga.Exceptions.EmailInUse;
+import br.com.ga.exceptions.EmailInUse;
 import br.com.ga.client.implementations.PersonServiceImpl;
 import br.com.ga.entity.Person;
 import java.util.logging.Level;

@@ -5,12 +5,13 @@
  */
 package br.com.ga.web.controllers;
 
-import br.com.ga.Exceptions.EmailInUse;
-import br.com.ga.Exceptions.EntityNotFound;
+import br.com.ga.web.rest.UrlMapping;
+import br.com.ga.exceptions.EmailInUse;
+import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
-import br.com.ga.web.response.ResponseData;
-import br.com.ga.web.response.ResponseCode;
+import br.com.ga.web.rest.ResponseData;
+import br.com.ga.web.rest.ResponseCode;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Marciano
  */
 @RestController
-@RequestMapping("ga/person/")
+@RequestMapping(UrlMapping.PERSON)
 public class PersonController
 {
 
@@ -36,7 +37,7 @@ public class PersonController
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = "fetch/{personId}",
+            value = UrlMapping.PERSON_GET,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseData<Person> get(@PathVariable(value = "personId") long animalId)
@@ -50,13 +51,13 @@ public class PersonController
             return new ResponseData<>(Person.class, ResponseCode.NOT_FOUND, EntityNotFound.class, e.getMessage());
         } catch (Exception e)
         {
-            return new ResponseData<>(Person.class, ResponseCode.NOT_FOUND, e.getClass(), e.getMessage());
+            return new ResponseData<>(Person.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
         }
     }
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = "fetch/{listClients}/{rowsReturn}/{rowsIgnore}",
+            value = UrlMapping.PERSON_GET_LIST,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Person> getList(
@@ -69,7 +70,7 @@ public class PersonController
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = "save/",
+            value = UrlMapping.PERSON_CREATE_UPDATE,
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseData<Person> createUpdate(@RequestBody Person p)
@@ -89,7 +90,7 @@ public class PersonController
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = "fetch/",
+            value = UrlMapping.PERSON_LOGIN,
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseData<Person> login(@RequestBody Person p)
@@ -103,25 +104,32 @@ public class PersonController
             return new ResponseData<>(Person.class, ResponseCode.NOT_FOUND, EntityNotFound.class, e.getMessage());
         } catch (Exception e)
         {
-            return new ResponseData<>(Person.class, ResponseCode.NOT_FOUND, e.getClass(), e.getMessage());
+            return new ResponseData<>(Person.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
         }
     }
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = "fetch/{email}/{currentId}",
+            value = UrlMapping.PERSON_EMAIL_IN_USE,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean emailInUse(
+    public ResponseData<Boolean> emailInUse(
             @PathVariable(value = "email") String email,
             @PathVariable(value = "currentId") long currentId)
     {
-        return personService.emailInUse(currentId, email);
+        try
+        {
+            boolean emailInUse = personService.emailInUse(currentId, email);
+            return new ResponseData<>(Boolean.class, emailInUse, ResponseCode.OK);
+        } catch (Exception e)
+        {
+            return new ResponseData<>(Boolean.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
+        }
     }
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = "delete/",
+            value = UrlMapping.PERSON_DELETE,
             method = RequestMethod.DELETE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public void delete(Person p) throws Exception

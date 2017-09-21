@@ -5,7 +5,7 @@
  */
 package br.com.ga.dao.implementations;
 
-import br.com.ga.Exceptions.EntityNotFound;
+import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Animal;
 import java.util.List;
 import javax.persistence.EntityManager;

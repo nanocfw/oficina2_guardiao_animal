@@ -5,7 +5,8 @@
  */
 package br.com.ga.client.beans;
 
-import br.com.ga.Exceptions.EmailInUse;
+import br.com.ga.exceptions.EmailInUse;
+import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
 import javax.ejb.EJB;
@@ -50,6 +51,23 @@ public class PersonBean
         } catch (EmailInUse e)
         {
             return "emailEmUso";
+        } catch (Exception e)
+        {
+            return "erro";
+        }
+    }
+
+    public String login()
+    {
+        try
+        {
+            Person p;
+            p = personService.findByEmailPassword(this.currentPerson.getEmail(), this.currentPerson.getPasword());
+            // p deve ser armazenado na memória para uso posterior
+            return "logado";
+        } catch (EntityNotFound e)
+        {
+            return "falhaLogin";
         } catch (Exception e)
         {
             return "erro";

@@ -3,22 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.ga.Exceptions;
+package br.com.ga.exceptions;
 
 /**
  *
  * @author Marciano
  */
-public class EntityNotFound extends Exception
+public class EmailInUse extends Exception
 {
 
-    public EntityNotFound()
+    public EmailInUse()
     {
-        super("Registro não encontrado.");
+        super("E-Mail em uso.");
     }
 
-    public EntityNotFound(String message)
+    public EmailInUse(String msg)
     {
-        super(message);
+        super(msg);
     }
+
 }

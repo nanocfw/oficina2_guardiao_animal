@@ -17,18 +17,19 @@
                 <h:form>
                     <div class="inline">
                         <i class="icons text-grey material-icons">mail_outline</i>
-                        <h:inputText  class="text-grey" a:placeholder="Email"></h:inputText>
+                        <h:inputText value="#{personBean.currentPerson.email}" class="text-grey" a:placeholder="Email"></h:inputText>
                     </div>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">vpn_key</i>
-                        <h:inputText class="text-grey" a:placeholder="Senha"></h:inputText>
+                        <h:inputText value="#{personBean.currentPerson.pasword}" class="text-grey" a:placeholder="Senha"></h:inputText>
                     </div>
 
 
                     <br/>
                     <div class="center-align">
-                        <a href="" class="waves-effect waves-light btn deep-orange lighten-1">Entrar</a>
+                        <!--<a href="" class="waves-effect waves-light btn deep-orange lighten-1">Entrar</a>-->
+                        <p:commandButton value="Entrar" action="#{personBean.login()}" ajax="false" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
                     </div>
                 </h:form>
 
@@ -91,8 +92,8 @@
                     <br />
 
                     <div class="center-align">
-                        <a href="" class="waves-effect waves-light btn deep-orange lighten-1">Cadastrar</a>
-                        <p:commandButton value="Salvar" action="#{personBean.createUpdate()}" ajax="false"></p:commandButton>
+                        <!--<a href="" class="waves-effect waves-light btn deep-orange lighten-1">Cadastrar</a> -->
+                        <p:commandButton value="Cadastrar" action="#{personBean.createUpdate()}" ajax="false" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
                     </div>
                 </h:form>
 
@@ -110,7 +111,7 @@
                 document.getElementById("estado").value = value.admin1Division;
                 document.getElementById("pais").value = value.country;
 
-                console.log(value.name, value.admin1Division, value.country)
+                console.log(value.name, value.admin1Division, value.country);
             }
         });
     </script>
