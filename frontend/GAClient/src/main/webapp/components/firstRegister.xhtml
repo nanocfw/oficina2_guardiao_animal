@@ -1,0 +1,81 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <div id="cadastrar" class="modalDialog">
+        <!-- autocomplete js -->
+        <script src="assets/js/teleport-autocomplete-min.js"></script>
+        <!-- autocomplete css -->
+        <link type="text/css" rel="stylesheet" href="assets/css/teleport-autocomplete-min.css" /> 
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <div class="center-align">
+                <h5 class="text-grey">Cadastre-se no Guardião Animal</h5>
+
+                <br/>
+
+                <h:form>
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">perm_identity</i>
+                        <p:inputText value="#{personBean.currentPerson.name}" class="text-grey" a:placeholder="Nome"></p:inputText>
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">person</i>
+                        <p:inputText value="#{personBean.currentPerson.lastName}" class="text-grey" a:placeholder="Sobrenome"></p:inputText>
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">location_on</i>
+                        <p:inputText value="#{personBean.currentPerson.address}" id="endereco" class="endereco" placeholder="Endereço"></p:inputText >
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">mail_outline</i>
+                        <p:inputText value="#{personBean.currentPerson.email}" class="text-grey" a:placeholder="Email"></p:inputText>
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">vpn_key</i>
+                        <p:password value="#{personBean.currentPerson.pasword}" class="text-grey" a:placeholder="Senha"></p:password>
+                    </div>
+                    
+                    
+                    <div style="display: none" class="inline">
+                        <input id="cidade" class="text-grey" placeholder="Cidade" tabindex="1"></input>
+                        <input id="estado" class="text-grey" placeholder="Estado"></input>
+                        <input id="pais" class="text-grey" placeholder="Pais"></input>
+                    </div>
+
+                    <br />
+
+                    <div class="center-align">
+                        <!--<a href="" class="waves-effect waves-light btn deep-orange lighten-1">Cadastrar</a> -->
+                        <p:commandButton value="Cadastrar" action="#{personBean.createUpdate()}" ajax="false" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
+                    </div>
+
+                </h:form>
+
+                <br />
+
+                <p>Já é membro? <a href="#login">Entre agora.</a></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        TeleportAutocomplete.init('.endereco').on('change', function (value) {
+
+            if (value.name !== "" &amp;&amp; value.admin1Division !== "" &amp;&amp; value.country !== "") {
+                document.getElementById("cidade").value = value.name;
+                document.getElementById("estado").value = value.admin1Division;
+                document.getElementById("pais").value = value.country;
+
+                console.log(value.name, value.admin1Division, value.country);
+            }
+        });
+    </script>
+</ui:composition>

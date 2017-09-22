@@ -1,0 +1,47 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <div id="login" class="modalDialog">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <div class="center-align">
+                <h5 class="text-grey">Entre no Guardião Animal</h5>
+
+                <br/>
+                <h:form>
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">mail_outline</i>
+                        <p:inputText value="#{personBean.currentPerson.email}" id="email" required="true" requiredMessage="Por favor preencha o campo Email" class="text-grey" a:placeholder="Email">
+                        </p:inputText>
+                    </div>
+                    <h:messages for="email" errorStyle="color: red"/>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">vpn_key</i>
+                        <p:password value="#{personBean.currentPerson.pasword}" id="pass" required="true" requiredMessage="Por favor preencha o campo Senha" validatorMessage="O campo Senha deve conter no minímo 8 caracteres" class="text-grey" a:placeholder="Senha">                        
+                            <f:validateLength minimum="6" />
+                        </p:password>
+                    </div>
+
+                    <h:messages for="pass" errorStyle="color: red"/>
+
+                    <br/>
+                    <div class="center-align">
+                        <p:commandButton update="@form" id="login" value="Entrar" action="#{personBean.login()}" ajax="true" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
+                    </div>
+                    
+                    <h:messages errorStyle="red" id="msg_login" for="login" />  
+                </h:form>
+
+                <br />
+
+                <p>Não é membro? <a href="#cadastrar">Cadastre-se agora.</a></p>
+            </div>
+        </div>
+    </div>
+</ui:composition>

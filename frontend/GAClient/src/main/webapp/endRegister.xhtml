@@ -28,6 +28,8 @@
         <script type="text/javascript" src="assets/js/materialize.min.js"></script>
         <!-- Import index.js -->
         <script type="text/javascript" src="assets/js/index.js"></script>
+        <!-- Import index.js -->
+        <script type="text/javascript" src="assets/js/endRegister.js"></script>
 
         <div id="loader-wrapper">
             <div id="loader"></div>
@@ -36,8 +38,9 @@
             <div class="loader-section section-right"></div>
 
         </div>
-        
-         <ui:include src="/components/endingRegister.xhtml"/>
+
+        <ui:include src="/components/beGuardiao.xhtml"/>
+        <ui:include src="/components/searchGuardiao.xhtml"/>
 
         <div id="content">
             <div class="center-align">
@@ -64,29 +67,6 @@
                 <h2 class="text-grey">Selecione uma das opções acima.</h2>
             </div>
         </div>
-        <script>
-            over = () => {
-                document.querySelector('html').style.backgroundColor = '#ff7043';
-                document.querySelector('h1').style.color = "#fff";
-                document.querySelector('h2').style.color = "#fff";
-            }
-            
-            out = () => {
-            document.querySelector('html').style.backgroundColor = "#fff";
-            document.querySelector('h1').style.color = "#616161";
-            document.querySelector('h2').style.color = "#616161";
-            }
-
-            var $doc = $('html, body');
-            $('.scroll').click(function () {
-                $doc.animate({
-                    scrollTop: $($.attr(this, 'href')).offset().top
-                }, 500);
-                return false;
-            });
-
-        </script>
-
     </h:body>
 </html>
 

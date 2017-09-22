@@ -30,11 +30,13 @@ p { font-size: 1.25em;}
 }
 
 .border {
-    border: 1px solid black;
+    border: 2px solid #616161;
+    border-radius: 20px;
+    margin-left: 5% !important;
 }
 
 .margin {
-    margin: 5px 10px !important;
+    margin: 5px 250px !important;
 }
 
 .slide-main {
@@ -88,7 +90,6 @@ p { font-size: 1.25em;}
 }
 
 .icons {
-    margin-top: 10px;
     margin-right: 5px;
 }
 
@@ -124,6 +125,7 @@ p { font-size: 1.25em;}
 .modalDialog:target {
     opacity:1;
     pointer-events: auto;
+    overflow-y: auto;
 }
 
 .modalDialog > div {
@@ -211,12 +213,18 @@ p { font-size: 1.25em;}
     .big-button {
         height: 40vh;
     }
+    .margin {
+    margin: 5px 150px !important;
+}
 }
 
 @media screen and (max-width: 1050px) {
     body { font-size: 80%; }
     p, h5, img { font-size: 2em;}
     h2 {font-size: 4em;}
+    .margin {
+    margin: 5px 100px !important;
+}
 }
 
 @media screen and (max-width: 750px) {
@@ -240,6 +248,9 @@ p { font-size: 1.25em;}
     .modalDialog > div {
         width: 300px;
     }
+    .margin {
+    margin: 5px 50px !important;
+}
 }
 
 @media screen and (max-width: 600px) {
@@ -249,6 +260,9 @@ p { font-size: 1.25em;}
     .big-button {
         height: 25vh;
     }
+    .margin {
+    margin: 5px 20px !important;
+}
 }
 
 @media screen and (max-width: 500px) {

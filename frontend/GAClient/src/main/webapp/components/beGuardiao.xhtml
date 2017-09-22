@@ -1,0 +1,95 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <div id="ser" class="modalDialog">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <div class="center-align">
+                <h5 class="text-grey">Ser Guardião</h5>
+
+                <br/>
+
+                <h:form>
+                    <div class="inline">
+                        <p>Image</p>
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons"> date_range</i>
+                        <input id="bday" type="text" class="datepicker text-grey" placeholder="Birthday" />
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">location_on</i>
+                        <p:inputText id="addressstreet" class="text-grey" a:placeholder="Rua"></p:inputText>
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">location_on</i>
+                        <p:inputText id="complement" class="text-grey" style="width: 80%" a:placeholder="Complemeneto"></p:inputText>
+
+                        <i class="icons text-grey material-icons">location_on</i>
+                        <p:inputText id="addressnumber" a:type="number" class="text-grey" a:placeholder="Número"></p:inputText>
+                    </div>
+
+                    <div class="inline">
+                        <p:selectOneRadio id="console" value="">
+                            <f:selectItem itemLabel="Masculino" itemValue="homem" />
+                            <f:selectItem itemLabel="Feminino" itemValue="mulher" />
+                        </p:selectOneRadio>
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">phone</i>
+                        <p:inputText id="tel" a:type="tel" class="text-grey" a:placeholder="Telefone"></p:inputText>
+                    </div>
+
+                    <br/>
+
+                    <div class="inline">
+                        <a id="GetLocation" type="button" class="waves-effect waves-light btn deep-orange lighten-1">Compartilhar Geolocalização</a>
+                    </div>
+
+                    <div class="inline"> 
+                        <img width="32" height="32" src="assets/images/latitude.png" />
+                        <input id="latitude" class="text-grey" placeholder="Latitude"/>
+                        <img width="32" height="32" src="assets/images/longitude.png" />
+                        <input id="longitude" class="text-grey" placeholder="Longitude"/>
+                    </div>
+
+                    <br />
+
+                    <div class="center-align">
+                        <p:commandButton value="Finalizar Cadastro" ajax="false" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </div>
+    <script>
+        GetInfo = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(ShowPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        };
+
+        ShowPosition = (position) => {
+            let latitude = position.coords.latitude.toFixed(3);
+            let longitude = position.coords.longitude.toFixed(3);
+
+            document.getElementById("latitude").value = latitude;
+            document.getElementById("longitude").value = longitude;
+        };
+
+        $("#GetLocation").click(function () {
+            GetInfo();
+        });
+    </script>
+</ui:composition>

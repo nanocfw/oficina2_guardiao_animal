@@ -1,0 +1,42 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <div id="encontrar" class="modalDialog">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <div class="center-align">
+                <h5 class="text-grey">Encontrar Guardiões</h5>
+
+                <br/>
+
+                <h:form>
+                    <div class="inline">
+                        <p>Image</p>
+                    </div>
+                    
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">perm_identity</i>
+                        <p:inputText class="text-grey" a:placeholder="Nome"></p:inputText>
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">person</i>
+                        <p:inputText class="text-grey" a:placeholder="Sobrenome"></p:inputText>
+                    </div>
+
+                    <br />
+
+                    <div class="center-align">
+                        <p:commandButton value="Finalizar Cadastro" ajax="false" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
+                    </div>
+                </h:form>
+
+            </div>
+        </div>
+    </div>
+</ui:composition>

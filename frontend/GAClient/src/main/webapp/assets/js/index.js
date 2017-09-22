@@ -1,4 +1,4 @@
-var $ = jQuery;
+let $ = jQuery;
 
 // Materialize functions
 $(function () {

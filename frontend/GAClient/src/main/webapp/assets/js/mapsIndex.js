@@ -1,4 +1,4 @@
-var enter = (event) => {
+let enter = (event) => {
 };
 getCity = () => {
     var latitude = parseFloat(window.localStorage.getItem('lat'));
