@@ -6,7 +6,7 @@
 package br.com.ga.web.controllers;
 
 import br.com.ga.web.rest.UrlMapping;
-import br.com.ga.exceptions.EmailInUse;
+import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
@@ -79,9 +79,9 @@ public class PersonController
         {
             Person person = personService.createUpdate(p);
             return new ResponseData<>(Person.class, person, ResponseCode.CREATED);
-        } catch (EmailInUse e)
+        } catch (InvalidEntity e)
         {
-            return new ResponseData<>(Person.class, ResponseCode.ERROR, EmailInUse.class, e.getMessage());
+            return new ResponseData<>(Person.class, ResponseCode.ERROR, InvalidEntity.class, e.getMessage());
         } catch (Exception ex)
         {
             return new ResponseData<>(Person.class, ResponseCode.ERROR, ex.getClass(), ex.getMessage());

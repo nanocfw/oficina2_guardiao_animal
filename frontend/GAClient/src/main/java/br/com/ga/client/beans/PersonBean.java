@@ -5,7 +5,7 @@
  */
 package br.com.ga.client.beans;
 
-import br.com.ga.exceptions.EmailInUse;
+import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
@@ -21,56 +21,70 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class PersonBean {
+public class PersonBean
+{
 
     private Person currentPerson;
 
-    public Person getCurrentPerson() {
+    public Person getCurrentPerson()
+    {
         return currentPerson;
     }
 
-    public void setCurrentPerson(Person currentPerson) {
+    public void setCurrentPerson(Person currentPerson)
+    {
         this.currentPerson = currentPerson;
     }
 
     @EJB
     IPersonService personService;
 
-    public PersonBean() {
+    public PersonBean()
+    {
         currentPerson = new Person();
     }
 
-    public String createUpdate() {
-        try {
+    public String createUpdate()
+    {
+        try
+        {
             personService.createUpdate(this.currentPerson);
             return "salvo";
-        } catch (EmailInUse e) {
-            return "emailEmUso";
-        } catch (Exception e) {
+        } catch (InvalidEntity e)
+        {
+            return "cadastroInvalido";
+        } catch (Exception e)
+        {
             return "erro";
         }
     }
 
-    public String login() {
-        try {
+    public String login()
+    {
+        try
+        {
             Person p;
             p = personService.findByEmailPassword(this.currentPerson.getEmail(), this.currentPerson.getPasword());
             // p deve ser armazenado na memória para uso posterior
 
-            if (p.getBirthDate() == null) {
+            if (p.getBirthDate() == null)
+            {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("endRegister.xhtml");
                 return "endRegister";
-            } else {
+            } else
+            {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("indexAuth.xhtml");
                 return "indexAuth";
             }
 
-        } catch (EntityNotFound e) {
+        } catch (EntityNotFound e)
+        {
             FacesContext.getCurrentInstance().addMessage("login", new FacesMessage("Email ou senha incorretos"));
             return "error";
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             return "erro";
         }
     }
-    
+
 }

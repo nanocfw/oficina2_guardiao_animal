@@ -5,7 +5,7 @@
  */
 package br.com.ga;
 
-import br.com.ga.exceptions.EmailInUse;
+import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.client.implementations.PersonServiceImpl;
 import br.com.ga.entity.Person;
 import java.util.logging.Level;
@@ -26,7 +26,7 @@ public class Application
             Person pe = new Person();
             pe.setEmail("asddas1da2assdas");
             pe = p.createUpdate(pe);
-        } catch (EmailInUse ex)
+        } catch (InvalidEntity ex)
         {
             Logger.getLogger(Application.class.getName()).log(Level.SEVERE, "Email em uso", ex);
         } catch (Exception ex)

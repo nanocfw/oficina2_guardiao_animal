@@ -7,7 +7,7 @@ package br.com.ga.client.implementations;
 
 import br.com.ga.client.rest.BasicAuthRestTemplate;
 import br.com.ga.client.rest.Service;
-import br.com.ga.exceptions.EmailInUse;
+import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
@@ -49,8 +49,8 @@ public class PersonServiceImpl extends Service implements IPersonService
         if (response.getBody().getStatus() == ResponseCode.CREATED)
             return response.getBody().getValue();
 
-        if (response.getBody().getExceptionType() == EmailInUse.class)
-            throw new EmailInUse(response.getBody().getExceptionMessage());
+        if (response.getBody().getExceptionType() == InvalidEntity.class)
+            throw new InvalidEntity(response.getBody().getExceptionMessage());
 
         throw new Exception(
                 "ExceptionClass: " + response.getBody().getExceptionType().toString()

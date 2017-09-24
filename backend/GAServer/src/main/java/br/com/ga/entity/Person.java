@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,9 +24,9 @@ public class Person implements Serializable
     private String lastName;
     private String email;
     private String pasword;
-    
-    @ManyToOne
-    private City city;
+    private String city;
+    private String state;
+    private String country;
     private boolean serviceProvider;
     private String documentNumber;//cpf cnpj
     private String address;
@@ -46,6 +45,27 @@ public class Person implements Serializable
     public Person()
     {
         super();
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 7;
+        hash = 17 * hash + (int) (this.id ^ (this.id >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Person other = (Person) obj;
+        return this.id == other.id;
     }
 
     public long getId()
@@ -98,14 +118,34 @@ public class Person implements Serializable
         this.pasword = pasword;
     }
 
-    public City getCity()
+    public String getCity()
     {
         return city;
     }
 
-    public void setCity(City city)
+    public void setCity(String city)
     {
         this.city = city;
+    }
+
+    public String getState()
+    {
+        return state;
+    }
+
+    public void setState(String state)
+    {
+        this.state = state;
+    }
+
+    public String getCountry()
+    {
+        return country;
+    }
+
+    public void setCountry(String country)
+    {
+        this.country = country;
     }
 
     public boolean isServiceProvider()
@@ -226,33 +266,6 @@ public class Person implements Serializable
     public void setAdditionalData(String additionalData)
     {
         this.additionalData = additionalData;
-    }
-
-    @Override
-    public int hashCode()
-    {
-        int hash = 7;
-        hash = 17 * hash + (int) (this.id ^ (this.id >>> 32));
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj)
-    {
-        if (this == obj)
-        {
-            return true;
-        }
-        if (obj == null)
-        {
-            return false;
-        }
-        if (getClass() != obj.getClass())
-        {
-            return false;
-        }
-        final Person other = (Person) obj;
-        return this.id == other.id;
     }
 
 }

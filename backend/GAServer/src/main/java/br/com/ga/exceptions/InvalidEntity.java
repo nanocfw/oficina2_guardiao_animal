@@ -9,15 +9,15 @@ package br.com.ga.exceptions;
  *
  * @author Marciano
  */
-public class EmailInUse extends Exception
+public class InvalidEntity extends Exception
 {
 
-    public EmailInUse()
+    public InvalidEntity()
     {
-        super("E-Mail em uso.");
+        super();
     }
 
-    public EmailInUse(String msg)
+    public InvalidEntity(String msg)
     {
         super(msg);
     }
