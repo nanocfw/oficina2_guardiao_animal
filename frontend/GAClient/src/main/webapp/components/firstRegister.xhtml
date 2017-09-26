@@ -18,44 +18,57 @@
 
                 <br/>
 
-                <h:form>
+                <h:form id="form">
                     <div class="inline">
                         <i class="icons text-grey material-icons">perm_identity</i>
-                        <p:inputText value="#{personBean.currentPerson.name}" class="text-grey" a:placeholder="Nome"></p:inputText>
+                        <p:inputText value="#{personBean.currentPerson.name}" id="name" class="center-align" required="true" requiredMessage="Por favor preencha o campo Nome" validatorMessage="O campo Nome deve conter no minímo 3 caracteres" a:placeholder="Nome">
+                            <f:validateLength minimum="3" />
+                        </p:inputText>
                     </div>
+                    <h:messages for="name" errorStyle="color: red"/>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">person</i>
-                        <p:inputText value="#{personBean.currentPerson.lastName}" class="text-grey" a:placeholder="Sobrenome"></p:inputText>
+                        <p:inputText value="#{personBean.currentPerson.lastName}" id="secondName" class="center-align" required="true" requiredMessage="Por favor preencha o campo Sobrenome" validatorMessage="O campo Sobrenome deve conter no minímo 3 caracteres" a:placeholder="Sobrenome">
+                            <f:validateLength minimum="3" />
+                        </p:inputText>
                     </div>
+                    <h:messages for="secondName" errorStyle="color: red"/>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">location_on</i>
-                        <p:inputText value="#{personBean.currentPerson.address}" id="endereco" class="endereco" placeholder="Endereço"></p:inputText >
+                        <p:inputText value="#{personBean.currentPerson.address}" id="address" required="true" requiredMessage="Por favor preencha o campo Endereço" class="address" placeholder="Endereço"></p:inputText >
                     </div>
+                    <h:messages for="address" errorStyle="color: red"/>
+
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">mail_outline</i>
-                        <p:inputText value="#{personBean.currentPerson.email}" class="text-grey" a:placeholder="Email"></p:inputText>
+                        <p:inputText value="#{personBean.currentPerson.email}" id="email" class="center-align" required="true" requiredMessage="Por favor preencha o campo Email" validatorMessage="Por favor insira um Email válido" a:placeholder="Email">
+                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"  />
+                        </p:inputText>
                     </div>
+                    <h:messages for="email" errorStyle="color: red"/>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">vpn_key</i>
-                        <p:password value="#{personBean.currentPerson.password}" class="text-grey" a:placeholder="Senha"></p:password>
+                        <p:password value="#{personBean.currentPerson.password}" id="pass" class="center-align" required="true" requiredMessage="Por favor preencha o campo Senha" validatorMessage="O campo Senha deve conter no minímo 6 caracteres" a:placeholder="Senha">
+                            <f:validateLength minimum="6" />
+                        </p:password>
                     </div>
-                    
-                    
+                    <h:messages for="pass" errorStyle="color: red"/>
+
+
                     <div style="display: none" class="inline">
-                        <h:inputHidden value="#{personBean.currentPerson.city}" id="cidade" class="text-grey" ></h:inputHidden>>
-                        <h:inputHidden value="#{personBean.currentPerson.state}" id="estado" class="text-grey"></h:inputHidden>>
-                        <h:inputHidden value="#{personBean.currentPerson.country}" id="pais" class="text-grey"></h:inputHidden>>
+                        <p:inputText value="#{personBean.currentPerson.city}" id="city" a:name="cidade" />
+                        <p:inputText value="#{personBean.currentPerson.state}" id="state" a:name="estado"/>
+                        <p:inputText value="#{personBean.currentPerson.country}" id="country" a:name="pais"/>
                     </div>
 
                     <br />
 
                     <div class="center-align">
-                        <!--<a href="" class="waves-effect waves-light btn deep-orange lighten-1">Cadastrar</a> -->
-                        <p:commandButton value="Cadastrar" action="#{personBean.createUpdate()}" ajax="false" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
+                        <p:commandButton value="Cadastrar" update="@form" action="#{personBean.createUpdate()}" ajax="true" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
                     </div>
 
                 </h:form>
@@ -67,14 +80,19 @@
         </div>
     </div>
     <script>
-        TeleportAutocomplete.init('.endereco').on('change', function (value) {
+        TeleportAutocomplete.init('.address').on('change', (value) => {
+            try {
+                cidade = value.name;
+                estado = value.admin1Division;
+                pais = value.country;
 
-            if (value.name !== "" &amp;&amp; value.admin1Division !== "" &amp;&amp; value.country !== "") {
-                document.getElementById("cidade").value = value.name;
-                document.getElementById("estado").value = value.admin1Division;
-                document.getElementById("pais").value = value.country;
+                console.log(cidade, estado, pais);
+                document.getElementById("form:city").value = cidade;
+                document.getElementById("form:state").value = estado;
+                document.getElementById("form:country").value = pais;
+            } catch (e) {
+                console.log("endereço inconsistente");
 
-                console.log(value.name, value.admin1Division, value.country);
             }
         });
     </script>

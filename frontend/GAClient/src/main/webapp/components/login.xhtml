@@ -13,17 +13,18 @@
                 <h5 class="text-grey">Entre no Guardião Animal</h5>
 
                 <br/>
-                <h:form>
+                <h:form id="lform">
                     <div class="inline">
                         <i class="icons text-grey material-icons">mail_outline</i>
-                        <p:inputText value="#{personBean.currentPerson.email}" id="email" required="true" requiredMessage="Por favor preencha o campo Email" class="text-grey" a:placeholder="Email">
+                        <p:inputText value="#{personBean.currentPerson.email}" id="email" class="center-align" required="true" requiredMessage="Por favor preencha o campo Email" validatorMessage="Email inválido" a:placeholder="Email">
+                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"  />
                         </p:inputText>
                     </div>
                     <h:messages for="email" errorStyle="color: red"/>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">vpn_key</i>
-                        <p:password value="#{personBean.currentPerson.password}" id="pass" required="true" requiredMessage="Por favor preencha o campo Senha" validatorMessage="O campo Senha deve conter no minímo 8 caracteres" class="text-grey" a:placeholder="Senha">                        
+                        <p:password value="#{personBean.currentPerson.password}" id="pass" class="center-align" required="true" requiredMessage="Por favor preencha o campo Senha" validatorMessage="O campo Senha deve conter no minímo 6 caracteres" a:placeholder="Senha">                        
                             <f:validateLength minimum="6" />
                         </p:password>
                     </div>
@@ -35,7 +36,7 @@
                         <p:commandButton update="@form" id="login" value="Entrar" action="#{personBean.login()}" ajax="true" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
                     </div>
                     
-                    <h:messages errorStyle="red" id="msg_login" for="login" />  
+                    <h:messages for="login" errorStyle="red" />  
                 </h:form>
 
                 <br />
