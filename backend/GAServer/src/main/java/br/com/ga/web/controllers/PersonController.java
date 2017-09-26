@@ -97,7 +97,7 @@ public class PersonController
     {
         try
         {
-            Person person = personService.findByEmailPassword(p.getEmail(), p.getPasword());
+            Person person = personService.findByEmailPassword(p.getEmail(), p.getPassword());
             return new ResponseData<>(Person.class, person, ResponseCode.FOUND);
         } catch (EntityNotFound e)
         {

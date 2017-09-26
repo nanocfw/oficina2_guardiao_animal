@@ -56,8 +56,8 @@ public class PersonServiceImpl implements IPersonService
         if (emailInUse(person.getId(), person.getEmail()))
             throw new InvalidEntity("E-mail em uso.");
 
-        if (person.getPasword() == null || person.getPasword().length() < 8)
-            throw new InvalidEntity("Senha inválida, mínimo 8 caracteres.");
+        if (person.getPassword() == null || person.getPassword().length() < 8)
+            throw new InvalidEntity("Senha inválida, mínimo 8 caracteres, atual: " + person.getPassword().length() + ".");
 
         return personDao.createUpdate(person);
     }

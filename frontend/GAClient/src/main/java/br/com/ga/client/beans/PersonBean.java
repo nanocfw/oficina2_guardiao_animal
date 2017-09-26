@@ -64,7 +64,7 @@ public class PersonBean
         try
         {
             Person p;
-            p = personService.findByEmailPassword(this.currentPerson.getEmail(), this.currentPerson.getPasword());
+            p = personService.findByEmailPassword(this.currentPerson.getEmail(), this.currentPerson.getPassword());
             // p deve ser armazenado na memória para uso posterior
 
             if (p.getBirthDate() == null)

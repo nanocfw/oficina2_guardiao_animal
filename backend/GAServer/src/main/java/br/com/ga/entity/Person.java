@@ -23,7 +23,7 @@ public class Person implements Serializable
     private String name;
     private String lastName;
     private String email;
-    private String pasword;
+    private String password;
     private String city;
     private String state;
     private String country;
@@ -41,6 +41,8 @@ public class Person implements Serializable
     private String phone;
     private String cellPhone;
     private String additionalData;
+    private double latitude;
+    private double longitude;
 
     public Person()
     {
@@ -108,14 +110,14 @@ public class Person implements Serializable
         this.email = email;
     }
 
-    public String getPasword()
+    public String getPassword()
     {
-        return pasword;
+        return password;
     }
 
-    public void setPasword(String pasword)
+    public void setPassword(String password)
     {
-        this.pasword = pasword;
+        this.password = password;
     }
 
     public String getCity()
@@ -266,6 +268,26 @@ public class Person implements Serializable
     public void setAdditionalData(String additionalData)
     {
         this.additionalData = additionalData;
+    }
+
+    public double getLatitude()
+    {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude)
+    {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude()
+    {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude)
+    {
+        this.longitude = longitude;
     }
 
 }

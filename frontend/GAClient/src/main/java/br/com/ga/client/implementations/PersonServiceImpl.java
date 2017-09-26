@@ -120,7 +120,7 @@ public class PersonServiceImpl extends Service implements IPersonService
         ResponseEntity<ResponseData<Person>> response;
         HttpEntity<Person> httpPerson = new HttpEntity<>(new Person());
         httpPerson.getBody().setEmail(email);
-        httpPerson.getBody().setPasword(password);
+        httpPerson.getBody().setPassword(password);
 
         response = rest.exchange(
                 getServerURL() + UrlMapping.PERSON + UrlMapping.PERSON_LOGIN,
