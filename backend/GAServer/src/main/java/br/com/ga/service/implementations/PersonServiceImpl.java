@@ -35,19 +35,19 @@ public class PersonServiceImpl implements IPersonService
     @Override
     public Person createUpdate(Person person) throws Exception
     {
-        if (person.getName().isEmpty() || person.getName().length() < 3)
+        if (person.getName() == null || person.getName().isEmpty() || person.getName().length() < 3)
             throw new InvalidEntity("Nome inválido.");
 
-        if (person.getLastName().isEmpty() || person.getLastName().length() < 3)
+        if (person.getLastName() == null || person.getLastName().isEmpty() || person.getLastName().length() < 3)
             throw new InvalidEntity("Sobrenome inválido.");
 
-        if (person.getCity().isEmpty())
+        if (person.getCity() == null || person.getCity().isEmpty())
             throw new InvalidEntity("Cidade não foi informada.");
 
-        if (person.getState().isEmpty())
+        if (person.getState() == null || person.getState().isEmpty())
             throw new InvalidEntity("Estado não foi informado.");
 
-        if (person.getCountry().isEmpty())
+        if (person.getCountry() == null || person.getCountry().isEmpty())
             throw new InvalidEntity("País não foi informado.");
 
         if (!Util.isEmailValid(person.getEmail()))
@@ -56,7 +56,7 @@ public class PersonServiceImpl implements IPersonService
         if (emailInUse(person.getId(), person.getEmail()))
             throw new InvalidEntity("E-mail em uso.");
 
-        if (person.getPasword().length() < 8)
+        if (person.getPasword() == null || person.getPasword().length() < 8)
             throw new InvalidEntity("Senha inválida, mínimo 8 caracteres.");
 
         return personDao.createUpdate(person);
