@@ -25,7 +25,6 @@
                             <f:validateLength minimum="3" />
                         </p:inputText>
                     </div>
-                    <h:messages for="name" errorStyle="color: red"/>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">person</i>
@@ -33,14 +32,11 @@
                             <f:validateLength minimum="3" />
                         </p:inputText>
                     </div>
-                    <h:messages for="secondName" errorStyle="color: red"/>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">location_on</i>
                         <p:inputText value="#{personBean.currentPerson.address}" id="address" required="true" requiredMessage="Por favor preencha o campo Endereço" class="address" placeholder="Endereço"></p:inputText >
                     </div>
-                    <h:messages for="address" errorStyle="color: red"/>
-
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">mail_outline</i>
@@ -48,7 +44,6 @@
                             <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"  />
                         </p:inputText>
                     </div>
-                    <h:messages for="email" errorStyle="color: red"/>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">vpn_key</i>
@@ -56,8 +51,6 @@
                             <f:validateLength minimum="6" />
                         </p:password>
                     </div>
-                    <h:messages for="pass" errorStyle="color: red"/>
-
 
                     <div style="display: none" class="inline">
                         <p:inputText value="#{personBean.currentPerson.city}" id="city" a:name="cidade" />
@@ -65,12 +58,13 @@
                         <p:inputText value="#{personBean.currentPerson.country}" id="country" a:name="pais"/>
                     </div>
 
+                    <h:messages id="register" style="color: red" />
+                    
                     <br />
-
                     <div class="center-align">
-                        <p:commandButton update="@form" id="register" value="Cadastrar" action="#{personBean.createUpdate()}" ajax="true" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
+                        <p:commandButton update="@form" value="Cadastrar" action="#{personBean.createUpdate()}" ajax="true" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
                     </div>
-                    <h:messages for="register" errorStyle="color: red"/>
+
                 </h:form>
 
                 <br />

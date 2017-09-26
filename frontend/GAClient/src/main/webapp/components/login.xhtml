@@ -20,7 +20,6 @@
                             <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"  />
                         </p:inputText>
                     </div>
-                    <h:messages for="email" errorStyle="color: red"/>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">vpn_key</i>
@@ -29,14 +28,13 @@
                         </p:password>
                     </div>
 
-                    <h:messages for="pass" errorStyle="color: red"/>
-
+                    <h:messages id="login" style="color: red" /> 
                     <br/>
                     <div class="center-align">
-                        <p:commandButton update="@form" id="login" value="Entrar" action="#{personBean.login()}" ajax="true" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
+                        <p:commandButton update="@form" value="Entrar" action="#{personBean.login()}" ajax="true" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
                     </div>
                     
-                    <h:messages for="login" errorStyle="red" />  
+                    
                 </h:form>
 
                 <br />

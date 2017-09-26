@@ -57,7 +57,7 @@ public class PersonDaoImpl implements IPersonDao
     public Person findByEmailPassword(String email, String password) throws Exception
     {
         TypedQuery<Person> qry = em
-                .createQuery("SELECT p FROM Person p WHERE p.email = :email AND p.pasword = :password",
+                .createQuery("SELECT p FROM Person p WHERE p.email = :email AND p.password = :password",
                         Person.class);
         try
         {

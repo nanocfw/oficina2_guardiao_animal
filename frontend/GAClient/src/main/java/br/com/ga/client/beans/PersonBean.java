@@ -13,6 +13,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 /**
@@ -46,13 +47,18 @@ public class PersonBean
 
     public String createUpdate()
     {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ExternalContext extContext = ctx.getExternalContext();
+        String url;
         try
         {
             personService.createUpdate(this.currentPerson);
+            url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/main.xhtml"));
+            extContext.redirect(url);
             return "#login";
         } catch (InvalidEntity e)
         {
-            FacesContext.getCurrentInstance().addMessage("register", new FacesMessage("Email em uso"));
+            FacesContext.getCurrentInstance().addMessage("form:register", new FacesMessage("Esta email ja está sendo usado"));
             return "cadastroInvalido";
         } catch (Exception e)
         {
@@ -62,6 +68,9 @@ public class PersonBean
 
     public String login()
     {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ExternalContext extContext = ctx.getExternalContext();
+        String url;
         try
         {
             Person p;
@@ -70,17 +79,21 @@ public class PersonBean
 
             if (p.getBirthDate() == null)
             {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("endRegister.xhtml");
+
+                url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/endRegister.xhtml"));
+                extContext.redirect(url);
                 return "endRegister";
+
             } else
             {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("indexAuth.xhtml");
+                url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/indexAuth.xhtml"));
+                extContext.redirect(url);
                 return "indexAuth";
             }
 
         } catch (EntityNotFound e)
         {
-            FacesContext.getCurrentInstance().addMessage("login", new FacesMessage("Email ou senha incorretos"));
+            ctx.addMessage("lform:login", new FacesMessage("Email ou senha está incorreto"));
             return "error";
         } catch (Exception e)
         {
