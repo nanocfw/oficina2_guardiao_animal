@@ -106,6 +106,10 @@ p { font-size: 1.25em;}
     max-height: 80vh;
 }
 
+.img-logo{
+ 
+}
+
 .modalDialog {
     position: fixed;
     font-family: Arial, Helvetica, sans-serif;
