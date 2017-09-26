@@ -49,9 +49,10 @@ public class PersonBean
         try
         {
             personService.createUpdate(this.currentPerson);
-            return "salvo";
+            return "#login";
         } catch (InvalidEntity e)
         {
+            FacesContext.getCurrentInstance().addMessage("register", new FacesMessage("Email em uso"));
             return "cadastroInvalido";
         } catch (Exception e)
         {
