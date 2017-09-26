@@ -68,9 +68,9 @@
                     <br />
 
                     <div class="center-align">
-                        <p:commandButton value="Cadastrar" update="@form" action="#{personBean.createUpdate()}" ajax="true" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
+                        <p:commandButton update="@form" id="register" value="Cadastrar" action="#{personBean.createUpdate()}" ajax="true" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
                     </div>
-
+                    <h:messages for="register" errorStyle="color: red"/>
                 </h:form>
 
                 <br />
@@ -86,7 +86,7 @@
                 estado = value.admin1Division;
                 pais = value.country;
 
-                console.log(cidade, estado, pais);
+                //console.log(cidade, estado, pais);
                 document.getElementById("form:city").value = cidade;
                 document.getElementById("form:state").value = estado;
                 document.getElementById("form:country").value = pais;

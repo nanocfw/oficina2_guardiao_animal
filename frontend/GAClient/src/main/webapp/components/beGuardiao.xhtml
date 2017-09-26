@@ -18,7 +18,7 @@
                     <div style="display: none" value="#{personBean.currentPerson.serviceProvider=true}"></div>
                     
                     <div class="inline">
-                        <p>Image</p>
+                        <p>Imagem</p>
                     </div>
 
                     <div class="inline">
@@ -45,13 +45,12 @@
                     </div>
                     <h:messages for="addressNumber" errorStyle="color: red"/>
 
-                    <div class="inline" required="true" requiredMessage="Por favor selecione um sexo">
-                        <p:selectOneRadio value="" id="console" value="">
+                    <div class="inline">
+                        <p:selectOneRadio value="" id="console">
                             <f:selectItem itemLabel="Masculino" itemValue="homem" />
                             <f:selectItem itemLabel="Feminino" itemValue="mulher" />
                         </p:selectOneRadio>
                     </div>
-                    <h:messages for="sexo" errorStyle="color: red"/>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">phone</i>
