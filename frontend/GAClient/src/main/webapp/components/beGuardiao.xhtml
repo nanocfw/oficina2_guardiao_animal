@@ -16,7 +16,6 @@
 
                 <h:form id="gform">
                     <div style="display: none" value="#{personBean.currentPerson.serviceProvider=true}"></div>
-                    <div style="display: none" value="#{personBean.currentPerson.id=9}"></div>
 
                     <div class="inline">
                         <div class="upload-button"><img class="profile-pic" src="assets/images/img.jpg" value=""/></div>
@@ -25,7 +24,7 @@
 
                     <div class="inline">
                         <i class="icons text-grey material-icons"> date_range</i>
-                        <p:inputText value="#{personBean.currentPerson.birthDate}" id="data" type="date" class="center-align" required="true" requiredMessage="Por favor preencha o campo Data" a:placeholder="Data de nascimento">
+                        <p:inputText value="#{personBean.birthDate}" id="data" type="date" class="center-align" required="true" requiredMessage="Por favor preencha o campo Data" a:placeholder="Data de nascimento">
                         </p:inputText>                   
                     </div>
 
@@ -46,7 +45,7 @@
                     </div>
 
                     <div class="inline">
-                        <p:selectOneRadio value="" id="console">
+                        <p:selectOneRadio id="console">
                             <f:selectItem itemLabel="Masculino" itemValue="homem" />
                             <f:selectItem itemLabel="Feminino" itemValue="mulher" />
                         </p:selectOneRadio>

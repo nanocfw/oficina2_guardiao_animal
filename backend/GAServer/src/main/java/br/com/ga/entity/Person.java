@@ -43,6 +43,7 @@ public class Person implements Serializable
     private String additionalData;
     private double latitude;
     private double longitude;
+    private boolean finishedRegister;
 
     public Person()
     {
@@ -288,6 +289,16 @@ public class Person implements Serializable
     public void setLongitude(double longitude)
     {
         this.longitude = longitude;
+    }
+
+    public boolean isFinishedRegister()
+    {
+        return finishedRegister;
+    }
+
+    public void setFinishedRegister(boolean finishedRegister)
+    {
+        this.finishedRegister = finishedRegister;
     }
 
 }

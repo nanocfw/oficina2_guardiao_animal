@@ -9,11 +9,14 @@ import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
+import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -22,11 +25,22 @@ import javax.faces.context.FacesContext;
  * @author Marciano
  */
 @ManagedBean
-@ViewScoped
-public class PersonBean
+@SessionScoped
+public class PersonBean implements Serializable
 {
 
     private Person currentPerson;
+    private String birthDate;
+
+    public String getBirthDate()
+    {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate)
+    {
+        this.birthDate = birthDate;
+    }
 
     public Person getCurrentPerson()
     {
@@ -77,8 +91,10 @@ public class PersonBean
             Person p;
             p = personService.findByEmailPassword(this.currentPerson.getEmail(), this.currentPerson.getPassword());
             // p deve ser armazenado na memória para uso posterior
+            
+            this.currentPerson = p;
 
-            if (p.getBirthDate() == null)
+            if (!p.isFinishedRegister())
             {
 
                 url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/endRegister.xhtml"));
@@ -101,18 +117,17 @@ public class PersonBean
             return "erro";
         }
     }
-    
-    public String updateGuardiao()
+
+    public String updateGuardiao() throws ParseException
     {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
         String url;
-        
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
-        String formattedDate = formatter.format(getCurrentPerson().getBirthDate());
-        System.out.println("aaaaa" + formattedDate);
 
-                
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = formatter.parse(this.birthDate);
+        this.currentPerson.setBirthDate(date);
+
         try
         {
             personService.createUpdate(this.currentPerson);
@@ -121,10 +136,11 @@ public class PersonBean
             return "endregister.xhtml";
         } catch (InvalidEntity e)
         {
-            FacesContext.getCurrentInstance().addMessage("gform:register", new FacesMessage("Erro, na funçao updateGuardiao em personBean"));
+            FacesContext.getCurrentInstance().addMessage("gform:register", new FacesMessage(e.getMessage()));
             return "cadastroInvalido";
         } catch (Exception e)
         {
+            FacesContext.getCurrentInstance().addMessage("gform:register", new FacesMessage("Erro, na funçao updateGuardiao em personBean"));
             return "erro";
         }
     }
