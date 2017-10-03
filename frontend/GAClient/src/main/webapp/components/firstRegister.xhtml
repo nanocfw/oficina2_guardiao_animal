@@ -35,7 +35,13 @@
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">location_on</i>
-                        <p:inputText value="#{personBean.currentPerson.address}" id="address" required="true" requiredMessage="Por favor preencha o campo Endereço" class="address" placeholder="Endereço"></p:inputText >
+                        <p:inputText value="#{personBean.currentPerson.address}" id="address" class="address center-align" placeholder="Cidade"></p:inputText >
+                    </div>
+
+                    <div style="display: none" class="inline">
+                        <p:inputText value="#{personBean.currentPerson.city}" id="city" a:name="cidade" required="true"  requiredMessage="Por favor preencha o campo Cidade" />
+                        <p:inputText value="#{personBean.currentPerson.state}" id="state" a:name="estado"/>
+                        <p:inputText value="#{personBean.currentPerson.country}" id="country" a:name="pais"/>
                     </div>
 
                     <div class="inline">
@@ -47,19 +53,13 @@
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">vpn_key</i>
-                        <p:password value="#{personBean.currentPerson.password}" id="pass" class="center-align" required="true" requiredMessage="Por favor preencha o campo Senha" validatorMessage="O campo Senha deve conter no minímo 6 caracteres" a:placeholder="Senha">
-                            <f:validateLength minimum="6" />
+                        <p:password value="#{personBean.currentPerson.password}" id="pass" class="center-align" required="true" requiredMessage="Por favor preencha o campo Senha" validatorMessage="O campo Senha deve conter no minímo 8 caracteres" a:placeholder="Senha">
+                            <f:validateLength minimum="8" />
                         </p:password>
                     </div>
 
-                    <div style="display: none" class="inline">
-                        <p:inputText value="#{personBean.currentPerson.city}" id="city" a:name="cidade" />
-                        <p:inputText value="#{personBean.currentPerson.state}" id="state" a:name="estado"/>
-                        <p:inputText value="#{personBean.currentPerson.country}" id="country" a:name="pais"/>
-                    </div>
-
                     <h:messages id="register" style="color: red" />
-                    
+
                     <br />
                     <div class="center-align">
                         <p:commandButton update="@form" value="Cadastrar" action="#{personBean.createUpdate()}" ajax="true" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
@@ -80,7 +80,7 @@
                 estado = value.admin1Division;
                 pais = value.country;
 
-                //console.log(cidade, estado, pais);
+                console.log(cidade, estado, pais);
                 document.getElementById("form:city").value = cidade;
                 document.getElementById("form:state").value = estado;
                 document.getElementById("form:country").value = pais;
@@ -89,5 +89,6 @@
 
             }
         });
+
     </script>
 </ui:composition>

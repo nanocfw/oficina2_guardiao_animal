@@ -10,6 +10,10 @@ body, html {
     height: 100%;
 }
 
+input[type="text"] {
+    text-align: center;
+}
+
 nav .nav-wrapper {
     padding: 0 50px;
 }
@@ -20,6 +24,8 @@ h1, h2 {
 
 p { font-size: 1.25em;}
 
+li { margin-bottom: 5px}
+
 .main {
     align-items: center;
     display: flex;
@@ -27,6 +33,7 @@ p { font-size: 1.25em;}
     flex-wrap: wrap;
     justify-content: center;
     height: 100vh;
+    width: 98%;
 }
 
 .border {
@@ -48,7 +55,7 @@ p { font-size: 1.25em;}
     height: 100vh;
     width: 100%;
     opacity: 0.5;
-    padding-bottom: 40px;
+    padding-bottom: 10vh;
 }
 
 .core {
@@ -107,7 +114,26 @@ p { font-size: 1.25em;}
 }
 
 .img-logo{
- 
+
+}
+.upload-button {
+    padding: 4px;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: block;
+    float: left;
+    border-radius: 50px;
+}
+
+.profile-pic {
+    max-width: 100px;
+    max-height: 80px;
+    display: block;
+    border-radius: 50px;
+}
+
+.file-upload {
+    display: none;
 }
 
 .modalDialog {
@@ -135,7 +161,7 @@ p { font-size: 1.25em;}
 .modalDialog > div {
     width: 400px;
     position: relative;
-    margin: 10% auto;
+    margin: 5% auto;
     padding: 5px 20px 13px 20px;
     border-radius: 10px;
     background: #fff;
@@ -205,12 +231,8 @@ p { font-size: 1.25em;}
 .close:hover { background: #ff7043; }
 
 .div-hov:hover {
-    background-color: white !important;
+    background-color: rgba(0,0,0,0.2) !important;
     color: #ff7043
-}
-
-.div-hover:hover ~ html {
-    background-color: #ff7043;
 }
 
 @media screen and (max-width: 1250px) {
@@ -218,8 +240,8 @@ p { font-size: 1.25em;}
         height: 40vh;
     }
     .margin {
-    margin: 5px 150px !important;
-}
+        margin: 5px 150px !important;
+    }
 }
 
 @media screen and (max-width: 1050px) {
@@ -227,8 +249,8 @@ p { font-size: 1.25em;}
     p, h5, img { font-size: 2em;}
     h2 {font-size: 4em;}
     .margin {
-    margin: 5px 100px !important;
-}
+        margin: 5px 100px !important;
+    }
 }
 
 @media screen and (max-width: 750px) {
@@ -253,8 +275,8 @@ p { font-size: 1.25em;}
         width: 300px;
     }
     .margin {
-    margin: 5px 50px !important;
-}
+        margin: 5px 50px !important;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -265,8 +287,8 @@ p { font-size: 1.25em;}
         height: 25vh;
     }
     .margin {
-    margin: 5px 20px !important;
-}
+        margin: 5px 20px !important;
+    }
 }
 
 @media screen and (max-width: 500px) {

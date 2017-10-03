@@ -16,34 +16,34 @@
 
                 <h:form id="gform">
                     <div style="display: none" value="#{personBean.currentPerson.serviceProvider=true}"></div>
-                    
+                    <div style="display: none" value="#{personBean.currentPerson.id=9}"></div>
+
                     <div class="inline">
-                        <p>Imagem</p>
+                        <div class="upload-button"><img class="profile-pic" src="assets/images/img.jpg" value=""/></div>
                     </div>
+                    <p class="grey-text center-align" style="font-size: 12px">Clique na imagem para inserir uma foto sua</p>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons"> date_range</i>
-                        <p:inputText value="#{personBean.currentPerson.birthDate}" type="date" id="bday" class="center-align" required="true" requiredMessage="Por favor preencha o campo Data" a:placeholder="Data de nascimento">
-                        </p:inputText>
+                        <p:inputText value="#{personBean.currentPerson.birthDate}" id="data" type="date" class="center-align" required="true" requiredMessage="Por favor preencha o campo Data" a:placeholder="Data de nascimento">
+                        </p:inputText>                   
                     </div>
-                    <h:messages for="bday" errorStyle="color: red"/>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">location_on</i>
-                        <p:inputText value="#{personBean.currentPerson.address}" id="address" class="center-align" required="true" requiredMessage="Por favor preencha o campo Endereço" validatorMessage="O campo Endereço deve conter no minímo 3 caracteres" a:placeholder="Rua">
+                        <p:inputText value="#{personBean.currentPerson.address}" id="address" class="center-align" required="true" requiredMessage="Por favor preencha o campo Endereço" validatorMessage="O campo Endereço deve conter no minímo 4 caracteres" a:placeholder="Rua">
                             <f:validateLength minimum="3" />
                         </p:inputText>
                     </div>
-                    <h:messages for="address" errorStyle="color: red"/>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">location_on</i>
                         <p:inputText value="#{personBean.currentPerson.complement}" id="complement" class="center-align" a:placeholder="Complemeneto"></p:inputText>
 
                         <i class="icons text-grey material-icons">location_on</i>
-                        <p:inputText value="#{personBean.currentPerson.addressNumber}" id="addressNumber" a:type="number" class="center-align" required="true" requiredMessage="Por favor preencha o campo Número" a:placeholder="Número"></p:inputText>
+                        <p:inputText value="#{personBean.currentPerson.addressNumber}" id="addressNumber" a:type="number" class="center-align" required="true" requiredMessage="Por favor preencha o campo Número" a:placeholder="Número">
+                        </p:inputText>
                     </div>
-                    <h:messages for="addressNumber" errorStyle="color: red"/>
 
                     <div class="inline">
                         <p:selectOneRadio value="" id="console">
@@ -54,39 +54,35 @@
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">phone</i>
-                        <p:inputText value="#{personBean.currentPerson.cellPhone}" id="tel" a:type="tel" class="text-grey" required="true" requiredMessage="Por favor preencha o campo Celular/WhatsApp" a:placeholder="Celular/WhatsApp"></p:inputText>
+                        <p:inputText value="#{personBean.currentPerson.cellPhone}" id="tel" a:type="number" class="center-align" required="true" requiredMessage="Por favor preencha o campo Celular/WhatsApp" a:placeholder="Celular/WhatsApp">
+                        </p:inputText>
                     </div>
-                    <h:messages for="tel" errorStyle="color: red"/>
-                    <br/>
 
                     <div class="inline">
-                        <a id="GetLocation" type="button" class="waves-effect waves-light btn deep-orange lighten-1">Compartilhar Geolocalização</a>
+                        <a type="button" onclick="getInfo()" class="waves-effect waves-light btn deep-orange lighten-1">Compartilhar Geolocalização</a>
                     </div>
                     <p class="grey-text center-align" style="font-size: 12px">Compartilhe sua geolocalização para que possamos localizar pessoas perto de você</p>
 
                     <div class="inline" id="location"> 
                         <img width="32" height="32" src="assets/images/latitude.png" />
-                        <p:inputText id="latitude" value="#{personBean.currentPerson.latitude}" class="text-grey" required="true" requiredMessage="Por favor preencha o campo Latitude" validatorMessage="Por favor compartilhe sua Latitude" placeholder="Latitude" a:name="latitude">
-                            <f:validateLongRange minimum="10" />
+                        <p:inputText id="latitude" value="#{personBean.currentPerson.latitude}" class="center-align" required="true" requiredMessage="Por favor compartilhe sua Latitude" a:placeholder="Latitude" a:name="latitude">
                         </p:inputText>
                         <img width="32" height="32" src="assets/images/longitude.png" />
-                        <p:inputText id="longitude" value="#{personBean.currentPerson.longitude}" class="text-grey" required="true" requiredMessage="Por favor preencha o campo Longitude" validatorMessage="Por favor compartilhe sua Longitude" placeholder="Longitude" a:name="longitude">
-                            <f:validateLongRange minimum="10" />
+                        <p:inputText id="longitude" value="#{personBean.currentPerson.longitude}" class="center-align" required="true" requiredMessage="Por favor compartilhe sua Longitude" a:placeholder="Longitude" a:name="longitude">
                         </p:inputText>
-                    </div>
-                    <h:messages for="latitude" errorStyle="color: red"/>
-                    <h:messages for="longitude" errorStyle="color: red"/>
-                    <br />
+                    </div>  
+
+                    <h:messages id="register" style="color: red" />
 
                     <div class="center-align">
-                        <p:commandButton value="Finalizar Cadastro" update="@form" ajax="true" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
+                        <p:commandButton update="@form" value="Finalizar Cadastro" action="#{personBean.updateGuardiao()}" ajax="true" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
                     </div>
                 </h:form>
             </div>
         </div>
     </div>
     <script>
-        GetInfo = () => {
+        getInfo = () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(ShowPosition);
             } else {
@@ -98,12 +94,9 @@
             let latitude = position.coords.latitude.toFixed(3);
             let longitude = position.coords.longitude.toFixed(3);
 
+            console.log('aaaaaaaaaa', latitude, longitude);
             document.getElementById("gform:latitude").value = latitude;
             document.getElementById("gform:longitude").value = longitude;
         };
-
-        $("#GetLocation").click(function () {
-            GetInfo();
-        });
     </script>
 </ui:composition>
