@@ -12,6 +12,7 @@ import br.com.ga.service.intf.IPersonService;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -50,6 +51,9 @@ public class PersonBean implements Serializable
     public void setCurrentPerson(Person currentPerson)
     {
         this.currentPerson = currentPerson;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        
+        this.birthDate = df.format(currentPerson.getBirthDate());
     }
 
     @EJB
@@ -67,7 +71,7 @@ public class PersonBean implements Serializable
         String url;
         try
         {
-            personService.createUpdate(this.currentPerson);
+            setCurrentPerson(personService.createUpdate(this.currentPerson));
             url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/index.xhtml#login"));
             extContext.redirect(url);
             return "#login";
@@ -88,13 +92,9 @@ public class PersonBean implements Serializable
         String url;
         try
         {
-            Person p;
-            p = personService.findByEmailPassword(this.currentPerson.getEmail(), this.currentPerson.getPassword());
-            // p deve ser armazenado na memória para uso posterior
-            
-            this.currentPerson = p;
+            setCurrentPerson(personService.findByEmailPassword(this.currentPerson.getEmail(), this.currentPerson.getPassword()));
 
-            if (!p.isFinishedRegister())
+            if (!currentPerson.isFinishedRegister())
             {
 
                 url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/endRegister.xhtml"));
@@ -127,10 +127,11 @@ public class PersonBean implements Serializable
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = formatter.parse(this.birthDate);
         this.currentPerson.setBirthDate(date);
+        this.currentPerson.setFinishedRegister(true);
 
         try
         {
-            personService.createUpdate(this.currentPerson);
+            setCurrentPerson(personService.createUpdate(this.currentPerson));
             url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/endRegister.xhtml"));
             extContext.redirect(url);
             return "endregister.xhtml";

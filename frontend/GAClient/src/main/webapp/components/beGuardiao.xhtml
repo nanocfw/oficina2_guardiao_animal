@@ -18,7 +18,10 @@
                     <div style="display: none" value="#{personBean.currentPerson.serviceProvider=true}"></div>
 
                     <div class="inline">
-                        <div class="upload-button"><img class="profile-pic" src="assets/images/img.jpg" value=""/></div>
+                        <div class="upload-button">
+                            <img class="profile-pic" id="picPerson" src="#{personBean.currentPerson.profilePic}" onclick="getPic()"/>
+                            <div style="display: none" id="pic" value="#{personBean.currentPerson.profilePic}"></div>
+                        </div>
                     </div>
                     <p class="grey-text center-align" style="font-size: 12px">Clique na imagem para inserir uma foto sua</p>
 
@@ -97,5 +100,10 @@
             document.getElementById("gform:latitude").value = latitude;
             document.getElementById("gform:longitude").value = longitude;
         };
+        function getPic()
+        {
+            let img = document.getElementById("gform:picPerson").src;
+            document.getElementById("gform:pic").value = img;
+        }
     </script>
 </ui:composition>

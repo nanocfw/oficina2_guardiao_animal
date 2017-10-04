@@ -1,5 +1,6 @@
 package br.com.ga.entity;
 
+import br.com.ga.entity.enums.PersonType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
@@ -44,6 +45,8 @@ public class Person implements Serializable
     private double latitude;
     private double longitude;
     private boolean finishedRegister;
+    private String profilePic;
+    private PersonType type;
 
     public Person()
     {
@@ -299,6 +302,26 @@ public class Person implements Serializable
     public void setFinishedRegister(boolean finishedRegister)
     {
         this.finishedRegister = finishedRegister;
+    }
+
+    public String getProfilePic()
+    {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic)
+    {
+        this.profilePic = profilePic;
+    }
+
+    public PersonType getType()
+    {
+        return type;
+    }
+
+    public void setType(PersonType type)
+    {
+        this.type = type;
     }
 
 }
