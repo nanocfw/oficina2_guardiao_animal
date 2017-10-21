@@ -6,10 +6,8 @@
 package br.com.ga.entity.enums;
 
 /**
- *
  * @author Marciano
  */
-public enum PersonType
-{
+public enum PersonType {
     MALE, FEMALE, COMPANY;
 }

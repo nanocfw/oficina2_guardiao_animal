@@ -2,6 +2,8 @@ package br.com.ga.entity;
 
 import br.com.ga.entity.enums.PersonType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -13,10 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Data
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Person implements Serializable
-{
+public class Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,22 +50,19 @@ public class Person implements Serializable
     private String profilePic;
     private PersonType type;
 
-    public Person()
-    {
+    public Person() {
         super();
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int hash = 7;
         hash = 17 * hash + (int) (this.id ^ (this.id >>> 32));
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
@@ -73,255 +72,4 @@ public class Person implements Serializable
         final Person other = (Person) obj;
         return this.id == other.id;
     }
-
-    public long getId()
-    {
-        return id;
-    }
-
-    public void setId(long id)
-    {
-        this.id = id;
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public String getLastName()
-    {
-        return lastName;
-    }
-
-    public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
-    }
-
-    public String getEmail()
-    {
-        return email;
-    }
-
-    public void setEmail(String email)
-    {
-        this.email = email;
-    }
-
-    public String getPassword()
-    {
-        return password;
-    }
-
-    public void setPassword(String password)
-    {
-        this.password = password;
-    }
-
-    public String getCity()
-    {
-        return city;
-    }
-
-    public void setCity(String city)
-    {
-        this.city = city;
-    }
-
-    public String getState()
-    {
-        return state;
-    }
-
-    public void setState(String state)
-    {
-        this.state = state;
-    }
-
-    public String getCountry()
-    {
-        return country;
-    }
-
-    public void setCountry(String country)
-    {
-        this.country = country;
-    }
-
-    public boolean isServiceProvider()
-    {
-        return serviceProvider;
-    }
-
-    public void setServiceProvider(boolean serviceProvider)
-    {
-        this.serviceProvider = serviceProvider;
-    }
-
-    public String getDocumentNumber()
-    {
-        return documentNumber;
-    }
-
-    public void setDocumentNumber(String documentNumber)
-    {
-        this.documentNumber = documentNumber;
-    }
-
-    public String getAddress()
-    {
-        return address;
-    }
-
-    public void setAddress(String address)
-    {
-        this.address = address;
-    }
-
-    public String getAddressNumber()
-    {
-        return addressNumber;
-    }
-
-    public void setAddressNumber(String addressNumber)
-    {
-        this.addressNumber = addressNumber;
-    }
-
-    public String getDistrict()
-    {
-        return district;
-    }
-
-    public void setDistrict(String district)
-    {
-        this.district = district;
-    }
-
-    public String getComplement()
-    {
-        return complement;
-    }
-
-    public void setComplement(String complement)
-    {
-        this.complement = complement;
-    }
-
-    public String getPostalCode()
-    {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode)
-    {
-        this.postalCode = postalCode;
-    }
-
-    public Date getBirthDate()
-    {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate)
-    {
-        this.birthDate = birthDate;
-    }
-
-    public List<Animal> getListAnimals()
-    {
-        return listAnimals;
-    }
-
-    public void setListAnimals(List<Animal> listAnimals)
-    {
-        this.listAnimals = listAnimals;
-    }
-
-    public String getPhone()
-    {
-        return phone;
-    }
-
-    public void setPhone(String phone)
-    {
-        this.phone = phone;
-    }
-
-    public String getCellPhone()
-    {
-        return cellPhone;
-    }
-
-    public void setCellPhone(String cellPhone)
-    {
-        this.cellPhone = cellPhone;
-    }
-
-    public String getAdditionalData()
-    {
-        return additionalData;
-    }
-
-    public void setAdditionalData(String additionalData)
-    {
-        this.additionalData = additionalData;
-    }
-
-    public double getLatitude()
-    {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude)
-    {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude()
-    {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude)
-    {
-        this.longitude = longitude;
-    }
-
-    public boolean isFinishedRegister()
-    {
-        return finishedRegister;
-    }
-
-    public void setFinishedRegister(boolean finishedRegister)
-    {
-        this.finishedRegister = finishedRegister;
-    }
-
-    public String getProfilePic()
-    {
-        return profilePic;
-    }
-
-    public void setProfilePic(String profilePic)
-    {
-        this.profilePic = profilePic;
-    }
-
-    public PersonType getType()
-    {
-        return type;
-    }
-
-    public void setType(PersonType type)
-    {
-        this.type = type;
-    }
-
 }

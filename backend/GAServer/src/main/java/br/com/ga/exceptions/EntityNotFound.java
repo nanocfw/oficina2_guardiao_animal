@@ -6,19 +6,15 @@
 package br.com.ga.exceptions;
 
 /**
- *
  * @author Marciano
  */
-public class EntityNotFound extends Exception
-{
+public class EntityNotFound extends Exception {
 
-    public EntityNotFound()
-    {
+    public EntityNotFound() {
         super("Registro não encontrado.");
     }
 
-    public EntityNotFound(String message)
-    {
+    public EntityNotFound(String message) {
         super(message);
     }
 }

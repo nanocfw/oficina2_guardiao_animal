@@ -6,10 +6,8 @@
 package br.com.ga.entity.enums;
 
 /**
- *
  * @author Marciano
  */
-public enum AnimalSize
-{
+public enum AnimalSize {
     SMALL, MIDDLE, LARGE
 };

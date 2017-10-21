@@ -1,7 +1,9 @@
-backend/GAServer/target
-frontend/GAClient/target
-/backend/GAServer/application.properties
 oficina2.ppk
+/backend/GAServer/.idea
+/backend/GAServer/target
+/backend/GAServer/application.properties
+/frontend/GAClient/target
+/frontend/GAClient/.idea
 /frontend/GAClient/src/main/java/br/com/ga/Exceptions/
 /frontend/GAClient/src/main/java/br/com/ga/entity/
 /frontend/GAClient/src/main/java/br/com/ga/service/intf/

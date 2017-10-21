@@ -2,6 +2,8 @@ package br.com.ga.entity;
 
 import br.com.ga.entity.enums.AnimalSize;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -13,10 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Data
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Animal implements Serializable
-{
+public class Animal implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,112 +35,26 @@ public class Animal implements Serializable
     private Date birthDate;
     private double wheight;
 
-    public Animal()
-    {
+    public Animal() {
         super();
     }
 
-    public int getId()
-    {
-        return id;
-    }
-
-    public void setId(int id)
-    {
-        this.id = id;
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public String getType()
-    {
-        return type;
-    }
-
-    public void setType(String type)
-    {
-        this.type = type;
-    }
-
-    public String getSpecie()
-    {
-        return specie;
-    }
-
-    public void setSpecie(String specie)
-    {
-        this.specie = specie;
-    }
-
-    public AnimalSize getSize()
-    {
-        return size;
-    }
-
-    public void setSize(AnimalSize size)
-    {
-        this.size = size;
-    }
-
-    public int getTemperament()
-    {
-        return temperament;
-    }
-
-    public void setTemperament(int temperament)
-    {
-        this.temperament = temperament;
-    }
-
-    public Date getBirthDate()
-    {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate)
-    {
-        this.birthDate = birthDate;
-    }
-
-    public double getWheight()
-    {
-        return wheight;
-    }
-
-    public void setWheight(double wheight)
-    {
-        this.wheight = wheight;
-    }
-
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int hash = 5;
         hash = 13 * hash + this.id;
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
-        if (this == obj)
-        {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (obj == null)
-        {
+        if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass())
-        {
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final Animal other = (Animal) obj;

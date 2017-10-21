@@ -6,19 +6,15 @@
 package br.com.ga.exceptions;
 
 /**
- *
  * @author Marciano
  */
-public class InvalidEntity extends Exception
-{
+public class InvalidEntity extends Exception {
 
-    public InvalidEntity()
-    {
-        super();
+    public InvalidEntity() {
+        super("Registro inválido");
     }
 
-    public InvalidEntity(String msg)
-    {
+    public InvalidEntity(String msg) {
         super(msg);
     }
 }
