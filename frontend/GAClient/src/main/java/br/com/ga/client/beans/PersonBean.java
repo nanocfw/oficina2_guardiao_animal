@@ -51,9 +51,13 @@ public class PersonBean implements Serializable
     public void setCurrentPerson(Person currentPerson)
     {
         this.currentPerson = currentPerson;
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        
-        this.birthDate = df.format(currentPerson.getBirthDate());
+
+        if (currentPerson.getBirthDate() != null)
+        {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            this.birthDate = df.format(currentPerson.getBirthDate());
+        } else
+            this.birthDate = "";
     }
 
     @EJB
