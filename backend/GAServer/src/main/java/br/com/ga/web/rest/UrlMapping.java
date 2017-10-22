@@ -27,4 +27,9 @@ public class UrlMapping {
     public static final String SERVICE_TYPE_GET_LIST = "fetch/";
     public static final String SERVICE_TYPE_DELETE = "delete/";
     public static final String SERVICE_TYPE_CREATE_UPDATE = "save/";
+
+    public static final String PICTURE = "ga/picture/";
+    public static final String PICTURE_GET = "fetch/{pictureId}";
+    public static final String PICTURE_CREATE_UPDATE = "save/";
+    public static final String PICTURE_DELETE = "delete/";
 }

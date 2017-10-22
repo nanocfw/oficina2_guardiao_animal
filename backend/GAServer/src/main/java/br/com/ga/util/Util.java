@@ -9,6 +9,9 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -87,5 +90,25 @@ public class Util {
             }
         }
         return null;
+    }
+
+    public static long timeDiff(Date current, Date old) {
+        return current.getTime() - old.getTime();
+    }
+
+    public static void createFile(byte[] data, String fileName) throws Exception {
+        FileOutputStream fos;
+
+        try {
+            fos = new FileOutputStream(fileName);
+            fos.write(data);
+
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
