@@ -41,15 +41,15 @@ public class Person implements Serializable {
     private String postalCode;
     @Temporal(TemporalType.DATE)
     private Date birthDate;
-    @ElementCollection
-    private List<Animal> listAnimals;
+    //@ElementCollection  // não é necessário ter a lista sempre carregada, por ser servidor REST, toda requisição irá transferir os dados de todos os animais, o que é desnecessário
+    //private List<Animal> listAnimals; // adicionado a classe de animal pra informar a qual pessoa pertence
     private String phone;
     private String cellPhone;
     private String additionalData;
     private double latitude;
     private double longitude;
     private boolean finishedRegister;
-    private String profilePic;
+    private long profilePic;// não é necessário carregar sempre, por isso é armazenado apenas qual o id da imagem para ser lida apenas quando precisar
     private PersonType type;
     @Type(type = "uuid-char")
     private UUID authToken;

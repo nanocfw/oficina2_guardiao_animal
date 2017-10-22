@@ -6,14 +6,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -32,6 +25,8 @@ public class Animal implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date birthDate;
     private double wheight;
+    @ManyToOne
+    private Person owner;
 
     public Animal() {
         super();

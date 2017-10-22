@@ -5,10 +5,12 @@
  */
 package br.com.ga.client.beans;
 
+import br.com.ga.entity.Picture;
 import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
+import br.com.ga.service.intf.IPictureService;
 import br.com.ga.util.Consts;
 import br.com.ga.util.Util;
 
@@ -32,10 +34,28 @@ import javax.servlet.http.Cookie;
 @ManagedBean
 @SessionScoped
 public class PersonBean implements Serializable {
+
     @EJB
     IPersonService personService;
+
+    @EJB
+    IPictureService pictureService;
+
     private Person currentPerson;
     private String birthDate;
+    private Date lastCheckToken;
+    private Picture picture;
+    private String profilePic;
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+        this.picture.loadFromString(profilePic);
+        this.picture.setUpdated(true);
+    }
 
     public String getBirthDate() {
         return birthDate;
@@ -51,7 +71,7 @@ public class PersonBean implements Serializable {
 
     public void setCurrentPerson(Person currentPerson) {
         this.currentPerson = currentPerson;
-
+        loadPictureFromDataBase();
         if (currentPerson.getBirthDate() != null) {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             this.birthDate = df.format(currentPerson.getBirthDate());
@@ -92,6 +112,34 @@ public class PersonBean implements Serializable {
         }
     }
 
+    public String updateGuardiao() throws ParseException {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ExternalContext extContext = ctx.getExternalContext();
+        String url;
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = formatter.parse(this.birthDate);
+        this.currentPerson.setBirthDate(date);
+//        this.currentPerson.setFinishedRegister(true);
+
+        try {
+            if (picture.isUpdated())
+                picture = pictureService.createUpdate(picture);
+            this.currentPerson.setProfilePic(picture.getId());
+            setCurrentPerson(personService.createUpdate(this.currentPerson));
+
+            url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/endRegister.xhtml"));
+            extContext.redirect(url);
+            return "endregister.xhtml";
+        } catch (InvalidEntity e) {
+            FacesContext.getCurrentInstance().addMessage("gform:register", new FacesMessage(e.getMessage()));
+            return "cadastroInvalido";
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("gform:register", new FacesMessage("Erro, na funçao updateGuardiao em personBean"));
+            return "erro";
+        }
+    }
+
     private String redirectToMain() throws IOException {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
@@ -106,30 +154,6 @@ public class PersonBean implements Serializable {
             url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/indexAuth.xhtml"));
             extContext.redirect(url);
             return "indexAuth";
-        }
-    }
-
-    public String updateGuardiao() throws ParseException {
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        ExternalContext extContext = ctx.getExternalContext();
-        String url;
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = formatter.parse(this.birthDate);
-        this.currentPerson.setBirthDate(date);
-        this.currentPerson.setFinishedRegister(true);
-
-        try {
-            setCurrentPerson(personService.createUpdate(this.currentPerson));
-            url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/endRegister.xhtml"));
-            extContext.redirect(url);
-            return "endregister.xhtml";
-        } catch (InvalidEntity e) {
-            FacesContext.getCurrentInstance().addMessage("gform:register", new FacesMessage(e.getMessage()));
-            return "cadastroInvalido";
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("gform:register", new FacesMessage("Erro, na funçao updateGuardiao em personBean"));
-            return "erro";
         }
     }
 
@@ -155,6 +179,7 @@ public class PersonBean implements Serializable {
                 && currentPerson.getAuthToken() != null
                 && currentPerson.getAuthToken() == token
                 && personService.isValidToken(token)
+                && Util.timeDiff(Util.curDate(), lastCheckToken) < Consts.HOUR_IN_MILLI//
                 )
             return redirectToMain();
 
@@ -170,15 +195,41 @@ public class PersonBean implements Serializable {
     }
 
     public Person updateToken(Person person) throws Exception {
-        Person p = personService.updateAuthToken(person);// atualiza o tempo de validade do token
+        Person p = person;
+        p = personService.updateAuthToken(person);// atualiza o tempo de validade do token
+        lastCheckToken = Util.curDate();
         Util.setCookie(Consts.COOKIE_NAME,
                 p.getAuthToken().toString(),
                 Consts.COOKIE_LIFE_TIME);
         return p;
     }
 
+    public void loadPictureFromDataBase() {
+        if (currentPerson == null || currentPerson.getId() == 0 || currentPerson.getProfilePic() == 0) {
+            profilePic = "";
+            return;
+        }
+
+        if (picture != null && picture.getId() == currentPerson.getProfilePic() && picture.getPicture() == null && picture.getPicture().length > 0)// imagem já carregada e pertence ao currentPerson
+            return;
+
+        try {
+            picture = pictureService.findById(currentPerson.getProfilePic());
+            picture.setTag(Util.curDate().getTime());
+            profilePic = picture.asString();
+        } catch (EntityNotFound e) {
+            picture = new Picture();
+            profilePic = "";
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public PersonBean() {
         currentPerson = new Person();
+        lastCheckToken = Util.incDay(Util.curDate(), -1);
+        picture = new Picture();
     }
 
 }

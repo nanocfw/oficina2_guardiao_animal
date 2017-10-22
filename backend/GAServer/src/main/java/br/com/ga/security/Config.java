@@ -5,6 +5,7 @@
  */
 package br.com.ga.security;
 
+import br.com.ga.util.Consts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -48,7 +49,8 @@ public class Config extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("admin").password("admin").roles(ADMIN) //                .and()
+                .withUser(Consts.REST_LOGIN).password(Consts.REST_PASSWORD).roles(ADMIN)
+        //                .and()
         //                .withUser("prestador").password("prestador").roles(PRESTADOR)
         //                .and()
         //                .withUser("cliente").password("cliente").roles(CLIENTE)

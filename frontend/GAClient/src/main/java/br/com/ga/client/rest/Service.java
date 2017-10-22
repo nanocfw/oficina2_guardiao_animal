@@ -5,39 +5,34 @@
  */
 package br.com.ga.client.rest;
 
+import br.com.ga.util.Consts;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 /**
- *
  * @author Marciano
  */
-public abstract class Service
-{
+public abstract class Service {
 
     private static String serverURL;
     private static String userName;
     private static String password;
 
-    public static String getServerURL()
-    {
+    public static String getServerURL() {
         return serverURL;
     }
 
-    public static void setServerURL(String serverURL)
-    {
+    public static void setServerURL(String serverURL) {
         Service.serverURL = serverURL;
     }
 
-    public Service()
-    {
-        Service.serverURL = "http://localhost:8090/";
-        userName = "admin";
-        password = "admin";
+    public Service() {
+        Service.serverURL = Consts.REST_URL;
+        userName = Consts.REST_LOGIN;
+        password = Consts.REST_PASSWORD;
     }
 
-    public BasicAuthRestTemplate getNewRestTemplate()
-    {
+    public BasicAuthRestTemplate getNewRestTemplate() {
         BasicAuthRestTemplate restTemplate = new BasicAuthRestTemplate(userName, password);
         MappingJackson2HttpMessageConverter jsonHttpMessageConverter = new MappingJackson2HttpMessageConverter();
         jsonHttpMessageConverter.getObjectMapper().configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);

@@ -1,69 +1,73 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <title>Guardião Animal</title>
+<h:head>
+    <title>Guardião Animal</title>
 
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <!--Import Google Icon Font-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-        <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css"  media="screen,projection"/> 
-        <!--Import styles.css -->
-        <link type="text/css" rel="stylesheet" href="assets/css/styles.css" /> 
-        <!-- import preloader -->
-        <link type="text/css" rel="stylesheet" href="assets/css/preloader.css" /> 
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection"/>
+    <!--Import styles.css -->
+    <link type="text/css" rel="stylesheet" href="assets/css/styles.css"/>
+    <!-- import preloader -->
+    <link type="text/css" rel="stylesheet" href="assets/css/preloader.css"/>
 
-    </h:head>
-    <h:body class="full-height">
-        <!-- Import Materialize.js -->
-        <script type="text/javascript" src="assets/js/materialize.min.js"></script>
-        <!-- Import index.js -->
-        <script type="text/javascript" src="assets/js/index.js"></script>
+</h:head>
+<h:body class="full-height">
+    <!-- Import Materialize.js -->
+    <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+    <!-- Import index.js -->
+    <script type="text/javascript" src="assets/js/index.js"></script>
 
-        <div id="loader-wrapper">
-            <div id="loader"></div>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
 
-            <div class="loader-section section-left"></div>
-            <div class="loader-section section-right"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
 
+    </div>
+
+    <input class="file-upload" type="file" accept="image/*"/>
+
+    <ui:include src="/components/beGuardiao.xhtml"/>
+    <ui:include src="/components/searchGuardiao.xhtml"/>
+
+    <div id="content">
+        <div class="center-align">
+            <h1 class="text-grey"> Complete seu Cadastro</h1>
         </div>
-        
-        <input class="file-upload" type="file" accept="image/*"/>
-        
-        <ui:include src="/components/beGuardiao.xhtml"/>
-        <ui:include src="/components/searchGuardiao.xhtml"/>
 
-        <div id="content">
-            <div class="center-align">
-                <h1 class="text-grey"> Complete seu Cadastro</h1>
+        <div class="center-align">
+            <h3 class="text-grey">Selecione uma das opções abaixo.</h3>
+        </div>
+
+        <div id="inline" class="inline">
+            <div class="valign-wrapper">
+                <a href="#encontrar"
+                   class="div-hov waves-effect waves-light btn-large big-button white text-orange lighten-1 z-depth-2">
+                    <h4>Quero ENCONTRAR um</h4>
+                    <h3>Guardião</h3>
+                </a>
             </div>
 
-            <div class="center-align">
-                <h3 class="text-grey">Selecione uma das opções abaixo.</h3>
-            </div>
-
-            <div id="inline" class="inline">
-                <div class="valign-wrapper">
-                    <a href="#encontrar" class ="div-hov waves-effect waves-light btn-large big-button white text-orange lighten-1 z-depth-2">
-                        <h4>Quero ENCONTRAR um</h4>
-                        <h3>Guardião</h3>
-                    </a>
-                </div>
-
-                <div class="valign-wrapper">
-                    <a href="#ser" class="div-hov waves-effect waves-light btn-large big-button white text-orange lighten-1 z-depth-2">
-                        <h4>Quero SER um</h4>
-                        <h3>Guardião</h3>
-                    </a>
-                </div>
+            <div class="valign-wrapper">
+                <a href="#ser"
+                   class="div-hov waves-effect waves-light btn-large big-button white text-orange lighten-1 z-depth-2">
+                    <h4>Quero SER um</h4>
+                    <h3>Guardião</h3>
+                </a>
             </div>
         </div>
-    </h:body>
+    </div>
+</h:body>
+<!--@formatter:off-->
     <script>
         let readURL = function (input) {
             if (input.files &amp;&amp; input.files[0]) {
@@ -71,6 +75,7 @@
 
                 reader.onload = e => {
                     $('.profile-pic').attr('src', e.target.result);
+                    document.getElementById("gform:pic").value = e.target.result;
                 };
 
                 reader.readAsDataURL(input.files[0]);
@@ -88,5 +93,6 @@
 
         let img = document.querySelector('.profile-pic').src;
     </script>
+ <!--@formatter:on-->
 </html>
 

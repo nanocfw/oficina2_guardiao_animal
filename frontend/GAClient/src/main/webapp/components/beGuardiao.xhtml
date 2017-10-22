@@ -1,10 +1,10 @@
-<ui:composition 
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <div id="ser" class="modalDialog">
         <div>
@@ -19,70 +19,91 @@
 
                     <div class="inline">
                         <div class="upload-button">
-                            <img class="profile-pic" id="picPerson" src="#{personBean.currentPerson.profilePic}" onclick="getPic()"/>
-                            <div style="display: none" id="pic" value="#{personBean.currentPerson.profilePic}"></div>
+                            <img class="profile-pic" id="picPerson" src="#{personBean.profilePic}"/>
+                            <h:inputHidden id="pic" value="#{personBean.profilePic}"/>
                         </div>
                     </div>
-                    <p class="grey-text center-align" style="font-size: 12px">Clique na imagem para inserir uma foto sua</p>
+                    <p class="grey-text center-align"
+                       style="font-size: 12px">Clique na imagem para inserir uma foto sua</p>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons"> date_range</i>
-                        <p:inputText value="#{personBean.birthDate}" id="data" type="date" class="center-align" required="true" requiredMessage="Por favor preencha o campo Data" a:placeholder="Data de nascimento">
-                        </p:inputText>                   
-                    </div>
-
-                    <div class="inline">
-                        <i class="icons text-grey material-icons">location_on</i>
-                        <p:inputText value="#{personBean.currentPerson.address}" id="address" class="center-align" required="true" requiredMessage="Por favor preencha o campo Endereço" validatorMessage="O campo Endereço deve conter no minímo 4 caracteres" a:placeholder="Rua">
-                            <f:validateLength minimum="3" />
+                        <p:inputText value="#{personBean.birthDate}" id="data" type="date" class="center-align"
+                                     required="true" requiredMessage="Por favor preencha o campo Data"
+                                     a:placeholder="Data de nascimento">
                         </p:inputText>
                     </div>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">location_on</i>
-                        <p:inputText value="#{personBean.currentPerson.complement}" id="complement" class="center-align" a:placeholder="Complemeneto"></p:inputText>
+                        <p:inputText value="#{personBean.currentPerson.address}" id="address" class="center-align"
+                                     required="true" requiredMessage="Por favor preencha o campo Endereço"
+                                     validatorMessage="O campo Endereço deve conter no minímo 4 caracteres"
+                                     a:placeholder="Rua">
+                            <f:validateLength minimum="3"/>
+                        </p:inputText>
+                    </div>
+
+                    <div class="inline">
+                        <i class="icons text-grey material-icons">location_on</i>
+                        <p:inputText value="#{personBean.currentPerson.complement}" id="complement" class="center-align"
+                                     a:placeholder="Complemeneto"/>
 
                         <i class="icons text-grey material-icons">location_on</i>
-                        <p:inputText value="#{personBean.currentPerson.addressNumber}" id="addressNumber" a:type="number" class="center-align" required="true" requiredMessage="Por favor preencha o campo Número" a:placeholder="Número">
+                        <p:inputText value="#{personBean.currentPerson.addressNumber}" id="addressNumber"
+                                     a:type="number" class="center-align" required="true"
+                                     requiredMessage="Por favor preencha o campo Número" a:placeholder="Número">
                         </p:inputText>
                     </div>
 
                     <div class="inline">
                         <p:selectOneRadio id="console">
-                            <f:selectItem itemLabel="Masculino" itemValue="homem" />
-                            <f:selectItem itemLabel="Feminino" itemValue="mulher" />
+                            <f:selectItem itemLabel="Masculino" itemValue="homem"/>
+                            <f:selectItem itemLabel="Feminino" itemValue="mulher"/>
                         </p:selectOneRadio>
                     </div>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">phone</i>
-                        <p:inputText value="#{personBean.currentPerson.cellPhone}" id="tel" a:type="number" class="center-align" required="true" requiredMessage="Por favor preencha o campo Celular/WhatsApp" a:placeholder="Celular/WhatsApp">
+                        <p:inputText value="#{personBean.currentPerson.cellPhone}" id="tel" a:type="number"
+                                     class="center-align" required="true"
+                                     requiredMessage="Por favor preencha o campo Celular/WhatsApp"
+                                     a:placeholder="Celular/WhatsApp">
                         </p:inputText>
                     </div>
 
                     <div class="inline">
-                        <a type="button" onclick="getInfo()" class="waves-effect waves-light btn deep-orange lighten-1">Compartilhar Geolocalização</a>
+                        <a type="button" onclick="getInfo()"
+                           class="waves-effect waves-light btn deep-orange lighten-1">Compartilhar Geolocalização</a>
                     </div>
-                    <p class="grey-text center-align" style="font-size: 12px">Compartilhe sua geolocalização para que possamos localizar pessoas perto de você</p>
+                    <p class="grey-text center-align"
+                       style="font-size: 12px">Compartilhe sua geolocalização para que possamos localizar pessoas perto de você</p>
 
-                    <div class="inline" id="location"> 
-                        <img width="32" height="32" src="assets/images/latitude.png" />
-                        <p:inputText id="latitude" value="#{personBean.currentPerson.latitude}" class="center-align" required="true" requiredMessage="Por favor compartilhe sua Latitude" a:placeholder="Latitude" a:name="latitude">
+                    <div class="inline" id="location">
+                        <img width="32" height="32" src="assets/images/latitude.png"/>
+                        <p:inputText id="latitude" value="#{personBean.currentPerson.latitude}" class="center-align"
+                                     required="true" requiredMessage="Por favor compartilhe sua Latitude"
+                                     a:placeholder="Latitude" a:name="latitude">
                         </p:inputText>
-                        <img width="32" height="32" src="assets/images/longitude.png" />
-                        <p:inputText id="longitude" value="#{personBean.currentPerson.longitude}" class="center-align" required="true" requiredMessage="Por favor compartilhe sua Longitude" a:placeholder="Longitude" a:name="longitude">
+                        <img width="32" height="32" src="assets/images/longitude.png"/>
+                        <p:inputText id="longitude" value="#{personBean.currentPerson.longitude}" class="center-align"
+                                     required="true" requiredMessage="Por favor compartilhe sua Longitude"
+                                     a:placeholder="Longitude" a:name="longitude">
                         </p:inputText>
-                    </div>  
+                    </div>
 
-                    <h:messages id="register" style="color: red" />
+                    <h:messages id="register" style="color: red"/>
 
                     <div class="center-align">
-                        <p:commandButton update="@form" value="Finalizar Cadastro" action="#{personBean.updateGuardiao()}" ajax="true" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
+                        <p:commandButton update="@form" value="Finalizar Cadastro"
+                                         action="#{personBean.updateGuardiao()}" ajax="true"
+                                         class="waves-effect waves-light btn deep-orange lighten-1"/>
                     </div>
                 </h:form>
             </div>
         </div>
     </div>
+    <!--@formatter:off-->
     <script>
         getInfo = () => {
             if (navigator.geolocation) {
@@ -91,19 +112,13 @@
                 x.innerHTML = "Geolocation is not supported by this browser.";
             }
         };
-
         ShowPosition = (position) => {
             let latitude = position.coords.latitude.toFixed(3);
             let longitude = position.coords.longitude.toFixed(3);
-
             console.log('aaaaaaaaaa', latitude, longitude);
             document.getElementById("gform:latitude").value = latitude;
             document.getElementById("gform:longitude").value = longitude;
         };
-        function getPic()
-        {
-            let img = document.getElementById("gform:picPerson").src;
-            document.getElementById("gform:pic").value = img;
-        }
     </script>
+    <!--@formatter:on-->
 </ui:composition>
