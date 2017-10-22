@@ -7,7 +7,7 @@ As pastas
     exceptions
 }
 existentes no frontend são as mesmas que existem no backend, 
-porém como o netbeans não permite selecionar arquivos fora da pasta padão, foi criado um "link" com as pastas originais para "enganar" ele, 
+porém como o netbeans não permite selecionar arquivos fora da pasta padrão, foi criado um "link" com as pastas originais para "enganar" ele,
 dessa forma as entidades estão sempre com a mesma extrutura, evitando problemas por alterar em um local e esquecer no outro e os mesmos métodos que 
 existirem no servidor REST existirão no cliente.
 Obs.: Devido a serem o mesmo arquivo, foi removido da extrutura do git.

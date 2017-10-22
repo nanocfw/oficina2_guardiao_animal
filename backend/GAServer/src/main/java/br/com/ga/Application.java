@@ -5,21 +5,19 @@
  */
 package br.com.ga;
 
+import br.com.ga.dao.implementations.ServiceTypeDaoImpl;
+import br.com.ga.entity.ServiceType;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- *
  * @author Marciano
  */
 @SpringBootApplication
 //@EnableAutoConfiguration
-public class Application
-{
+public class Application {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 }
