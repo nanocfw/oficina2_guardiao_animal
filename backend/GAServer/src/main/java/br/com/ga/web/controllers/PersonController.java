@@ -12,7 +12,9 @@ import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
 import br.com.ga.web.rest.ResponseData;
 import br.com.ga.web.rest.ResponseCode;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,13 +26,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
  * @author Marciano
  */
 @RestController
 @RequestMapping(UrlMapping.PERSON)
-public class PersonController
-{
+public class PersonController {
 
     @Autowired
     IPersonService personService;
@@ -40,17 +40,13 @@ public class PersonController
             value = UrlMapping.PERSON_GET,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData<Person> get(@PathVariable(value = "personId") long animalId)
-    {
-        try
-        {
+    public ResponseData<Person> get(@PathVariable(value = "personId") long animalId) {
+        try {
             Person person = personService.findById(animalId);
             return new ResponseData<>(Person.class, person, ResponseCode.FOUND);
-        } catch (EntityNotFound e)
-        {
+        } catch (EntityNotFound e) {
             return new ResponseData<>(Person.class, ResponseCode.NOT_FOUND, EntityNotFound.class, e.getMessage());
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             return new ResponseData<>(Person.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
         }
     }
@@ -63,8 +59,7 @@ public class PersonController
     public List<Person> getList(
             @PathVariable(value = "listClients") boolean listClients,
             @PathVariable(value = "rowsReturn") int rowsReturn,
-            @PathVariable(value = "rowsIgnore") int rowsIgnore)
-    {
+            @PathVariable(value = "rowsIgnore") int rowsIgnore) {
         return personService.findList(listClients, rowsReturn, rowsIgnore);
     }
 
@@ -73,17 +68,13 @@ public class PersonController
             value = UrlMapping.PERSON_CREATE_UPDATE,
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData<Person> createUpdate(@RequestBody Person p)
-    {
-        try
-        {
+    public ResponseData<Person> createUpdate(@RequestBody Person p) {
+        try {
             Person person = personService.createUpdate(p);
             return new ResponseData<>(Person.class, person, ResponseCode.CREATED);
-        } catch (InvalidEntity e)
-        {
+        } catch (InvalidEntity e) {
             return new ResponseData<>(Person.class, ResponseCode.ERROR, InvalidEntity.class, e.getMessage());
-        } catch (Exception ex)
-        {
+        } catch (Exception ex) {
             return new ResponseData<>(Person.class, ResponseCode.ERROR, ex.getClass(), ex.getMessage());
         }
     }
@@ -93,17 +84,13 @@ public class PersonController
             value = UrlMapping.PERSON_LOGIN,
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData<Person> login(@RequestBody Person p)
-    {
-        try
-        {
+    public ResponseData<Person> login(@RequestBody Person p) {
+        try {
             Person person = personService.findByEmailPassword(p.getEmail(), p.getPassword());
             return new ResponseData<>(Person.class, person, ResponseCode.FOUND);
-        } catch (EntityNotFound e)
-        {
+        } catch (EntityNotFound e) {
             return new ResponseData<>(Person.class, ResponseCode.NOT_FOUND, EntityNotFound.class, e.getMessage());
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             return new ResponseData<>(Person.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
         }
     }
@@ -115,14 +102,11 @@ public class PersonController
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseData<Boolean> emailInUse(
             @PathVariable(value = "email") String email,
-            @PathVariable(value = "currentId") long currentId)
-    {
-        try
-        {
+            @PathVariable(value = "currentId") long currentId) {
+        try {
             boolean emailInUse = personService.emailInUse(currentId, email);
             return new ResponseData<>(Boolean.class, emailInUse, ResponseCode.OK);
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             return new ResponseData<>(Boolean.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
         }
     }
@@ -132,9 +116,14 @@ public class PersonController
             value = UrlMapping.PERSON_DELETE,
             method = RequestMethod.DELETE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void delete(Person p) throws Exception
-    {
+    public void delete(Person p) throws Exception {
         personService.delete(p);
     }
+
+//    @ResponseStatus(HttpStatus.OK)
+//    @RequestMapping(
+//            value = UrlMapping.PERSON_FETCH_SERVICE_PROVIDER,
+//            method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_JSON_VALUE)
 
 }

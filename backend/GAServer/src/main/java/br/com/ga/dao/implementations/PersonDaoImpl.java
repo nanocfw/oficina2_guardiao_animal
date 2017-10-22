@@ -5,7 +5,6 @@
  */
 package br.com.ga.dao.implementations;
 
-import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 

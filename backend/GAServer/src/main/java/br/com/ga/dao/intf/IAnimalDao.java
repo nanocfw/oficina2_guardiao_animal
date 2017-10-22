@@ -6,20 +6,17 @@
 package br.com.ga.dao.intf;
 
 import br.com.ga.entity.Animal;
+
 import java.util.List;
 
 /**
- *
  * @author Marciano
  */
-public interface IAnimalDao
-{
+public interface IAnimalDao {
 
-    Animal create(final Animal animal) throws Exception;
+    Animal createUpdate(final Animal animal) throws Exception;
 
-    Animal findById(final int id);
-
-    Animal update(Animal animal) throws Exception;
+    Animal findById(final int id) throws Exception;
 
     List<Animal> findList(final int rowsReturn, int rowsIgnore);
 

@@ -26,10 +26,8 @@ public class Animal implements Serializable {
     private String name;
     private String type;
     private String specie;
-
     @Enumerated(EnumType.ORDINAL)
     private AnimalSize size;
-
     private int temperament;
     @Temporal(TemporalType.DATE)
     private Date birthDate;
@@ -37,28 +35,6 @@ public class Animal implements Serializable {
 
     public Animal() {
         super();
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 13 * hash + this.id;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Animal other = (Animal) obj;
-        return this.id == other.id;
     }
 
 }

@@ -7,7 +7,9 @@ package br.com.ga.web.controllers;
 
 import br.com.ga.dao.intf.IAnimalDao;
 import br.com.ga.entity.Animal;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,12 +20,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
  * @author Marciano
  */
 @RestController
-public class AnimalController
-{
+public class AnimalController {
 
     @Autowired
     private IAnimalDao animalDao;
@@ -36,9 +36,12 @@ public class AnimalController
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     // Produz JSON como retorno
-    public Animal get(@PathVariable(value = "animalId") int animalId)
-    {
-        return animalDao.findById(animalId);
+    public Animal get(@PathVariable(value = "animalId") int animalId) {
+        try {
+            return animalDao.findById(animalId);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -48,8 +51,7 @@ public class AnimalController
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Animal> getList(
             @PathVariable(value = "rowsReturn") int rowsReturn,
-            @PathVariable(value = "rowsIgnore") int rowsIgnore)
-    {
+            @PathVariable(value = "rowsIgnore") int rowsIgnore) {
         return animalDao.findList(rowsReturn, rowsIgnore);
     }
 }

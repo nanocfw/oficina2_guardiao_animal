@@ -17,7 +17,7 @@ public interface IAnimalService
 
     Animal create(final Animal animal) throws Exception;
 
-    Animal findById(final int id);
+    Animal findById(final int id) throws Exception;
 
     Animal update(Animal animal) throws Exception;
 

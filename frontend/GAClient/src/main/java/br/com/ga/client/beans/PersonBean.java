@@ -9,6 +9,7 @@ import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
+
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,108 +23,87 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 /**
- *
  * @author Marciano
  */
 @ManagedBean
 @SessionScoped
-public class PersonBean implements Serializable
-{
-
+public class PersonBean implements Serializable {
+    @EJB
+    IPersonService personService;
     private Person currentPerson;
     private String birthDate;
 
-    public String getBirthDate()
-    {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate)
-    {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
-    public Person getCurrentPerson()
-    {
+    public Person getCurrentPerson() {
         return currentPerson;
     }
 
-    public void setCurrentPerson(Person currentPerson)
-    {
+    public void setCurrentPerson(Person currentPerson) {
         this.currentPerson = currentPerson;
 
-        if (currentPerson.getBirthDate() != null)
-        {
+        if (currentPerson.getBirthDate() != null) {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             this.birthDate = df.format(currentPerson.getBirthDate());
         } else
             this.birthDate = "";
     }
 
-    @EJB
-    IPersonService personService;
-
-    public PersonBean()
-    {
+    public PersonBean() {
         currentPerson = new Person();
     }
 
-    public String createUpdate()
-    {
+    public String createUpdate() {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
         String url;
-        try
-        {
+        try {
             setCurrentPerson(personService.createUpdate(this.currentPerson));
             url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/index.xhtml#login"));
             extContext.redirect(url);
             return "#login";
-        } catch (InvalidEntity e)
-        {
+        } catch (InvalidEntity e) {
             FacesContext.getCurrentInstance().addMessage("form:register", new FacesMessage("Este Email ja está sendo usado, por favor digite outro Email"));
             return "cadastroInvalido";
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             return "erro";
         }
     }
 
-    public String login()
-    {
+    public String login() {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
         String url;
-        try
-        {
+        try {
             setCurrentPerson(personService.findByEmailPassword(this.currentPerson.getEmail(), this.currentPerson.getPassword()));
 
-            if (!currentPerson.isFinishedRegister())
-            {
+            if (!currentPerson.isFinishedRegister()) {
 
                 url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/endRegister.xhtml"));
                 extContext.redirect(url);
                 return "endRegister";
 
-            } else
-            {
+            } else {
                 url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/indexAuth.xhtml"));
                 extContext.redirect(url);
                 return "indexAuth";
             }
 
-        } catch (EntityNotFound e)
-        {
+        } catch (EntityNotFound e) {
             ctx.addMessage("lform:login", new FacesMessage("Email ou senha está incorreto"));
             return "error";
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             return "erro";
         }
     }
 
-    public String updateGuardiao() throws ParseException
-    {
+    public String updateGuardiao() throws ParseException {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
         String url;
@@ -133,18 +113,15 @@ public class PersonBean implements Serializable
         this.currentPerson.setBirthDate(date);
         this.currentPerson.setFinishedRegister(true);
 
-        try
-        {
+        try {
             setCurrentPerson(personService.createUpdate(this.currentPerson));
             url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/endRegister.xhtml"));
             extContext.redirect(url);
             return "endregister.xhtml";
-        } catch (InvalidEntity e)
-        {
+        } catch (InvalidEntity e) {
             FacesContext.getCurrentInstance().addMessage("gform:register", new FacesMessage(e.getMessage()));
             return "cadastroInvalido";
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage("gform:register", new FacesMessage("Erro, na funçao updateGuardiao em personBean"));
             return "erro";
         }

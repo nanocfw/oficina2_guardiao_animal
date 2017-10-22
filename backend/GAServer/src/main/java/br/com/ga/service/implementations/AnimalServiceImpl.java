@@ -7,49 +7,44 @@ package br.com.ga.service.implementations;
 
 import br.com.ga.entity.Animal;
 import br.com.ga.service.intf.IAnimalService;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.ga.dao.intf.IAnimalDao;
 
 /**
- *
  * @author Marciano
  */
 @Service
-public class AnimalServiceImpl implements IAnimalService
-{
+public class AnimalServiceImpl implements IAnimalService {
 
     @Autowired
     private IAnimalDao animalDao;
 
     @Override
-    public Animal create(Animal animal) throws Exception
-    {
-        return animalDao.create(animal);
+    public Animal create(Animal animal) throws Exception {
+        return animalDao.createUpdate(animal);
     }
 
     @Override
-    public Animal findById(int id)
-    {
+    public Animal findById(int id) throws Exception {
         return animalDao.findById(id);
     }
 
     @Override
-    public Animal update(Animal animal) throws Exception
-    {
-        return animalDao.update(animal);
+    public Animal update(Animal animal) throws Exception {
+        return animalDao.createUpdate(animal);
     }
 
     @Override
-    public List<Animal> findList(int rowsReturn, int rowsIgnore)
-    {
+    public List<Animal> findList(int rowsReturn, int rowsIgnore) {
         return animalDao.findList(rowsReturn, rowsIgnore);
     }
 
     @Override
-    public void delete(Animal animal) throws Exception
-    {
+    public void delete(Animal animal) throws Exception {
         animalDao.delete(animal);
     }
 

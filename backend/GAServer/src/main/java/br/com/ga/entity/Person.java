@@ -49,6 +49,9 @@ public class Person implements Serializable {
     private boolean finishedRegister;
     private String profilePic;
     private PersonType type;
+    private String authToken;
+    @Temporal(TemporalType.DATE)
+    private Date authExpiration;
 
     public Person() {
         super();
