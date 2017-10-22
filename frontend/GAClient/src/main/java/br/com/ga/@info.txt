@@ -4,7 +4,8 @@ As pastas
     entity/enums
     service/intf, 
     web/rest,
-    exceptions
+    exceptions,
+    util
 }
 existentes no frontend são as mesmas que existem no backend, 
 porém como o netbeans não permite selecionar arquivos fora da pasta padrão, foi criado um "link" com as pastas originais para "enganar" ele,

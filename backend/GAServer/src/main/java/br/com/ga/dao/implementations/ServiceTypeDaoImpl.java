@@ -51,7 +51,6 @@ public class ServiceTypeDaoImpl implements IServiceTypeDao {
         }
     }
 
-
     @Override
     public List<ServiceType> findList() {
         return em
@@ -66,6 +65,10 @@ public class ServiceTypeDaoImpl implements IServiceTypeDao {
     }
 
     public ServiceTypeDaoImpl() {
+        super();
+    }
+
+    public void init() {
         ServiceType svc = null;
         try {
             svc = findByDescription("Cuidador");

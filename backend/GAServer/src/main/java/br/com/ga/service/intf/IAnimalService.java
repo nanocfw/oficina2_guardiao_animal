@@ -6,14 +6,13 @@
 package br.com.ga.service.intf;
 
 import br.com.ga.entity.Animal;
+
 import java.util.List;
 
 /**
- *
  * @author Marciano
  */
-public interface IAnimalService
-{
+public interface IAnimalService {
 
     Animal create(final Animal animal) throws Exception;
 

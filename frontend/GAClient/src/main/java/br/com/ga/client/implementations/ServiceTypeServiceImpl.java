@@ -78,7 +78,7 @@ public class ServiceTypeServiceImpl extends Service implements IServiceTypeServi
         params.put("serviceDescription", description);
 
         response = rest.exchange(
-                getServerURL() + UrlMapping.SERVICE_TYPE + UrlMapping.SERVICE_TYPE_GETBYDESCRIPTION,
+                getServerURL() + UrlMapping.SERVICE_TYPE + UrlMapping.SERVICE_TYPE_GET_BY_DESCRIPTION,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<ResponseData<ServiceType>>() {

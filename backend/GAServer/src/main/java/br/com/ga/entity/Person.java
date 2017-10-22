@@ -3,10 +3,12 @@ package br.com.ga.entity;
 import br.com.ga.entity.enums.PersonType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,30 +51,12 @@ public class Person implements Serializable {
     private boolean finishedRegister;
     private String profilePic;
     private PersonType type;
-    private String authToken;
+    @Type(type = "uuid-char")
+    private UUID authToken;
     @Temporal(TemporalType.DATE)
-    private Date authExpiration;
+    private Date authTokenExpiration;
 
     public Person() {
         super();
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + (int) (this.id ^ (this.id >>> 32));
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        final Person other = (Person) obj;
-        return this.id == other.id;
     }
 }

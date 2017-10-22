@@ -6,18 +6,23 @@
 package br.com.ga;
 
 import br.com.ga.dao.implementations.ServiceTypeDaoImpl;
-import br.com.ga.entity.ServiceType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Marciano
  */
 @SpringBootApplication
 //@EnableAutoConfiguration
+@ComponentScan
+@Configuration
 public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+        context.getBean(ServiceTypeDaoImpl.class).init();
     }
 }

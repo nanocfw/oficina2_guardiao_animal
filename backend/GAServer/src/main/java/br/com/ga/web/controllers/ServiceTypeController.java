@@ -39,7 +39,7 @@ public class ServiceTypeController {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = UrlMapping.SERVICE_TYPE_GETBYDESCRIPTION,
+            value = UrlMapping.SERVICE_TYPE_GET_BY_DESCRIPTION,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseData<ServiceType> get(@PathVariable(value = "serviceDescription") String serviceDescription) {

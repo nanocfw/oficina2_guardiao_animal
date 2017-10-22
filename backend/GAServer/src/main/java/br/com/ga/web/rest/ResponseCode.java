@@ -6,10 +6,8 @@
 package br.com.ga.web.rest;
 
 /**
- *
  * @author Marciano
  */
-public enum ResponseCode
-{
-    OK, CREATED, ERROR, FOUND, NOT_FOUND;
+public enum ResponseCode {
+    OK, CREATED, ERROR, FOUND, NOT_FOUND, VALID, COOKIE_EXPIRED, UPDATED;
 };

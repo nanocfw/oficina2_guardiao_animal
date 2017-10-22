@@ -5,36 +5,35 @@
  */
 package br.com.ga.service.implementations;
 
-import br.com.ga.Util;
+import br.com.ga.util.Util;
 import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
+
 import java.util.List;
+import java.util.UUID;
+
 import br.com.ga.service.intf.IPersonService;
 import br.com.ga.dao.intf.IPersonDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
  * @author Marciano
  */
 @Service
-public class PersonServiceImpl implements IPersonService
-{
+public class PersonServiceImpl implements IPersonService {
 
     @Autowired
     IPersonDao personDao;
 
     @Override
-    public Person findById(long id) throws Exception
-    {
+    public Person findById(long id) throws Exception {
         return personDao.findById(id);
     }
 
     @Override
-    public Person createUpdate(Person person) throws Exception
-    {
+    public Person createUpdate(Person person) throws Exception {
         if (person.getName() == null || person.getName().isEmpty() || person.getName().length() < 3)
             throw new InvalidEntity("Nome inválido.");
 
@@ -63,14 +62,12 @@ public class PersonServiceImpl implements IPersonService
     }
 
     @Override
-    public List<Person> findList(boolean listClients, int rowsReturn, int rowsIgnore)
-    {
+    public List<Person> findList(boolean listClients, int rowsReturn, int rowsIgnore) {
         return personDao.findList(listClients, rowsReturn, rowsIgnore);
     }
 
     @Override
-    public void delete(Person person) throws Exception
-    {
+    public void delete(Person person) throws Exception {
         if (person.getId() <= 0)
             throw new EntityNotFound("Entidade não possui Id");
 
@@ -78,14 +75,28 @@ public class PersonServiceImpl implements IPersonService
     }
 
     @Override
-    public Person findByEmailPassword(String email, String password) throws Exception
-    {
+    public Person findByEmailPassword(String email, String password) throws Exception {
         return personDao.findByEmailPassword(email, password);
     }
 
     @Override
-    public boolean emailInUse(long currentId, String email)
-    {
+    public Person updateAuthToken(Person person) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Person findByValidToken(UUID token) throws Exception {
+        return personDao.findByValidToken(token);
+    }
+
+    @Override
+    public Boolean isValidToken(UUID token) throws Exception {
+        return personDao.findByValidToken(token) != null;
+    }
+
+
+    @Override
+    public boolean emailInUse(long currentId, String email) {
         return personDao.emailInUse(currentId, email);
     }
 

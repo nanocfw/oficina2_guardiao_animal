@@ -6,16 +6,16 @@
 package br.com.ga.service.intf;
 
 import br.com.ga.entity.Person;
+
 import java.util.List;
+import java.util.UUID;
 import javax.ejb.Local;
 
 /**
- *
  * @author Marciano
  */
 @Local
-public interface IPersonService
-{
+public interface IPersonService {
 
     Person createUpdate(final Person person) throws Exception;
 
@@ -24,6 +24,12 @@ public interface IPersonService
     boolean emailInUse(long currentId, final String email) throws Exception;
 
     Person findByEmailPassword(String email, String password) throws Exception;
+
+    Person updateAuthToken(Person person) throws Exception;
+
+    Person findByValidToken(UUID token) throws Exception;
+
+    Boolean isValidToken(UUID token) throws Exception;
 
     List<Person> findList(boolean listClients, final int rowsReturn, int rowsIgnore);
 

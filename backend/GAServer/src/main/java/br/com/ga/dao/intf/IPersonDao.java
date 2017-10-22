@@ -6,14 +6,16 @@
 package br.com.ga.dao.intf;
 
 import br.com.ga.entity.Person;
+import br.com.ga.exceptions.EntityNotFound;
+import br.com.ga.exceptions.ExpiredToken;
+
 import java.util.List;
+import java.util.UUID;
 
 /**
- *
  * @author Marciano
  */
-public interface IPersonDao
-{
+public interface IPersonDao {
 
     Person createUpdate(final Person person) throws Exception;
 
@@ -22,6 +24,8 @@ public interface IPersonDao
     boolean emailInUse(long currentId, final String email);
 
     Person findByEmailPassword(String email, String password) throws Exception;
+
+    Person findByValidToken(UUID token) throws Exception;
 
     List<Person> findList(boolean listClients, final int rowsReturn, int rowsIgnore);
 

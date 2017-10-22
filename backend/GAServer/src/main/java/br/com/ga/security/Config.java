@@ -16,19 +16,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 /**
- *
  * @author Marciano
  */
 @EnableWebSecurity
-public class Config extends WebSecurityConfigurerAdapter
-{
+public class Config extends WebSecurityConfigurerAdapter {
 
     private static final String REALM = "REALM";
     private static final String ADMIN = "ADMIN";
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception
-    {
+    protected void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable()
                 .authorizeRequests()
@@ -38,27 +35,24 @@ public class Config extends WebSecurityConfigurerAdapter
     }
 
     @Bean
-    public CustomBasicAuthenticationEntryPoint getBasicAuthEntryPoint()
-    {
+    public CustomBasicAuthenticationEntryPoint getBasicAuthEntryPoint() {
         return new CustomBasicAuthenticationEntryPoint();
     }
 
     /* To allow Pre-flight [OPTIONS] request from browser */
     @Override
-    public void configure(WebSecurity web) throws Exception
-    {
+    public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
-    {
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("admin").password("admin").roles(ADMIN) //                .and()
-                //                .withUser("prestador").password("prestador").roles(PRESTADOR)
-                //                .and()
-                //                .withUser("cliente").password("cliente").roles(CLIENTE)
-                ;
+        //                .withUser("prestador").password("prestador").roles(PRESTADOR)
+        //                .and()
+        //                .withUser("cliente").password("cliente").roles(CLIENTE)
+        ;
     }
 
 }

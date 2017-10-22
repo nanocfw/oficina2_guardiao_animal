@@ -5,10 +5,13 @@
  */
 package br.com.ga.dao.implementations;
 
+import br.com.ga.exceptions.ExpiredToken;
+import br.com.ga.util.Util;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 
 import java.util.List;
+import java.util.UUID;
 
 import br.com.ga.dao.intf.IPersonDao;
 
@@ -63,6 +66,26 @@ public class PersonDaoImpl implements IPersonDao {
         } catch (NoResultException ex) {
             throw new EntityNotFound();
         }
+    }
+
+    @Override
+    public Person findByValidToken(UUID token) throws Exception {
+        Person p;
+        TypedQuery<Person> qry = em
+                .createQuery("SELECT p FROM Person p WHERE p.authToken = :authToken",
+                        Person.class);
+        try {
+            p = qry
+                    .setParameter("authToken", token)
+                    .getSingleResult();
+        } catch (NoResultException ex) {
+            throw new EntityNotFound();
+        }
+
+        if (p.getAuthTokenExpiration() == null || p.getAuthTokenExpiration().before(Util.curDate()))
+            throw new ExpiredToken();
+
+        return p;
     }
 
     @Override

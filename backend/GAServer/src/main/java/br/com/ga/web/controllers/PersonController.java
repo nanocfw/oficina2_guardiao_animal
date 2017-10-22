@@ -5,6 +5,8 @@
  */
 package br.com.ga.web.controllers;
 
+import br.com.ga.exceptions.ExpiredToken;
+import br.com.ga.util.Util;
 import br.com.ga.web.rest.UrlMapping;
 import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
@@ -14,6 +16,7 @@ import br.com.ga.web.rest.ResponseData;
 import br.com.ga.web.rest.ResponseCode;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,14 +43,32 @@ public class PersonController {
             value = UrlMapping.PERSON_GET,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData<Person> get(@PathVariable(value = "personId") long animalId) {
+    public ResponseData<Person> get(@PathVariable(value = "personId") long personId) {
         try {
-            Person person = personService.findById(animalId);
+            Person person = personService.findById(personId);
             return new ResponseData<>(Person.class, person, ResponseCode.FOUND);
         } catch (EntityNotFound e) {
             return new ResponseData<>(Person.class, ResponseCode.NOT_FOUND, EntityNotFound.class, e.getMessage());
         } catch (Exception e) {
             return new ResponseData<>(Person.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
+        }
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(
+            value = UrlMapping.PERSON_VALID_TOKEN,
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseData<Boolean> isValidToken(@PathVariable(value = "token") UUID token) {
+        try {
+            if (personService.isValidToken(token))
+                return new ResponseData<>(Boolean.class, true, ResponseCode.VALID);
+
+            return new ResponseData<>(Boolean.class, false, ResponseCode.COOKIE_EXPIRED);
+        } catch (EntityNotFound e) {
+            return new ResponseData<>(Boolean.class, ResponseCode.NOT_FOUND, EntityNotFound.class, e.getMessage());
+        } catch (Exception e) {
+            return new ResponseData<>(Boolean.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
         }
     }
 
@@ -65,6 +86,22 @@ public class PersonController {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
+            value = UrlMapping.PERSON_EMAIL_IN_USE,
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseData<Boolean> emailInUse(
+            @PathVariable(value = "email") String email,
+            @PathVariable(value = "currentId") long currentId) {
+        try {
+            boolean emailInUse = personService.emailInUse(currentId, email);
+            return new ResponseData<>(Boolean.class, emailInUse, ResponseCode.OK);
+        } catch (Exception e) {
+            return new ResponseData<>(Boolean.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
+        }
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(
             value = UrlMapping.PERSON_CREATE_UPDATE,
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -72,6 +109,24 @@ public class PersonController {
         try {
             Person person = personService.createUpdate(p);
             return new ResponseData<>(Person.class, person, ResponseCode.CREATED);
+        } catch (InvalidEntity e) {
+            return new ResponseData<>(Person.class, ResponseCode.ERROR, InvalidEntity.class, e.getMessage());
+        } catch (Exception ex) {
+            return new ResponseData<>(Person.class, ResponseCode.ERROR, ex.getClass(), ex.getMessage());
+        }
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(
+            value = UrlMapping.PERSON_UPDATE_AUTH_TOKEN,
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseData<Person> updateAuthToken(@RequestBody Person p) {
+        try {
+            p.setAuthToken(UUID.randomUUID());
+            p.setAuthTokenExpiration(Util.incDay(Util.curDate(), 7));
+            Person person = personService.createUpdate(p);
+            return new ResponseData<>(Person.class, person, ResponseCode.UPDATED);
         } catch (InvalidEntity e) {
             return new ResponseData<>(Person.class, ResponseCode.ERROR, InvalidEntity.class, e.getMessage());
         } catch (Exception ex) {
@@ -97,17 +152,19 @@ public class PersonController {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = UrlMapping.PERSON_EMAIL_IN_USE,
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData<Boolean> emailInUse(
-            @PathVariable(value = "email") String email,
-            @PathVariable(value = "currentId") long currentId) {
+            value = UrlMapping.PERSON_LOGIN_BY_VALID_TOKEN,
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseData<Person> loginByToken(@RequestBody Person person) {
         try {
-            boolean emailInUse = personService.emailInUse(currentId, email);
-            return new ResponseData<>(Boolean.class, emailInUse, ResponseCode.OK);
+            Person p = personService.findByValidToken(person.getAuthToken());
+            return new ResponseData<>(Person.class, p, ResponseCode.FOUND);
+        } catch (EntityNotFound e) {
+            return new ResponseData<>(Person.class, ResponseCode.NOT_FOUND, EntityNotFound.class, e.getMessage());
+        } catch (ExpiredToken e) {
+            return new ResponseData<>(Person.class, ResponseCode.COOKIE_EXPIRED, ExpiredToken.class, e.getMessage());
         } catch (Exception e) {
-            return new ResponseData<>(Boolean.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
+            return new ResponseData<>(Person.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
         }
     }
 
