@@ -6,6 +6,7 @@
 package br.com.ga.client.beans;
 
 import br.com.ga.entity.Picture;
+import br.com.ga.entity.ServiceProvider;
 import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
@@ -19,6 +20,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -224,6 +226,14 @@ public class PersonBean implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<ServiceProvider> getListServiceProvider(double lat, double lng, int ray, int rowsReturn, int rowsIgnore) {
+        return personService.getServiceProviderList(lat, lng, ray, rowsReturn, rowsIgnore);
+    }
+
+    public List<ServiceProvider> getListServiceProvider(String country, String city, int rowsReturn, int rowsIgnore) {
+        return personService.getServiceProviderList(country, city, rowsReturn, rowsIgnore);
     }
 
     public PersonBean() {

@@ -7,6 +7,7 @@ package br.com.ga.client.implementations;
 
 import br.com.ga.client.rest.BasicAuthRestTemplate;
 import br.com.ga.client.rest.Service;
+import br.com.ga.entity.ServiceProvider;
 import br.com.ga.exceptions.ExpiredToken;
 import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
@@ -250,6 +251,51 @@ public class PersonServiceImpl extends Service implements IPersonService {
                 httpPerson,
                 void.class
         );
+    }
+
+    @Override
+    public List<ServiceProvider> getServiceProviderList(String country, String city, int rowsReturn, int rowsIgnore) {
+        BasicAuthRestTemplate rest = getNewRestTemplate();
+        ResponseEntity<List<ServiceProvider>> response;
+        Map<String, String> params = new HashMap<>();
+        params.put("country", country);
+        params.put("city", city);
+        params.put("rowsReturn", String.valueOf(rowsReturn));
+        params.put("rowsIgnore", String.valueOf(rowsIgnore));
+
+        response = rest.exchange(
+                getServerURL() + UrlMapping.PERSON + UrlMapping.PERSON_GET_SERVICE_PROVIDER_LIST,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<ServiceProvider>>() {
+                },
+                params
+        );
+
+        return response.getBody();
+    }
+
+    @Override
+    public List<ServiceProvider> getServiceProviderList(double lat, double lng, int ray, int rowsReturn, int rowsIgnore) {
+        BasicAuthRestTemplate rest = getNewRestTemplate();
+        ResponseEntity<List<ServiceProvider>> response;
+        Map<String, String> params = new HashMap<>();
+        params.put("lat", String.valueOf(lat));
+        params.put("lng", String.valueOf(lng));
+        params.put("ray", String.valueOf(ray));
+        params.put("rowsReturn", String.valueOf(rowsReturn));
+        params.put("rowsIgnore", String.valueOf(rowsIgnore));
+
+        response = rest.exchange(
+                getServerURL() + UrlMapping.PERSON + UrlMapping.PERSON_GET_SERVICE_PROVIDER_LIST_BY_LAT_LNG,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<ServiceProvider>>() {
+                },
+                params
+        );
+
+        return response.getBody();
     }
 
 }

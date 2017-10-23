@@ -6,6 +6,7 @@
 package br.com.ga.dao.intf;
 
 import br.com.ga.entity.Person;
+import br.com.ga.entity.ServiceProvider;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.exceptions.ExpiredToken;
 
@@ -30,4 +31,8 @@ public interface IPersonDao {
     List<Person> findList(boolean listClients, final int rowsReturn, int rowsIgnore);
 
     void delete(final Person person) throws Exception;
+
+    List<ServiceProvider> getServiceProviderList(String country, String city, int rowsReturn, int rowsIgnore);
+
+    List<ServiceProvider> getServiceProviderList(double lat, double lng, int ray, int rowsReturn, int rowsIgnore);
 }

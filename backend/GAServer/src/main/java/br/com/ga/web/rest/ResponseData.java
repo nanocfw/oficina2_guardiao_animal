@@ -6,98 +6,80 @@
 package br.com.ga.web.rest;
 
 /**
- *
  * @author Marciano
  */
-public class ResponseData<T>
-{
-
+public class ResponseData<T> {
     private Class<T> objectClass;
     private T value;
     private ResponseCode status;
     private Class<?> exceptionType;
     private String exceptionMessage;
 
-    public Class<T> getObjectClass()
-    {
+    public Class<T> getObjectClass() {
         return objectClass;
     }
 
-    public void setObjectClass(Class<T> objectClass)
-    {
+    public void setObjectClass(Class<T> objectClass) {
         this.objectClass = objectClass;
     }
 
-    public T getValue()
-    {
+    public T getValue() {
         return value;
     }
 
-    public void setValue(T value)
-    {
+    public void setValue(T value) {
         this.value = value;
     }
 
-    public ResponseCode getStatus()
-    {
+    public ResponseCode getStatus() {
         return status;
     }
 
-    public void setStatus(ResponseCode status)
-    {
+    public void setStatus(ResponseCode status) {
         this.status = status;
     }
 
-    public Class<?> getExceptionType()
-    {
+    public Class<?> getExceptionType() {
         return exceptionType;
     }
 
-    public void setExceptionType(Class<?> exceptionType)
-    {
+    public void setExceptionType(Class<?> exceptionType) {
         this.exceptionType = exceptionType;
     }
 
-    public String getExceptionMessage()
-    {
+    public String getExceptionMessage() {
         return exceptionMessage;
     }
 
-    public void setExceptionMessage(String exceptionMessage)
-    {
+    public void setExceptionMessage(String exceptionMessage) {
         this.exceptionMessage = exceptionMessage;
     }
 
-    public ResponseData()
-    {
+    public ResponseData() {
         super();
     }
 
-    public ResponseData(Class<T> objectClass, T value, ResponseCode status)
-    {
+    public ResponseData(Class<T> objectClass, T value, ResponseCode status) {
         this.objectClass = objectClass;
         this.value = value;
         this.status = status;
     }
 
-    public ResponseData(Class<T> objectClass, ResponseCode status, Class<?> exceptionType, String exceptionMessage)
-    {
+    public ResponseData(Class<T> objectClass, ResponseCode status, Class<?> exceptionType, String exceptionMessage) {
         this.objectClass = objectClass;
         this.status = status;
         this.exceptionType = exceptionType;
         this.exceptionMessage = exceptionMessage;
     }
 
-    public ResponseData(Class<T> objectClass, T value, ResponseCode status, Class<?> exceptionType)
-    {
+    public ResponseData(Class<T> objectClass, T value, ResponseCode status, Class<?> exceptionType) {
         this.objectClass = objectClass;
         this.value = value;
         this.status = status;
         this.exceptionType = exceptionType;
     }
 
-    public ResponseData(Class<T> objectClass, T value, ResponseCode status, Class<?> exceptionType, String exceptionMessage)
-    {
+    public ResponseData(Class<T> objectClass, T value, ResponseCode status, Class<?> exceptionType, String exceptionMessage) {
         this.objectClass = objectClass;
         this.value = value;
         this.status = status;

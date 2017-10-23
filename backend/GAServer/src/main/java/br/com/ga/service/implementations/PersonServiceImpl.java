@@ -5,6 +5,7 @@
  */
 package br.com.ga.service.implementations;
 
+import br.com.ga.entity.ServiceProvider;
 import br.com.ga.util.Util;
 import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
@@ -75,6 +76,16 @@ public class PersonServiceImpl implements IPersonService {
     }
 
     @Override
+    public List<ServiceProvider> getServiceProviderList(String country, String city, int rowsReturn, int rowsIgnore) {
+        return personDao.getServiceProviderList(country, city, rowsReturn, rowsIgnore);
+    }
+
+    @Override
+    public List<ServiceProvider> getServiceProviderList(double lat, double lng, int ray, int rowsReturn, int rowsIgnore) {
+        return personDao.getServiceProviderList(lat, lng, ray, rowsReturn, rowsIgnore);
+    }
+
+    @Override
     public Person findByEmailPassword(String email, String password) throws Exception {
         return personDao.findByEmailPassword(email, password);
     }
@@ -93,7 +104,6 @@ public class PersonServiceImpl implements IPersonService {
     public Boolean isValidToken(UUID token) throws Exception {
         return personDao.findByValidToken(token) != null;
     }
-
 
     @Override
     public boolean emailInUse(long currentId, String email) {

@@ -5,11 +5,13 @@
  */
 package br.com.ga.dao.implementations;
 
+import br.com.ga.entity.ServiceProvider;
 import br.com.ga.exceptions.ExpiredToken;
 import br.com.ga.util.Util;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -103,6 +105,49 @@ public class PersonDaoImpl implements IPersonDao {
     public void delete(Person person) throws Exception {
         em.remove(person);
         em.flush();
+    }
+
+    @Override
+    public List<ServiceProvider> getServiceProviderList(String country, String city, int rowsReturn, int rowsIgnore) {
+        List<Person> lstAuxPerson =
+                em.createQuery("SELECT p FROM Person p WHERE p.serviceProvider = :service_provider " +
+                        " AND p.country = :country " +
+                        " AND p.city = :city ")
+                        .setParameter("service_provider", true)
+                        .setParameter("country", country)
+                        .setParameter("city", city)
+                        .setFirstResult(rowsIgnore)
+                        .setMaxResults(rowsReturn)
+                        .getResultList();
+
+        List<ServiceProvider> lstAux = new ArrayList<>();
+        for (Person p : lstAuxPerson)
+            lstAux.add(new ServiceProvider(p.getName(), p.getCountry(), p.getCity(), p.getLatitude(), p.getLongitude()));
+
+        return lstAux;
+    }
+
+    @Override
+    public List<ServiceProvider> getServiceProviderList(double lat, double lng, int ray, int rowsReturn, int rowsIgnore) {
+        double rayLat = Util.kmToDegree(lat, ray);
+        double rayLng = Util.kmToDegree(lng, ray);
+        List<Person> lstAuxPerson =
+                em.createQuery("SELECT p FROM Person p WHERE p.serviceProvider = :service_provider " +
+                        " AND p.latitude BETWEEN :lat_ini AND :lat_fim" +
+                        " AND p.longitude BETWEEN :lng_ini AND :lng_fim")
+                        .setParameter("service_provider", true)
+                        .setParameter("lat_ini", lat - rayLat)
+                        .setParameter("lat_fim", lat + rayLat)
+                        .setParameter("lng_ini", lng - rayLng)
+                        .setParameter("lng_fim", lng + rayLng)
+                        .setFirstResult(rowsIgnore)
+                        .setMaxResults(rowsReturn)
+                        .getResultList();
+        List<ServiceProvider> lstAux = new ArrayList<>();
+        for (Person p : lstAuxPerson)
+            lstAux.add(new ServiceProvider(p.getName(), p.getCountry(), p.getCity(), p.getLatitude(), p.getLongitude()));
+
+        return lstAux;
     }
 
     @Override

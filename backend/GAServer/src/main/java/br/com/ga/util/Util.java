@@ -111,4 +111,8 @@ public class Util {
             ex.printStackTrace();
         }
     }
+
+    public static double kmToDegree(double curLatLng, int ray) {
+        return Math.abs(360 / (Math.cos(curLatLng) * 40075));
+    }
 }
