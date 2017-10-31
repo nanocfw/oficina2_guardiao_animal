@@ -1,4 +1,4 @@
-package br.com.ga.client.implementations;
+package br.com.ga.client.services;
 
 import br.com.ga.client.rest.BasicAuthRestTemplate;
 import br.com.ga.client.rest.Service;

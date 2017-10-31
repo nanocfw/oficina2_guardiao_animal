@@ -82,6 +82,7 @@ public class ServiceTypeDaoImpl implements IServiceTypeDao {
                 e.printStackTrace();
             }
 
+        svc = null;
         try {
             svc = findByDescription("Passeador");
         } catch (Exception e) {
@@ -90,6 +91,20 @@ public class ServiceTypeDaoImpl implements IServiceTypeDao {
         if (svc == null)
             try {
                 createUpdate(new ServiceType("Passeador"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        svc = null;
+        try {
+            svc = findByDescription("Tratador");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (svc == null)
+            try {
+                createUpdate(new ServiceType("Tratador"));
             } catch (Exception e) {
                 e.printStackTrace();
             }

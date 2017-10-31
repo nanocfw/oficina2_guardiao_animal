@@ -42,6 +42,8 @@
 
         </div>
 
+        <h:inputHidden value="#{loginBean.validateCookie()}"/>
+
         <div id="content">
             <ui:include src="/components/navbar.xhtml" />
 
@@ -102,7 +104,7 @@
 
             <ui:include src="/components/footer.xhtml"/>
         </div>
-
+<!--@formatter:off-->
         <script>
             var $doc = $('html, body');
             $('.scroll').click(function () {
@@ -116,6 +118,7 @@
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCONEgoiPhXnWsTWLE27z_wiNWxiq-j0VQ&amp;libraries=places&amp;callback=getCity">
         </script>
+<!--@formatter:on-->
     </h:body>
 </html>
 

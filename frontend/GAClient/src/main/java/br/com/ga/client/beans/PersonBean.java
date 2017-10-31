@@ -12,30 +12,23 @@ import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
 import br.com.ga.service.intf.IPersonService;
 import br.com.ga.service.intf.IPictureService;
-import br.com.ga.util.Consts;
+import br.com.ga.util.FacesUtils;
 import br.com.ga.util.Util;
 
-import java.io.IOException;
-import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.Cookie;
 
 /**
  * @author Marciano
  */
 @ManagedBean
 @SessionScoped
-public class PersonBean implements Serializable {
+public class PersonBean extends DefaultBean {
 
     @EJB
     IPersonService personService;
@@ -45,7 +38,6 @@ public class PersonBean implements Serializable {
 
     private Person currentPerson;
     private String birthDate;
-    private Date lastCheckToken;
     private Picture picture;
     private String profilePic;
 
@@ -82,47 +74,23 @@ public class PersonBean implements Serializable {
     }
 
     public String createUpdate() {
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        ExternalContext extContext = ctx.getExternalContext();
-        String url;
         try {
             setCurrentPerson(personService.createUpdate(this.currentPerson));
             return redirectToLogin();
         } catch (InvalidEntity e) {
-            FacesContext.getCurrentInstance().addMessage("form:register", new FacesMessage("Este Email ja está sendo usado, por favor digite outro Email"));
+            FacesUtils.addErrorMessage("form:register", e.getMessage());
             return "cadastroInvalido";
         } catch (Exception e) {
-            return "erro";
-        }
-    }
-
-    public String login() {
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        ExternalContext extContext = ctx.getExternalContext();
-        String url;
-        try {
-            Person p = personService.findByEmailPassword(this.currentPerson.getEmail(), this.currentPerson.getPassword());
-            p = updateToken(p);
-            setCurrentPerson(p);
-            return redirectToMain();
-
-        } catch (EntityNotFound e) {
-            ctx.addMessage("lform:login", new FacesMessage("Email ou senha está incorreto"));
-            return "error";
-        } catch (Exception e) {
+            FacesUtils.addErrorMessage("form:register", e.getMessage());
             return "erro";
         }
     }
 
     public String updateGuardiao() throws ParseException {
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        ExternalContext extContext = ctx.getExternalContext();
-        String url;
-
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = formatter.parse(this.birthDate);
         this.currentPerson.setBirthDate(date);
-//        this.currentPerson.setFinishedRegister(true);
+        this.currentPerson.setFinishedRegister(true);
 
         try {
             if (picture.isUpdated())
@@ -130,80 +98,14 @@ public class PersonBean implements Serializable {
             this.currentPerson.setProfilePic(picture.getId());
             setCurrentPerson(personService.createUpdate(this.currentPerson));
 
-            url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/endRegister.xhtml"));
-            extContext.redirect(url);
-            return "endregister.xhtml";
+            return redirectToEndRegister();
         } catch (InvalidEntity e) {
-            FacesContext.getCurrentInstance().addMessage("gform:register", new FacesMessage(e.getMessage()));
+            FacesUtils.addErrorMessage("gform:register", e.getMessage());
             return "cadastroInvalido";
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage("gform:register", new FacesMessage("Erro, na funçao updateGuardiao em personBean"));
+            FacesUtils.addErrorMessage("gform:register", "Erro, na funçao updateGuardiao em personBean");
             return "erro";
         }
-    }
-
-    private String redirectToMain() throws IOException {
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        ExternalContext extContext = ctx.getExternalContext();
-        String url;
-        if (!currentPerson.isFinishedRegister()) {
-
-            url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/endRegister.xhtml"));
-            extContext.redirect(url);
-            return "endRegister";
-
-        } else {
-            url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/indexAuth.xhtml"));
-            extContext.redirect(url);
-            return "indexAuth";
-        }
-    }
-
-    public String redirectToLogin() throws IOException {
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        ExternalContext extContext = ctx.getExternalContext();
-        String url;
-
-        url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/index.xhtml#login"));
-        extContext.redirect(url);
-        return "#login";
-    }
-
-    public String validateCookie() throws Exception {
-        Cookie cookie = Util.getCookie(Consts.COOKIE_NAME);
-
-        if (cookie == null || cookie.getValue().isEmpty())
-            return redirectToLogin();
-
-        UUID token = UUID.fromString(cookie.getValue());
-
-        if (currentPerson != null
-                && currentPerson.getAuthToken() != null
-                && currentPerson.getAuthToken() == token
-                && personService.isValidToken(token)
-                && Util.timeDiff(Util.curDate(), lastCheckToken) < Consts.HOUR_IN_MILLI//
-                )
-            return redirectToMain();
-
-        Person p;
-        try {
-            p = personService.findByValidToken(token);
-            p = updateToken(p);
-            setCurrentPerson(p);
-            return redirectToMain();
-        } catch (Exception e) {
-            return redirectToLogin();
-        }
-    }
-
-    public Person updateToken(Person person) throws Exception {
-        Person p = person;
-        p = personService.updateAuthToken(person);// atualiza o tempo de validade do token
-        lastCheckToken = Util.curDate();
-        Util.setCookie(Consts.COOKIE_NAME,
-                p.getAuthToken().toString(),
-                Consts.COOKIE_LIFE_TIME);
-        return p;
     }
 
     public void loadPictureFromDataBase() {
@@ -238,7 +140,6 @@ public class PersonBean implements Serializable {
 
     public PersonBean() {
         currentPerson = new Person();
-        lastCheckToken = Util.incDay(Util.curDate(), -1);
         picture = new Picture();
     }
 
