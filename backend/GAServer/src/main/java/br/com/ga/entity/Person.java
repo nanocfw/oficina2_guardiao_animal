@@ -7,9 +7,7 @@ import org.hibernate.annotations.Type;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

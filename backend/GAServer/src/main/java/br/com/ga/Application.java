@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Configuration;
  * @author Marciano
  */
 @SpringBootApplication
-//@EnableAutoConfiguration
 @ComponentScan
 @Configuration
 public class Application {

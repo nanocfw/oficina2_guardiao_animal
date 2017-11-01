@@ -28,8 +28,8 @@ public class Config extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable()
-                .authorizeRequests()
+        http.csrf().disable();
+        http.authorizeRequests()
                 .antMatchers("/**").hasRole("ADMIN")
                 .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthEntryPoint())
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//We don't need sessions to be created.
@@ -49,12 +49,7 @@ public class Config extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser(Consts.REST_LOGIN).password(Consts.REST_PASSWORD).roles(ADMIN)
-        //                .and()
-        //                .withUser("prestador").password("prestador").roles(PRESTADOR)
-        //                .and()
-        //                .withUser("cliente").password("cliente").roles(CLIENTE)
-        ;
+                .withUser(Consts.REST_LOGIN).password(Consts.REST_PASSWORD).roles(ADMIN);
     }
 
 }

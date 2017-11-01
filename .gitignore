@@ -12,5 +12,4 @@ oficina2.ppk
 /frontend/GAClient/src/main/java/br/com/ga/exceptions/
 /frontend/GAClient/src/main/java/br/com/ga/util/
 *.iml
-frontend/GAClient/GAClient.iml
-backend/GAServer/GAServer.iml
+*.iml

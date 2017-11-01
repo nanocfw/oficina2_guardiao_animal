@@ -1,16 +1,16 @@
-<ui:composition 
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <div id="cadastrar" class="modalDialog">
         <!-- autocomplete js -->
-        <script src="assets/js/teleport-autocomplete-min.js"></script>
+        <script src="assets/js/teleport-autocomplete-min.js"/>
         <!-- autocomplete css -->
-        <link type="text/css" rel="stylesheet" href="assets/css/teleport-autocomplete-min.css" /> 
+        <link type="text/css" rel="stylesheet" href="assets/css/teleport-autocomplete-min.css"/>
         <div>
             <a href="#close" title="Close" class="close">X</a>
             <div class="center-align">
@@ -21,58 +21,75 @@
                 <h:form id="form">
                     <div class="inline">
                         <i class="icons text-grey material-icons">perm_identity</i>
-                        <p:inputText value="#{personBean.currentPerson.name}" id="name" class="center-align" required="true" requiredMessage="Por favor preencha o campo Nome" validatorMessage="O campo Nome deve conter no minímo 3 caracteres" a:placeholder="Nome">
-                            <f:validateLength minimum="3" />
+                        <p:inputText value="#{personBean.currentPerson.name}" id="name" class="center-align"
+                                     required="true" requiredMessage="Por favor preencha o campo Nome"
+                                     validatorMessage="O campo Nome deve conter no minímo 3 caracteres"
+                                     a:placeholder="Nome">
+                            <f:validateLength minimum="3"/>
                         </p:inputText>
                     </div>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">person</i>
-                        <p:inputText value="#{personBean.currentPerson.lastName}" id="secondName" class="center-align" required="true" requiredMessage="Por favor preencha o campo Sobrenome" validatorMessage="O campo Sobrenome deve conter no minímo 3 caracteres" a:placeholder="Sobrenome">
-                            <f:validateLength minimum="3" />
+                        <p:inputText value="#{personBean.currentPerson.lastName}" id="secondName" class="center-align"
+                                     required="true" requiredMessage="Por favor preencha o campo Sobrenome"
+                                     validatorMessage="O campo Sobrenome deve conter no minímo 3 caracteres"
+                                     a:placeholder="Sobrenome">
+                            <f:validateLength minimum="3"/>
                         </p:inputText>
                     </div>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">location_on</i>
-                        <p:inputText value="#{personBean.currentPerson.address}" id="address" class="address center-align" placeholder="Cidade"></p:inputText >
+                        <p:inputText value="#{personBean.currentPerson.address}" id="address"
+                                     class="address center-align" placeholder="Cidade"/>
                     </div>
 
                     <div style="display: none" class="inline">
-                        <p:inputText value="#{personBean.currentPerson.city}" id="city" a:name="cidade" required="true"  requiredMessage="Por favor preencha o campo Cidade" />
+                        <p:inputText value="#{personBean.currentPerson.city}" id="city" a:name="cidade" required="true"
+                                     requiredMessage="Por favor preencha o campo Cidade"/>
                         <p:inputText value="#{personBean.currentPerson.state}" id="state" a:name="estado"/>
                         <p:inputText value="#{personBean.currentPerson.country}" id="country" a:name="pais"/>
                     </div>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">mail_outline</i>
-                        <p:inputText value="#{personBean.currentPerson.email}" id="email" class="center-align" required="true" requiredMessage="Por favor preencha o campo Email" validatorMessage="Por favor insira um Email válido" a:placeholder="Email">
-                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"  />
+                        <p:inputText value="#{personBean.currentPerson.email}" id="email" class="center-align"
+                                     required="true" requiredMessage="Por favor preencha o campo Email"
+                                     validatorMessage="Por favor insira um Email válido" a:placeholder="Email">
+                            <f:validateRegex
+                                    pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
                         </p:inputText>
                     </div>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">vpn_key</i>
-                        <p:password value="#{personBean.currentPerson.password}" id="pass" class="center-align" required="true" requiredMessage="Por favor preencha o campo Senha" validatorMessage="O campo Senha deve conter no minímo 8 caracteres" a:placeholder="Senha">
-                            <f:validateLength minimum="8" />
+                        <p:password value="#{personBean.currentPerson.password}" id="pass" class="center-align"
+                                    required="true" requiredMessage="Por favor preencha o campo Senha"
+                                    validatorMessage="O campo Senha deve conter no minímo 8 caracteres"
+                                    a:placeholder="Senha">
+                            <f:validateLength minimum="8"/>
                         </p:password>
                     </div>
 
-                    <h:messages id="register" style="color: red" />
+                    <h:messages id="register" style="color: red"/>
 
-                    <br />
+                    <br/>
                     <div class="center-align">
-                        <p:commandButton update="@form" value="Cadastrar" action="#{personBean.createUpdate()}" ajax="true" class="waves-effect waves-light btn deep-orange lighten-1"></p:commandButton>
+                        <p:commandButton update="@form" value="Cadastrar" action="#{personBean.createUpdate()}"
+                                         ajax="true"
+                                         class="waves-effect waves-light btn deep-orange lighten-1"/>
                     </div>
 
                 </h:form>
 
-                <br />
+                <br/>
 
                 <p>Já é membro? <a href="#login">Entre agora.</a></p>
             </div>
         </div>
     </div>
+    <!--@formatter:off-->
     <script>
         TeleportAutocomplete.init('.address').on('change', (value) => {
             try {
@@ -89,6 +106,7 @@
 
             }
         });
+        <!--@formatter:on-->
 
     </script>
 </ui:composition>

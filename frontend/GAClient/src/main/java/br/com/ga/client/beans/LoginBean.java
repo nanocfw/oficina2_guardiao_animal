@@ -70,6 +70,7 @@ public class LoginBean extends DefaultBean {
 
     public String logout() {
         SessionUtils.getSession().invalidate();
+        Util.setCookie(Consts.COOKIE_NAME, "", 0);
         return "login";
     }
 
