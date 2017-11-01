@@ -35,11 +35,13 @@ public class AuthorizationFilter implements Filter {
             HttpSession ses = reqt.getSession(false);
 
             String reqURI = reqt.getRequestURI();
-            if (reqURI.equals("/GAClient/"))
-                resp.sendRedirect("/GAClient/index.xhtml");
-            else if (reqURI.contains("/index.xhtml")
+            if (reqURI.equalsIgnoreCase("/gaclient/")
+                    || reqURI.contains("/index.xhtml")
                     || reqURI.contains("/login.xhtml")
-                    || reqURI.contains("/public/")
+                    || reqURI.contains("/sobreaempresa.xhtml")
+                    || reqURI.contains("/searchGuardiao.xhtml")
+                    || reqURI.contains("/firstRegister.xhtml")
+                    || reqURI.contains("/policyPrivacy.xhtml")
                     || reqURI.contains("javax.faces.resource")
                     || (ses != null && ses.getAttribute(Consts.PARAM_USER_SESSION) != null))
                 chain.doFilter(request, response);
