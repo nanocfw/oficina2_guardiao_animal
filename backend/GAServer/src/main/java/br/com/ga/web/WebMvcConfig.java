@@ -1,4 +1,4 @@
-package br.com.ga.web.rest;
+package br.com.ga.web;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration;
