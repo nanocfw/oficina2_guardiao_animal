@@ -60,10 +60,10 @@ public class LoginBean extends DefaultBean {
             else
                 return redirectToEndRegister();
         } catch (EntityNotFound e) {
-            FacesUtils.addErrorMessage("lform:login", "Email ou senha está incorreto");
+            FacesUtils.addErrorMessage("lform:loginMsg", "Email ou senha está incorreto");
             return "error";
         } catch (Exception e) {
-            FacesUtils.addErrorMessage("lform:login", e.getMessage());
+            FacesUtils.addErrorMessage("lform:loginMsg", e.getMessage());
             return "erro";
         }
     }

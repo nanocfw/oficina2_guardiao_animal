@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Animal</title>
 
@@ -49,10 +49,45 @@
     <div id="content">
         <ui:include src="/components/navbarAuth.xhtml"/>
         <ui:include src="/components/sideNav.xhtml"/>
+        <ui:include src="/components/animal.xhtml"/>
 
-        <div class="main">
-            <ui:include src="/components/animal.xhtml"/>
+        <div class="center-align">
+            <h1 class="text-grey">Animais</h1>
         </div>
+
+        <div class="main-animals">
+
+            <div class="form">
+                <p:dataTable var="" value="">
+                    <p:column headerText="Nome">
+                        <h:outputText value="" />
+                    </p:column>
+                    <p:column headerText="Idade">
+                        <h:outputText value="" />
+                    </p:column>
+                    <p:column headerText="Espécie">
+                        <h:outputText value="" />
+                    </p:column>
+                    <p:column headerText="Raça">
+                        <h:outputText value="" />
+                    </p:column>
+                    <p:column headerText="Temperamento">
+                        <h:outputText value="" />
+                    </p:column>
+                    <p:column headerText="Altura">
+                        <h:outputText value="" />
+                    </p:column>
+                    <p:column headerText="Peso">
+                        <h:outputText value="" />
+                    </p:column>
+                </p:dataTable>
+            </div>
+
+            <a href="#animal.xhtml" class="waves-effect waves-light btn deep-orange lighten-1">Animal</a>
+
+        </div>
+
+        <ui:include src="/components/footer.xhtml"/>
     </div>
 </h:body>
 </html>

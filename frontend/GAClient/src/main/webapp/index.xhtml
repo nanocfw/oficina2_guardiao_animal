@@ -47,14 +47,13 @@
 
     <div id="content">
         <ui:include src="/components/navbar.xhtml"/>
+        <div id="map" style="display: none"></div>
+        <ui:include src="/components/login.xhtml"/>
+        <ui:include src="/components/firstRegister.xhtml"/>
 
         <div class="main">
             <img class="main-img" src="assets/images/pets.jpg"/>
             <ui:include src="components/searchCity.xhtml"/>
-            <div id="map" style="display: none"></div>
-            <ui:include src="/components/login.xhtml"/>
-            <ui:include src="/components/firstRegister.xhtml"/>
-
         </div>
 
         <div id="guardioes" style="display: none"></div>

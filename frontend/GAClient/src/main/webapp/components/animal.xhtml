@@ -6,81 +6,74 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <div class="optionBox">
-        <div class="block">
-            <div id="1">
-                <div class="inline">
-                    <div class="upload-button"><img class="profile-pic" src="assets/images/img.jpg" value=""/></div>
-                </div>
-                <p class="grey-text center-align"
-                   style="font-size: 12px">Clique na imagem para inserir uma foto do seu animal</p>
+    <div id="animal" class="modalDialog">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <div class="center-align">
+                <h5 class="text-grey">Cadastre-se no Guardião Animal</h5>
 
-                <div class="inline">
-                    <i class="icons text-grey material-icons"> date_range</i>
-                    <p:inputText id="data" type="date" class="center-align" required="true"
-                                 requiredMessage="Por favor preencha o campo Data" a:placeholder="Data de nascimento">
-                    </p:inputText>
-                </div>
+            <br/>
 
-                <div class="inline">
-                    <i class="icons text-grey material-icons">perm_identity</i>
-                    <p:inputText id="name" class="center-align" required="true"
-                                 requiredMessage="Por favor preencha o campo Nome"
-                                 validatorMessage="O campo Nome deve conter no minímo 3 caracteres"
-                                 a:placeholder="Nome">
-                        <f:validateLength minimum="3"/>
-                    </p:inputText>
-                </div>
+         <h:form id="formAnimal">
+                    <div class="inline">
+                        <div class="upload-button"><img class="profile-pic" src="assets/images/img.jpg"/></div>
+                    </div>
+                    <p class="grey-text center-align"
+                       style="font-size: 12px">Clique na imagem para inserir uma foto do seu animal</p>
 
-                <div class="inline">
-                    <i class="icons text-grey material-icons">location_on</i>
-                    <p:inputText id="specie" class="center-align" a:placeholder="Espécie"></p:inputText>
+                    <div class="inline">
+                        <p:inputText id="data" type="date" class="center-align" required="true"
+                                     requiredMessage="Por favor preencha o campo Data" a:placeholder="Data de nascimento">
+                        </p:inputText>
+                    </div>
 
-                    <i class="icons text-grey material-icons">location_on</i>
-                    <p:inputText id="type" class="center-align" a:placeholder="Raça"></p:inputText>
-                </div>
+                    <div class="inline">
+                        <p:inputText id="name" class="center-align" required="true"
+                                     requiredMessage="Por favor preencha o campo Nome"
+                                     validatorMessage="O campo Nome deve conter no minímo 3 caracteres"
+                                     a:placeholder="Nome">
+                            <f:validateLength minimum="3"/>
+                        </p:inputText>
+                    </div>
 
-                <div class="inline">
-                    <i class="icons text-grey material-icons">perm_identity</i>
-                    <p:inputText id="temperamento" class="center-align" required="true"
-                                 requiredMessage="Por favor preencha o campo Temperamento"
-                                 validatorMessage="O campo Nome deve conter no minímo 5 caracteres"
-                                 a:placeholder="Nome">
-                        <f:validateLength minimum="5"/>
-                    </p:inputText>
-                </div>
+                    <div class="inline">
+                        <p:inputText id="specie" class="center-align" required="true"
+                                     requiredMessage="Por favor preencha o campo Espécie"
+                                     validatorMessage="O campo Espécie deve conter no minímo 3 caracteres"
+                                     a:placeholder="Espécie">
+                            <f:validateLength minimum="3"/>
+                        </p:inputText>
+                        -
+                        <p:inputText id="type" class="center-align" rendered="true"
+                                     requiredMessage="Por favor preencha o campo Raça"
+                                     validatorMessage="O campo Raça deve conter no minímo 3 caracteres"
+                                     a:placeholder="Raça">
+                            <f:validateLength minimum="3"/>
+                        </p:inputText>
+                    </div>
 
-                <div class="inline">
-                    <i class="icons text-grey material-icons">location_on</i>
-                    <p:inputText id="size" a:type="number" class="center-align" required="true"
-                                 requiredMessage="Por favor preencha o campo Altura" a:placeholder="Altura">
-                    </p:inputText>
+                    <div class="inline">
+                        <p:inputText id="temperamento" class="center-align" required="true"
+                                     requiredMessage="Por favor preencha o campo Temperamento"
+                                     validatorMessage="O campo Nome deve conter no minímo 5 caracteres"
+                                     a:placeholder="Temperamento">
+                            <f:validateLength minimum="5"/>
+                        </p:inputText>
+                    </div>
 
-                    <i class="icons text-grey material-icons">location_on</i>
-                    <p:inputText id="weight" a:type="number" class="center-align" required="true"
-                                 requiredMessage="Por favor preencha o campo Peso" a:placeholder="Peso">
-                    </p:inputText>
-                </div>
-
+                    <div class="inline">
+                        <p:inputText id="size" a:type="number" class="center-align" required="true"
+                                     requiredMessage="Por favor preencha o campo Altura"
+                                     a:placeholder="Altura em cm">
+                        </p:inputText>
+                            -
+                        <p:inputText id="weight" a:type="number" class="center-align" required="true"
+                                     requiredMessage="Por favor preencha o campo Peso"
+                                     a:placeholder="Peso em gramas">
+                        </p:inputText>
+                    </div>
+                </h:form>
             </div>
         </div>
-
-        <div class="block">
-            <span class="add">Adicionar outro Animal</span>
-        </div>
     </div>
-    <!--@formatter:off-->
-    <script>
-        var count = 1;
-
-        $('.add').click(function () {
-            count = count + 1;
-            $(this).before(`<div id="${count}">Animal ${count}<span class="remove"> - Remove Option</span></div>`);
-        });
-
-        $(document).on('click', '.remove', function () {
-            $(this).parent('div').remove();
-        });
-    </script>
-    <!--@formatter:on-->
 </ui:composition>
