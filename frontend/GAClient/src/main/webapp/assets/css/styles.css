@@ -10,6 +10,15 @@ body, html {
     height: 100%;
 }
 
+.align-right {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+    border-radius: 100%;
+}
 
 input[type="text"] {
     text-align: center;

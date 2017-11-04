@@ -10,7 +10,7 @@
         <div>
             <a href="#close" title="Close" class="close">X</a>
             <div class="center-align">
-                <h5 class="text-grey">Cadastre-se no Guardião Animal</h5>
+                <h5 class="text-grey">Cadastre seu Animal</h5>
 
             <br/>
 
@@ -71,6 +71,14 @@
                                      requiredMessage="Por favor preencha o campo Peso"
                                      a:placeholder="Peso em gramas">
                         </p:inputText>
+                    </div>
+
+
+                    <br/>
+                    <div class="center-align">
+                         <p:commandButton update="@form" value="Cadastrar Animal"
+                                          ajax="true"
+                                          class="waves-effect waves-light btn deep-orange lighten-1"/>
                     </div>
                 </h:form>
             </div>
