@@ -19,6 +19,8 @@
     <!-- import preloader -->
     <link type="text/css" rel="stylesheet" href="assets/css/preloader.css"/>
 
+    <link type="text/css" rel="stylesheet" href="assets/css/sideNav.css"/>
+
 </h:head>
 <h:body>
     <!--Import jQuery-->
@@ -45,7 +47,14 @@
     <div id="content">
         <ui:include src="/components/navbarAuth.xhtml"/>
 
-        <div class="main bg-color">
+        <div id="mySidenav" class="sidenav">
+            <a href="searchGuardiao.xhtml" id="first" class="style">Encontre um Guardião</a>
+            <a href="#" id="second" class="style">Animals</a>
+            <a href="#" id="third" class="style">Projects</a>
+            <a href="#" id="fourth" class="style">Contact</a>
+        </div>
+
+        <div class="main">
         </div>
 
     </div>

@@ -98,7 +98,11 @@ public class PersonBean extends DefaultBean {
             this.currentPerson.setProfilePic(picture.getId());
             setCurrentPerson(personService.createUpdate(this.currentPerson));
 
-            return redirectToEndRegister();
+            if (currentPerson.getBirthDate() == null) {
+                return redirectToEndRegister();
+            } else {
+                return redirectToMain();
+            }
         } catch (InvalidEntity e) {
             FacesUtils.addErrorMessage("gform:register", e.getMessage());
             return "cadastroInvalido";
