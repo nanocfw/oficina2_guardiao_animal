@@ -16,14 +16,18 @@
 
          <h:form id="formAnimal">
                     <div class="inline">
-                        <div class="upload-button"><img class="profile-pic" src="assets/images/img.jpg"/></div>
+                        <div class="upload-button">
+                            <img class="profile-pic" id="picAnimal" src="#{personBean.profilePic}"/>
+                            <h:inputHidden id="pic" value="#{personBean.profilePic}"/>
+                        </div>
                     </div>
                     <p class="grey-text center-align"
                        style="font-size: 12px">Clique na imagem para inserir uma foto do seu animal</p>
 
                     <div class="inline">
-                        <p:inputText id="data" type="date" class="center-align" required="true"
-                                     requiredMessage="Por favor preencha o campo Data" a:placeholder="Data de nascimento">
+                        <p:inputText value="" id="data" type="date" class="center-align"
+                                     required="true" requiredMessage="Por favor preencha o campo Data"
+                                     a:placeholder="Data de nascimento">
                         </p:inputText>
                     </div>
 
@@ -84,4 +88,10 @@
             </div>
         </div>
     </div>
+
+    <script>
+        if (document.querySelector('#picAnimal').src === "") {
+            document.querySelector('#picAnimal').src = "./assets/images/pet.png";
+        }
+    </script>
 </ui:composition>

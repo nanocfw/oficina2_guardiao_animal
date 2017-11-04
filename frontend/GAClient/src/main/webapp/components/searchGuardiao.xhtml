@@ -17,17 +17,22 @@
               <h:form id="fform">
                     <div style="display: none" value="#{personBean.currentPerson.serviceProvider=false}"></div>
 
-                    <div class="inline">
-                        <div class="upload-button"><img class="profile-pic" src="assets/images/img.jpg" value=""/></div>
-                    </div>
-                    <p class="grey-text center-align" style="font-size: 12px">Clique na imagem para inserir uma foto sua</p>
-                
-                    <div class="inline">
-                        <i class="icons text-grey material-icons"> date_range</i>
-                        <p:calendar value="#{personBean.currentPerson.birthDate}"  id="data" class="center-align" pattern="dd/mm/yyyy" mask="99/99/9999" maxdate="today" required="true" requiredMessage="Por favor preencha o campo Data" a:placeholder="Data de nascimento">
-                            <f:convertDateTime pattern="dd/mm/yyyy" />
-                        </p:calendar>                   
-                    </div>
+                  <div class="inline">
+                      <div class="upload-button">
+                          <img class="profile-pic" id="picPersonS" src="#{personBean.profilePic}"/>
+                          <h:inputHidden id="pic" value="#{personBean.profilePic}"/>
+                      </div>
+                  </div>
+                  <p class="grey-text center-align"
+                     style="font-size: 12px">Clique na imagem para inserir uma foto sua</p>
+
+                  <div class="inline">
+                      <i class="icons text-grey material-icons"> date_range</i>
+                      <p:inputText value="#{personBean.birthDate}" id="data" type="date" class="center-align"
+                                   required="true" requiredMessage="Por favor preencha o campo Data"
+                                   a:placeholder="Data de nascimento">
+                      </p:inputText>
+                  </div>
 
                     <div class="inline">
                         <i class="icons text-grey material-icons">location_on</i>
@@ -67,4 +72,10 @@
             </div>
         </div>
     </div>
+
+    <script>
+        if (document.querySelector('#picPersonS').src === "") {
+            document.querySelector('#picPersonS').src = "./assets/images/img.jpg";
+        }
+    </script>
 </ui:composition>

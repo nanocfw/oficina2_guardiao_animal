@@ -67,7 +67,7 @@
         </div>
     </div>
 </h:body>
-<!--@formatter:off-->
+
     <script>
         let readURL = function (input) {
             if (input.files &amp;&amp; input.files[0]) {
@@ -76,7 +76,9 @@
                 reader.onload = e => {
                     $('.profile-pic').attr('src', e.target.result);
                     document.getElementById("gform:pic").value = e.target.result;
+                    document.getElementById("fform:pic").value = e.target.result;
                 };
+
 
                 reader.readAsDataURL(input.files[0]);
             }
@@ -93,6 +95,6 @@
 
         let img = document.querySelector('.profile-pic').src;
     </script>
- <!--@formatter:on-->
+
 </html>
 

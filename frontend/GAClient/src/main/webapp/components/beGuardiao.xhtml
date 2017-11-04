@@ -1,10 +1,10 @@
 <ui:composition
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:p="http://primefaces.org/ui"
-        xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <div id="ser" class="modalDialog">
         <div>
@@ -19,7 +19,7 @@
 
                     <div class="inline">
                         <div class="upload-button">
-                            <img class="profile-pic" id="picPerson" src="#{personBean.profilePic}"/>
+                            <img class="profile-pic" id="picPersonB" src="#{personBean.profilePic}"/>
                             <h:inputHidden id="pic" value="#{personBean.profilePic}"/>
                         </div>
                     </div>
@@ -103,8 +103,12 @@
             </div>
         </div>
     </div>
-    <!--@formatter:off-->
+
     <script>
+        if (document.querySelector('#picPersonB').src === "") {
+            document.querySelector('#picPersonB').src = "./assets/images/img.jpg";
+        }
+
         getInfo = () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(ShowPosition);
@@ -120,5 +124,4 @@
             document.getElementById("gform:longitude").value = longitude;
         };
     </script>
-    <!--@formatter:on-->
 </ui:composition>
