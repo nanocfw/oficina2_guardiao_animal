@@ -71,11 +71,11 @@
     </div>
     <!--@formatter:off-->
     <script>
-        let count = 1;
+        var count = 1;
 
         $('.add').click(function () {
             count = count + 1;
-            $(this).before(`<div id="${count}">Animals <span class="remove">Remove Option</span></div>`);
+            $(this).before(`<div id="${count}">Animal ${count}<span class="remove"> - Remove Option</span></div>`);
         });
 
         $(document).on('click', '.remove', function () {

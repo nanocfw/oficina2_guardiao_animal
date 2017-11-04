@@ -4,9 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:head>
-    <title>Guardião Animal</title>
+    <title>Animal</title>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -21,6 +21,7 @@
     <link type="text/css" rel="stylesheet" href="assets/css/preloader.css"/>
 
     <link type="text/css" rel="stylesheet" href="assets/css/sideNav.css"/>
+
 </h:head>
 <h:body>
     <!--Import jQuery-->
@@ -31,8 +32,11 @@
     <script type="text/javascript" src="assets/js/materialize.min.js"></script>
     <!-- Import index.js -->
     <script type="text/javascript" src="assets/js/index.js"></script>
-    <!-- Import mapsSearch.js -->
+    <!-- Import mapsIndex.js -->
     <script type="text/javascript" src="assets/js/mapsIndex.js"></script>
+    <!-- Import mapsIndex.js -->
+    <script type="text/javascript" src="assets/js/getGuardioes.js"></script>
+
 
     <div id="loader-wrapper">
         <div id="loader"></div>
@@ -46,46 +50,9 @@
         <ui:include src="/components/navbarAuth.xhtml"/>
         <ui:include src="/components/sideNav.xhtml"/>
 
-        <ui:include src="/components/login.xhtml"/>
-        <ui:include src="/components/firstRegister.xhtml"/>
-
-        <div id="guardiao" class="center-align">
-            <h1 class="text-grey"><span class="text-orange">Guardiões</span> na sua região </h1>
+        <div class="main">
+            <ui:include src="/components/animal.xhtml"/>
         </div>
-
-        <div class="container form col s12 z-depth-3">
-
-            <h5 class="white-text">Local:</h5>
-            <div class="inline">
-                <i class="icons white-text material-icons">location_on</i>
-                <h:inputText id="address" onkeypress="getCity(event)" class="white-text controls"
-                             a:placeholder="Buscar cidade desejada"></h:inputText>
-            </div>
-        </div>
-
-        <div id="inline" class="inline">
-
-            <ui:include src="/components/guardioes.xhtml"/>
-
-            <ui:include src="/components/mapsSearch.xhtml"/>
-        </div>
-
-        <ui:include src="/components/footer.xhtml"/>
     </div>
-    <!--@formatter:off-->
-        <script>
-            var $doc = $('html, body');
-            $('.scroll').click(function () {
-                $doc.animate({
-                    scrollTop: $($.attr(this, 'href')).offset().top
-                }, 500);
-                return false;
-            });
-
-        </script>
-
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZFvkr4Q2sAvLnfWrCttEn66VcAnRz8DE&amp;libraries=places&amp;callback=initMap">
-        </script>
-        <!--@formatter:on-->
 </h:body>
 </html>
