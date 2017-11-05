@@ -42,11 +42,12 @@
 
     </div>
 
-    <h:form>
-        <div id="content">
-            <ui:include src="/components/navbarAuth.xhtml"/>
-            <ui:include src="/components/sideNav.xhtml"/>
 
+        <div id="content">
+            <h:form>
+                <ui:include src="/components/navbarAuth.xhtml"/>
+                <ui:include src="/components/sideNav.xhtml"/>
+            </h:form>
             <ui:include src="/components/login.xhtml"/>
             <ui:include src="/components/firstRegister.xhtml"/>
 
@@ -73,7 +74,6 @@
 
             <ui:include src="/components/footer.xhtml"/>
         </div>
-    </h:form>
 </h:body>
 <!--@formatter:off-->
 <script>
@@ -90,5 +90,4 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZFvkr4Q2sAvLnfWrCttEn66VcAnRz8DE&amp;libraries=places&amp;callback=initMap">
 </script>
 <!--@formatter:on-->
-
 </html>

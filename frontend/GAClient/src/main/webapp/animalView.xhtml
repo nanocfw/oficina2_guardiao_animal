@@ -41,10 +41,11 @@
     <input class="file-upload" type="file" accept="image/*"/>
     <ui:include src="/components/animal.xhtml"/>
 
-    <h:form>
         <div id="content">
-            <ui:include src="/components/navbarAuth.xhtml"/>
-            <ui:include src="/components/sideNav.xhtml"/>
+            <h:form>
+                <ui:include src="/components/navbarAuth.xhtml"/>
+                <ui:include src="/components/sideNav.xhtml"/>
+            </h:form>
 
             <div>
                 <h1 class="text-grey">Animais</h1>
@@ -87,7 +88,6 @@
 
             <ui:include src="/components/footer.xhtml"/>
         </div>
-    </h:form>
 </h:body>
 
 <script>
