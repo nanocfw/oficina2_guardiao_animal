@@ -9,11 +9,14 @@ import br.com.ga.util.Consts;
 import br.com.ga.util.FacesUtils;
 import br.com.ga.util.SessionUtils;
 import br.com.ga.util.Util;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.Cookie;
+import java.io.IOException;
 import java.util.UUID;
 
 @ManagedBean
@@ -24,6 +27,9 @@ public class LoginBean extends DefaultBean {
 
     @EJB
     IPictureService pictureService;
+
+    @ManagedProperty(value = "#{personBean}")
+    PersonBean personBean;
 
     private Person authenticatedUser;
     private String profilePic;
@@ -47,6 +53,14 @@ public class LoginBean extends DefaultBean {
         this.profilePic = profilePic;
     }
 
+    public PersonBean getPersonBean() {
+        return personBean;
+    }
+
+    public void setPersonBean(PersonBean personBean) {
+        this.personBean = personBean;
+    }
+
     public String login() {
         try {
             Person p = personService.findByEmailPassword(this.authenticatedUser.getEmail(), this.authenticatedUser.getPassword());
@@ -54,6 +68,7 @@ public class LoginBean extends DefaultBean {
 
             p = updateToken(p);
             setAuthenticatedUser(p);
+            personBean.setCurrentPerson(p);
 
             if (p.isFinishedRegister())
                 return redirectToMain();
@@ -68,10 +83,11 @@ public class LoginBean extends DefaultBean {
         }
     }
 
-    public String logout() {
+    public String logout() throws IOException {
         SessionUtils.getSession().invalidate();
         Util.setCookie(Consts.COOKIE_NAME, "", 0);
-        return "login";
+
+        return redirectToIndex();
     }
 
     public boolean validateCookie() {
@@ -85,6 +101,8 @@ public class LoginBean extends DefaultBean {
             Person p = personService.findByValidToken(token);
             p = updateToken(p);
             setAuthenticatedUser(p);
+            personBean.setCurrentPerson(p);
+            redirectToMain();
             return true;
         } catch (Exception e) {
             e.printStackTrace();

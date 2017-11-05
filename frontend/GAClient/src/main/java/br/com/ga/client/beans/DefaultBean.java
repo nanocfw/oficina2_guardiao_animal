@@ -5,7 +5,7 @@ import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
 
-public abstract class DefaultBean implements Serializable{
+public abstract class DefaultBean implements Serializable {
     public String redirectToMain() throws IOException {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
@@ -33,4 +33,15 @@ public abstract class DefaultBean implements Serializable{
         extContext.redirect(url);
         return "#login";
     }
+
+    public String redirectToIndex() throws IOException {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ExternalContext extContext = ctx.getExternalContext();
+        String url;
+
+        url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/index.xhtml"));
+        extContext.redirect(url);
+        return "#login";
+    }
+
 }
