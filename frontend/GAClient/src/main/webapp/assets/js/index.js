@@ -3,7 +3,8 @@ let $ = jQuery;
 // Materialize functions
 $(function () {
     $(".button-collapse").sideNav({
-        edge: 'right'
+        edge: 'right',
+        closeOnClick: true
     });
     $(".button-collapse-nav").sideNav({
         edge: 'left'
