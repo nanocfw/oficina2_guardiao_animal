@@ -41,7 +41,7 @@ public abstract class DefaultBean implements Serializable {
 
         url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/index.xhtml"));
         extContext.redirect(url);
-        return "#login";
+        return "index";
     }
 
 }
