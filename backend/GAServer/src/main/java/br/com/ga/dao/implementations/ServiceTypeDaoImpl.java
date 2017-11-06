@@ -6,10 +6,7 @@ import br.com.ga.exceptions.EntityNotFound;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 
 @Transactional
@@ -62,6 +59,17 @@ public class ServiceTypeDaoImpl implements IServiceTypeDao {
     public void delete(ServiceType service) throws Exception {
         em.remove(service);
         em.flush();
+    }
+
+    @Override
+    public int deleteById(long serviceTypeId) throws Exception {
+        if (serviceTypeId <= 0)
+            throw new EntityNotFound("Id inválido");
+
+        Query qry = em
+                .createQuery("DELETE FROM ServiceType s WHERE s.id = :serviceTypeId")
+                .setParameter("serviceTypeId", serviceTypeId);
+        return qry.executeUpdate();
     }
 
     public ServiceTypeDaoImpl() {

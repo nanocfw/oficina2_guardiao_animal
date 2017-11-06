@@ -76,6 +76,11 @@ public class PersonServiceImpl implements IPersonService {
     }
 
     @Override
+    public int deleteById(long personId) throws Exception {
+        return personDao.deleteById(personId);
+    }
+
+    @Override
     public List<ServiceProvider> getServiceProviderList(String country, String city, int rowsReturn, int rowsIgnore) {
         return personDao.getServiceProviderList(country, city, rowsReturn, rowsIgnore);
     }

@@ -39,4 +39,9 @@ public class ServiceTypeServiceImpl implements IServiceTypeService {
     public void delete(ServiceType service) throws Exception {
         serviceTypeDao.delete(service);
     }
+
+    @Override
+    public int deleteById(long serviceTypeId) throws Exception {
+        return serviceTypeDao.deleteById(serviceTypeId);
+    }
 }

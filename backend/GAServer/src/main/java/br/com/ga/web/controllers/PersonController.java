@@ -172,10 +172,14 @@ public class PersonController {
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
             value = UrlMapping.PERSON_DELETE,
-            method = RequestMethod.DELETE,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void delete(Person p) throws Exception {
-        personService.delete(p);
+            method = RequestMethod.DELETE)
+    public ResponseData<Integer> delete(@PathVariable("personId") long personId) throws Exception {
+        try {
+            int deletedRows = personService.deleteById(personId);
+            return new ResponseData<>(Integer.class, deletedRows, ResponseCode.DELETED);
+        } catch (Exception e) {
+            return new ResponseData<>(Integer.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
+        }
     }
 
     @ResponseStatus(HttpStatus.OK)

@@ -7,9 +7,6 @@ import javax.servlet.http.HttpSession;
 
 public class SessionUtils implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public static HttpSession getSession() {

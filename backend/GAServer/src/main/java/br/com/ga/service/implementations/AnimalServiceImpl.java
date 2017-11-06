@@ -24,28 +24,28 @@ public class AnimalServiceImpl implements IAnimalService {
     private IAnimalDao animalDao;
 
     @Override
-    public Animal create(Animal animal) throws Exception {
+    public Animal createUpdate(Animal animal) throws Exception {
         return animalDao.createUpdate(animal);
     }
 
     @Override
-    public Animal findById(int id) throws Exception {
+    public Animal findById(long id) throws Exception {
         return animalDao.findById(id);
     }
 
     @Override
-    public Animal update(Animal animal) throws Exception {
-        return animalDao.createUpdate(animal);
-    }
-
-    @Override
-    public List<Animal> findList(int rowsReturn, int rowsIgnore) {
-        return animalDao.findList(rowsReturn, rowsIgnore);
+    public List<Animal> findList(final long ownerId, final int rowsReturn, int rowsIgnore) {
+        return animalDao.findList(ownerId, rowsReturn, rowsIgnore);
     }
 
     @Override
     public void delete(Animal animal) throws Exception {
         animalDao.delete(animal);
+    }
+
+    @Override
+    public int deleteById(long animalId) throws Exception {
+        return animalDao.deleteById(animalId);
     }
 
 }

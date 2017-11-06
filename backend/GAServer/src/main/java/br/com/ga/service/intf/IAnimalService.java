@@ -14,13 +14,13 @@ import java.util.List;
  */
 public interface IAnimalService {
 
-    Animal create(final Animal animal) throws Exception;
+    Animal createUpdate(final Animal animal) throws Exception;
 
-    Animal findById(final int id) throws Exception;
+    Animal findById(final long id) throws Exception;
 
-    Animal update(Animal animal) throws Exception;
-
-    List<Animal> findList(final int rowsReturn, int rowsIgnore);
+    List<Animal> findList(final long ownerId, final int rowsReturn, int rowsIgnore);
 
     void delete(final Animal animal) throws Exception;
+
+    int deleteById(long animalId) throws Exception;
 }

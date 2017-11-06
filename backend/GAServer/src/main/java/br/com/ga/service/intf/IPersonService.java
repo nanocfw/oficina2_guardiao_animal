@@ -36,6 +36,8 @@ public interface IPersonService {
 
     void delete(final Person person) throws Exception;
 
+    int deleteById(long personId) throws Exception;
+
     List<ServiceProvider> getServiceProviderList(String country, String city, int rowsReturn, int rowsIgnore);
 
     List<ServiceProvider> getServiceProviderList(double lat, double lng, int ray, int rowsReturn, int rowsIgnore);

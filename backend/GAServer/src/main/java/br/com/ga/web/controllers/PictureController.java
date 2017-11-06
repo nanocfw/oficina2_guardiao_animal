@@ -53,10 +53,14 @@ public class PictureController {
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
-            value = UrlMapping.SERVICE_TYPE_DELETE,
-            method = RequestMethod.DELETE,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void delete(Picture picture) throws Exception {
-        pictureService.delete(picture);
+            value = UrlMapping.PICTURE_DELETE,
+            method = RequestMethod.DELETE)
+    public ResponseData<Integer> delete(@PathVariable("pictureId") long pictureId) throws Exception {
+        try {
+            int deletedRows = pictureService.deleteById(pictureId);
+            return new ResponseData<>(Integer.class, deletedRows, ResponseCode.DELETED);
+        } catch (Exception e) {
+            return new ResponseData<>(Integer.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
+        }
     }
 }

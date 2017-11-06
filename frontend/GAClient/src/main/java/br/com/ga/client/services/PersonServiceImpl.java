@@ -242,15 +242,31 @@ public class PersonServiceImpl extends Service implements IPersonService {
 
     @Override
     public void delete(Person person) throws Exception {
-        BasicAuthRestTemplate rest = getNewRestTemplate();
-        HttpEntity<Person> httpPerson = new HttpEntity<>(person);
+        deleteById(person.getId());
+    }
 
-        rest.exchange(
+    @Override
+    public int deleteById(long personId) throws Exception {
+        BasicAuthRestTemplate rest = getNewRestTemplate();
+        ResponseEntity<ResponseData<Integer>> response;
+        Map<String, Long> params = new HashMap<>();
+        params.put("personId", personId);
+
+        response = rest.exchange(
                 getServerURL() + UrlMapping.PERSON + UrlMapping.PERSON_DELETE,
                 HttpMethod.DELETE,
-                httpPerson,
-                void.class
+                null,
+                new ParameterizedTypeReference<ResponseData<Integer>>() {
+                },
+                params
         );
+
+        if (response.getBody().getStatus() == ResponseCode.DELETED)
+            return response.getBody().getValue();
+
+        throw new Exception(
+                "ExceptionClass: " + response.getBody().getExceptionType().toString()
+                        + " Message: " + response.getBody().getExceptionMessage());
     }
 
     @Override

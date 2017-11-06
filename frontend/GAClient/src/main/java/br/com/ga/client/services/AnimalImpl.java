@@ -2,10 +2,10 @@ package br.com.ga.client.services;
 
 import br.com.ga.client.rest.BasicAuthRestTemplate;
 import br.com.ga.client.rest.Service;
-import br.com.ga.entity.ServiceType;
+import br.com.ga.entity.Animal;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.exceptions.InvalidEntity;
-import br.com.ga.service.intf.IServiceTypeService;
+import br.com.ga.service.intf.IAnimalService;
 import br.com.ga.web.rest.ResponseCode;
 import br.com.ga.web.rest.ResponseData;
 import br.com.ga.web.rest.UrlMapping;
@@ -18,18 +18,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ServiceTypeServiceImpl extends Service implements IServiceTypeService {
+public class AnimalImpl extends Service implements IAnimalService {
     @Override
-    public ServiceType createUpdate(ServiceType service) throws Exception {
+    public Animal createUpdate(Animal animal) throws Exception {
         BasicAuthRestTemplate rest = getNewRestTemplate();
-        ResponseEntity<ResponseData<ServiceType>> response;
-        HttpEntity<ServiceType> httpService = new HttpEntity<>(service);
+        ResponseEntity<ResponseData<Animal>> response;
+        HttpEntity<Animal> httpAnimal = new HttpEntity<>(animal);
 
         response = rest.exchange(
-                getServerURL() + UrlMapping.SERVICE_TYPE + UrlMapping.SERVICE_TYPE_CREATE_UPDATE,
+                getServerURL() + UrlMapping.ANIMAL + UrlMapping.ANIMAL_CREATE_UPDATE,
                 HttpMethod.POST,
-                httpService,
-                new ParameterizedTypeReference<ResponseData<ServiceType>>() {
+                httpAnimal,
+                new ParameterizedTypeReference<ResponseData<Animal>>() {
                 });
 
         if (response.getBody().getStatus() == ResponseCode.CREATED)
@@ -44,17 +44,17 @@ public class ServiceTypeServiceImpl extends Service implements IServiceTypeServi
     }
 
     @Override
-    public ServiceType findById(int id) throws Exception {
+    public Animal findById(long id) throws Exception {
         BasicAuthRestTemplate rest = getNewRestTemplate();
-        ResponseEntity<ResponseData<ServiceType>> response;
-        Map<String, Integer> params = new HashMap<>();
-        params.put("serviceId", id);
+        ResponseEntity<ResponseData<Animal>> response;
+        Map<String, Long> params = new HashMap<>();
+        params.put("animalId", id);
 
         response = rest.exchange(
-                getServerURL() + UrlMapping.SERVICE_TYPE + UrlMapping.SERVICE_TYPE_GET,
+                getServerURL() + UrlMapping.ANIMAL + UrlMapping.ANIMAL_GET,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<ResponseData<ServiceType>>() {
+                new ParameterizedTypeReference<ResponseData<Animal>>() {
                 },
                 params
         );
@@ -71,62 +71,40 @@ public class ServiceTypeServiceImpl extends Service implements IServiceTypeServi
     }
 
     @Override
-    public ServiceType findByDescription(String description) throws Exception {
+    public List<Animal> findList(long ownerId, int rowsReturn, int rowsIgnore) {
         BasicAuthRestTemplate rest = getNewRestTemplate();
-        ResponseEntity<ResponseData<ServiceType>> response;
+        ResponseEntity<List<Animal>> response;
         Map<String, String> params = new HashMap<>();
-        params.put("serviceDescription", description);
+        params.put("ownerId", String.valueOf(ownerId));
+        params.put("rowsReturn", String.valueOf(rowsReturn));
+        params.put("rowsIgnore", String.valueOf(rowsIgnore));
 
         response = rest.exchange(
-                getServerURL() + UrlMapping.SERVICE_TYPE + UrlMapping.SERVICE_TYPE_GET_BY_DESCRIPTION,
+                getServerURL() + UrlMapping.ANIMAL + UrlMapping.ANIMAL_GET_LIST,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<ResponseData<ServiceType>>() {
+                new ParameterizedTypeReference<List<Animal>>() {
                 },
                 params
-        );
-
-        if (response.getBody().getStatus() == ResponseCode.FOUND)
-            return response.getBody().getValue();
-
-        if (response.getBody().getExceptionType() == EntityNotFound.class)
-            throw new EntityNotFound(response.getBody().getExceptionMessage());
-
-        throw new Exception(
-                "ExceptionClass: " + response.getBody().getExceptionType().toString()
-                        + " Message: " + response.getBody().getExceptionMessage());
-    }
-
-    @Override
-    public List<ServiceType> findList() {
-        BasicAuthRestTemplate rest = getNewRestTemplate();
-        ResponseEntity<List<ServiceType>> response;
-
-        response = rest.exchange(
-                getServerURL() + UrlMapping.SERVICE_TYPE + UrlMapping.SERVICE_TYPE_GET_LIST,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<List<ServiceType>>() {
-                }
         );
 
         return response.getBody();
     }
 
     @Override
-    public void delete(ServiceType service) throws Exception {
-        deleteById(service.getId());
+    public void delete(Animal animal) throws Exception {
+        deleteById(animal.getId());
     }
 
     @Override
-    public int deleteById(long serviceTypeId) throws Exception {
+    public int deleteById(long animalId) throws Exception {
         BasicAuthRestTemplate rest = getNewRestTemplate();
         ResponseEntity<ResponseData<Integer>> response;
         Map<String, Long> params = new HashMap<>();
-        params.put("serviceId", serviceTypeId);
+        params.put("animalId", animalId);
 
         response = rest.exchange(
-                getServerURL() + UrlMapping.PICTURE + UrlMapping.PICTURE_DELETE,
+                getServerURL() + UrlMapping.ANIMAL + UrlMapping.ANIMAL_DELETE,
                 HttpMethod.DELETE,
                 null,
                 new ParameterizedTypeReference<ResponseData<Integer>>() {

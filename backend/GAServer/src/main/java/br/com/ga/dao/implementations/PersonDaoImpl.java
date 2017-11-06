@@ -17,10 +17,7 @@ import java.util.UUID;
 
 import br.com.ga.dao.intf.IPersonDao;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -105,6 +102,17 @@ public class PersonDaoImpl implements IPersonDao {
     public void delete(Person person) throws Exception {
         em.remove(person);
         em.flush();
+    }
+
+    @Override
+    public int deleteById(long personId) throws Exception {
+        if (personId <= 0)
+            throw new EntityNotFound("Id inválido");
+
+        Query qry = em
+                .createQuery("DELETE FROM Person p WHERE p.id = :personId")
+                .setParameter("personId", personId);
+        return qry.executeUpdate();
     }
 
     @Override

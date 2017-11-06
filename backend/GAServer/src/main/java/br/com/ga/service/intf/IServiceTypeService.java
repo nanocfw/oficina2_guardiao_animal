@@ -15,4 +15,6 @@ public interface IServiceTypeService {
     List<ServiceType> findList();
 
     void delete(final ServiceType service) throws Exception;
+
+    int deleteById(long serviceTypeId) throws Exception;
 }

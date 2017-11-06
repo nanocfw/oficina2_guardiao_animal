@@ -6,10 +6,7 @@ import br.com.ga.exceptions.EntityNotFound;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 
 @Transactional
 @Repository
@@ -42,5 +39,16 @@ public class PictureDaoImpl implements IPictureDao {
     public void delete(Picture picture) throws Exception {
         em.remove(picture);
         em.flush();
+    }
+
+    @Override
+    public int deleteById(long pictureId) throws Exception {
+        if (pictureId <= 0)
+            throw new EntityNotFound("Id inválido");
+
+        Query qry = em
+                .createQuery("DELETE FROM Picture p WHERE p.id = :pictureId")
+                .setParameter("pictureId", pictureId);
+        return qry.executeUpdate();
     }
 }

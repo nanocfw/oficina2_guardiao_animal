@@ -1,6 +1,7 @@
 package br.com.ga.entity;
 
 import br.com.ga.entity.enums.AnimalSize;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
@@ -15,7 +16,7 @@ public class Animal implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String name;
     private String type;
     private String specie;
@@ -25,8 +26,7 @@ public class Animal implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date birthDate;
     private double wheight;
-    @ManyToOne
-    private Person owner;
+    private long owner;// não é necessário carregar os dados de Person a cada animal carregado do banco, é necessário apenas saber qual o id do dono
 
     public Animal() {
         super();

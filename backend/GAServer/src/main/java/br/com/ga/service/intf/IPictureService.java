@@ -8,4 +8,6 @@ public interface IPictureService {
     Picture findById(long id) throws Exception;
 
     void delete(Picture picture) throws Exception;
+
+    int deleteById(long pictureId) throws Exception;
 }

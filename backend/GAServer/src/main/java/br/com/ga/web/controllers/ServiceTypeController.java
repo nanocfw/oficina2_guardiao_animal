@@ -81,9 +81,13 @@ public class ServiceTypeController {
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(
             value = UrlMapping.SERVICE_TYPE_DELETE,
-            method = RequestMethod.DELETE,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void delete(ServiceType serviceType) throws Exception {
-        serviceTypeService.delete(serviceType);
+            method = RequestMethod.DELETE)
+    public ResponseData<Integer> delete(@PathVariable("serviceId") long serviceId) throws Exception {
+        try {
+            int deletedRows = serviceTypeService.deleteById(serviceId);
+            return new ResponseData<>(Integer.class, deletedRows, ResponseCode.DELETED);
+        } catch (Exception e) {
+            return new ResponseData<>(Integer.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
+        }
     }
 }

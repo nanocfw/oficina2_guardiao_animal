@@ -26,4 +26,9 @@ public class PictureServiceImpl implements IPictureService {
     public void delete(Picture picture) throws Exception {
         pictureDao.delete(picture);
     }
+
+    @Override
+    public int deleteById(long pictureId) throws Exception {
+        return pictureDao.deleteById(pictureId);
+    }
 }

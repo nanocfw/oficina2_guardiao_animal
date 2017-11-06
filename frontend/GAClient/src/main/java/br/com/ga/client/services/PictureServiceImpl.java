@@ -74,14 +74,31 @@ public class PictureServiceImpl extends Service implements IPictureService {
 
     @Override
     public void delete(Picture picture) throws Exception {
-        BasicAuthRestTemplate rest = getNewRestTemplate();
-        HttpEntity<Picture> httpPicture = new HttpEntity<>(picture);
+        deleteById(picture.getId());
+    }
 
-        rest.exchange(
+    @Override
+    public int deleteById(long pictureId) throws Exception {
+        BasicAuthRestTemplate rest = getNewRestTemplate();
+        ResponseEntity<ResponseData<Integer>> response;
+        Map<String, Long> params = new HashMap<>();
+        params.put("pictureId", pictureId);
+
+        response = rest.exchange(
                 getServerURL() + UrlMapping.PICTURE + UrlMapping.PICTURE_DELETE,
                 HttpMethod.DELETE,
-                httpPicture,
-                void.class
+                null,
+                new ParameterizedTypeReference<ResponseData<Integer>>() {
+                },
+                params
         );
+
+        if (response.getBody().getStatus() == ResponseCode.DELETED)
+            return response.getBody().getValue();
+
+        throw new Exception(
+                "ExceptionClass: " + response.getBody().getExceptionType().toString()
+                        + " Message: " + response.getBody().getExceptionMessage());
     }
+
 }
