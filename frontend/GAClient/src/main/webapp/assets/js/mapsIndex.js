@@ -71,7 +71,7 @@ setCity = (postal_code, country, loc, lat, lon) => {
         let key = event.key;
         if (key === "Enter" && ($('#address')[0].value) !== "") {
             console.log($('#address')[0].value);
-            window.location = 'searchGuardiao.xhtml';
+            window.location = '../../searchGuardiaoAuth.xhtml';
         }
     };
 };

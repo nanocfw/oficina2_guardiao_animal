@@ -57,9 +57,9 @@
                     </div>
 
                     <div class="inline">
-                        <p:selectOneRadio id="console">
-                            <f:selectItem itemLabel="Masculino" itemValue="homem"/>
-                            <f:selectItem itemLabel="Feminino" itemValue="mulher"/>
+                        <p:selectOneRadio id="console" value="#{personBean.currentPerson.type}">
+                            <f:selectItem itemLabel="Masculino" itemValue="0"/>
+                            <f:selectItem itemLabel="Feminino" itemValue="1"/>
                         </p:selectOneRadio>
                     </div>
 

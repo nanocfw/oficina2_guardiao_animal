@@ -10,6 +10,10 @@ body, html {
     height: 100%;
 }
 
+h6 {
+    text-align: justify;
+}
+
 .align-right {
     position: absolute;
     bottom: 5%;

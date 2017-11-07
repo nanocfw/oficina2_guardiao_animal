@@ -17,22 +17,22 @@
          <h:form id="formAnimal">
                     <div class="inline">
                         <div class="upload-button">
-                            <img class="profile-pic" id="picAnimal" src="#{personBean.profilePic}"/>
-                            <h:inputHidden id="pic" value="#{personBean.profilePic}"/>
+                            <img class="profile-pic" id="picAnimal" src="#{animalBean.profilePic}"/>
+                            <h:inputHidden id="pic" value="#{animalBean.profilePic}"/>
                         </div>
                     </div>
                     <p class="grey-text center-align"
                        style="font-size: 12px">Clique na imagem para inserir uma foto do seu animal</p>
 
                     <div class="inline">
-                        <p:inputText value="" id="data" type="date" class="center-align"
+                        <p:inputText value="#{animalBean.birthDate}" id="data" type="date" class="center-align"
                                      required="true" requiredMessage="Por favor preencha o campo Data"
                                      a:placeholder="Data de nascimento">
                         </p:inputText>
                     </div>
 
                     <div class="inline">
-                        <p:inputText id="name" class="center-align" required="true"
+                        <p:inputText id="name" class="center-align" required="true" value="#{animalBean.currentAnimal.name}"
                                      requiredMessage="Por favor preencha o campo Nome"
                                      validatorMessage="O campo Nome deve conter no minímo 3 caracteres"
                                      a:placeholder="Nome">
@@ -41,14 +41,14 @@
                     </div>
 
                     <div class="inline">
-                        <p:inputText id="specie" class="center-align" required="true"
+                        <p:inputText id="specie" class="center-align" required="true" value="#{animalBean.currentAnimal.specie}"
                                      requiredMessage="Por favor preencha o campo Espécie"
                                      validatorMessage="O campo Espécie deve conter no minímo 3 caracteres"
                                      a:placeholder="Espécie">
                             <f:validateLength minimum="3"/>
                         </p:inputText>
                         -
-                        <p:inputText id="type" class="center-align" rendered="true"
+                        <p:inputText id="type" class="center-align" rendered="true" value="#{animalBean.currentAnimal.type}"
                                      requiredMessage="Por favor preencha o campo Raça"
                                      validatorMessage="O campo Raça deve conter no minímo 3 caracteres"
                                      a:placeholder="Raça">
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="inline">
-                        <p:inputText id="temperamento" class="center-align" required="true"
+                        <p:inputText id="temperamento" class="center-align" required="true" value="#{animalBean.currentAnimal.temperament}"
                                      requiredMessage="Por favor preencha o campo Temperamento"
                                      validatorMessage="O campo Nome deve conter no minímo 5 caracteres"
                                      a:placeholder="Temperamento">
@@ -66,12 +66,15 @@
                     </div>
 
                     <div class="inline">
-                        <p:inputText id="size" a:type="number" class="center-align" required="true"
-                                     requiredMessage="Por favor preencha o campo Altura"
-                                     a:placeholder="Altura em cm">
-                        </p:inputText>
-                            -
-                        <p:inputText id="weight" a:type="number" class="center-align" required="true"
+                        <p:selectOneRadio id="console" value="#{animalBean.currentAnimal.size}">
+                            <f:selectItem itemLabel="Pequeno" itemValue="0"/>
+                            <f:selectItem itemLabel="Médio" itemValue="1"/>
+                            <f:selectItem itemLabel="Grande" itemValue="2"/>
+                        </p:selectOneRadio>
+                    </div>
+
+                    <div class="inline">
+                        <p:inputText id="weight" a:type="number" class="center-align" required="true" value="#{animalBean.currentAnimal.weight}"
                                      requiredMessage="Por favor preencha o campo Peso"
                                      a:placeholder="Peso em gramas">
                         </p:inputText>
@@ -80,7 +83,7 @@
 
                     <br/>
                     <div class="center-align">
-                         <p:commandButton update="@form" value="Cadastrar Animal"
+                         <p:commandButton update="@form" value="Cadastrar Animal" action="#{animalBean.createUpdate()}"
                                           ajax="true"
                                           class="waves-effect waves-light btn deep-orange lighten-1"/>
                     </div>
