@@ -27,6 +27,7 @@ public class Animal implements Serializable {
     private Date birthDate;
     private double wheight;
     private long owner;// não é necessário carregar os dados de Person a cada animal carregado do banco, é necessário apenas saber qual o id do dono
+    private long profilePic;
 
     public Animal() {
         super();
