@@ -7,6 +7,7 @@ package br.com.ga.client.beans;
 
 import br.com.ga.entity.Picture;
 import br.com.ga.entity.ServiceProvider;
+import br.com.ga.entity.enums.PersonType;
 import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Person;
@@ -40,6 +41,7 @@ public class PersonBean extends DefaultBean {
     private String birthDate;
     private Picture picture;
     private String profilePic;
+    private int personType;
 
     public String getProfilePic() {
         return profilePic;
@@ -65,12 +67,22 @@ public class PersonBean extends DefaultBean {
 
     public void setCurrentPerson(Person currentPerson) {
         this.currentPerson = currentPerson;
+        this.personType = currentPerson.getType().ordinal();
         loadPictureFromDataBase();
         if (currentPerson.getBirthDate() != null) {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             this.birthDate = df.format(currentPerson.getBirthDate());
         } else
             this.birthDate = "";
+    }
+
+    public int getPersonType() {
+        return this.personType;
+    }
+
+    public void setPersonType(int personType) {
+        this.personType = personType;
+        this.currentPerson.setType(PersonType.values()[personType]);
     }
 
     public String createUpdate() {
@@ -95,7 +107,7 @@ public class PersonBean extends DefaultBean {
         try {
             if (picture.isUpdated())
                 picture = pictureService.createUpdate(picture);
-            this.currentPerson.setProfilePic(picture.getId());
+            this.currentPerson.setProfilePic_id(picture.getId());
             setCurrentPerson(personService.createUpdate(this.currentPerson));
 
             if (currentPerson.getBirthDate() == null) {
@@ -113,16 +125,16 @@ public class PersonBean extends DefaultBean {
     }
 
     public void loadPictureFromDataBase() {
-        if (currentPerson == null || currentPerson.getId() == 0 || currentPerson.getProfilePic() == 0) {
+        if (currentPerson == null || currentPerson.getId() == 0 || currentPerson.getProfilePic_id() == 0) {
             profilePic = "";
             return;
         }
 
-        if (picture != null && picture.getId() == currentPerson.getProfilePic() && picture.getPicture() == null && picture.getPicture().length > 0)// imagem já carregada e pertence ao currentPerson
+        if (picture != null && picture.getId() == currentPerson.getProfilePic_id() && picture.getPicture() == null && picture.getPicture().length > 0)// imagem já carregada e pertence ao currentPerson
             return;
 
         try {
-            picture = pictureService.findById(currentPerson.getProfilePic());
+            picture = pictureService.findById(currentPerson.getProfilePic_id());
             picture.setTag(Util.curDate().getTime());
             profilePic = picture.asString();
         } catch (EntityNotFound e) {
@@ -144,6 +156,7 @@ public class PersonBean extends DefaultBean {
 
     public PersonBean() {
         currentPerson = new Person();
+        currentPerson.setType(PersonType.UNDEFINED);
         picture = new Picture();
     }
 

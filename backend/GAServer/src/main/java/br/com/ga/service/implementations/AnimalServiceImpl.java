@@ -6,6 +6,7 @@
 package br.com.ga.service.implementations;
 
 import br.com.ga.entity.Animal;
+import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.service.intf.IAnimalService;
 
 import java.util.List;
@@ -25,6 +26,21 @@ public class AnimalServiceImpl implements IAnimalService {
 
     @Override
     public Animal createUpdate(Animal animal) throws Exception {
+        if (animal.getOwner_id() == 0)
+            throw new InvalidEntity("Id do responsável pelo animal não foi informado.");
+
+        if (animal.getName().isEmpty())
+            throw new InvalidEntity("Nome do animal inválido.");
+
+        if (animal.getType().isEmpty())
+            throw new InvalidEntity("Tipo (gato/cachorro/pássaro/etc.) do animal inválido.");
+
+        if (animal.getSpecie().isEmpty())
+            throw new InvalidEntity("Espécie (raça) do animal inválida.");
+
+        if (animal.getWeight() <= 0)
+            throw new InvalidEntity("Peso do animal inválido.");
+
         return animalDao.createUpdate(animal);
     }
 

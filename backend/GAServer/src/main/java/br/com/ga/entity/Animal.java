@@ -25,9 +25,15 @@ public class Animal implements Serializable {
     private int temperament;
     @Temporal(TemporalType.DATE)
     private Date birthDate;
-    private double wheight;
-    private long owner;// não é necessário carregar os dados de Person a cada animal carregado do banco, é necessário apenas saber qual o id do dono
-    private long profilePic;
+    private double weight;
+    private long owner_id;// não é necessário carregar os dados de Person a cada animal carregado do banco, é necessário apenas saber qual o id do dono
+    private long profilePic_id;
+
+    @Transient
+    private int age;
+
+    @Transient
+    String picture;
 
     public Animal() {
         super();

@@ -14,10 +14,12 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
+import javax.ejb.Stateless;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Stateless
 public class AnimalImpl extends Service implements IAnimalService {
     @Override
     public Animal createUpdate(Animal animal) throws Exception {

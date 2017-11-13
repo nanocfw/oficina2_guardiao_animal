@@ -1,5 +1,6 @@
 package br.com.ga.client.beans;
 
+
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
@@ -42,6 +43,26 @@ public abstract class DefaultBean implements Serializable {
         url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/index.xhtml"));
         extContext.redirect(url);
         return "index";
+    }
+
+    public String redirectToAnimals() throws IOException {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ExternalContext extContext = ctx.getExternalContext();
+        String url;
+
+        url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/animalView.xhtml"));
+        extContext.redirect(url);
+        return "animalView";
+    }
+
+    public String redirectToRegisterAnimal() throws IOException {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ExternalContext extContext = ctx.getExternalContext();
+        String url;
+
+        url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/animalView.xhtml#animal"));
+        extContext.redirect(url);
+        return "#animal";
     }
 
 }

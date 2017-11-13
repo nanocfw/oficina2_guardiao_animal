@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -94,6 +95,18 @@ public class Util {
 
     public static long timeDiff(Date current, Date old) {
         return current.getTime() - old.getTime();
+    }
+
+    public static int dateDiff(Date startDate, Date endDate, int field) {
+        Calendar startCalendar = new GregorianCalendar();
+        startCalendar.setTime(startDate);
+        Calendar endCalendar = new GregorianCalendar();
+        endCalendar.setTime(endDate);
+        int diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
+        if (field == Calendar.MONTH)
+            return diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
+        else
+            return diffYear;
     }
 
     public static void createFile(byte[] data, String fileName) throws Exception {

@@ -120,16 +120,16 @@ public class LoginBean extends DefaultBean {
     }
 
     public void loadPictureFromDataBase() {
-        if (authenticatedUser == null || authenticatedUser.getId() == 0 || authenticatedUser.getProfilePic() == 0) {
+        if (authenticatedUser == null || authenticatedUser.getId() == 0 || authenticatedUser.getProfilePic_id() == 0) {
             profilePic = "";
             return;
         }
 
-        if (picture != null && picture.getId() == authenticatedUser.getProfilePic() && picture.getPicture() == null && picture.getPicture().length > 0)// imagem já carregada e pertence ao currentPerson
+        if (picture != null && picture.getId() == authenticatedUser.getProfilePic_id() && picture.getPicture() == null && picture.getPicture().length > 0)// imagem já carregada e pertence ao currentPerson
             return;
 
         try {
-            picture = pictureService.findById(authenticatedUser.getProfilePic());
+            picture = pictureService.findById(authenticatedUser.getProfilePic_id());
             picture.setTag(Util.curDate().getTime());
             profilePic = picture.asString();
         } catch (EntityNotFound e) {

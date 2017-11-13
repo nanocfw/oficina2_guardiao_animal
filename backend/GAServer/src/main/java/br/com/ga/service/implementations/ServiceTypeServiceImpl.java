@@ -3,6 +3,7 @@ package br.com.ga.service.implementations;
 import br.com.ga.dao.intf.IServiceTypeDao;
 import br.com.ga.entity.ServiceType;
 import br.com.ga.exceptions.EntityNotFound;
+import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.service.intf.IServiceTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,12 @@ public class ServiceTypeServiceImpl implements IServiceTypeService {
 
     @Override
     public ServiceType createUpdate(ServiceType service) throws Exception {
+        if (service.getDescription().isEmpty())
+            throw new InvalidEntity("Descrição do serviço inválida.");
+
+        if (service.getValue() <= 0)
+            throw new InvalidEntity("Valor cobrado pelo serviço inválido.");
+
         return serviceTypeDao.createUpdate(service);
     }
 

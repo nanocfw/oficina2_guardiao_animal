@@ -45,8 +45,8 @@ public class AnimalDaoImpl implements IAnimalDao {
     @Override
     public List<Animal> findList(final long ownerId, final int rowsReturn, int rowsIgnore) {
         return em
-                .createQuery("SELECT a FROM Animal a WHERE a.owner.id = :owner")
-                .setParameter("owner", ownerId)
+                .createQuery("SELECT a FROM Animal a WHERE a.owner_id = :ownerId")
+                .setParameter("ownerId", ownerId)
                 .setFirstResult(rowsIgnore)
                 .setMaxResults(rowsReturn)
                 .getResultList();

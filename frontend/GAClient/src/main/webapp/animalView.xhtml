@@ -3,6 +3,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
@@ -42,55 +43,70 @@
     <input class="file-upload" type="file" accept="image/*"/>
     <ui:include src="/components/animal.xhtml"/>
 
-        <div id="content">
-            <h:form>
-                <ui:include src="/components/navbarAuth.xhtml"/>
-                <ui:include src="/components/sideNav.xhtml"/>
-            </h:form>
+    <div id="content">
+        <h:form>
+            <ui:include src="/components/navbarAuth.xhtml"/>
+            <ui:include src="/components/sideNav.xhtml"/>
 
             <div>
                 <h1 class="text-grey">Animais</h1>
 
                 <a href="#animal" class="waves-effect waves-light btn deep-orange lighten-1 align-right">
-                    Animal <i class="material-icons">exposure_plus_1</i></a>
+                    Animal <i class="material-icons">exposure_plus_1</i>
+                </a>
             </div>
 
 
             <div class="main-animals">
 
                 <div class="form">
-                    <p:dataTable var="" value="">
-                        <p:column headerText="Nome">
-                            <h:outputText value="" />
-                        </p:column>
-                        <p:column headerText="Idade">
-                            <h:outputText value="" />
-                        </p:column>
-                        <p:column headerText="Espécie">
-                            <h:outputText value="" />
-                        </p:column>
-                        <p:column headerText="Raça">
-                            <h:outputText value="" />
-                        </p:column>
-                        <p:column headerText="Temperamento">
-                            <h:outputText value="" />
-                        </p:column>
-                        <p:column headerText="Altura">
-                            <h:outputText value="" />
-                        </p:column>
-                        <p:column headerText="Peso">
-                            <h:outputText value="" />
-                        </p:column>
-                    </p:dataTable>
+                    <p:dataScroller value="#{animalBean.list()}" var="animal" chunkSize="5">
+                        <f:facet name="header">
+                            Animais
+                        </f:facet>
+
+                        <f:facet name="loader">
+                            <p:commandButton type="button" value="Mais" icon="ui-icon-circle-triangle-s"/>
+                        </f:facet>
+
+                        <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
+                            <img src="#{animal.picture}" class="logo" style="width: 120px; height: 120px;"/>
+
+                            <p:outputPanel>
+                                <h:panelGrid columns="2" cellpadding="5">
+                                    <h:outputText value="Nome:"/>
+                                    <h:outputText value="#{animal.name}" style="font-weight: bold"/>
+
+                                    <h:outputText value="Idade:"/>
+                                    <h:outputText value="#{animal.age}" style="font-weight: bold"/>
+
+                                    <h:outputText value="Raça:"/>
+                                    <h:outputText value="#{animal.type}" style="font-weight: bold"/>
+
+                                    <h:outputText value="Tamanho:"/>
+                                    <h:outputText value="#{animal.size}" style="font-weight: bold"/>
+
+                                    <h:outputText value="Peso:"/>
+                                    <h:outputText value="#{animal.weight}" style="font-weight: bold"/>
+
+                                    <h:outputText value="Temperamento:"/>
+                                    <h:outputText value="#{animal.temperament}" style="font-weight: bold"/>
+                                </h:panelGrid>
+                            </p:outputPanel>
+                            <h:commandLink action="#animal">
+                                <f:setPropertyActionListener value="#{animal}" target="#{animalBean.currentAnimal}"/>
+                            </h:commandLink>
+                        </h:panelGrid>
+                    </p:dataScroller>
                 </div>
 
-                <br />
+                <br/>
             </div>
-
-            <ui:include src="/components/footer.xhtml"/>
-        </div>
+        </h:form>
+        <ui:include src="/components/footer.xhtml"/>
+    </div>
 </h:body>
-
+<!--@formatter:off-->
 <script>
     let readURL = function (input) {
         if (input.files &amp;&amp; input.files[0]) {
@@ -114,7 +130,6 @@
     $(".upload-button").on('click', function () {
         $(".file-upload").click();
     });
-
-    let img = document.querySelector('.profile-pic').src;
 </script>
+<!--@formatter:on-->
 </html>

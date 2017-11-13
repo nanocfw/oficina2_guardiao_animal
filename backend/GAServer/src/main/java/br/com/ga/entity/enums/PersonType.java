@@ -9,5 +9,5 @@ package br.com.ga.entity.enums;
  * @author Marciano
  */
 public enum PersonType {
-    MALE, FEMALE, COMPANY;
+    MALE, FEMALE, UNDEFINED;
 }

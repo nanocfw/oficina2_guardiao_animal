@@ -1,5 +1,6 @@
 package br.com.ga.entity;
 
+import br.com.ga.entity.enums.BillingType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
@@ -17,12 +18,16 @@ public class ServiceType implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String description;
+    private double value;
+    private BillingType billingType;
 
     public ServiceType() {
         super();
     }
 
-    public ServiceType(String description) {
+    public ServiceType(String description, double value, BillingType billingType) {
         this.description = description;
+        this.value = value;
+        this.billingType = billingType;
     }
 }

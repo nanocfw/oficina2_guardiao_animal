@@ -40,4 +40,12 @@ public class UrlMapping {
     public static final String ANIMAL_GET_LIST = "fetch/{ownerId}/{rowsReturn}/{rowsIgnore}";
     public static final String ANIMAL_CREATE_UPDATE = "save/";
     public static final String ANIMAL_DELETE = "delete/{animalId}";
+
+    public static final String APPOINTMENT = "ga/appointment";
+    public static final String APPOINTMENT_GET = "fetch/{appointmentId}";
+    public static final String APPOINTMENT_GET_AVAILABLE_SCHEDULE = "fetch/{currentId}/{serviceProviderId}/{start}/{end}";
+    public static final String APPOINTMENT_GET_LIST_BY_CLIENT = "fetchclient/{clientId}/{rowsReturn}/{rowsIgnore}";
+    public static final String APPOINTMENT_GET_LIST_BY_SERVICE_PROVIDER = "fetchserviceprovider/{serviceProviderId}/{rowsReturn}/{rowsIgnore}";
+    public static final String APPOINTMENT_CREATE_UPDATE = "save/";
+    public static final String APPOINTMENT_DELETE = "delete/{appointmentId}";
 }

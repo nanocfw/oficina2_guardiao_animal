@@ -2,6 +2,7 @@ package br.com.ga.dao.implementations;
 
 import br.com.ga.dao.intf.IServiceTypeDao;
 import br.com.ga.entity.ServiceType;
+import br.com.ga.entity.enums.BillingType;
 import br.com.ga.exceptions.EntityNotFound;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -85,7 +86,7 @@ public class ServiceTypeDaoImpl implements IServiceTypeDao {
         }
         if (svc == null)
             try {
-                createUpdate(new ServiceType("Cuidador"));
+                createUpdate(new ServiceType("Cuidador", 50, BillingType.PER_DAY));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -98,7 +99,7 @@ public class ServiceTypeDaoImpl implements IServiceTypeDao {
         }
         if (svc == null)
             try {
-                createUpdate(new ServiceType("Passeador"));
+                createUpdate(new ServiceType("Passeador", 25, BillingType.PER_HOUR));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -112,7 +113,7 @@ public class ServiceTypeDaoImpl implements IServiceTypeDao {
 
         if (svc == null)
             try {
-                createUpdate(new ServiceType("Tratador"));
+                createUpdate(new ServiceType("Tratador", 20, BillingType.PER_DAY));
             } catch (Exception e) {
                 e.printStackTrace();
             }

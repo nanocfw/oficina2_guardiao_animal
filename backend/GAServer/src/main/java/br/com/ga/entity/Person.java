@@ -47,7 +47,7 @@ public class Person implements Serializable {
     private double latitude;
     private double longitude;
     private boolean finishedRegister;
-    private long profilePic;// não é necessário carregar sempre, por isso é armazenado apenas qual o id da imagem para ser lida apenas quando precisar
+    private long profilePic_id;// não é necessário carregar sempre, por isso é armazenado apenas qual o id da imagem para ser lida apenas quando precisar
     private PersonType type;
     @Type(type = "uuid-char")
     private UUID authToken;
