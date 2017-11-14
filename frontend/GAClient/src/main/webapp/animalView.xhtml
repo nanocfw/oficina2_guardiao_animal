@@ -60,46 +60,36 @@
             <div class="main-animals">
 
                 <div class="form">
-                    <p:dataScroller value="#{animalBean.list()}" var="animal" chunkSize="5">
-                        <f:facet name="header">
-                            Animais
-                        </f:facet>
-
-                        <f:facet name="loader">
-                            <p:commandButton type="button" value="Mais" icon="ui-icon-circle-triangle-s"/>
-                        </f:facet>
-
-                        <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
+                    <p:dataTable var="animal" value="#{animalBean.list()}">
+                        <p:column style="text-align: center" headerText="Imagem">
                             <img src="#{animal.picture}" class="logo" style="width: 120px; height: 120px;"/>
+                        </p:column>
 
-                            <p:outputPanel>
-                                <h:panelGrid columns="2" cellpadding="5">
-                                    <h:outputText value="Nome:"/>
-                                    <h:outputText value="#{animal.name}" style="font-weight: bold"/>
+                        <p:column style="text-align: center"  headerText="Nome">
+                            <h:outputText value="#{animal.name}" style="font-weight: bold"/>
+                        </p:column>
 
-                                    <h:outputText value="Idade:"/>
-                                    <h:outputText value="#{animal.age}" style="font-weight: bold"/>
+                        <p:column style="text-align: center"  headerText="Idade">
+                            <h:outputText value="#{animal.age}" style="font-weight: bold"/>
+                        </p:column>
 
-                                    <h:outputText value="Raça:"/>
-                                    <h:outputText value="#{animal.type}" style="font-weight: bold"/>
+                        <p:column style="text-align: center"  headerText="Raça">
+                            <h:outputText value="#{animal.type}" style="font-weight: bold"/>
+                        </p:column>
 
-                                    <h:outputText value="Tamanho:"/>
-                                    <h:outputText value="#{animal.size}" style="font-weight: bold"/>
+                        <p:column style="text-align: center" headerText="Tamanho">
+                            <h:outputText value="#{animal.size}" style="font-weight: bold"/>
+                        </p:column>
 
-                                    <h:outputText value="Peso:"/>
-                                    <h:outputText value="#{animal.weight}" style="font-weight: bold"/>
+                        <p:column style="text-align: center" headerText="Peso">
+                            <h:outputText value="#{animal.weight}" style="font-weight: bold"/>
+                        </p:column>
 
-                                    <h:outputText value="Temperamento:"/>
-                                    <h:outputText value="#{animal.temperament}" style="font-weight: bold"/>
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            <h:commandLink action="#animal">
-                                <f:setPropertyActionListener value="#{animal}" target="#{animalBean.currentAnimal}"/>
-                            </h:commandLink>
-                        </h:panelGrid>
-                    </p:dataScroller>
+                        <p:column style="text-align: center" headerText="Temperamento">
+                            <h:outputText value="#{animal.temperament}" style="font-weight: bold"/>
+                        </p:column>
+                    </p:dataTable>
                 </div>
-
                 <br/>
             </div>
         </h:form>

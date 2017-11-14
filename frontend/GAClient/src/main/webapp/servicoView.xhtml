@@ -60,43 +60,23 @@
             <div class="main-animals">
 
                 <div class="form">
-                    <p:dataScroller value="" var="servico" chunkSize="5">
-                        <f:facet name="header">
-                            Serviços
-                        </f:facet>
+                    <p:dataTable var="" value="">
+                        <p:column style="text-align: center"  headerText="Tipo de Serviço">
+                            <h:outputText value="" style="font-weight: bold"/>
+                        </p:column>
 
-                        <f:facet name="loader">
-                            <p:commandButton type="button" value="Mais" icon="ui-icon-circle-triangle-s"/>
-                        </f:facet>
+                        <p:column style="text-align: center"  headerText="Porte do Animal">
+                            <h:outputText value="" style="font-weight: bold"/>
+                        </p:column>
 
-                        <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
+                        <p:column style="text-align: center"  headerText="Tipo de Cobrança">
+                            <h:outputText value="" style="font-weight: bold"/>
+                        </p:column>
 
-                            <p:outputPanel>
-                                <h:panelGrid columns="2" cellpadding="5">
-                                    <h:outputText value="Nome:"/>
-                                    <h:outputText value="" style="font-weight: bold"/>
-
-                                    <h:outputText value="Idade:"/>
-                                    <h:outputText value="" style="font-weight: bold"/>
-
-                                    <h:outputText value="Raça:"/>
-                                    <h:outputText value="" style="font-weight: bold"/>
-
-                                    <h:outputText value="Tamanho:"/>
-                                    <h:outputText value="" style="font-weight: bold"/>
-
-                                    <h:outputText value="Peso:"/>
-                                    <h:outputText value="" style="font-weight: bold"/>
-
-                                    <h:outputText value="Temperamento:"/>
-                                    <h:outputText value="" style="font-weight: bold"/>
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            <h:commandLink >
-                                <f:setPropertyActionListener value="" target=""/>
-                            </h:commandLink>
-                        </h:panelGrid>
-                    </p:dataScroller>
+                        <p:column style="text-align: center" headerText="Valor">
+                            <h:outputText value="" style="font-weight: bold"/>
+                        </p:column>
+                    </p:dataTable>
                 </div>
 
                 <br/>
