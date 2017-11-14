@@ -1,15 +1,36 @@
 // get guardioes function
+
 getGuardioes = () => {
-    $.getJSON('assets/auxiliar/aa.json', function (pontos) {
-        let guardioes = "";
+    var country = window.localStorage.getItem('country');
+    var city = window.localStorage.getItem('loc').split(',')[0]
+    var cityFormated;
+    var guardioes = ""
 
-        $.each(pontos, function (index, ponto) {
+    switch (city) {
+        case (city.split(' ')[1] !== undefined):
+            cityFormated = city.split(' ')[0]+'%20'+city.split(' ')[1];
+            break;
+        case (city.split(' ')[2] !== undefined):
+            cityFormated = city.split(' ')[0]+'%20'+city.split(' ')[1]+'%20'+city.split(' ')[2];
+            break;
+        case (city.split(' ')[3] !== undefined):
+            cityFormated = city.split(' ')[0]+'%20'+city.split(' ')[1]+'%20'+city.split(' ')[2]+'%20'+city.split(' ')[3];
+            break;
+        default:
+            cityFormated = city;
+            break;
+    }
 
-            var city = window.localStorage.getItem('loc');
-            var cityJson = ponto.cidade;
-
-            if (city.match(cityJson)) {
-                let guardiao = `<li id="guardiao" class="container" opacity="0">
+    $.ajax({
+        url: `http://localhost:8090/ga/person/fetchserviceprovider/${country}/${cityFormated}/20/0`,
+        method: 'GET',
+        headers: { 'Authorization': 'Basic Z2FhZG1pbnNlcnZlcjpAZzRyZTV0cDRzcyM=',
+            'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET'},
+        sucess: function(data) {
+            console.log('data:', data);
+            $.each(pontos, function (ponto) {
+                `<li id="guardiao" class="container" opacity="0">
                 <div class="col s12 m8 offset-m2 l6 offset-l3">
                     <div class="card-panel grey lighten-5 z-depth-1">
                         <div class="inline">
@@ -36,19 +57,19 @@ getGuardioes = () => {
                     </div>
                 </div>
             </li>`;
-                guardioes += guardiao;
-            }
-        });
-        if (guardioes === "") {
-            return document.querySelector('#guardioes').innerHTML = `<h4 class="text-grey center-align">Desculpe, nenhum <span class="text-orange">Guardião</span> foi encontrado nesta regiao.</h4>`;
-        } else {
-            for (i = 0; i < guardioes.length; i++) {
-                return document.querySelector('#guardioes').innerHTML = guardioes;
+                guardioes = guardioes + 1;
+                })
+            if (guardioes === "") {
+                return document.querySelector('#guardioes').innerHTML = `<h4 class="text-grey center-align">Desculpe, nenhum <span class="text-orange">Guardião</span> foi encontrado nesta regiao.</h4>`;
+            } else {
+                for (i = 0; i < guardioes.length; i++) {
+                    return document.querySelector('#guardioes').innerHTML = guardioes;
+                }
             }
         }
-    });
-}
-;
+    })
+
+};
 
 getMarkers = (map, icon = 'assets/images/mark.png') => {
 
@@ -81,4 +102,4 @@ getMarkers = (map, icon = 'assets/images/mark.png') => {
             });
         });
     });
-};
+}

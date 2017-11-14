@@ -12,19 +12,12 @@ initMap = () => {
         types: ['(cities)']
     };
     getData(map, options);
-    getMarkers(map);
+    // getMarkers(map);
 };
 
 getCity = (event) => {
     let key = event.key;
     if (key === "Enter" && ($('#address')[0].value) !== "") {
-        let city = window.localStorage.getItem('loc');
-        let actualCity = ($('#address')[0].value);
-
-        if (city.match(actualCity)) {
-            console.log($('#address')[0].value);
-            getGuardioes();
-            Materialize.fadeInImage('#guardioes');
-        }
+        Materialize.fadeInImage('#guardioes');
     }
 };

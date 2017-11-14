@@ -1,5 +1,8 @@
 let enter = (event) => {
 };
+
+let enterAuth = (event) => {
+};
 getCity = () => {
     var latitude = parseFloat(window.localStorage.getItem('lat'));
     var longitude = parseFloat(window.localStorage.getItem('lon'));
@@ -55,7 +58,7 @@ getData = (map, options) => {
 
         setCity(postal_code, country, loc, lat, lon);
         
-        getGuardioes();
+         getGuardioes();
     });
 
 };
@@ -71,7 +74,15 @@ setCity = (postal_code, country, loc, lat, lon) => {
         let key = event.key;
         if (key === "Enter" && ($('#address')[0].value) !== "") {
             console.log($('#address')[0].value);
-            window.location = '../../searchGuardiaoAuth.xhtml';
+            window.location = '../../GAClient/searchGuardiao.xhtml';
+        }
+    };
+
+    enterAuth = (event) => {
+        let key = event.key;
+        if (key === "Enter" && ($('#address')[0].value) !== "") {
+            console.log($('#address')[0].value);
+            window.location = '../../GAClient/searchGuardiaoAuth.xhtml';
         }
     };
 };
