@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Animal</title>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection"/>
+    <!--Import styles.css -->
+    <link type="text/css" rel="stylesheet" href="assets/css/styles.css"/>
+    <!-- import preloader -->
+    <link type="text/css" rel="stylesheet" href="assets/css/preloader.css"/>
+
+    <link type="text/css" rel="stylesheet" href="assets/css/sideNav.css"/>
+
+    <link rel="icon" type="image/png" href="assets/images/logo.png" sizes="16x16"/>
+</h:head>
+<h:body>
+    <!-- Import Materialize.js -->
+    <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+    <!-- Import index.js -->
+    <script type="text/javascript" src="assets/js/index.js"></script>
+
+
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
+
+    <input class="file-upload" type="file" accept="image/*"/>
+    <ui:include src="/components/servico.xhtml"/>
+
+    <div id="content">
+        <h:form>
+            <ui:include src="/components/navbarAuth.xhtml"/>
+            <ui:include src="/components/sideNav.xhtml"/>
+
+            <div>
+                <h1 class="text-grey">Serviços</h1>
+
+                <a href="#servico" class="waves-effect waves-light btn deep-orange lighten-1 align-right">
+                    Serviço <i class="material-icons">exposure_plus_1</i>
+                </a>
+            </div>
+
+
+            <div class="main-animals">
+
+                <div class="form">
+                    <p:dataScroller value="" var="servico" chunkSize="5">
+                        <f:facet name="header">
+                            Serviços
+                        </f:facet>
+
+                        <f:facet name="loader">
+                            <p:commandButton type="button" value="Mais" icon="ui-icon-circle-triangle-s"/>
+                        </f:facet>
+
+                        <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
+
+                            <p:outputPanel>
+                                <h:panelGrid columns="2" cellpadding="5">
+                                    <h:outputText value="Nome:"/>
+                                    <h:outputText value="" style="font-weight: bold"/>
+
+                                    <h:outputText value="Idade:"/>
+                                    <h:outputText value="" style="font-weight: bold"/>
+
+                                    <h:outputText value="Raça:"/>
+                                    <h:outputText value="" style="font-weight: bold"/>
+
+                                    <h:outputText value="Tamanho:"/>
+                                    <h:outputText value="" style="font-weight: bold"/>
+
+                                    <h:outputText value="Peso:"/>
+                                    <h:outputText value="" style="font-weight: bold"/>
+
+                                    <h:outputText value="Temperamento:"/>
+                                    <h:outputText value="" style="font-weight: bold"/>
+                                </h:panelGrid>
+                            </p:outputPanel>
+                            <h:commandLink >
+                                <f:setPropertyActionListener value="" target=""/>
+                            </h:commandLink>
+                        </h:panelGrid>
+                    </p:dataScroller>
+                </div>
+
+                <br/>
+            </div>
+        </h:form>
+        <ui:include src="/components/footer.xhtml"/>
+    </div>
+</h:body>
+<!--@formatter:on-->
+</html>

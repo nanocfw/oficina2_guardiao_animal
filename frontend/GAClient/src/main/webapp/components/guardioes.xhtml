@@ -6,7 +6,16 @@
 
     <script type="text/javascript" src="assets/js/getGuardioes.js"></script>
 
+
+    <h:inputHidden id="countryBean" value=""/>
+    <h:inputHidden id="locBean" value=""/>
+
     <ul id="guardioes" class="column guardioes">
         <script>getGuardioes();</script>
     </ul>
+
+    <script>
+        document.getElementById("countryBean").value = window.localStorage.getItem('country');
+        document.getElementById("locBean").value = window.localStorage.getItem('loc').split(',')[0];
+    </script>
 </ui:composition>
