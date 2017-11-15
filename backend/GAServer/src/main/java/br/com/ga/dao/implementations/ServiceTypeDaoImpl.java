@@ -86,7 +86,7 @@ public class ServiceTypeDaoImpl implements IServiceTypeDao {
         }
         if (svc == null)
             try {
-                createUpdate(new ServiceType("Cuidador", 50, BillingType.PER_DAY));
+                createUpdate(new ServiceType("Cuidador"));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -99,7 +99,7 @@ public class ServiceTypeDaoImpl implements IServiceTypeDao {
         }
         if (svc == null)
             try {
-                createUpdate(new ServiceType("Passeador", 25, BillingType.PER_HOUR));
+                createUpdate(new ServiceType("Passeador"));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -113,7 +113,7 @@ public class ServiceTypeDaoImpl implements IServiceTypeDao {
 
         if (svc == null)
             try {
-                createUpdate(new ServiceType("Tratador", 20, BillingType.PER_DAY));
+                createUpdate(new ServiceType("Tratador"));
             } catch (Exception e) {
                 e.printStackTrace();
             }

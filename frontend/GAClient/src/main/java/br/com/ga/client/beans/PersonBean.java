@@ -15,6 +15,7 @@ import br.com.ga.service.intf.IPersonService;
 import br.com.ga.service.intf.IPictureService;
 import br.com.ga.util.FacesUtils;
 import br.com.ga.util.Util;
+import org.primefaces.model.map.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -152,6 +153,15 @@ public class PersonBean extends DefaultBean {
 
     public List<ServiceProvider> getListServiceProvider(String country, String city, int rowsReturn, int rowsIgnore) {
         return personService.getServiceProviderList(country, city, rowsReturn, rowsIgnore);
+    }
+
+    public MapModel getMapList() {
+        List<ServiceProvider> list = getListServiceProvider("Brasil", "Dois Vizinhos", 100, 0);
+        MapModel map = new DefaultMapModel();
+        for (ServiceProvider s : list)
+            map.addOverlay(new Marker(new LatLng(s.getLatitude(), s.getLongitude()), s.getName()));
+
+        return map;
     }
 
     public PersonBean() {

@@ -1,5 +1,6 @@
 package br.com.ga.entity;
 
+import br.com.ga.entity.enums.BillingType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
@@ -22,8 +23,10 @@ public class Appointment implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date endService;
     private String additionalMessage;
-    private int serviceType_id;// tipo do serviço
+    private int serviceProviderAnimalType_id;// tipo do serviço prestado
     private int serviceDuration;// em horas, arredonda para acertar o preço
+    @Enumerated(value = EnumType.ORDINAL)
+    private BillingType billingType;
     private double serviceCost;// preço pelo serviço
 
     private boolean serviceRated;
