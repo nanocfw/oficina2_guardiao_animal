@@ -1,7 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/GAClient">
-    <context-param>
-        <param-name>primefaces.THEME</param-name>
-        <param-value>omega</param-value>
-    </context-param>
 </Context>
