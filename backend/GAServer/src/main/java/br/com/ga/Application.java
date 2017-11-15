@@ -5,6 +5,7 @@
  */
 package br.com.ga;
 
+import br.com.ga.dao.implementations.AnimalTypeDaoImpl;
 import br.com.ga.dao.implementations.ServiceTypeDaoImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,5 +24,6 @@ public class Application {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
         context.getBean(ServiceTypeDaoImpl.class).init();
+        context.getBean(AnimalTypeDaoImpl.class).init();
     }
 }

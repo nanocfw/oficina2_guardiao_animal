@@ -18,7 +18,7 @@ public class Animal implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    private String type;
+    private int animalType_id;//tipo do animal
     private String specie;
     @Enumerated(EnumType.ORDINAL)
     private AnimalSize size;

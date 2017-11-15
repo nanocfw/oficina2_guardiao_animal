@@ -68,4 +68,18 @@ public class AnimalTypeDaoImpl implements IAnimalTypeDao {
                 .setParameter("animalTypeId", animalTypeId);
         return qry.executeUpdate();
     }
+
+    public void init() {
+        AnimalType animalType = null;
+
+//        try {
+//            animalType = findByDescription("");
+//        } catch (Exception ex) {
+//        }
+//        if (animalType == null)
+//            try {
+//                createUpdate(new AnimalType(""));
+//            } catch (Exception ex) {
+//            }
+    }
 }

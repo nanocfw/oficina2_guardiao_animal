@@ -21,4 +21,8 @@ public class AnimalType {
     public AnimalType() {
         super();
     }
+
+    public AnimalType(String description) {
+        this.description = description;
+    }
 }
