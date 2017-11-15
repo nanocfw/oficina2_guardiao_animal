@@ -72,14 +72,94 @@ public class AnimalTypeDaoImpl implements IAnimalTypeDao {
     public void init() {
         AnimalType animalType = null;
 
-//        try {
-//            animalType = findByDescription("");
-//        } catch (Exception ex) {
-//        }
-//        if (animalType == null)
-//            try {
-//                createUpdate(new AnimalType(""));
-//            } catch (Exception ex) {
-//            }
+        try {
+            animalType = findByDescription("Aves");
+        } catch (Exception ex) {
+        }
+        if (animalType == null)
+            try {
+                createUpdate(new AnimalType("Aves"));
+            } catch (Exception ex) {
+           }
+
+        try {
+            animalType = findByDescription("Répteis");
+        } catch (Exception ex) {
+        }
+        if (animalType == null)
+            try {
+                createUpdate(new AnimalType("Répteis"));
+            } catch (Exception ex) {
+            }
+
+        try {
+            animalType = findByDescription("Cão");
+        } catch (Exception ex) {
+        }
+        if (animalType == null)
+            try {
+                createUpdate(new AnimalType("Cão"));
+            } catch (Exception ex) {
+            }
+
+        try {
+            animalType = findByDescription("Gato");
+        } catch (Exception ex) {
+        }
+        if (animalType == null)
+            try {
+                createUpdate(new AnimalType("Gato"));
+            } catch (Exception ex) {
+            }
+
+        try {
+            animalType = findByDescription("Peixe");
+        } catch (Exception ex) {
+        }
+        if (animalType == null)
+            try {
+                createUpdate(new AnimalType("Peixe"));
+            } catch (Exception ex) {
+            }
+
+        try {
+            animalType = findByDescription("Cobra");
+        } catch (Exception ex) {
+        }
+        if (animalType == null)
+            try {
+                createUpdate(new AnimalType("Cobra"));
+            } catch (Exception ex) {
+            }
+
+        try {
+            animalType = findByDescription("Cavalo");
+        } catch (Exception ex) {
+        }
+        if (animalType == null)
+            try {
+                createUpdate(new AnimalType("Cavalo"));
+            } catch (Exception ex) {
+            }
+
+        try {
+            animalType = findByDescription("Mini-Porco");
+        } catch (Exception ex) {
+        }
+        if (animalType == null)
+            try {
+                createUpdate(new AnimalType("Mini-Porco"));
+            } catch (Exception ex) {
+            }
+
+        try {
+            animalType = findByDescription("Vaca");
+        } catch (Exception ex) {
+        }
+        if (animalType == null)
+            try {
+                createUpdate(new AnimalType("Vaca"));
+            } catch (Exception ex) {
+            }
     }
 }
