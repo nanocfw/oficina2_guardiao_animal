@@ -32,7 +32,7 @@ public class AnimalServiceImpl implements IAnimalService {
         if (animal.getName().isEmpty())
             throw new InvalidEntity("Nome do animal inválido.");
 
-        if (animal.getType().isEmpty())
+        if (animal.getAnimalType_id() == 0)
             throw new InvalidEntity("Tipo (gato/cachorro/pássaro/etc.) do animal inválido.");
 
         if (animal.getSpecie().isEmpty())
