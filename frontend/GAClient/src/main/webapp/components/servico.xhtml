@@ -20,7 +20,7 @@
                                      value=""
                                      requiredMessage="Por favor preencha o campo Nome"
                                      validatorMessage="O campo Nome deve conter no minímo 3 caracteres"
-                                     a:placeholder="Nome">
+                                     a:placeholder="Tipo do serviço">
                             <f:validateLength minimum="3"/>
                         </p:inputText>
                     </div>
@@ -28,9 +28,9 @@
                     <div class="inline">
                         <p:inputText id="temperamento" class="center-align" required="true"
                                      value=""
-                                     requiredMessage="Por favor preencha o campo Temperamento"
+                                     requiredMessage="Tpo de animal"
                                      validatorMessage="O campo Nome deve conter um valor entre 1 e 10"
-                                     a:placeholder="Temperamento">
+                                     a:placeholder="Tipo do animal">
                             <f:validateDoubleRange minimum="1" maximum="10"/>
                         </p:inputText>
                     </div>
@@ -47,10 +47,19 @@
                     <div class="inline">
                         <p:inputText id="weight" a:type="number" class="center-align" required="true"
                                      value=""
-                                     requiredMessage="Por favor preencha o campo Peso"
-                                     a:placeholder="Peso em gramas">
+                                     requiredMessage="Por favor preencha o campo Forma de Pagamento"
+                                     a:placeholder="Forma de Pagamento">
                         </p:inputText>
                     </div>
+
+                    <div class="inline">
+                        <p:inputText id="weightt" a:type="number" class="center-align" required="true"
+                                     value=""
+                                     requiredMessage="Por favor preencha o campo Valor"
+                                     a:placeholder="valor">
+                        </p:inputText>
+                    </div>
+
                     <h:messages id="register" style="color: red"/>
 
                     <br/>
