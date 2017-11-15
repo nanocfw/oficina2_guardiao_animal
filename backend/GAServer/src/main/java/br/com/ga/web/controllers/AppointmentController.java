@@ -28,7 +28,7 @@ public class AppointmentController {
             value = UrlMapping.APPOINTMENT_GET,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData<Appointment> get(@PathVariable(value = "appointmentId") long appointmentId) {
+    public ResponseData<Appointment> findById(@PathVariable(value = "appointmentId") long appointmentId) {
         try {
             Appointment appointment = appointmentService.findById(appointmentId);
             return new ResponseData<>(Appointment.class, appointment, ResponseCode.FOUND);

@@ -74,8 +74,9 @@ public class AnimalTypeController {
             value = UrlMapping.ANIMAL_TYPE_GET_LIST,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<AnimalType> findList(@PathVariable(value = "rowsReturn") int rowsReturn,
-                                     @PathVariable(value = "rowsIgnore") int rowsIgnore) {
+    public List<AnimalType> findList(
+            @PathVariable(value = "rowsReturn") int rowsReturn,
+            @PathVariable(value = "rowsIgnore") int rowsIgnore) {
         return animalTypeService.findList(rowsReturn, rowsIgnore);
     }
 

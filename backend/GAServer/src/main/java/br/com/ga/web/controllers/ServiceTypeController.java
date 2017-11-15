@@ -26,7 +26,7 @@ public class ServiceTypeController {
             value = UrlMapping.SERVICE_TYPE_GET,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData<ServiceType> get(@PathVariable(value = "serviceId") int serviceId) {
+    public ResponseData<ServiceType> findById(@PathVariable(value = "serviceId") int serviceId) {
         try {
             ServiceType s = serviceTypeService.findById(serviceId);
             return new ResponseData<>(ServiceType.class, s, ResponseCode.FOUND);
@@ -42,7 +42,7 @@ public class ServiceTypeController {
             value = UrlMapping.SERVICE_TYPE_GET_BY_DESCRIPTION,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData<ServiceType> get(@PathVariable(value = "serviceDescription") String serviceDescription) {
+    public ResponseData<ServiceType> findByDescription(@PathVariable(value = "serviceDescription") String serviceDescription) {
         try {
             ServiceType s = serviceTypeService.findByDescription(serviceDescription);
             return new ResponseData<>(ServiceType.class, s, ResponseCode.FOUND);
@@ -58,7 +58,7 @@ public class ServiceTypeController {
             value = UrlMapping.SERVICE_TYPE_GET_LIST,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ServiceType> getList() {
+    public List<ServiceType> findList() {
         return serviceTypeService.findList();
     }
 
@@ -82,7 +82,7 @@ public class ServiceTypeController {
     @RequestMapping(
             value = UrlMapping.SERVICE_TYPE_DELETE,
             method = RequestMethod.DELETE)
-    public ResponseData<Integer> delete(@PathVariable("serviceId") long serviceId) throws Exception {
+    public ResponseData<Integer> deleteById(@PathVariable("serviceId") long serviceId) throws Exception {
         try {
             int deletedRows = serviceTypeService.deleteById(serviceId);
             return new ResponseData<>(Integer.class, deletedRows, ResponseCode.DELETED);

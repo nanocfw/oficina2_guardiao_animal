@@ -58,9 +58,10 @@ public class ServiceProviderAnimalTypeController {
             value = UrlMapping.SERVICE_PROVIDER_ANIMAL_TYPE_GET_LIST_BY_PROVIDER,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ServiceProviderAnimalType> findListByProvider(@PathVariable(value = "serviceProviderId") long serviceProviderId,
-                                                              @PathVariable(value = "rowsReturn") int rowsReturn,
-                                                              @PathVariable(value = "rowsIgnore") int rowsIgnore) {
+    public List<ServiceProviderAnimalType> findListByProvider(
+            @PathVariable(value = "serviceProviderId") long serviceProviderId,
+            @PathVariable(value = "rowsReturn") int rowsReturn,
+            @PathVariable(value = "rowsIgnore") int rowsIgnore) {
         return serviceProviderAnimalTypeService.findListByProvider(serviceProviderId, rowsReturn, rowsIgnore);
     }
 
@@ -69,9 +70,10 @@ public class ServiceProviderAnimalTypeController {
             value = UrlMapping.SERVICE_PROVIDER_ANIMAL_TYPE_GET_LIST_BY_SERVICE_TYPE,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ServiceProviderAnimalType> findListByServiceType(@PathVariable(value = "serviceTypeId") long serviceTypeId,
-                                                                 @PathVariable(value = "rowsReturn") int rowsReturn,
-                                                                 @PathVariable(value = "rowsIgnore") int rowsIgnore) {
+    public List<ServiceProviderAnimalType> findListByServiceType(
+            @PathVariable(value = "serviceTypeId") long serviceTypeId,
+            @PathVariable(value = "rowsReturn") int rowsReturn,
+            @PathVariable(value = "rowsIgnore") int rowsIgnore) {
         return serviceProviderAnimalTypeService.findListByServiceType(serviceTypeId, rowsReturn, rowsIgnore);
     }
 
@@ -80,9 +82,10 @@ public class ServiceProviderAnimalTypeController {
             value = UrlMapping.SERVICE_PROVIDER_ANIMAL_TYPE_GET_LIST_BY_ANIMAL_TYPE,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ServiceProviderAnimalType> findListByAnimalType(@PathVariable(value = "animalTypeId") long animalTypeId,
-                                                                @PathVariable(value = "rowsReturn") int rowsReturn,
-                                                                @PathVariable(value = "rowsIgnore") int rowsIgnore) {
+    public List<ServiceProviderAnimalType> findListByAnimalType(
+            @PathVariable(value = "animalTypeId") long animalTypeId,
+            @PathVariable(value = "rowsReturn") int rowsReturn,
+            @PathVariable(value = "rowsIgnore") int rowsIgnore) {
         return serviceProviderAnimalTypeService.findListByAnimalType(animalTypeId, rowsReturn, rowsIgnore);
     }
 

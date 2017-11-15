@@ -24,7 +24,7 @@ public class PictureController {
             value = UrlMapping.PICTURE_GET,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData<Picture> get(@PathVariable(value = "pictureId") int pictureId) {
+    public ResponseData<Picture> findById(@PathVariable(value = "pictureId") int pictureId) {
         try {
             Picture p = pictureService.findById(pictureId);
             return new ResponseData<>(Picture.class, p, ResponseCode.FOUND);
@@ -55,7 +55,7 @@ public class PictureController {
     @RequestMapping(
             value = UrlMapping.PICTURE_DELETE,
             method = RequestMethod.DELETE)
-    public ResponseData<Integer> delete(@PathVariable("pictureId") long pictureId) throws Exception {
+    public ResponseData<Integer> deleteById(@PathVariable("pictureId") long pictureId) throws Exception {
         try {
             int deletedRows = pictureService.deleteById(pictureId);
             return new ResponseData<>(Integer.class, deletedRows, ResponseCode.DELETED);

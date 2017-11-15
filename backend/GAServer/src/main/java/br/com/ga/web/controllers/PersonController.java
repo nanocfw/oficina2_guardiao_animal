@@ -44,7 +44,7 @@ public class PersonController {
             value = UrlMapping.PERSON_GET,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData<Person> get(@PathVariable(value = "personId") long personId) {
+    public ResponseData<Person> findById(@PathVariable(value = "personId") long personId) {
         try {
             Person person = personService.findById(personId);
             return new ResponseData<>(Person.class, person, ResponseCode.FOUND);
@@ -78,7 +78,7 @@ public class PersonController {
             value = UrlMapping.PERSON_GET_LIST,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Person> getList(
+    public List<Person> findList(
             @PathVariable(value = "listClients") boolean listClients,
             @PathVariable(value = "rowsReturn") int rowsReturn,
             @PathVariable(value = "rowsIgnore") int rowsIgnore) {
@@ -140,7 +140,7 @@ public class PersonController {
             value = UrlMapping.PERSON_LOGIN,
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData<Person> login(@RequestBody Person p) {
+    public ResponseData<Person> findByEmailPassword(@RequestBody Person p) {
         try {
             Person person = personService.findByEmailPassword(p.getEmail(), p.getPassword());
             return new ResponseData<>(Person.class, person, ResponseCode.FOUND);
@@ -156,7 +156,7 @@ public class PersonController {
             value = UrlMapping.PERSON_LOGIN_BY_VALID_TOKEN,
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData<Person> loginByToken(@RequestBody Person person) {
+    public ResponseData<Person> findByValidToken(@RequestBody Person person) {
         try {
             Person p = personService.findByValidToken(person.getAuthToken());
             return new ResponseData<>(Person.class, p, ResponseCode.FOUND);
@@ -173,7 +173,7 @@ public class PersonController {
     @RequestMapping(
             value = UrlMapping.PERSON_DELETE,
             method = RequestMethod.DELETE)
-    public ResponseData<Integer> delete(@PathVariable("personId") long personId) throws Exception {
+    public ResponseData<Integer> deleteById(@PathVariable("personId") long personId) throws Exception {
         try {
             int deletedRows = personService.deleteById(personId);
             return new ResponseData<>(Integer.class, deletedRows, ResponseCode.DELETED);

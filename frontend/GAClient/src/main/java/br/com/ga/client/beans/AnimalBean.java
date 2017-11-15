@@ -111,6 +111,7 @@ public class AnimalBean extends DefaultBean {
                 picture = pictureService.createUpdate(picture);
             this.currentAnimal.setProfilePic_id(picture.getId());
             setCurrentAnimal(animalService.createUpdate(this.currentAnimal));
+            clear();
             return redirectToAnimals();
         } catch (InvalidEntity e) {
             FacesUtils.addErrorMessage("form:register", e.getMessage());
