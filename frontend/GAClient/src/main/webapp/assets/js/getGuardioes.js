@@ -22,11 +22,16 @@ getGuardioes = () => {
     }
 
     $.ajax({
-        url: `http://localhost:8090/ga/person/fetchserviceprovider/${country}/${cityFormated}/20/0`,
-        method: 'GET',
-        headers: { 'Authorization': 'Basic Z2FhZG1pbnNlcnZlcjpAZzRyZTV0cDRzcyM=',
-            'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET'},
+        url: "http://localhost:8090/ga/person/fetchserviceprovider/" + country + "/"+ cityFormated + "/20/0",
+        type: "GET",
+        contentType: 'application/json; charset=utf-8',
+        async: false,
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa("gaadminserver:@g4re5tp4ss#"))
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            alert(textStatus)
+        },
         sucess: function(data) {
             console.log('data:', data);
             $.each(pontos, function (ponto) {
