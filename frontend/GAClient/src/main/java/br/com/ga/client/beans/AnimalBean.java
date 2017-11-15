@@ -29,11 +29,11 @@ public class AnimalBean extends DefaultBean {
     @EJB
     IPictureService pictureService;
 
-    @ManagedProperty(value = "#{personBean}")
-    PersonBean personBean;
-
     @ManagedProperty(value = "#{loginBean}")
     LoginBean loginBean;
+
+    @ManagedProperty(value = "#{animalTypeBean}")
+    AnimalTypeBean animalTypeBean;
 
     private Animal currentAnimal;
     private String birthDate;
@@ -48,6 +48,7 @@ public class AnimalBean extends DefaultBean {
     public void setCurrentAnimal(Animal currentAnimal) {
         this.currentAnimal = currentAnimal;
         this.animalSize = currentAnimal.getSize().ordinal();
+        animalTypeBean.setCurrentTypeName(currentAnimal.getAnimalType_id());
         loadPictureFromDataBase();
 
         if (currentAnimal.getBirthDate() != null) {
@@ -84,14 +85,6 @@ public class AnimalBean extends DefaultBean {
         this.currentAnimal.setSize(AnimalSize.values()[animalSize]);
     }
 
-    public PersonBean getPersonBean() {
-        return personBean;
-    }
-
-    public void setPersonBean(PersonBean personBean) {
-        this.personBean = personBean;
-    }
-
     public LoginBean getLoginBean() {
         return loginBean;
     }
@@ -100,11 +93,20 @@ public class AnimalBean extends DefaultBean {
         this.loginBean = loginBean;
     }
 
+    public AnimalTypeBean getAnimalTypeBean() {
+        return animalTypeBean;
+    }
+
+    public void setAnimalTypeBean(AnimalTypeBean animalTypeBean) {
+        this.animalTypeBean = animalTypeBean;
+    }
+
     public String createUpdate() throws Exception {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = formatter.parse(this.birthDate);
         this.currentAnimal.setBirthDate(date);
-        this.currentAnimal.setOwner_id(personBean.getCurrentPerson().getId());
+        this.currentAnimal.setOwner_id(loginBean.getAuthenticatedUser().getId());
+        this.currentAnimal.setAnimalType_id(animalTypeBean.getCurrentIdTypeName());
 
         try {
             if (picture.isUpdated())

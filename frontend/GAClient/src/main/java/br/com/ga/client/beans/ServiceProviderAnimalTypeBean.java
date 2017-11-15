@@ -8,7 +8,7 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class ServiceProviderAnimalTypeBean {
+public class ServiceProviderAnimalTypeBean extends DefaultBean {
 
     @EJB
     IServiceProviderAnimalTypeService serviceProviderAnimalTypeService;
