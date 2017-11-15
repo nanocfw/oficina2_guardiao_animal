@@ -29,8 +29,8 @@ public class PersonServiceImpl implements IPersonService {
     IPersonDao personDao;
 
     @Override
-    public Person findById(long id) throws Exception {
-        return personDao.findById(id);
+    public Person findById(long personId) throws Exception {
+        return personDao.findById(personId);
     }
 
     @Override

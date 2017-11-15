@@ -35,10 +35,10 @@ public class AnimalDaoImpl implements IAnimalDao {
     }
 
     @Override
-    public Animal findById(long id) throws Exception {
+    public Animal findById(long animalId) throws Exception {
         return (Animal) em
-                .createQuery("SELECT a FROM Animal a WHERE a.id = :id")
-                .setParameter("id", id)
+                .createQuery("SELECT a FROM Animal a WHERE a.id = :animalId")
+                .setParameter("animalId", animalId)
                 .getSingleResult();
     }
 

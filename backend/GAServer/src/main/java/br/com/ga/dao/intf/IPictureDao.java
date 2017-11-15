@@ -5,7 +5,7 @@ import br.com.ga.entity.Picture;
 public interface IPictureDao {
     Picture createUpdate(Picture picture) throws Exception;
 
-    Picture findById(long id) throws Exception;
+    Picture findById(long pictureId) throws Exception;
 
     void delete(Picture picture) throws Exception;
 

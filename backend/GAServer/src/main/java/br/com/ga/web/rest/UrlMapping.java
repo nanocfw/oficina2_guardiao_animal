@@ -24,10 +24,10 @@ public class UrlMapping {
     public static final String PERSON_VALID_TOKEN = "fetchtoken/{token}";
 
     public static final String SERVICE_TYPE = "ga/servicetype/";
-    public static final String SERVICE_TYPE_GET = "fetch/{serviceId}";
+    public static final String SERVICE_TYPE_GET = "fetch/{serviceTypeId}";
     public static final String SERVICE_TYPE_GET_BY_DESCRIPTION = "fetch/{serviceDescription}";
     public static final String SERVICE_TYPE_GET_LIST = "fetch/";
-    public static final String SERVICE_TYPE_DELETE = "delete/{serviceId}";
+    public static final String SERVICE_TYPE_DELETE = "delete/{serviceTypeId}";
     public static final String SERVICE_TYPE_CREATE_UPDATE = "save/";
 
     public static final String PICTURE = "ga/picture/";

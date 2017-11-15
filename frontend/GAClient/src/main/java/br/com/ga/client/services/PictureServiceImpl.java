@@ -46,11 +46,11 @@ public class PictureServiceImpl extends Service implements IPictureService {
     }
 
     @Override
-    public Picture findById(long id) throws Exception {
+    public Picture findById(long pictureId) throws Exception {
         BasicAuthRestTemplate rest = getNewRestTemplate();
         ResponseEntity<ResponseData<Picture>> response;
         Map<String, Long> params = new HashMap<>();
-        params.put("pictureId", id);
+        params.put("pictureId", pictureId);
 
         response = rest.exchange(
                 getServerURL() + UrlMapping.PICTURE + UrlMapping.PICTURE_GET,

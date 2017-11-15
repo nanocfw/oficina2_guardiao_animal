@@ -46,11 +46,11 @@ public class AnimalServiceImpl extends Service implements IAnimalService {
     }
 
     @Override
-    public Animal findById(long id) throws Exception {
+    public Animal findById(long animalId) throws Exception {
         BasicAuthRestTemplate rest = getNewRestTemplate();
         ResponseEntity<ResponseData<Animal>> response;
         Map<String, Long> params = new HashMap<>();
-        params.put("animalId", id);
+        params.put("animalId", animalId);
 
         response = rest.exchange(
                 getServerURL() + UrlMapping.ANIMAL + UrlMapping.ANIMAL_GET,

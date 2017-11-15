@@ -40,12 +40,12 @@ public class PersonDaoImpl implements IPersonDao {
     }
 
     @Override
-    public Person findById(long id) throws Exception {
+    public Person findById(long personId) throws Exception {
         TypedQuery<Person> qry = em
-                .createQuery("SELECT p FROM Person p WHERE p.id = :id", Person.class);
+                .createQuery("SELECT p FROM Person p WHERE p.id = :personId", Person.class);
         try {
             return (Person) qry
-                    .setParameter("id", id)
+                    .setParameter("personId", personId)
                     .getSingleResult();
         } catch (NoResultException ex) {
             throw new EntityNotFound();

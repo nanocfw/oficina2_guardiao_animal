@@ -44,11 +44,11 @@ public class ServiceTypeServiceImpl extends Service implements IServiceTypeServi
     }
 
     @Override
-    public ServiceType findById(int id) throws Exception {
+    public ServiceType findById(int serviceTypeId) throws Exception {
         BasicAuthRestTemplate rest = getNewRestTemplate();
         ResponseEntity<ResponseData<ServiceType>> response;
         Map<String, Integer> params = new HashMap<>();
-        params.put("serviceId", id);
+        params.put("serviceTypeId", serviceTypeId);
 
         response = rest.exchange(
                 getServerURL() + UrlMapping.SERVICE_TYPE + UrlMapping.SERVICE_TYPE_GET,
@@ -123,10 +123,10 @@ public class ServiceTypeServiceImpl extends Service implements IServiceTypeServi
         BasicAuthRestTemplate rest = getNewRestTemplate();
         ResponseEntity<ResponseData<Integer>> response;
         Map<String, Long> params = new HashMap<>();
-        params.put("serviceId", serviceTypeId);
+        params.put("serviceTypeId", serviceTypeId);
 
         response = rest.exchange(
-                getServerURL() + UrlMapping.PICTURE + UrlMapping.PICTURE_DELETE,
+                getServerURL() + UrlMapping.SERVICE_TYPE + UrlMapping.SERVICE_TYPE_DELETE,
                 HttpMethod.DELETE,
                 null,
                 new ParameterizedTypeReference<ResponseData<Integer>>() {

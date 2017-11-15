@@ -59,11 +59,11 @@ public class PersonServiceImpl extends Service implements IPersonService {
     }
 
     @Override
-    public Person findById(long id) throws Exception {
+    public Person findById(long personId) throws Exception {
         BasicAuthRestTemplate rest = getNewRestTemplate();
         ResponseEntity<ResponseData<Person>> response;
         Map<String, Long> params = new HashMap<>();
-        params.put("personId", id);
+        params.put("personId", personId);
 
         response = rest.exchange(
                 getServerURL() + UrlMapping.PERSON + UrlMapping.PERSON_GET,

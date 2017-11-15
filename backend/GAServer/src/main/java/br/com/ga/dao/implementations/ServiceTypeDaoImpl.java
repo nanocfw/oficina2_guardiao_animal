@@ -24,12 +24,12 @@ public class ServiceTypeDaoImpl implements IServiceTypeDao {
     }
 
     @Override
-    public ServiceType findById(int id) throws EntityNotFound {
+    public ServiceType findById(int serviceTypeId) throws EntityNotFound {
         TypedQuery<ServiceType> qry = em
-                .createQuery("SELECT p FROM ServiceType p WHERE p.id = :id", ServiceType.class);
+                .createQuery("SELECT p FROM ServiceType p WHERE p.id = :serviceTypeId", ServiceType.class);
         try {
             return (ServiceType) qry
-                    .setParameter("id", id)
+                    .setParameter("serviceTypeId", serviceTypeId)
                     .getSingleResult();
         } catch (NoResultException ex) {
             throw new EntityNotFound();

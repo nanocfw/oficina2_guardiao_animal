@@ -45,8 +45,8 @@ public class AnimalServiceImpl implements IAnimalService {
     }
 
     @Override
-    public Animal findById(long id) throws Exception {
-        return animalDao.findById(id);
+    public Animal findById(long animalId) throws Exception {
+        return animalDao.findById(animalId);
     }
 
     @Override

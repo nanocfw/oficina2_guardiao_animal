@@ -23,12 +23,12 @@ public class PictureDaoImpl implements IPictureDao {
     }
 
     @Override
-    public Picture findById(long id) throws Exception {
+    public Picture findById(long pictureId) throws Exception {
         TypedQuery<Picture> qry = em
-                .createQuery("SELECT p FROM Picture p WHERE p.id = :id", Picture.class);
+                .createQuery("SELECT p FROM Picture p WHERE p.id = :pictureId", Picture.class);
         try {
             return (Picture) qry
-                    .setParameter("id", id)
+                    .setParameter("pictureId", pictureId)
                     .getSingleResult();
         } catch (NoResultException ex) {
             throw new EntityNotFound();

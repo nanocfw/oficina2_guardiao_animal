@@ -39,8 +39,8 @@ public class AppointmentServiceImpl implements IAppointmentService {
     }
 
     @Override
-    public Appointment findById(long id) throws Exception {
-        return appointmentDao.findById(id);
+    public Appointment findById(long appointmentId) throws Exception {
+        return appointmentDao.findById(appointmentId);
     }
 
     @Override

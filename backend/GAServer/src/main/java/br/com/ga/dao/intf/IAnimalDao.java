@@ -16,7 +16,7 @@ public interface IAnimalDao {
 
     Animal createUpdate(final Animal animal) throws Exception;
 
-    Animal findById(final long id) throws Exception;
+    Animal findById(final long animalId) throws Exception;
 
     List<Animal> findList(final long ownerId, final int rowsReturn, int rowsIgnore);
 

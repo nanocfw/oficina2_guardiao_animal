@@ -7,7 +7,7 @@ import java.util.List;
 public interface IAnimalTypeDao {
     AnimalType createUpdate(final AnimalType animalType) throws Exception;
 
-    AnimalType findById(final long id) throws Exception;
+    AnimalType findById(final long animalTypeId) throws Exception;
 
     AnimalType findByDescription(final String description) throws Exception;
 

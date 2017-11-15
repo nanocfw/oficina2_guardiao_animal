@@ -8,7 +8,7 @@ import java.util.List;
 public interface IServiceTypeService {
     ServiceType createUpdate(final ServiceType service) throws Exception;
 
-    ServiceType findById(final int id) throws Exception;
+    ServiceType findById(final int serviceTypeId) throws Exception;
 
     ServiceType findByDescription(final String description) throws Exception;
 

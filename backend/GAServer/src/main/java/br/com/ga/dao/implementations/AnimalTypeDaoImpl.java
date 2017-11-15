@@ -26,10 +26,10 @@ public class AnimalTypeDaoImpl implements IAnimalTypeDao {
     }
 
     @Override
-    public AnimalType findById(long id) throws Exception {
+    public AnimalType findById(long animalTypeId) throws Exception {
         return (AnimalType) em
-                .createQuery("SELECT a FROM AnimalType a WHERE a.id = :id")
-                .setParameter("id", id)
+                .createQuery("SELECT a FROM AnimalType a WHERE a.id = :animalTypeId")
+                .setParameter("animalTypeId", animalTypeId)
                 .getSingleResult();
     }
 
@@ -80,7 +80,7 @@ public class AnimalTypeDaoImpl implements IAnimalTypeDao {
             try {
                 createUpdate(new AnimalType("Aves"));
             } catch (Exception ex) {
-           }
+            }
 
         try {
             animalType = findByDescription("Répteis");

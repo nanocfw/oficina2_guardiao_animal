@@ -20,7 +20,7 @@ public interface IPersonService {
 
     Person createUpdate(final Person person) throws Exception;
 
-    Person findById(final long id) throws Exception;
+    Person findById(final long personId) throws Exception;
 
     boolean emailInUse(long currentId, final String email) throws Exception;
 

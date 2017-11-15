@@ -47,11 +47,11 @@ public class AppointmentServiceImpl extends Service implements IAppointmentServi
     }
 
     @Override
-    public Appointment findById(long id) throws Exception {
+    public Appointment findById(long appointmentId) throws Exception {
         BasicAuthRestTemplate rest = getNewRestTemplate();
         ResponseEntity<ResponseData<Appointment>> response;
         Map<String, Long> params = new HashMap<>();
-        params.put("appointmentId", id);
+        params.put("appointmentId", appointmentId);
 
         response = rest.exchange(
                 getServerURL() + UrlMapping.APPOINTMENT + UrlMapping.APPOINTMENT_GET,

@@ -18,8 +18,8 @@ public class PictureServiceImpl implements IPictureService {
     }
 
     @Override
-    public Picture findById(long id) throws Exception {
-        return pictureDao.findById(id);
+    public Picture findById(long pictureId) throws Exception {
+        return pictureDao.findById(pictureId);
     }
 
     @Override

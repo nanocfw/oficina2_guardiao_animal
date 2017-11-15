@@ -27,10 +27,10 @@ public class AppointmentDaoImpl implements IAppointmentDao {
     }
 
     @Override
-    public Appointment findById(long id) throws Exception {
+    public Appointment findById(long appointmentId) throws Exception {
         return (Appointment) em
-                .createQuery("SELECT a FROM Appointment a WHERE a.id = :id")
-                .setParameter("id", id)
+                .createQuery("SELECT a FROM Appointment a WHERE a.id = :appointmentId")
+                .setParameter("appointmentId", appointmentId)
                 .getSingleResult();
     }
 

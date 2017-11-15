@@ -20,8 +20,8 @@ public class AnimalTypeServiceImpl implements IAnimalTypeService {
     }
 
     @Override
-    public AnimalType findById(long id) throws Exception {
-        return animalTypeDao.findById(id);
+    public AnimalType findById(long animalTypeId) throws Exception {
+        return animalTypeDao.findById(animalTypeId);
     }
 
     @Override

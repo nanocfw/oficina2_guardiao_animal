@@ -20,8 +20,8 @@ public class ServiceProviderAnimalTypeServiceImpl implements IServiceProviderAni
     }
 
     @Override
-    public ServiceProviderAnimalType findById(long id) throws Exception {
-        return serviceProviderAnimalTypeDao.findById(id);
+    public ServiceProviderAnimalType findById(long serviceProviderAnimalTypeId) throws Exception {
+        return serviceProviderAnimalTypeDao.findById(serviceProviderAnimalTypeId);
     }
 
     @Override

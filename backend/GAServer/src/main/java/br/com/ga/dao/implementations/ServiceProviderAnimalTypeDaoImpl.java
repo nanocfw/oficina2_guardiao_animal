@@ -26,10 +26,10 @@ public class ServiceProviderAnimalTypeDaoImpl implements IServiceProviderAnimalT
     }
 
     @Override
-    public ServiceProviderAnimalType findById(long id) throws Exception {
+    public ServiceProviderAnimalType findById(long serviceProviderAnimalTypeId) throws Exception {
         return (ServiceProviderAnimalType) em
-                .createQuery("SELECT s FROM ServiceProviderAnimalType s WHERE s.id = :id")
-                .setParameter("id", id)
+                .createQuery("SELECT s FROM ServiceProviderAnimalType s WHERE s.id = :serviceProviderAnimalTypeId")
+                .setParameter("serviceProviderAnimalTypeId", serviceProviderAnimalTypeId)
                 .getSingleResult();
     }
 

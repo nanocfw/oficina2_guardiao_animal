@@ -7,7 +7,7 @@ import java.util.List;
 public interface IServiceProviderAnimalTypeDao {
     ServiceProviderAnimalType createUpdate(final ServiceProviderAnimalType serviceProviderAnimalType) throws Exception;
 
-    ServiceProviderAnimalType findById(final long id) throws Exception;
+    ServiceProviderAnimalType findById(final long serviceProviderAnimalTypeId) throws Exception;
 
     List<ServiceProviderAnimalType> findListByProvider(final long serviceProviderId, final int rowsReturn, int rowsIgnore);
 

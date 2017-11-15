@@ -8,7 +8,7 @@ import java.util.List;
 public interface IServiceTypeDao {
     ServiceType createUpdate(final ServiceType service) throws Exception;
 
-    ServiceType findById(final int id) throws EntityNotFound;
+    ServiceType findById(final int serviceTypeId) throws EntityNotFound;
 
     ServiceType findByDescription(final String description) throws Exception;
 
