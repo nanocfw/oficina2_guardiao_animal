@@ -84,6 +84,8 @@ public class LoginBean extends DefaultBean {
     }
 
     public String logout() throws IOException {
+        authenticatedUser = new Person();
+        personBean.setCurrentPerson(authenticatedUser);
         SessionUtils.getSession().invalidate();
         Util.setCookie(Consts.COOKIE_NAME, "", 0);
 

@@ -56,5 +56,6 @@ public class Person implements Serializable {
 
     public Person() {
         super();
+        type = PersonType.UNDEFINED;
     }
 }
