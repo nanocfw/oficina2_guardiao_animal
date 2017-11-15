@@ -1,6 +1,5 @@
 package br.com.ga.entity;
 
-import br.com.ga.entity.enums.BillingType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
@@ -8,22 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.Serializable;
 
+@Data
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Data
-public class ServiceType implements Serializable {
+public class AnimalType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String description;
 
-    public ServiceType() {
+    public AnimalType() {
         super();
-    }
-
-    public ServiceType(String description) {
-        this.description = description;
     }
 }

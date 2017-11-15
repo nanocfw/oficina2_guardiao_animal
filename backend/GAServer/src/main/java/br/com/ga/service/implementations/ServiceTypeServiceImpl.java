@@ -21,9 +21,6 @@ public class ServiceTypeServiceImpl implements IServiceTypeService {
         if (service.getDescription().isEmpty())
             throw new InvalidEntity("Descrição do serviço inválida.");
 
-        if (service.getValue() <= 0)
-            throw new InvalidEntity("Valor cobrado pelo serviço inválido.");
-
         return serviceTypeDao.createUpdate(service);
     }
 

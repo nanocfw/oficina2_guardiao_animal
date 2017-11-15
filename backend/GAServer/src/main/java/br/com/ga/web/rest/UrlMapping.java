@@ -48,4 +48,19 @@ public class UrlMapping {
     public static final String APPOINTMENT_GET_LIST_BY_SERVICE_PROVIDER = "fetchserviceprovider/{serviceProviderId}/{rowsReturn}/{rowsIgnore}";
     public static final String APPOINTMENT_CREATE_UPDATE = "save/";
     public static final String APPOINTMENT_DELETE = "delete/{appointmentId}";
+
+    public static final String ANIMAL_TYPE = "ga/animaltype/";
+    public static final String ANIMAL_TYPE_CREATE_UPDATE = "save/";
+    public static final String ANIMAL_TYPE_GET = "fetch/{animalTypeId}";
+    public static final String ANIMAL_TYPE_GET_BY_DESCRIPTION = "fetch/{description}";
+    public static final String ANIMAL_TYPE_GET_LIST = "fetch/{rowsReturn}/{rowsIgnore}";
+    public static final String ANIMAL_TYPE_DELETE = "delete/{animalTypeId}";
+
+    public static final String SERVICE_PROVIDER_ANIMAL_TYPE = "ga/serviceprovideranimaltype/";
+    public static final String SERVICE_PROVIDER_ANIMAL_TYPE_CREATE_UPDATE = "save/";
+    public static final String SERVICE_PROVIDER_ANIMAL_TYPE_GET = "fetch/{serviceProviderAnimalTypeId}";
+    public static final String SERVICE_PROVIDER_ANIMAL_TYPE_GET_LIST_BY_PROVIDER = "fetch/p/{serviceProviderId}/{rowsReturn}/{rowsIgnore}";
+    public static final String SERVICE_PROVIDER_ANIMAL_TYPE_GET_LIST_BY_SERVICE_TYPE = "fetch/s/{serviceTypeId}/{rowsReturn}/{rowsIgnore}";
+    public static final String SERVICE_PROVIDER_ANIMAL_TYPE_GET_LIST_BY_ANIMAL_TYPE = "fetchp/a/{AnimalTypeId}/{rowsReturn}/{rowsIgnore}";
+    public static final String SERVICE_PROVIDER_ANIMAL_TYPE_DELETE = "delete/{serviceProviderAnimalTypeId}";
 }
