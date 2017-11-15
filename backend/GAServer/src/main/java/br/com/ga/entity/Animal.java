@@ -19,7 +19,7 @@ public class Animal implements Serializable {
     private long id;
     private String name;
     private int animalType_id;//tipo do animal
-    private String specie;
+    private String breed;
     @Enumerated(EnumType.ORDINAL)
     private AnimalSize size;
     private int temperament;

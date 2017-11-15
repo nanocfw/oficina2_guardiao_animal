@@ -35,7 +35,7 @@ public class AnimalServiceImpl implements IAnimalService {
         if (animal.getAnimalType_id() == 0)
             throw new InvalidEntity("Tipo (gato/cachorro/pássaro/etc.) do animal inválido.");
 
-        if (animal.getSpecie().isEmpty())
+        if (animal.getBreed().isEmpty())
             throw new InvalidEntity("Espécie (raça) do animal inválida.");
 
         if (animal.getWeight() <= 0)

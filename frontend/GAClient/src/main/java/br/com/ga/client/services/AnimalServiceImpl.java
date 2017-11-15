@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @Stateless
-public class AnimalImpl extends Service implements IAnimalService {
+public class AnimalServiceImpl extends Service implements IAnimalService {
     @Override
     public Animal createUpdate(Animal animal) throws Exception {
         BasicAuthRestTemplate rest = getNewRestTemplate();

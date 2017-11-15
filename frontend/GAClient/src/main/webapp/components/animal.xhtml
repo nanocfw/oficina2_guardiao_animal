@@ -43,15 +43,13 @@
 
                     <div class="inline">
                         <p:inputText id="specie" class="center-align" required="true"
-                                     value="#{animalBean.currentAnimal.specie}"
-                                     requiredMessage="Por favor preencha o campo Espécie"
-                                     validatorMessage="O campo Espécie deve conter no minímo 3 caracteres"
-                                     a:placeholder="Espécie">
-                            <f:validateLength minimum="3"/>
+                                     value="#{animalBean.currentAnimal.animalType_id}"
+                                     requiredMessage="Por favor preencha o campo Tipo"
+                                     a:placeholder="Tipo">
                         </p:inputText>
                         -
                         <p:inputText id="type" class="center-align" rendered="true"
-                                     value="#{animalBean.currentAnimal.type}"
+                                     value="#{animalBean.currentAnimal.breed}"
                                      requiredMessage="Por favor preencha o campo Raça"
                                      validatorMessage="O campo Raça deve conter no minímo 3 caracteres"
                                      a:placeholder="Raça">
