@@ -1,0 +1,21 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <script type="text/javascript" src="assets/js/getGuardioes.js"></script>
+
+
+    <h:inputHidden id="countryBean" value=""/>
+    <h:inputHidden id="locBean" value=""/>
+
+    <ul id="guardioes" class="column guardioes">
+        <script>getGuardioesAuth();</script>
+    </ul>
+
+    <script>
+        document.getElementById("countryBean").value = window.localStorage.getItem('country');
+        document.getElementById("locBean").value = window.localStorage.getItem('loc').split(',')[0];
+    </script>
+</ui:composition>
