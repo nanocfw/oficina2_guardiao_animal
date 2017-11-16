@@ -21,19 +21,19 @@ getGuardioes = () => {
     }
 
         $.ajax({
-            url: "http://localhost:8090/ga/person/fetchserviceprovider/" + country + "/"+ cityFormated + "/20/0",
+            url: "http://localhost:8090/ga/person/fetchserviceprovider/" + country + "/" + cityFormated + "/20/0",
             type: "GET",
             contentType: 'application/json; charset=utf-8',
             async: false,
-            beforeSend: function(xhr) {
+            beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Basic " + btoa("gaadminserver:@g4re5tp4ss#"))
             },
-            error : function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus)
             },
-            success: function(person) {
-                console.log('data: ', person)
-                for (var i = 0; i <= person.length; i++) {
+            success: function (persons) {
+                persons.map( person =>
+                {
                     var guardiao = `<li id="guardiao" class="container" opacity="0">
                 <div class="col s12 m8 offset-m2 l6 offset-l3">
                     <div class="card-panel grey lighten-5 z-depth-1">
@@ -43,10 +43,10 @@ getGuardioes = () => {
                                     <img src="assets/images/img.jpg" alt="" class="circle responsive-img"/>
                                 </div>
                                 <div class="col s10">
-                                    <h5 class="grey-text">${person[i].name}</h5>
+                                    <h5 class="grey-text">${person.name}</h5>
                                     <br />
                                     <span class="grey-text">
-                                        ${person[i].city}
+                                        ${person.city}
                                     </span>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@ getGuardioes = () => {
                 </div>
             </li>`;
                     guardioes = guardioes + guardiao;
-                }
+                })
             }
         });
         if (guardioes === '') {
@@ -104,9 +104,9 @@ getGuardioesAuth = () => {
         error : function(jqXHR, textStatus, errorThrown) {
             alert(textStatus)
         },
-        success: function(person) {
-            console.log('data: ', person)
-            for (var i = 0; i <= person.length; i++) {
+        success: function(persons) {
+            persons.map( person =>
+            {
                 var guardiao = `<li id="guardiao" class="container" opacity="0">
                 <div class="col s12 m8 offset-m2 l6 offset-l3">
                     <div class="card-panel grey lighten-5 z-depth-1">
@@ -116,23 +116,24 @@ getGuardioesAuth = () => {
                                     <img src="assets/images/img.jpg" alt="" class="circle responsive-img"/>
                                 </div>
                                 <div class="col s10">
-                                    <h5 class="grey-text">${person[i].name}</h5>
+                                    <h5 class="grey-text">${person.name}</h5>
                                     <br />
                                     <span class="grey-text">
-                                        ${person[i].city}
+                                        ${person.city}
                                     </span>
                                 </div>
                             </div>
                             <div class="valor row halign-wrapper">
-                                <h5 class="orange-text" style="margin-bottom: 0">R$ </h5>
-                                <span class="grey-text">por noite</span>
+                                <h5 class="orange-text center-align" style="margin-bottom: 0">R$${person.valor}</h5>
+                                <span class="grey-text" style="display: block; text-align: center">por noite</span>
+                                <a class="waves-effect waves-light btn deep-orange lighten-1" href="#contratarServico">Contratar</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </li>`;
                 guardioes = guardioes + guardiao;
-            }
+            });
         }
     });
     if (guardioes === '') {
@@ -176,8 +177,9 @@ getMarkers = (map, icon = 'assets/images/mark.png') => {
         error: function (jqXHR, textStatus, errorThrown) {
             alert(textStatus)
         },
-        success: function (index, person) {
-
+        success: function (persons) {
+            persons.map( person =>
+            {
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(person.latitude, person.longitude),
                 // title: "Meu ponto personalizado! ID: " + ponto.Id.toString(),
@@ -201,6 +203,7 @@ getMarkers = (map, icon = 'assets/images/mark.png') => {
                 infowindow.close(map, marker);
                 marker.setIcon(icon);
             });
-            }
         });
-};
+        }
+    });
+};1
