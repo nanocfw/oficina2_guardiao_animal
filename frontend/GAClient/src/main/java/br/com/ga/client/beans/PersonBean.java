@@ -114,7 +114,11 @@ public class PersonBean extends DefaultBean {
             if (currentPerson.getBirthDate() == null) {
                 return redirectToEndRegister();
             } else {
-                return redirectToMain();
+                if (currentPerson.isServiceProvider()) {
+                    return redirectToMain();
+                } else {
+                    return redirectToMainClient();
+                }
             }
         } catch (InvalidEntity e) {
             FacesUtils.addErrorMessage("gform:register", e.getMessage());

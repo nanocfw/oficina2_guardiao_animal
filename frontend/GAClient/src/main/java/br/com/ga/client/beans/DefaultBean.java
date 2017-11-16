@@ -16,6 +16,15 @@ public abstract class DefaultBean implements Serializable {
         return "indexAuth";
     }
 
+    public String redirectToMainClient() throws IOException {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ExternalContext extContext = ctx.getExternalContext();
+        String url;
+        url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/indexAuthClient.xhtml"));
+        extContext.redirect(url);
+        return "indexAuthClient";
+    }
+
     public String redirectToEndRegister() throws IOException {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();

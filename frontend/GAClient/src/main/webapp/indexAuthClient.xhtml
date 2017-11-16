@@ -44,31 +44,31 @@
         <div class="loader-section section-right"></div>
 
     </div>
-        <div id="content">
-            <h:form>
-                <ui:include src="/components/navbarAuth.xhtml"/>
-                <ui:include src="/components/sideNavGuardiao.xhtml"/>
-            </h:form>
-            <div class="main">
-                <h1> HI PEOPLES</h1>
-            </div>
-
+    <div id="content">
+        <h:form>
+            <ui:include src="/components/navbarAuth.xhtml"/>
+            <ui:include src="/components/sideNavClient.xhtml"/>
+        </h:form>
+        <div class="main">
+            <h1> HI PEOPLES</h1>
         </div>
 
-        <ui:include src="/components/footer.xhtml"/>
+    </div>
+
+    <ui:include src="/components/footer.xhtml"/>
 
     <!--@formatter:off-->
-        <script>
+    <script>
 
-            var $doc = $('html, body');
-            $('.scroll').click(function () {
-                $doc.animate({
-                    scrollTop: $($.attr(this, 'href')).offset().top
-                }, 500);
-                return false;
-            });
-        </script>
-<!--@formatter:on-->
+        var $doc = $('html, body');
+        $('.scroll').click(function () {
+            $doc.animate({
+                scrollTop: $($.attr(this, 'href')).offset().top
+            }, 500);
+            return false;
+        });
+    </script>
+    <!--@formatter:on-->
 </h:body>
 </html>
 

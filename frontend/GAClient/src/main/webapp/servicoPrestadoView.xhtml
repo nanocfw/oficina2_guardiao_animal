@@ -7,7 +7,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <title>Serviços</title>
+    <title>Serviços Prestados</title>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -40,8 +40,6 @@
 
     </div>
 
-    <input class="file-upload" type="file" accept="image/*"/>
-    <ui:include src="/components/servico.xhtml"/>
 
     <div id="content">
         <h:form>
@@ -49,11 +47,7 @@
             <ui:include src="/components/sideNavGuardiao.xhtml"/>
 
             <div>
-                <h1 class="text-grey">Serviços</h1>
-
-                <a href="#servico" class="waves-effect waves-light btn deep-orange lighten-1 align-right">
-                    Serviço <i class="material-icons">exposure_plus_1</i>
-                </a>
+                <h1 class="text-grey">Serviços Prestados</h1>
             </div>
 
 
@@ -61,6 +55,10 @@
 
                 <div class="form">
                     <p:dataTable var="" value="">
+                        <p:column style="text-align: center"  headerText="Cliente">
+                            <h:outputText value="" style="font-weight: bold"/>
+                        </p:column>
+
                         <p:column style="text-align: center"  headerText="Tipo de Serviço">
                             <h:outputText value="" style="font-weight: bold"/>
                         </p:column>

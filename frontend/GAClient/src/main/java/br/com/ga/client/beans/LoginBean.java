@@ -70,8 +70,14 @@ public class LoginBean extends DefaultBean {
             setAuthenticatedUser(p);
             personBean.setCurrentPerson(p);
 
-            if (p.isFinishedRegister())
-                return redirectToMain();
+            if (p.isFinishedRegister()) {
+                if (personBean.getCurrentPerson().isServiceProvider()) {
+                    return redirectToMain();
+                }
+                else {
+                    return redirectToMainClient();
+                }
+            }
             else
                 return redirectToEndRegister();
         } catch (EntityNotFound e) {
@@ -104,7 +110,11 @@ public class LoginBean extends DefaultBean {
             p = updateToken(p);
             setAuthenticatedUser(p);
             personBean.setCurrentPerson(p);
-            redirectToMain();
+            if (personBean.getCurrentPerson().isServiceProvider() == true) {
+                redirectToMain();
+            } else {
+                redirectToMainClient();
+            }
             return true;
         } catch (Exception e) {
             e.printStackTrace();
