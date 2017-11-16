@@ -1,6 +1,10 @@
 let enter = (event) => {
 };
-getCity = () => {
+
+let enterAuth = (event) => {
+};
+
+getCity = (event) => {
     var latitude = parseFloat(window.localStorage.getItem('lat'));
     var longitude = parseFloat(window.localStorage.getItem('lon'));
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -13,6 +17,7 @@ getCity = () => {
     };
 
     getData(map, options);
+    getMarkers(map);
 };
 
 getData = (map, options) => {
@@ -54,8 +59,9 @@ getData = (map, options) => {
         lon = place.geometry.location.lng();
 
         setCity(postal_code, country, loc, lat, lon);
-        
+
         getGuardioes();
+        getGuardioesAuth();
     });
 
 };
@@ -71,9 +77,18 @@ setCity = (postal_code, country, loc, lat, lon) => {
         let key = event.key;
         if (key === "Enter" && ($('#address')[0].value) !== "") {
             console.log($('#address')[0].value);
-            window.location = '../../searchGuardiaoAuth.xhtml';
+            window.location = '../../gaclient/searchGuardiao.xhtml';
         }
     };
+
+    enterAuth = (event) => {
+        let key = event.key;
+        if (key === "Enter" && ($('#address')[0].value) !== "") {
+            console.log($('#address')[0].value);
+            window.location = '../../gaclient/searchGuardiaoAuth.xhtml';
+        }
+    };
+
 };
 
 // type enter to scroll on main page function
