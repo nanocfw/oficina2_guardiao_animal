@@ -34,36 +34,30 @@ getGuardioes = () => {
             success: function (persons) {
                 persons.map( person =>
                 {
-                    var guardiao = `<li id="guardiao" class="container" opacity="0">
-                <div class="col s12 m8 offset-m2 l6 offset-l3">
-                    <div class="card-panel grey lighten-5 z-depth-1">
-                        <div class="inline">
-                            <div class="row valign-wrapper">
-                                <div class="col s2">
-                                    <img src="assets/images/img.jpg" alt="" class="circle responsive-img"/>
-                                </div>
-                                <div class="col s10">
-                                    <h5 class="grey-text">${person.name}</h5>
-                                    <br />
-                                    <span class="grey-text">
-                                        ${person.city}
-                                    </span>
+                    var guardiao = `
+                        <li id="guardiao" class="container" opacity="0">
+                            <div class="col s12 m8">
+                                <div class="card vertical">
+                                    <div class="inline-guardiao">
+                                        <img class="img-guardiao" src="assets/images/img.jpg">
+                                        <div class="content-guardiao text-grey">
+                                          <h3>${person.name}</h3>
+                                          <h4>${person.city}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="valor center-align">
+                                      <h4 class="orange-text center-align" style="margin-bottom: 0">R$ 40</h4>
+                                      <h6 class="grey-text" style="display: block; text-align: center">por noite</h6>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="valor row halign-wrapper">
-                                <h5 class="orange-text" style="margin-bottom: 0">R$ </h5>
-                                <span class="grey-text">por noite</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>`;
+                        </li>`;
                     guardioes = guardioes + guardiao;
                 })
             }
         });
         if (guardioes === '') {
-            return document.querySelector('#guardioes').innerHTML = `<h4 class="text-grey center-align">Desculpe, nenhum <span class="text-orange">Guardião</span> foi encontrado nesta regiao.</h4>`;
+            return document.querySelector('#guardioes').innerHTML = `<h4 class="text-grey center-align" style="padding: 120px 0;">Desculpe, nenhum <span class="text-orange">Guardião</span> foi encontrado nesta regiao.</h4>`;
         } else {
             for (i = 0; i < guardioes.length; i++) {
                 return document.querySelector('#guardioes').innerHTML = guardioes;
@@ -107,37 +101,33 @@ getGuardioesAuth = () => {
         success: function(persons) {
             persons.map( person =>
             {
-                var guardiao = `<li id="guardiao" class="container" opacity="0">
-                <div class="col s12 m8 offset-m2 l6 offset-l3">
-                    <div class="card-panel grey lighten-5 z-depth-1">
-                        <div class="inline">
-                            <div class="row valign-wrapper">
-                                <div class="col s2">
-                                    <img src="assets/images/img.jpg" alt="" class="circle responsive-img"/>
+                var guardiao = `
+                    <li id="guardiao" class="container" opacity="0">
+                        <div class="col s12 m8">
+                            <div class="card vertical">
+                                <div class="inline-guardiao">
+                                    <img class="img-guardiao" src="assets/images/img.jpg">
+                                    <div class="content-guardiao text-grey">
+                                      <h3>${person.name}</h3>
+                                      <h4>${person.city}</h4>
+                                    </div>
                                 </div>
-                                <div class="col s10">
-                                    <h5 class="grey-text">${person.name}</h5>
-                                    <br />
-                                    <span class="grey-text">
-                                        ${person.city}
-                                    </span>
+                                <div class="valor center-align">
+                                  <h4 class="orange-text center-align" style="margin-bottom: 0">R$ 40</h4>
+                                  <h6 class="grey-text" style="display: block; text-align: center">por noite</h6>
                                 </div>
-                            </div>
-                            <div class="valor row halign-wrapper">
-                                <h5 class="orange-text center-align" style="margin-bottom: 0">R$${person.valor}</h5>
-                                <span class="grey-text" style="display: block; text-align: center">por noite</span>
-                                <a class="waves-effect waves-light btn deep-orange lighten-1" href="#contratarServico">Contratar</a>
+                                <div class="center-align row padding-top-bottom">
+                                  <a class="waves-effect waves-light btn deep-orange lighten-1" href="#contratarServico">Contratar</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </li>`;
+                    </li>`;
                 guardioes = guardioes + guardiao;
             });
         }
     });
     if (guardioes === '') {
-            return document.querySelector('#guardioes').innerHTML = `<h4 class="text-grey center-align">Desculpe, nenhum <span class="text-orange">Guardião</span> foi encontrado nesta regiao.</h4>`;
+            return document.querySelector('#guardioes').innerHTML = `<h4 class="text-grey center-align" style="padding: 120px 0">Desculpe, nenhum <span class="text-orange">Guardião</span> foi encontrado nesta regiao.</h4>`;
         } else {
             for (i = 0; i < guardioes.length; i++) {
                 return document.querySelector('#guardioes').innerHTML = guardioes;

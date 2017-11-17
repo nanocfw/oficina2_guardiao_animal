@@ -34,7 +34,7 @@ getData = (map, options) => {
 
         var place = autocomplete.getPlace();
         if (!place.geometry) {
-            return window.alert("Autocomplete's returned place contains no geometry");
+                return ''
 
         }
 
@@ -62,6 +62,7 @@ getData = (map, options) => {
 
         getGuardioes();
         getGuardioesAuth();
+        getMarkers(map);
     });
 
 };
