@@ -96,7 +96,7 @@ getGuardioesAuth = () => {
             xhr.setRequestHeader("Authorization", "Basic " + btoa("gaadminserver:@g4re5tp4ss#"))
         },
         error : function(jqXHR, textStatus, errorThrown) {
-            alert(textStatus)
+            console.log(textStatus)
         },
         success: function(persons) {
             persons.map( person =>
@@ -165,7 +165,7 @@ getMarkers = (map, icon = 'assets/images/mark.png') => {
             xhr.setRequestHeader("Authorization", "Basic " + btoa("gaadminserver:@g4re5tp4ss#"))
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert(textStatus)
+            console.log(textStatus)
         },
         success: function (persons) {
             persons.map( person =>
