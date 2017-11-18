@@ -60,21 +60,25 @@
             <div class="main-animals">
 
                 <div class="form">
-                    <p:dataTable var="" value="">
-                        <p:column style="text-align: center"  headerText="Tipo de Serviço">
-                            <h:outputText value="" style="font-weight: bold"/>
+                    <p:dataTable var="servico" value="#{serviceProviderAnimalTypeBean.getListByProvider()}">
+                        <p:column style="text-align: center" headerText="Tipo de Serviço">
+                            <h:outputText value="#{servico.serviceTypeDescription}" style="font-weight: bold"/>
                         </p:column>
 
-                        <p:column style="text-align: center"  headerText="Tipo do Animal">
-                            <h:outputText value="" style="font-weight: bold"/>
+                        <p:column style="text-align: center" headerText="Tipo do Animal">
+                            <h:outputText value="#{servico.animalTypeDescription}" style="font-weight: bold"/>
                         </p:column>
 
-                        <p:column style="text-align: center"  headerText="Tipo de Cobrança">
-                            <h:outputText value="" style="font-weight: bold"/>
+                        <p:column style="text-align: center" headerText="Porte do Animal">
+                            <h:outputText value="#{servico.animalSize.toString()}" style="font-weight: bold"/>
+                        </p:column>
+
+                        <p:column style="text-align: center" headerText="Tipo de Cobrança">
+                            <h:outputText value="#{servico.billingType.toString()}" style="font-weight: bold"/>
                         </p:column>
 
                         <p:column style="text-align: center" headerText="Valor">
-                            <h:outputText value="" style="font-weight: bold"/>
+                            <h:outputText value="#{servico.value}" style="font-weight: bold"/>
                         </p:column>
                     </p:dataTable>
                 </div>

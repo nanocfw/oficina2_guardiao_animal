@@ -1,6 +1,8 @@
 package br.com.ga.web.controllers;
 
 import br.com.ga.entity.ServiceProviderAnimalType;
+import br.com.ga.entity.enums.AnimalSize;
+import br.com.ga.entity.enums.BillingType;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.service.intf.IServiceProviderAnimalTypeService;
@@ -34,6 +36,26 @@ public class ServiceProviderAnimalTypeController {
             return new ResponseData<>(ServiceProviderAnimalType.class, ResponseCode.ERROR, InvalidEntity.class, e.getMessage());
         } catch (Exception ex) {
             return new ResponseData<>(ServiceProviderAnimalType.class, ResponseCode.ERROR, ex.getClass(), ex.getMessage());
+        }
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(
+            value = UrlMapping.SERVICE_PROVIDER_ANIMAL_TYPE_ALREADY_REGISTERED,
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseData<Boolean> alreadyRegistered(
+            @PathVariable(value = "currentId") long currentId,
+            @PathVariable(value = "serviceProviderId") long serviceProviderId,
+            @PathVariable(value = "serviceTypeId") int serviceTypeId,
+            @PathVariable(value = "animalTypeId") int animalTypeId,
+            @PathVariable(value = "animalSize") AnimalSize animalSize,
+            @PathVariable(value = "billingType") BillingType billingType) {
+        try {
+            boolean alreadyRegistered = serviceProviderAnimalTypeService.alreadyRegistered(currentId, serviceProviderId, serviceTypeId, animalTypeId, animalSize, billingType);
+            return new ResponseData<>(Boolean.class, alreadyRegistered, ResponseCode.OK);
+        } catch (Exception e) {
+            return new ResponseData<>(Boolean.class, ResponseCode.ERROR, e.getClass(), e.getMessage());
         }
     }
 

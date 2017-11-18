@@ -5,7 +5,7 @@
  */
 package br.com.ga.web.controllers;
 
-import br.com.ga.entity.ServiceProvider;
+import br.com.ga.entity.ServiceProviderSearch;
 import br.com.ga.exceptions.ExpiredToken;
 import br.com.ga.util.Util;
 import br.com.ga.web.rest.UrlMapping;
@@ -187,12 +187,13 @@ public class PersonController {
             value = UrlMapping.PERSON_GET_SERVICE_PROVIDER_LIST,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ServiceProvider> getServiceProviderList(
+    public List<ServiceProviderSearch> getServiceProviderList(
+            @PathVariable(value = "currentId") long currentId,
             @PathVariable(value = "country") String country,
             @PathVariable(value = "city") String city,
             @PathVariable(value = "rowsReturn") int rowsReturn,
             @PathVariable(value = "rowsIgnore") int rowsIgnore) {
-        return personService.getServiceProviderList(country, city, rowsReturn, rowsIgnore);
+        return personService.getServiceProviderList(currentId, country, city, rowsReturn, rowsIgnore);
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -200,13 +201,14 @@ public class PersonController {
             value = UrlMapping.PERSON_GET_SERVICE_PROVIDER_LIST_BY_LAT_LNG,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ServiceProvider> getServiceProviderList(
+    public List<ServiceProviderSearch> getServiceProviderList(
+            @PathVariable(value = "currentId") long currentId,
             @PathVariable(value = "lat") double lat,
             @PathVariable(value = "lng") double lng,
             @PathVariable(value = "ray") int ray,
             @PathVariable(value = "rowsReturn") int rowsReturn,
             @PathVariable(value = "rowsIgnore") int rowsIgnore) {
-        return personService.getServiceProviderList(lat, lng, ray, rowsReturn, rowsIgnore);
+        return personService.getServiceProviderList(currentId, lat, lng, ray, rowsReturn, rowsIgnore);
     }
 
 }

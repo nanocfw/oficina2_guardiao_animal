@@ -3,6 +3,8 @@ package br.com.ga.client.services;
 import br.com.ga.client.rest.BasicAuthRestTemplate;
 import br.com.ga.client.rest.Service;
 import br.com.ga.entity.ServiceProviderAnimalType;
+import br.com.ga.entity.enums.AnimalSize;
+import br.com.ga.entity.enums.BillingType;
 import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.service.intf.IServiceProviderAnimalTypeService;
@@ -67,6 +69,35 @@ public class ServiceProviderAnimalTypeServiceImpl extends Service implements ISe
 
         if (response.getBody().getExceptionType() == EntityNotFound.class)
             throw new EntityNotFound(response.getBody().getExceptionMessage());
+
+        throw new Exception(
+                "ExceptionClass: " + response.getBody().getExceptionType().toString()
+                        + " Message: " + response.getBody().getExceptionMessage());
+    }
+
+    @Override
+    public boolean alreadyRegistered(long currentId, long serviceProviderId, int serviceTypeId, int animalTypeId, AnimalSize animalSize, BillingType billingType) throws Exception {
+        BasicAuthRestTemplate rest = getNewRestTemplate();
+        ResponseEntity<ResponseData<Boolean>> response;
+        Map<String, String> params = new HashMap<>();
+        params.put("currentId", String.valueOf(currentId));
+        params.put("serviceProviderId", String.valueOf(serviceProviderId));
+        params.put("serviceTypeId", String.valueOf(serviceTypeId));
+        params.put("animalTypeId", String.valueOf(animalTypeId));
+        params.put("animalSize", String.valueOf(animalSize));
+        params.put("billingType", String.valueOf(billingType));
+
+        response = rest.exchange(
+                getServerURL() + UrlMapping.SERVICE_PROVIDER_ANIMAL_TYPE + UrlMapping.SERVICE_PROVIDER_ANIMAL_TYPE_ALREADY_REGISTERED,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<ResponseData<Boolean>>() {
+                },
+                params
+        );
+
+        if (response.getBody().getStatus() == ResponseCode.OK)
+            return response.getBody().getValue();
 
         throw new Exception(
                 "ExceptionClass: " + response.getBody().getExceptionType().toString()

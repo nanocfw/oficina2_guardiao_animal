@@ -14,10 +14,12 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
+import javax.ejb.Stateless;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Stateless
 public class ServiceTypeServiceImpl extends Service implements IServiceTypeService {
     @Override
     public ServiceType createUpdate(ServiceType service) throws Exception {

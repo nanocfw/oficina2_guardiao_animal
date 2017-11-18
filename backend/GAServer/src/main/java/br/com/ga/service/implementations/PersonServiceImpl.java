@@ -5,7 +5,7 @@
  */
 package br.com.ga.service.implementations;
 
-import br.com.ga.entity.ServiceProvider;
+import br.com.ga.entity.ServiceProviderSearch;
 import br.com.ga.util.Util;
 import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
@@ -81,13 +81,13 @@ public class PersonServiceImpl implements IPersonService {
     }
 
     @Override
-    public List<ServiceProvider> getServiceProviderList(String country, String city, int rowsReturn, int rowsIgnore) {
-        return personDao.getServiceProviderList(country, city, rowsReturn, rowsIgnore);
+    public List<ServiceProviderSearch> getServiceProviderList(long currentId, String country, String city, int rowsReturn, int rowsIgnore) {
+        return personDao.getServiceProviderList(currentId, country, city, rowsReturn, rowsIgnore);
     }
 
     @Override
-    public List<ServiceProvider> getServiceProviderList(double lat, double lng, int ray, int rowsReturn, int rowsIgnore) {
-        return personDao.getServiceProviderList(lat, lng, ray, rowsReturn, rowsIgnore);
+    public List<ServiceProviderSearch> getServiceProviderList(long currentId, double lat, double lng, int ray, int rowsReturn, int rowsIgnore) {
+        return personDao.getServiceProviderList(currentId, lat, lng, ray, rowsReturn, rowsIgnore);
     }
 
     @Override

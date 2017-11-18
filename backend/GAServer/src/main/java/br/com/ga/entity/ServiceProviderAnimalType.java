@@ -16,23 +16,22 @@ public class ServiceProviderAnimalType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private long serviceProvider_id;
-    private long serviceType_id;
-    private long animalType_id;
+    private int serviceType_id;
+    private int animalType_id;
     @Enumerated(value = EnumType.ORDINAL)
     private AnimalSize animalSize;
     private BillingType billingType;
     private double value;
 
+    @Transient
+    private String serviceTypeDescription;
+
+    @Transient
+    String animalTypeDescription;
+
     public ServiceProviderAnimalType() {
         super();
-    }
-
-    public ServiceProviderAnimalType(long serviceProvider_id, long serviceType_id, long animalType_id, AnimalSize animalSize, BillingType billingType, double value) {
-        this.serviceProvider_id = serviceProvider_id;
-        this.serviceType_id = serviceType_id;
-        this.animalType_id = animalType_id;
-        this.animalSize = animalSize;
-        this.billingType = billingType;
-        this.value = value;
+        animalSize = AnimalSize.SMALL;
+        billingType = BillingType.PER_HOUR;
     }
 }

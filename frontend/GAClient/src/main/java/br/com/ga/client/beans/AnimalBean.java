@@ -175,6 +175,7 @@ public class AnimalBean extends DefaultBean {
         currentAnimal = new Animal();
         profilePic = "";
         picture = new Picture();
+        animalTypeBean.setCurrentTypeName(-1);
     }
 
     public AnimalBean() {

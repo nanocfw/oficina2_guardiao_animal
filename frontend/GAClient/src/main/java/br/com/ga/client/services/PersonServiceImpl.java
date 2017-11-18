@@ -7,7 +7,7 @@ package br.com.ga.client.services;
 
 import br.com.ga.client.rest.BasicAuthRestTemplate;
 import br.com.ga.client.rest.Service;
-import br.com.ga.entity.ServiceProvider;
+import br.com.ga.entity.ServiceProviderSearch;
 import br.com.ga.exceptions.ExpiredToken;
 import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
@@ -270,10 +270,11 @@ public class PersonServiceImpl extends Service implements IPersonService {
     }
 
     @Override
-    public List<ServiceProvider> getServiceProviderList(String country, String city, int rowsReturn, int rowsIgnore) {
+    public List<ServiceProviderSearch> getServiceProviderList(long currentId, String country, String city, int rowsReturn, int rowsIgnore) {
         BasicAuthRestTemplate rest = getNewRestTemplate();
-        ResponseEntity<List<ServiceProvider>> response;
+        ResponseEntity<List<ServiceProviderSearch>> response;
         Map<String, String> params = new HashMap<>();
+        params.put("currentId", String.valueOf(currentId));
         params.put("country", country);
         params.put("city", city);
         params.put("rowsReturn", String.valueOf(rowsReturn));
@@ -283,7 +284,7 @@ public class PersonServiceImpl extends Service implements IPersonService {
                 getServerURL() + UrlMapping.PERSON + UrlMapping.PERSON_GET_SERVICE_PROVIDER_LIST,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<ServiceProvider>>() {
+                new ParameterizedTypeReference<List<ServiceProviderSearch>>() {
                 },
                 params
         );
@@ -292,10 +293,11 @@ public class PersonServiceImpl extends Service implements IPersonService {
     }
 
     @Override
-    public List<ServiceProvider> getServiceProviderList(double lat, double lng, int ray, int rowsReturn, int rowsIgnore) {
+    public List<ServiceProviderSearch> getServiceProviderList(long currentId, double lat, double lng, int ray, int rowsReturn, int rowsIgnore) {
         BasicAuthRestTemplate rest = getNewRestTemplate();
-        ResponseEntity<List<ServiceProvider>> response;
+        ResponseEntity<List<ServiceProviderSearch>> response;
         Map<String, String> params = new HashMap<>();
+        params.put("currentId", String.valueOf(currentId));
         params.put("lat", String.valueOf(lat));
         params.put("lng", String.valueOf(lng));
         params.put("ray", String.valueOf(ray));
@@ -306,7 +308,7 @@ public class PersonServiceImpl extends Service implements IPersonService {
                 getServerURL() + UrlMapping.PERSON + UrlMapping.PERSON_GET_SERVICE_PROVIDER_LIST_BY_LAT_LNG,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<ServiceProvider>>() {
+                new ParameterizedTypeReference<List<ServiceProviderSearch>>() {
                 },
                 params
         );

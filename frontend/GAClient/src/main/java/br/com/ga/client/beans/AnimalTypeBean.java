@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class AnimalTypeBean extends DefaultBean {
     }
 
     public void setCurrentTypeName(int id) {
+        currentTypeName = "";
         for (AnimalType animalType : animalTypes)
             if (animalType.getId() == id) {
                 currentTypeName = animalType.getDescription();
@@ -65,7 +67,16 @@ public class AnimalTypeBean extends DefaultBean {
         return id;
     }
 
+    public String getTypeName(int id) {
+        for (AnimalType animalType : animalTypes)
+            if (animalType.getId() == id) {
+                return animalType.getDescription();
+            }
+        return "";
+    }
+
     public AnimalTypeBean() {
-        types = new ArrayList<>();
+        this.animalTypes = new ArrayList<>();
+        this.types = new ArrayList<>();
     }
 }

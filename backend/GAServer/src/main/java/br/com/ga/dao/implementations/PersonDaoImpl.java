@@ -5,7 +5,9 @@
  */
 package br.com.ga.dao.implementations;
 
-import br.com.ga.entity.ServiceProvider;
+import br.com.ga.dao.intf.IPictureDao;
+import br.com.ga.dao.intf.IServiceProviderAnimalTypeDao;
+import br.com.ga.entity.ServiceProviderSearch;
 import br.com.ga.exceptions.ExpiredToken;
 import br.com.ga.util.Util;
 import br.com.ga.exceptions.EntityNotFound;
@@ -19,6 +21,7 @@ import br.com.ga.dao.intf.IPersonDao;
 
 import javax.persistence.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +34,12 @@ public class PersonDaoImpl implements IPersonDao {
 
     @PersistenceContext
     private EntityManager em;
+
+    @Autowired
+    private IPictureDao pictureDao;
+
+    @Autowired
+    private IServiceProviderAnimalTypeDao serviceProviderAnimalTypeDao;
 
     @Override
     public Person createUpdate(Person person) throws Exception {
@@ -115,12 +124,34 @@ public class PersonDaoImpl implements IPersonDao {
         return qry.executeUpdate();
     }
 
+    private List<ServiceProviderSearch> getProviders(List<Person> list) {
+        String picture;
+        ServiceProviderSearch service;
+        List<ServiceProviderSearch> lstAux = new ArrayList<>();
+        for (Person p : list) {
+
+            picture = "";
+            try {
+                picture = pictureDao.findById(p.getProfilePic_id()).asString();
+            } catch (Exception ex) {
+            }
+
+            service = new ServiceProviderSearch(p.getName(), p.getMessage(), p.getCountry(), p.getCity(), picture, p.getLatitude(), p.getLongitude());
+            service.getServiceList().addAll(serviceProviderAnimalTypeDao.findListByProvider(p.getId(), 1000, 0));
+            lstAux.add(service);
+        }
+
+        return lstAux;
+    }
+
     @Override
-    public List<ServiceProvider> getServiceProviderList(String country, String city, int rowsReturn, int rowsIgnore) {
+    public List<ServiceProviderSearch> getServiceProviderList(long currentId, String country, String city, int rowsReturn, int rowsIgnore) {
         List<Person> lstAuxPerson =
-                em.createQuery("SELECT p FROM Person p WHERE p.serviceProvider = :service_provider " +
+                em.createQuery("SELECT p FROM Person p WHERE p.id <> :currentId " +
+                        " AND p.serviceProvider = :service_provider " +
                         " AND p.country = :country " +
                         " AND p.city = :city ")
+                        .setParameter("currentId", currentId)
                         .setParameter("service_provider", true)
                         .setParameter("country", country)
                         .setParameter("city", city)
@@ -128,19 +159,16 @@ public class PersonDaoImpl implements IPersonDao {
                         .setMaxResults(rowsReturn)
                         .getResultList();
 
-        List<ServiceProvider> lstAux = new ArrayList<>();
-        for (Person p : lstAuxPerson)
-            lstAux.add(new ServiceProvider(p.getName(), p.getCountry(), p.getCity(), p.getLatitude(), p.getLongitude()));
-
-        return lstAux;
+        return getProviders(lstAuxPerson);
     }
 
     @Override
-    public List<ServiceProvider> getServiceProviderList(double lat, double lng, int ray, int rowsReturn, int rowsIgnore) {
+    public List<ServiceProviderSearch> getServiceProviderList(long currentId, double lat, double lng, int ray, int rowsReturn, int rowsIgnore) {
         double rayLat = Util.kmToDegree(lat, ray);
         double rayLng = Util.kmToDegree(lng, ray);
         List<Person> lstAuxPerson =
-                em.createQuery("SELECT p FROM Person p WHERE p.serviceProvider = :service_provider " +
+                em.createQuery("SELECT p FROM Person p WHERE p.id <> :currentId " +
+                        " AND p.serviceProvider = :service_provider " +
                         " AND p.latitude BETWEEN :lat_ini AND :lat_fim" +
                         " AND p.longitude BETWEEN :lng_ini AND :lng_fim")
                         .setParameter("service_provider", true)
@@ -148,14 +176,12 @@ public class PersonDaoImpl implements IPersonDao {
                         .setParameter("lat_fim", lat + rayLat)
                         .setParameter("lng_ini", lng - rayLng)
                         .setParameter("lng_fim", lng + rayLng)
+                        .setParameter("currentId", currentId)
                         .setFirstResult(rowsIgnore)
                         .setMaxResults(rowsReturn)
                         .getResultList();
-        List<ServiceProvider> lstAux = new ArrayList<>();
-        for (Person p : lstAuxPerson)
-            lstAux.add(new ServiceProvider(p.getName(), p.getCountry(), p.getCity(), p.getLatitude(), p.getLongitude()));
 
-        return lstAux;
+        return getProviders(lstAuxPerson);
     }
 
     @Override
@@ -165,6 +191,7 @@ public class PersonDaoImpl implements IPersonDao {
         return qry
                 .setParameter("email", email)
                 .setParameter("currentId", currentId)
+                .setMaxResults(1)
                 .getResultList().size() > 0;
     }
 

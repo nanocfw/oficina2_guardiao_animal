@@ -16,28 +16,32 @@
 
                 <h:form id="formServico">
                     <div class="inline">
-                        <p:inputText id="name" class="center-align" required="true"
-                                     value=""
-                                     requiredMessage="Por favor preencha o campo Nome"
-                                     validatorMessage="O campo Nome deve conter no minímo 3 caracteres"
-                                     a:placeholder="Tipo do serviço">
-                            <f:validateLength minimum="3"/>
-                        </p:inputText>
+                        <p:selectOneMenu id="serviceType" value="#{serviceTypeBean.currentTypeName}" style="width:150px"
+                                         required="true"
+                                         requiredMessage="Por favor preencha o campo tipo do serviço"
+                                         a:placeholder="Tipo">
+                            <f:selectItem itemLabel="Selecione um tipo do serviço" itemValue=""
+                                          noSelectionOption="false"/>
+                            <f:selectItems value="#{serviceTypeBean.types}"/>
+                        </p:selectOneMenu>
                     </div>
 
                     <div class="inline">
-                        <p:inputText id="temperamento" class="center-align" required="true"
-                                     value=""
-                                     requiredMessage="Tpo de animal"
-                                     validatorMessage="O campo Nome deve conter um valor entre 1 e 10"
-                                     a:placeholder="Tipo do animal">
-                            <f:validateDoubleRange minimum="1" maximum="10"/>
-                        </p:inputText>
+                        <p:selectOneMenu id="animalType" value="#{animalTypeBean.currentTypeName}" style="width:150px"
+                                         required="true"
+                                         requiredMessage="Por favor preencha o campo tipo do animal"
+                                         a:placeholder="Tipo">
+                            <f:selectItem itemLabel="Selecione um tipo do anima" itemValue=""
+                                          noSelectionOption="false"/>
+                            <f:selectItems value="#{animalTypeBean.types}"/>
+                        </p:selectOneMenu>
                     </div>
 
-                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Porte do Animal" />
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Porte do Animal"/>
                     <div class="inline">
-                        <p:selectOneRadio id="console" value="">
+                        <p:selectOneRadio id="animalSize" value="#{serviceProviderAnimalTypeBean.animalSize}"
+                                          required="true"
+                                          requiredMessage="Por favor preencha o campo Porte do Animal">
                             <f:selectItem itemLabel="Pequeno" itemValue="0"/>
                             <f:selectItem itemLabel="Médio" itemValue="1"/>
                             <f:selectItem itemLabel="Grande" itemValue="2"/>
@@ -45,18 +49,21 @@
                     </div>
 
                     <div class="inline">
-                        <p:inputText id="weight" a:type="number" class="center-align" required="true"
-                                     value=""
-                                     requiredMessage="Por favor preencha o campo Forma de Pagamento"
-                                     a:placeholder="Forma de Pagamento">
-                        </p:inputText>
+                        <p:selectOneRadio id="billingType" value="#{serviceProviderAnimalTypeBean.billingType}"
+                                          required="true"
+                                          requiredMessage="Por favor preencha o campo Tipo de Cobrança">
+                            <f:selectItem itemLabel="Por Hora" itemValue="0"/>
+                            <f:selectItem itemLabel="Por Dia" itemValue="1"/>
+                        </p:selectOneRadio>
                     </div>
 
                     <div class="inline">
-                        <p:inputText id="weightt" a:type="number" class="center-align" required="true"
-                                     value=""
+                        <p:inputText id="valor" a:type="number" class="center-align" required="true"
+                                     value="#{serviceProviderAnimalTypeBean.currentServiceProviderAnimalType.value}"
                                      requiredMessage="Por favor preencha o campo Valor"
+                                     validatorMessage="Valor deve ser maior que R$ 0,00"
                                      a:placeholder="valor">
+                            <f:validateDoubleRange minimum="1"/>
                         </p:inputText>
                     </div>
 
@@ -64,7 +71,8 @@
 
                     <br/>
                     <div class="center-align">
-                        <p:commandButton update="@form" value="Cadastrar Animal"
+                        <p:commandButton update="@form" value="Cadastrar Serviço"
+                                         action="#{serviceProviderAnimalTypeBean.createUpdate()}"
                                          ajax="true"
                                          class="waves-effect waves-light btn deep-orange lighten-1"/>
                     </div>

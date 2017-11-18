@@ -6,7 +6,7 @@
 package br.com.ga.service.intf;
 
 import br.com.ga.entity.Person;
-import br.com.ga.entity.ServiceProvider;
+import br.com.ga.entity.ServiceProviderSearch;
 
 import java.util.List;
 import java.util.UUID;
@@ -38,7 +38,7 @@ public interface IPersonService {
 
     int deleteById(long personId) throws Exception;
 
-    List<ServiceProvider> getServiceProviderList(String country, String city, int rowsReturn, int rowsIgnore);
+    List<ServiceProviderSearch> getServiceProviderList(long currentId, String country, String city, int rowsReturn, int rowsIgnore);
 
-    List<ServiceProvider> getServiceProviderList(double lat, double lng, int ray, int rowsReturn, int rowsIgnore);
+    List<ServiceProviderSearch> getServiceProviderList(long currentId, double lat, double lng, int ray, int rowsReturn, int rowsIgnore);
 }

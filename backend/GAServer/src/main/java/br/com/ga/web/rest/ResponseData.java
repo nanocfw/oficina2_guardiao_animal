@@ -5,10 +5,12 @@
  */
 package br.com.ga.web.rest;
 
+import java.io.Serializable;
+
 /**
  * @author Marciano
  */
-public class ResponseData<T> {
+public class ResponseData<T> implements Serializable {
     private Class<T> objectClass;
     private T value;
     private ResponseCode status;

@@ -6,7 +6,7 @@
 package br.com.ga.client.beans;
 
 import br.com.ga.entity.Picture;
-import br.com.ga.entity.ServiceProvider;
+import br.com.ga.entity.ServiceProviderSearch;
 import br.com.ga.entity.enums.PersonType;
 import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.exceptions.EntityNotFound;
@@ -161,18 +161,18 @@ public class PersonBean extends DefaultBean {
         }
     }
 
-    public List<ServiceProvider> getListServiceProvider(double lat, double lng, int ray, int rowsReturn, int rowsIgnore) {
-        return personService.getServiceProviderList(lat, lng, ray, rowsReturn, rowsIgnore);
+    public List<ServiceProviderSearch> getListServiceProvider(double lat, double lng, int ray, int rowsReturn, int rowsIgnore) {
+        return personService.getServiceProviderList(0, lat, lng, ray, rowsReturn, rowsIgnore);
     }
 
-    public List<ServiceProvider> getListServiceProvider(String country, String city, int rowsReturn, int rowsIgnore) {
-        return personService.getServiceProviderList(country, city, rowsReturn, rowsIgnore);
+    public List<ServiceProviderSearch> getListServiceProvider(String country, String city, int rowsReturn, int rowsIgnore) {
+        return personService.getServiceProviderList(0, country, city, rowsReturn, rowsIgnore);
     }
 
     public MapModel getMapList() {
-        List<ServiceProvider> list = getListServiceProvider("Brasil", "Dois Vizinhos", 100, 0);
+        List<ServiceProviderSearch> list = getListServiceProvider("Brasil", "Dois Vizinhos", 100, 0);
         MapModel map = new DefaultMapModel();
-        for (ServiceProvider s : list)
+        for (ServiceProviderSearch s : list)
             map.addOverlay(new Marker(new LatLng(s.getLatitude(), s.getLongitude()), s.getName()));
 
         return map;

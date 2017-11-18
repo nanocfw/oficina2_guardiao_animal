@@ -13,8 +13,8 @@ public class UrlMapping {
     public static final String PERSON = "ga/person/";
     public static final String PERSON_GET = "fetch/{personId}";
     public static final String PERSON_GET_LIST = "fetch/{listClients}/{rowsReturn}/{rowsIgnore}";
-    public static final String PERSON_GET_SERVICE_PROVIDER_LIST = "fetchserviceprovider/{country}/{city}/{rowsReturn}/{rowsIgnore}";
-    public static final String PERSON_GET_SERVICE_PROVIDER_LIST_BY_LAT_LNG = "fetchserviceprovider/{lat}/{lng}/{ray}/{rowsReturn}/{rowsIgnore}";
+    public static final String PERSON_GET_SERVICE_PROVIDER_LIST = "fetchserviceprovider/{currentId}/{country}/{city}/{rowsReturn}/{rowsIgnore}";
+    public static final String PERSON_GET_SERVICE_PROVIDER_LIST_BY_LAT_LNG = "fetchserviceprovider/{currentId}/{lat}/{lng}/{ray}/{rowsReturn}/{rowsIgnore}";
     public static final String PERSON_CREATE_UPDATE = "save/";
     public static final String PERSON_UPDATE_AUTH_TOKEN = "updatetoken/";
     public static final String PERSON_LOGIN = "fetch/";
@@ -63,4 +63,5 @@ public class UrlMapping {
     public static final String SERVICE_PROVIDER_ANIMAL_TYPE_GET_LIST_BY_SERVICE_TYPE = "fetch/s/{serviceTypeId}/{rowsReturn}/{rowsIgnore}";
     public static final String SERVICE_PROVIDER_ANIMAL_TYPE_GET_LIST_BY_ANIMAL_TYPE = "fetchp/a/{AnimalTypeId}/{rowsReturn}/{rowsIgnore}";
     public static final String SERVICE_PROVIDER_ANIMAL_TYPE_DELETE = "delete/{serviceProviderAnimalTypeId}";
+    public static final String SERVICE_PROVIDER_ANIMAL_TYPE_ALREADY_REGISTERED = "fetch/{currentId}/{serviceProviderId}/{serviceTypeId}/{animalTypeId}/{animalSize}/{billingType}";
 }

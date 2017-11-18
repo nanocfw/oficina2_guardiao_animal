@@ -21,7 +21,7 @@ getGuardioes = () => {
     }
 
         $.ajax({
-            url: "http://localhost:8090/ga/person/fetchserviceprovider/" + country + "/" + cityFormated + "/20/0",
+            url: "http://localhost:8090/ga/person/fetchserviceprovider/0/" + country + "/" + cityFormated + "/20/0",
             type: "GET",
             contentType: 'application/json; charset=utf-8',
             async: false,
@@ -88,7 +88,7 @@ getGuardioesAuth = () => {
     }
 
     $.ajax({
-        url: "http://localhost:8090/ga/person/fetchserviceprovider/" + country + "/"+ cityFormated + "/20/0",
+        url: "http://localhost:8090/ga/person/fetchserviceprovider/0/" + country + "/"+ cityFormated + "/20/0",
         type: "GET",
         contentType: 'application/json; charset=utf-8',
         async: false,
@@ -157,7 +157,7 @@ getMarkers = (map, icon = 'assets/images/mark.png') => {
 
 
     $.ajax({
-        url: "http://localhost:8090/ga/person/fetchserviceprovider/" + country + "/" + cityFormated + "/20/0",
+        url: "http://localhost:8090/ga/person/fetchserviceprovider/0/" + country + "/" + cityFormated + "/20/0",
         type: "GET",
         contentType: 'application/json; charset=utf-8',
         async: false,

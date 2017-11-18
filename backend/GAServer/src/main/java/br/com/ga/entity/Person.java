@@ -1,6 +1,7 @@
 package br.com.ga.entity;
 
 import br.com.ga.entity.enums.PersonType;
+import br.com.ga.util.Util;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.Type;
@@ -53,9 +54,39 @@ public class Person implements Serializable {
     private UUID authToken;
     @Temporal(TemporalType.DATE)
     private Date authTokenExpiration;
+    private String message;
 
     public Person() {
         super();
         type = PersonType.UNDEFINED;
+        authToken = UUID.randomUUID();
+        authTokenExpiration = Util.incDay(Util.curDate(), -1);
+    }
+
+    public Person(long id, String name, String lastName, String email, String password, String city, String state, String country, boolean serviceProvider, String documentNumber, String address, String addressNumber, String district, String complement, String postalCode, Date birthDate, String phone, String cellPhone, String additionalData, double latitude, double longitude, boolean finishedRegister, long profilePic_id, PersonType type) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.serviceProvider = serviceProvider;
+        this.documentNumber = documentNumber;
+        this.address = address;
+        this.addressNumber = addressNumber;
+        this.district = district;
+        this.complement = complement;
+        this.postalCode = postalCode;
+        this.birthDate = birthDate;
+        this.phone = phone;
+        this.cellPhone = cellPhone;
+        this.additionalData = additionalData;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.finishedRegister = finishedRegister;
+        this.profilePic_id = profilePic_id;
+        this.type = type;
     }
 }

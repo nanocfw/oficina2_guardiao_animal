@@ -81,7 +81,9 @@
                         <p:inputText id="weight" a:type="number" class="center-align" required="true"
                                      value="#{animalBean.currentAnimal.weight}"
                                      requiredMessage="Por favor preencha o campo Peso"
+                                     validatorMessage="Peso deve ser maior que 0,00 KG"
                                      a:placeholder="Peso em gramas">
+                            <f:validateDoubleRange minimum="1"/>
                         </p:inputText>
                     </div>
                     <h:messages id="register" style="color: red"/>
