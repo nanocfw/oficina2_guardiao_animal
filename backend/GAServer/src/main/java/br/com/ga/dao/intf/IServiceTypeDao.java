@@ -16,5 +16,5 @@ public interface IServiceTypeDao {
 
     void delete(final ServiceType service) throws Exception;
 
-    int deleteById(long serviceTypeId) throws Exception;
+    int deleteById(int serviceTypeId) throws Exception;
 }

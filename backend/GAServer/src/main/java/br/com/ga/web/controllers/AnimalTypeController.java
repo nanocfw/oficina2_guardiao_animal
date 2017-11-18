@@ -42,7 +42,7 @@ public class AnimalTypeController {
             value = UrlMapping.ANIMAL_TYPE_GET,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseData<AnimalType> findById(@PathVariable(value = "animalTypeId") long animalTypeId) throws Exception {
+    public ResponseData<AnimalType> findById(@PathVariable(value = "animalTypeId") int animalTypeId) throws Exception {
         try {
             AnimalType animalType = animalTypeService.findById(animalTypeId);
             return new ResponseData<>(AnimalType.class, animalType, ResponseCode.FOUND);
@@ -84,7 +84,7 @@ public class AnimalTypeController {
     @RequestMapping(
             value = UrlMapping.ANIMAL_TYPE_DELETE,
             method = RequestMethod.DELETE)
-    public ResponseData<Integer> deleteById(@PathVariable(value = "animalTypeId") long animalTypeId) throws Exception {
+    public ResponseData<Integer> deleteById(@PathVariable(value = "animalTypeId") int animalTypeId) throws Exception {
         try {
             int deletedRows = animalTypeService.deleteById(animalTypeId);
             return new ResponseData<>(Integer.class, deletedRows, ResponseCode.DELETED);

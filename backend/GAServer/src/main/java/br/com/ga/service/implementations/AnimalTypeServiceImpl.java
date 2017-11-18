@@ -20,7 +20,7 @@ public class AnimalTypeServiceImpl implements IAnimalTypeService {
     }
 
     @Override
-    public AnimalType findById(long animalTypeId) throws Exception {
+    public AnimalType findById(int animalTypeId) throws Exception {
         return animalTypeDao.findById(animalTypeId);
     }
 
@@ -40,7 +40,7 @@ public class AnimalTypeServiceImpl implements IAnimalTypeService {
     }
 
     @Override
-    public int deleteById(long animalTypeId) throws Exception {
+    public int deleteById(int animalTypeId) throws Exception {
         return animalTypeDao.deleteById(animalTypeId);
     }
 }

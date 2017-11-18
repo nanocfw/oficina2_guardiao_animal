@@ -9,9 +9,7 @@ import br.com.ga.exceptions.EntityNotFound;
 import br.com.ga.entity.Animal;
 
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,10 +34,14 @@ public class AnimalDaoImpl implements IAnimalDao {
 
     @Override
     public Animal findById(long animalId) throws Exception {
-        return (Animal) em
-                .createQuery("SELECT a FROM Animal a WHERE a.id = :animalId")
-                .setParameter("animalId", animalId)
-                .getSingleResult();
+        TypedQuery<Animal> qry = em.createQuery("SELECT a FROM Animal a WHERE a.id = :animalId", Animal.class);
+        try {
+            return (Animal) qry
+                    .setParameter("animalId", animalId)
+                    .getSingleResult();
+        } catch (NoResultException ex) {
+            throw new EntityNotFound();
+        }
     }
 
     @Override

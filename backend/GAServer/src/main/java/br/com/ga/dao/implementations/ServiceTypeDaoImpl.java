@@ -63,7 +63,7 @@ public class ServiceTypeDaoImpl implements IServiceTypeDao {
     }
 
     @Override
-    public int deleteById(long serviceTypeId) throws Exception {
+    public int deleteById(int serviceTypeId) throws Exception {
         if (serviceTypeId <= 0)
             throw new EntityNotFound("Id inválido");
 

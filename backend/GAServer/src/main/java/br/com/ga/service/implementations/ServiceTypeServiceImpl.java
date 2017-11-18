@@ -45,7 +45,7 @@ public class ServiceTypeServiceImpl implements IServiceTypeService {
     }
 
     @Override
-    public int deleteById(long serviceTypeId) throws Exception {
+    public int deleteById(int serviceTypeId) throws Exception {
         return serviceTypeDao.deleteById(serviceTypeId);
     }
 }

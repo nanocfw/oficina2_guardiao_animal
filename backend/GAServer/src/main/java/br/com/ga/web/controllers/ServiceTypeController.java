@@ -82,7 +82,7 @@ public class ServiceTypeController {
     @RequestMapping(
             value = UrlMapping.SERVICE_TYPE_DELETE,
             method = RequestMethod.DELETE)
-    public ResponseData<Integer> deleteById(@PathVariable("serviceId") long serviceId) throws Exception {
+    public ResponseData<Integer> deleteById(@PathVariable("serviceId") int serviceId) throws Exception {
         try {
             int deletedRows = serviceTypeService.deleteById(serviceId);
             return new ResponseData<>(Integer.class, deletedRows, ResponseCode.DELETED);

@@ -6,9 +6,7 @@ import br.com.ga.exceptions.EntityNotFound;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 @Transactional
@@ -26,11 +24,15 @@ public class AnimalTypeDaoImpl implements IAnimalTypeDao {
     }
 
     @Override
-    public AnimalType findById(long animalTypeId) throws Exception {
-        return (AnimalType) em
-                .createQuery("SELECT a FROM AnimalType a WHERE a.id = :animalTypeId")
-                .setParameter("animalTypeId", animalTypeId)
-                .getSingleResult();
+    public AnimalType findById(int animalTypeId) throws Exception {
+        TypedQuery<AnimalType> qry = em.createQuery("SELECT a FROM AnimalType a WHERE a.id = :animalTypeId", AnimalType.class);
+        try {
+            return (AnimalType) qry
+                    .setParameter("animalTypeId", animalTypeId)
+                    .getSingleResult();
+        } catch (NoResultException ex) {
+            throw new EntityNotFound();
+        }
     }
 
     @Override
@@ -59,7 +61,7 @@ public class AnimalTypeDaoImpl implements IAnimalTypeDao {
     }
 
     @Override
-    public int deleteById(long animalTypeId) throws Exception {
+    public int deleteById(int animalTypeId) throws Exception {
         if (animalTypeId <= 0)
             throw new EntityNotFound("Id inválido");
 

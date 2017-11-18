@@ -6,9 +6,7 @@ import br.com.ga.exceptions.EntityNotFound;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -28,10 +26,14 @@ public class AppointmentDaoImpl implements IAppointmentDao {
 
     @Override
     public Appointment findById(long appointmentId) throws Exception {
-        return (Appointment) em
-                .createQuery("SELECT a FROM Appointment a WHERE a.id = :appointmentId")
-                .setParameter("appointmentId", appointmentId)
-                .getSingleResult();
+        TypedQuery<Appointment> qry = em.createQuery("SELECT a FROM Appointment a WHERE a.id = :appointmentId", Appointment.class);
+        try {
+            return (Appointment) qry
+                    .setParameter("appointmentId", appointmentId)
+                    .getSingleResult();
+        } catch (NoResultException ex) {
+            throw new EntityNotFound();
+        }
     }
 
     @Override

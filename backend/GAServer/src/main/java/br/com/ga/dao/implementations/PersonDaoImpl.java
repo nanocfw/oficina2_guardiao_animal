@@ -5,8 +5,8 @@
  */
 package br.com.ga.dao.implementations;
 
-import br.com.ga.dao.intf.IPictureDao;
-import br.com.ga.dao.intf.IServiceProviderAnimalTypeDao;
+import br.com.ga.dao.intf.*;
+import br.com.ga.entity.ServiceProviderAnimalType;
 import br.com.ga.entity.ServiceProviderSearch;
 import br.com.ga.exceptions.ExpiredToken;
 import br.com.ga.util.Util;
@@ -16,8 +16,6 @@ import br.com.ga.entity.Person;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import br.com.ga.dao.intf.IPersonDao;
 
 import javax.persistence.*;
 
@@ -40,6 +38,12 @@ public class PersonDaoImpl implements IPersonDao {
 
     @Autowired
     private IServiceProviderAnimalTypeDao serviceProviderAnimalTypeDao;
+
+    @Autowired
+    private IServiceTypeDao serviceTypeDao;
+
+    @Autowired
+    private IAnimalTypeDao animalTypeDao;
 
     @Override
     public Person createUpdate(Person person) throws Exception {
@@ -133,11 +137,24 @@ public class PersonDaoImpl implements IPersonDao {
             picture = "";
             try {
                 picture = pictureDao.findById(p.getProfilePic_id()).asString();
-            } catch (Exception ex) {
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
             service = new ServiceProviderSearch(p.getName(), p.getMessage(), p.getCountry(), p.getCity(), picture, p.getLatitude(), p.getLongitude());
             service.getServiceList().addAll(serviceProviderAnimalTypeDao.findListByProvider(p.getId(), 1000, 0));
+            for (ServiceProviderAnimalType s : service.getServiceList()) {
+                try {
+                    s.setAnimalTypeDescription(animalTypeDao.findById(s.getAnimalType_id()).getDescription());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    s.setServiceTypeDescription(serviceTypeDao.findById(s.getServiceType_id()).getDescription());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
             lstAux.add(service);
         }
 

@@ -8,10 +8,7 @@ import br.com.ga.exceptions.EntityNotFound;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 
 @Transactional
@@ -30,10 +27,14 @@ public class ServiceProviderAnimalTypeDaoImpl implements IServiceProviderAnimalT
 
     @Override
     public ServiceProviderAnimalType findById(long serviceProviderAnimalTypeId) throws Exception {
-        return (ServiceProviderAnimalType) em
-                .createQuery("SELECT s FROM ServiceProviderAnimalType s WHERE s.id = :serviceProviderAnimalTypeId")
-                .setParameter("serviceProviderAnimalTypeId", serviceProviderAnimalTypeId)
-                .getSingleResult();
+        TypedQuery<ServiceProviderAnimalType> qry = em.createQuery("SELECT s FROM ServiceProviderAnimalType s WHERE s.id = :serviceProviderAnimalTypeId", ServiceProviderAnimalType.class);
+        try {
+            return (ServiceProviderAnimalType) qry
+                    .setParameter("serviceProviderAnimalTypeId", serviceProviderAnimalTypeId)
+                    .getSingleResult();
+        } catch (NoResultException ex) {
+            throw new EntityNotFound();
+        }
     }
 
     @Override
