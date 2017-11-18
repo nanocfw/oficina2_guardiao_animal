@@ -99,7 +99,17 @@ public class PersonBean extends DefaultBean {
         }
     }
 
-    public String updateGuardiao() throws ParseException {
+    public String updateServiceProvider() throws Exception {
+        currentPerson.setServiceProvider(true);
+        return updateGuardiao();
+    }
+
+    public String updateClient() throws Exception {
+        currentPerson.setServiceProvider(false);
+        return updateGuardiao();
+    }
+
+    private String updateGuardiao() throws Exception {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = formatter.parse(this.birthDate);
         this.currentPerson.setBirthDate(date);
