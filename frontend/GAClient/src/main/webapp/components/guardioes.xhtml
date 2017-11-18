@@ -10,9 +10,9 @@
     <h:inputHidden id="countryBean" value=""/>
     <h:inputHidden id="locBean" value=""/>
 
-    <ul id="guardioes" class="column guardioes">
-        <script>getGuardioes();</script>
-    </ul>
+    <div id="guardioes" class="guardioes">
+            <script>getGuardioes();</script>
+    </div>
 
     <script>
         document.getElementById("countryBean").value = window.localStorage.getItem('country');

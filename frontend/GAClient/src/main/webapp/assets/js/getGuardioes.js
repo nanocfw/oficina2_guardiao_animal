@@ -20,49 +20,46 @@ getGuardioes = () => {
             break;
     }
 
-        $.ajax({
-            url: "http://localhost:8090/ga/person/fetchserviceprovider/0/" + country + "/" + cityFormated + "/20/0",
-            type: "GET",
-            contentType: 'application/json; charset=utf-8',
-            async: false,
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader("Authorization", "Basic " + btoa("gaadminserver:@g4re5tp4ss#"))
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert(textStatus)
-            },
-            success: function (persons) {
-                persons.map( person =>
-                {
-                    var guardiao = `
-                        <li id="guardiao" class="container" opacity="0">
-                            <div class="col s12 m8">
-                                <div class="card vertical">
-                                    <div class="inline-guardiao">
-                                        <img class="img-guardiao" src="assets/images/img.jpg">
-                                        <div class="content-guardiao text-grey">
-                                          <h3>${person.name}</h3>
-                                          <h4>${person.city}</h4>
-                                        </div>
-                                    </div>
-                                    <div class="valor center-align">
-                                      <h4 class="orange-text center-align" style="margin-bottom: 0">R$ 40</h4>
-                                      <h6 class="grey-text" style="display: block; text-align: center">por noite</h6>
-                                    </div>
+    $.ajax({
+        url: "http://localhost:8090/ga/person/fetchserviceprovider/0/" + country + "/" + cityFormated + "/20/0",
+        type: "GET",
+        contentType: 'application/json; charset=utf-8',
+        async: false,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa("gaadminserver:@g4re5tp4ss#"))
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(textStatus)
+        },
+        success: function (persons) {
+            console.log(persons);
+            persons.map( person =>
+            {
+                var guardiao = `
+                               <div class="card vertical size-guardiao inline-guardiao">
+                            <div class="inline-component">
+                                <img class="img-guardiao" src="assets/images/img.jpg">
+                                <div class="content-guardiao text-grey">
+                                  <h3>${person.name}</h3>
+                                  <h4>${person.city}</h4>
                                 </div>
                             </div>
-                        </li>`;
-                    guardioes = guardioes + guardiao;
-                })
-            }
-        });
-        if (guardioes === '') {
-            return document.querySelector('#guardioes').innerHTML = `<h4 class="text-grey center-align" style="padding: 120px 0;">Desculpe, nenhum <span class="text-orange">Guardião</span> foi encontrado nesta regiao.</h4>`;
-        } else {
-            for (i = 0; i < guardioes.length; i++) {
-                return document.querySelector('#guardioes').innerHTML = guardioes;
-            }
+                            <div class="valor-guardiao">
+                              <h4 class="orange-text right-align" style="margin-right: 5px; margin-top: 0">R$ 40</h4>
+                              <h6 class="grey-text right-align" style="margin-right: 5px: margin-top: 0">por noite</h6>
+                            </div>
+                        </div>`;
+                guardioes = guardioes + guardiao;
+            })
         }
+    });
+    if (guardioes === '') {
+        return document.querySelector('#guardioes').innerHTML = `<h4 class="text-grey center-align" style="padding: 120px 0;">Desculpe, nenhum <span class="text-orange">Guardião</span> foi encontrado nesta regiao.</h4>`;
+    } else {
+        for (i = 0; i < guardioes.length; i++) {
+            return document.querySelector('#guardioes').innerHTML = guardioes;
+        }
+    }
 };
 
 // get guardioes function
@@ -99,40 +96,37 @@ getGuardioesAuth = () => {
             console.log(textStatus)
         },
         success: function(persons) {
+            console.log(persons)
             persons.map( person =>
             {
                 var guardiao = `
-                    <li id="guardiao" class="container" opacity="0">
-                        <div class="col s12 m8">
-                            <div class="card vertical">
-                                <div class="inline-guardiao">
-                                    <img class="img-guardiao" src="assets/images/img.jpg">
-                                    <div class="content-guardiao text-grey">
-                                      <h3>${person.name}</h3>
-                                      <h4>${person.city}</h4>
-                                    </div>
-                                </div>
-                                <div class="valor center-align">
-                                  <h4 class="orange-text center-align" style="margin-bottom: 0">R$ 40</h4>
-                                  <h6 class="grey-text" style="display: block; text-align: center">por noite</h6>
-                                </div>
-                                <div class="center-align row padding-top-bottom">
-                                  <a class="waves-effect waves-light btn deep-orange lighten-1" href="#contratarServico">Contratar</a>
+                        <div class="card vertical size-guardiao inline-guardiao">
+                            <div class="inline-component">
+                                <img class="img-guardiao" src="assets/images/img.jpg">
+                                <div class="content-guardiao text-grey">
+                                  <h3>${person.name}</h3>
+                                  <h4>${person.city}</h4>
                                 </div>
                             </div>
-                        </div>
-                    </li>`;
+                            <div class="valor-guardiao">
+                              <h4 class="orange-text right-align" style="margin-right: 5px; margin-top: 0">R$ 40</h4>
+                              <h6 class="grey-text right-align" style="margin-right: 5px: margin-top: 0">por noite</h6>
+                            </div>
+                            <div class="right-align row padding-top-bottom" style="margin-right: 5px">
+                              <a class="waves-effect waves-light btn deep-orange lighten-1" href="#contratarServico">Contratar</a>
+                            </div>
+                        </div>`;
                 guardioes = guardioes + guardiao;
             });
         }
     });
     if (guardioes === '') {
-            return document.querySelector('#guardioes').innerHTML = `<h4 class="text-grey center-align" style="padding: 120px 0">Desculpe, nenhum <span class="text-orange">Guardião</span> foi encontrado nesta regiao.</h4>`;
-        } else {
-            for (i = 0; i < guardioes.length; i++) {
-                return document.querySelector('#guardioes').innerHTML = guardioes;
-            }
+        return document.querySelector('#guardioes').innerHTML = `<h4 class="text-grey center-align" style="padding: 120px 0">Desculpe, nenhum <span class="text-orange">Guardião</span> foi encontrado nesta regiao.</h4>`;
+    } else {
+        for (i = 0; i < guardioes.length; i++) {
+            return document.querySelector('#guardioes').innerHTML = guardioes;
         }
+    }
 };
 
 getMarkers = (map, icon = 'assets/images/mark.png') => {
@@ -157,7 +151,7 @@ getMarkers = (map, icon = 'assets/images/mark.png') => {
 
 
     $.ajax({
-        url: "http://localhost:8090/ga/person/fetchserviceprovider/0/" + country + "/" + cityFormated + "/20/0",
+        url: "http://localhost:8090/ga/person/fetchserviceprovider/" + country + "/" + cityFormated + "/20/0",
         type: "GET",
         contentType: 'application/json; charset=utf-8',
         async: false,
@@ -170,30 +164,30 @@ getMarkers = (map, icon = 'assets/images/mark.png') => {
         success: function (persons) {
             persons.map( person =>
             {
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(person.latitude, person.longitude),
-                // title: "Meu ponto personalizado! ID: " + ponto.Id.toString(),
-                map: map,
-                draggable: false,
-                optimized: false,
-                icon: icon
-            });
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(person.latitude, person.longitude),
+                    // title: "Meu ponto personalizado! ID: " + ponto.Id.toString(),
+                    map: map,
+                    draggable: false,
+                    optimized: false,
+                    icon: icon
+                });
 
-            var infowindow = new google.maps.InfoWindow(), marker;
+                var infowindow = new google.maps.InfoWindow(), marker;
 
-            google.maps.event.addListener(marker, 'mouseover', function () {
+                google.maps.event.addListener(marker, 'mouseover', function () {
 
-                infowindow.setContent(`<p class="markMaps"> ${person.name} <br/> R$ Diaria <br/> 
+                    infowindow.setContent(`<p class="markMaps"> ${person.name} <br/> R$ Diaria <br/> 
                             ${person.city} </p>`);
-                infowindow.open(map, marker);
+                    infowindow.open(map, marker);
 
-                marker.setIcon("assets/images/mark.png");
+                    marker.setIcon("assets/images/mark.png");
+                });
+                google.maps.event.addListener(marker, 'mouseout', function () {
+                    infowindow.close(map, marker);
+                    marker.setIcon(icon);
+                });
             });
-            google.maps.event.addListener(marker, 'mouseout', function () {
-                infowindow.close(map, marker);
-                marker.setIcon(icon);
-            });
-        });
         }
     });
 };1

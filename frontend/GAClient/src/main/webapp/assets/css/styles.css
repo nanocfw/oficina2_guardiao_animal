@@ -122,6 +122,10 @@ li { margin-bottom: 5px}
     z-index: 2;
 }
 
+h4, h3 {
+    font-size: 2rem;
+}
+
 .form {
     border-radius: 20px;
     padding: 5px 10px;
@@ -163,17 +167,25 @@ li { margin-bottom: 5px}
     align-items: center;
 }
 
-.inline-guardiao {
+.inline-component {
+    margin-top: 2%;
     display: flex;
+    justify-content: center;
+}
+
+.inline-guardiao {
+    display: inline-block;
     justify-content: center;
 }
 
 .guardioes {
     margin: 2%;
-    width: 50%;
+    width: 60vw;
+    height: 60vh;
     overflow-y: auto;
     max-height: 80vh;
 }
+
 
 .upload-button {
     padding: 4px;
@@ -191,12 +203,8 @@ li { margin-bottom: 5px}
     border-radius: 50px;
 }
 
-.img-guardiao {
-    flex: 1
-}
-
 .content-guardiao {
-    padding: 10px;
+    width: 80%;
 }
 
 .button {
@@ -280,6 +288,7 @@ li { margin-bottom: 5px}
     border-radius: 10px; 
 }
 
+
 .dropdown-content {
     width: 200px !important;
 }
@@ -295,8 +304,8 @@ li { margin-bottom: 5px}
 }
 
 #map {
-    height: 85vh;
-    width: 50%;
+    height: 60vh;
+    width: 50vw;
     margin: 2%;
 }
 
@@ -309,9 +318,19 @@ li { margin-bottom: 5px}
     text-overflow: ellipsis;
 }
 
+.size-guardiao {
+    width: 45%;
+    margin: 2%;
+}
+
 .img-guardiao {
-    width: 50%;
-    height: 75%;
+    -webkit-border-radius: 20%;
+    -moz-border-radius: 20%;
+    border-radius: 20%;
+    margin-top: 2%;
+    margin: 0 2%;
+    width: 40%;
+    height: 10%;
 }
 
 #address:focus {
@@ -326,8 +345,15 @@ li { margin-bottom: 5px}
 }
 
 @media screen and (max-width: 1250px) {
+    .size-guardiao {
+        width: 45%;
+        margin: 2%;
+    }
     .big-button {
         height: 40vh;
+    }
+    h4, h3 {
+        font-size: 1.5rem;
     }
     .margin {
         margin: 5px 150px !important;
@@ -335,9 +361,16 @@ li { margin-bottom: 5px}
 }
 
 @media screen and (max-width: 1050px) {
+    .guardioes {
+        margin: 2%;
+        width: 80vw;
+        height: 60vh;
+        overflow-y: auto;
+        max-height: 80vh;
+    }
     .img-guardiao {
         width: 50%;
-        height: 75%;
+        height: 50%;
     }
     h2 {font-size: 4em;}
     .margin {
@@ -354,9 +387,6 @@ li { margin-bottom: 5px}
     }
     .form {
         margin-left: 25px;
-    }
-    h4, h3 {
-        font-size: 2rem;
     }
     .big-button {
         height: 30vh;
@@ -375,11 +405,21 @@ li { margin-bottom: 5px}
 }
 
 @media screen and (max-width: 600px) {
+    .size-guardiao {
+        width: 90%;
+    }
+    .guardioes {
+        margin: 2%;
+        width: 60vw;
+        height: 60vh;
+        overflow-y: auto;
+        max-height: 80vh;
+    }
     .container .valor {
         margin-top: -5%;
     }
-    h4, h3 {
-        font-size: 1.5rem;
+    h3 {
+        margin-top: 0
     }
     .big-button {
         height: 25vh;
@@ -392,6 +432,10 @@ li { margin-bottom: 5px}
 @media screen and (max-width: 500px) {
     .container .valor {
         margin-top: -15%;
+    }
+    .inline-guardiao {
+        display: block;
+        justify-content: center;
     }
     body { font-size: 50%; }
     .modalDialog > div {
