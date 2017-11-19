@@ -47,7 +47,7 @@ getData = (map, options) => {
         }
 
         for (var i = 0; i < place.address_components.length; i++) {
-            if (place.address_components[i].types[0] === 'postal_coaoaoaoaode') {
+            if (place.address_components[i].types[0] === 'postal_code') {
                 postal_code = place.address_components[i].long_name;
             }
             if (place.address_components[i].types[0] === 'country') {
@@ -93,7 +93,7 @@ getDataAuth = (map, options) => {
         }
 
         for (var i = 0; i < place.address_components.length; i++) {
-            if (place.address_components[i].types[0] === 'postal_coaoaoaoaode') {
+            if (place.address_components[i].types[0] === 'postal_code') {
                 postal_code = place.address_components[i].long_name;
             }
             if (place.address_components[i].types[0] === 'country') {
