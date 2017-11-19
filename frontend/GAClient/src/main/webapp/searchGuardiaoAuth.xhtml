@@ -7,7 +7,6 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
     <title>Buscar Guardião</title>
-
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -45,38 +44,38 @@
     </div>
 
 
-        <div id="content">
-            <h:form>
-                <ui:include src="/components/navbarAuth.xhtml"/>
-                <ui:include src="/components/sideNavGuardiao.xhtml"/>
-            </h:form>
+    <div id="content">
+        <h:form>
+            <ui:include src="/components/navbarAuth.xhtml"/>
+            <ui:include src="/components/sideNavGuardiao.xhtml"/>
+        </h:form>
 
 
-            <ui:include src="/components/contratarServico.xhtml"/>
+        <ui:include src="/components/contratarServico.xhtml"/>
 
-            <div class="center-align">
-                <h1 class="text-grey"><span class="text-orange">Guardiões</span> na sua região </h1>
-            </div>
-
-            <div class="container form col s12 z-depth-3">
-
-                <h5 class="white-text">Local:</h5>
-                <div class="inline">
-                    <i class="icons white-text material-icons">location_on</i>
-                    <h:inputText id="address" onkeypress="getCity(event)" class="white-text controls"
-                                 a:placeholder="Buscar cidade desejada"></h:inputText>
-                </div>
-            </div>
-
-            <div id="inline" class="inline">
-
-                <ui:include src="/components/guardioesAuth.xhtml"/>
-
-                <ui:include src="/components/mapsSearch.xhtml"/>
-            </div>
-
-            <ui:include src="/components/footer.xhtml"/>
+        <div class="center-align">
+            <h1 class="text-grey"><span class="text-orange">Guardiões</span> na sua região </h1>
         </div>
+
+        <div class="container form col s12 z-depth-3">
+
+            <h5 class="white-text">Local:</h5>
+            <div class="inline">
+                <i class="icons white-text material-icons">location_on</i>
+                <h:inputText id="address" onkeypress="getCity(event)" class="white-text controls"
+                             a:placeholder="Buscar cidade desejada"></h:inputText>
+            </div>
+        </div>
+
+        <div id="inline" class="inline">
+
+            <ui:include src="/components/guardioesAuth.xhtml"/>
+
+            <ui:include src="/components/mapsSearch.xhtml"/>
+        </div>
+
+        <ui:include src="/components/footer.xhtml"/>
+    </div>
 </h:body>
 <!--@formatter:off-->
 <script>
