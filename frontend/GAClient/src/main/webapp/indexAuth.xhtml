@@ -25,6 +25,7 @@
 </h:head>
 <h:body>
     <!--Import jQuery autocomplete -->
+    <script type="text/javascript" src="assets/js/jquery.js"></script>
     <script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
     <!-- Import Materialize.js -->
     <script type="text/javascript" src="assets/js/materialize.min.js"></script>
@@ -42,18 +43,18 @@
         <div class="loader-section section-right"></div>
 
     </div>
-        <div id="content">
-            <h:form>
-                <ui:include src="/components/navbarAuth.xhtml"/>
-                <ui:include src="/components/sideNavGuardiao.xhtml"/>
-            </h:form>
-            <div class="main">
-                <h1> HI PEOPLES</h1>
-            </div>
-
+    <div id="content">
+        <h:form>
+            <ui:include src="/components/navbarAuth.xhtml"/>
+            <ui:include src="/components/sideNavGuardiao.xhtml"/>
+        </h:form>
+        <div class="main">
+            <h1> HI PEOPLES</h1>
         </div>
 
-        <ui:include src="/components/footer.xhtml"/>
+    </div>
+
+    <ui:include src="/components/footer.xhtml"/>
 
     <!--@formatter:off-->
         <script>
