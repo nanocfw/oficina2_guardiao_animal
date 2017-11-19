@@ -7,7 +7,7 @@ import java.util.List;
 public interface IAnimalTypeService {
     AnimalType createUpdate(final AnimalType animalType) throws Exception;
 
-    AnimalType findById(final int animalTypeId) throws Exception;
+    AnimalType findById(final long animalTypeId) throws Exception;
 
     AnimalType findByDescription(final String description) throws Exception;
 
@@ -15,5 +15,5 @@ public interface IAnimalTypeService {
 
     void delete(final AnimalType animalType) throws Exception;
 
-    int deleteById(final int animalTypeId) throws Exception;
+    int deleteById(final long animalTypeId) throws Exception;
 }
