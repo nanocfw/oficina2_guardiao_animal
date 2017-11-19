@@ -152,13 +152,8 @@ public class PersonBean extends DefaultBean {
         return personService.getServiceProviderList(0, country, city, rowsReturn, rowsIgnore);
     }
 
-    public MapModel getMapList() {
-        List<ServiceProviderSearch> list = getListServiceProvider("Brasil", "Dois Vizinhos", 100, 0);
-        MapModel map = new DefaultMapModel();
-        for (ServiceProviderSearch s : list)
-            map.addOverlay(new Marker(new LatLng(s.getLatitude(), s.getLongitude()), s.getName()));
-
-        return map;
+    public Person findById(long id) throws Exception {
+        return personService.findById(id);
     }
 
     public PersonBean() {

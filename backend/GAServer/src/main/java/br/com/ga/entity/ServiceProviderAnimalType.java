@@ -29,13 +29,12 @@ public class ServiceProviderAnimalType {
     @Transient
     String animalTypeDescription;
 
+    @Transient
+    String description;//usado apenas para exibir na listagem
+
     public ServiceProviderAnimalType() {
         super();
         animalSize = AnimalSize.SMALL;
         billingType = BillingType.PER_HOUR;
-    }
-
-    public String getDescription() {
-        return String.valueOf(id) + String.valueOf(serviceType_id) + String.valueOf(animalType_id);
     }
 }

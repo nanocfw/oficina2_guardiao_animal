@@ -41,6 +41,18 @@ public class Appointment implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date clientRatingDate;
 
+    @Transient
+    private String clientName;
+
+    @Transient
+    private String serviceProviderName;
+
+    @Transient
+    private String animalName;
+
+    @Transient
+    private String serviceTypeDescription;
+
     public Appointment() {
         super();
     }

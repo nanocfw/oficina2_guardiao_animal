@@ -74,6 +74,7 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
     }
 
     public List<SelectItem> getServiceTypes() {
+        loadServicesForServiceProvider(1);
         return serviceTypes;
     }
 
@@ -125,8 +126,10 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
     public void loadServicesForServiceProvider(long serviceProviderId) {
         serviceTypes.clear();
         List<ServiceProviderAnimalType> aux = serviceProviderAnimalTypeService.findListByProvider(serviceProviderId, 1000, 0);
-        for (ServiceProviderAnimalType s : aux)
+        for (ServiceProviderAnimalType s : aux) {
+            s.setDescription("Serviço: " + serviceTypeBean.getTypeName(s.getServiceType_id()) + " Animal: " + animalTypeBean.getTypeName(s.getAnimalType_id()) + " Valor: " + String.format("R$ %.2f", s.getValue()));
             serviceTypes.add(new SelectItem(s.getId(), s.getDescription()));
+        }
     }
 
     public void clear() {
@@ -137,6 +140,10 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
 
     public void edit(ServiceProviderAnimalType serviceProviderAnimalType) {
         setCurrentServiceProviderAnimalType(serviceProviderAnimalType);
+    }
+
+    public ServiceProviderAnimalType findById(long id) throws Exception {
+        return serviceProviderAnimalTypeService.findById(id);
     }
 
     public ServiceProviderAnimalTypeBean() {

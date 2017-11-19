@@ -73,12 +73,10 @@ public class LoginBean extends DefaultBean {
             if (p.isFinishedRegister()) {
                 if (personBean.getCurrentPerson().isServiceProvider()) {
                     return redirectToMain();
-                }
-                else {
+                } else {
                     return redirectToMainClient();
                 }
-            }
-            else
+            } else
                 return redirectToEndRegister();
         } catch (EntityNotFound e) {
             FacesUtils.addErrorMessage("lform:loginMsg", "Email ou senha está incorreto");
@@ -110,7 +108,9 @@ public class LoginBean extends DefaultBean {
             p = updateToken(p);
             setAuthenticatedUser(p);
             personBean.setCurrentPerson(p);
-            if (personBean.getCurrentPerson().isServiceProvider() == true) {
+            if (!p.isFinishedRegister())
+                redirectToEndRegister();
+            else if (p.isServiceProvider() == true) {
                 redirectToMain();
             } else {
                 redirectToMainClient();

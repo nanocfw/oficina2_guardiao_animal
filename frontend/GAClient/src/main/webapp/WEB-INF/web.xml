@@ -22,5 +22,9 @@
         <param-name>primefaces.THEME</param-name>
         <param-value>omega</param-value>
     </context-param>
+   <context-param>
+       <param-name>primefaces.LOCALE</param-name>
+       <param-value>pt_BR</param-value>
+   </context-param>
 </web-app>
 

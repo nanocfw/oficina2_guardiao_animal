@@ -55,25 +55,33 @@
             <div class="main-animals">
 
                 <div class="form">
-                    <p:dataTable var="" value="">
-                        <p:column style="text-align: center"  headerText="Cuidador">
-                            <h:outputText value="" style="font-weight: bold"/>
+                    <p:dataTable var="servico" value="#{appointmentBean.getServicesListByClient()}">
+                        <p:column style="text-align: center" headerText="Cuidador">
+                            <h:outputText value="#{servico.serviceProviderName}" style="font-weight: bold"/>
                         </p:column>
 
-                        <p:column style="text-align: center"  headerText="Tipo de Serviço">
-                            <h:outputText value="" style="font-weight: bold"/>
+                        <p:column style="text-align: center" headerText="Tipo de Serviço">
+                            <h:outputText value="#{servico.serviceTypeDescription}" style="font-weight: bold"/>
                         </p:column>
 
-                        <p:column style="text-align: center"  headerText="Tipo do Animal">
-                            <h:outputText value="" style="font-weight: bold"/>
+                        <p:column style="text-align: center" headerText="Animal">
+                            <h:outputText value="#{servico.animalName}" style="font-weight: bold"/>
                         </p:column>
 
-                        <p:column style="text-align: center"  headerText="Tipo de Cobrança">
-                            <h:outputText value="" style="font-weight: bold"/>
+                        <p:column style="text-align: center" headerText="Tipo de Cobrança">
+                            <h:outputText value="#{servico.billingType.toString()}" style="font-weight: bold"/>
                         </p:column>
 
                         <p:column style="text-align: center" headerText="Valor">
-                            <h:outputText value="" style="font-weight: bold"/>
+                            <h:outputText value="#{servico.serviceCost}" style="font-weight: bold"/>
+                        </p:column>
+
+                        <p:column style="text-align: center" headerText="Avaliação Recebida">
+                            <p:rating value="#{servico.clientRating}" readonly="true"/>
+                        </p:column>
+
+                        <p:column style="text-align: center" headerText="Avaliação Efetuada">
+                            <p:rating value="#{servico.serviceRating}" readonly="true"/>
                         </p:column>
                     </p:dataTable>
                 </div>

@@ -101,6 +101,8 @@ public class AnimalBean extends DefaultBean {
     }
 
     public List<Animal> getAnimals() {
+        if (animals.isEmpty())
+            loadAnimals();
         return animals;
     }
 
@@ -180,6 +182,18 @@ public class AnimalBean extends DefaultBean {
         currentAnimal = new Animal();
         profilePic = "";
         picture = new Picture();
+    }
+
+    public Animal findById(long id) throws Exception {
+        return animalService.findById(id);
+    }
+
+
+    public String getAnimalName(long id) {
+        for (Animal a : getAnimals())
+            if (a.getId() == id)
+                return a.getName();
+        return "";
     }
 
     public AnimalBean() {
