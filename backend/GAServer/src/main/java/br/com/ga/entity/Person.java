@@ -33,6 +33,7 @@ public class Person implements Serializable {
     private String country;
     private boolean serviceProvider;
     private String documentNumber;//cpf cnpj
+    private String street;
     private String address;
     private String addressNumber;
     private String district;
