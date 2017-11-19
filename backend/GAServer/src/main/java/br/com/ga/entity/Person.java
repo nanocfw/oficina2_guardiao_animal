@@ -64,7 +64,7 @@ public class Person implements Serializable {
         authTokenExpiration = Util.incDay(Util.curDate(), -1);
     }
 
-    public Person(long id, String name, String lastName, String email, String password, String city, String state, String country, boolean serviceProvider, String documentNumber, String address, String addressNumber, String district, String complement, String postalCode, Date birthDate, String phone, String cellPhone, String additionalData, double latitude, double longitude, boolean finishedRegister, long profilePic_id, PersonType type) {
+    public Person(long id, String name, String lastName, String email, String password, String city, String state, String country, boolean serviceProvider, String documentNumber, String street, String address, String addressNumber, String district, String complement, String postalCode, Date birthDate, String phone, String cellPhone, String additionalData, double latitude, double longitude, boolean finishedRegister, long profilePic_id, PersonType type) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -75,6 +75,7 @@ public class Person implements Serializable {
         this.country = country;
         this.serviceProvider = serviceProvider;
         this.documentNumber = documentNumber;
+        this.street = street;
         this.address = address;
         this.addressNumber = addressNumber;
         this.district = district;

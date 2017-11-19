@@ -43,15 +43,15 @@
 
     </div>
 
-
     <div id="content">
+        <input class="file-upload" type="file" accept="image/*"/>
+        <ui:include src="/components/beGuardiao.xhtml"/>
+
         <h:form>
             <ui:include src="/components/navbarAuth.xhtml"/>
             <ui:include src="/components/sideNavGuardiao.xhtml"/>
+            <ui:include src="/components/contratarServico.xhtml"/>
         </h:form>
-
-
-        <ui:include src="/components/contratarServico.xhtml"/>
 
         <div class="center-align">
             <h1 class="text-grey"><span class="text-orange">Guardiões</span> na sua região </h1>
@@ -79,17 +79,31 @@
 </h:body>
 <!--@formatter:off-->
 <script>
-    var $doc = $('html, body');
-    $('.scroll').click(function () {
-        $doc.animate({
-            scrollTop: $($.attr(this, 'href')).offset().top
-        }, 500);
-        return false;
+    let readURL = function (input) {
+        if (input.files &amp;&amp; input.files[0]) {
+            let reader = new FileReader();
+
+            reader.onload = e => {
+                $('.profile-pic').attr('src', e.target.result);
+                document.getElementById("gform:pic").value = e.target.result;
+            };
+
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+
+
+    $(".file-upload").on('change', function () {
+        readURL(this);
     });
 
+    $(".upload-button").on('click', function () {
+        $(".file-upload").click();
+    });
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZFvkr4Q2sAvLnfWrCttEn66VcAnRz8DE&amp;libraries=places&amp;callback=initMap">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZFvkr4Q2sAvLnfWrCttEn66VcAnRz8DE&amp;libraries=places&amp;callback=initMapAuth">
 </script>
 <!--@formatter:on-->
 </html>

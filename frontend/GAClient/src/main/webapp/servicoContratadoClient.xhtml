@@ -44,7 +44,10 @@
 
 
     <div id="content">
-        <!--<ui:include src="/components/beGuardiao.xhtml"/>-->
+        <input class="file-upload" type="file" accept="image/*"/>
+        <ui:include src="/components/beGuardiao.xhtml"/>
+        <ui:include src="/components/beClient.xhtml"/>
+
         <h:form>
             <ui:include src="/components/navbarAuthClient.xhtml"/>
             <ui:include src="/components/sideNavClient.xhtml"/>
@@ -93,6 +96,30 @@
         </h:form>
         <ui:include src="/components/footer.xhtml"/>
     </div>
+    <script>
+        let readURL = function (input) {
+            if (input.files &amp;&amp; input.files[0]) {
+                let reader = new FileReader();
+
+                reader.onload = e => {
+                    $('.profile-pic').attr('src', e.target.result);
+                    document.getElementById("fform:pic").value = e.target.result;
+                };
+
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+
+
+        $(".file-upload").on('change', function () {
+            readURL(this);
+        });
+
+        $(".upload-button").on('click', function () {
+            $(".file-upload").click();
+        });
+    </script>
 </h:body>
 <!--@formatter:on-->
 </html>

@@ -16,28 +16,23 @@
                        data-beloworigin="true">Bem vindo #{loginBean.authenticatedUser.name}</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-                <ul class="collection">
-                    <li><a href="indexAuth.xhtml"
-                           class="waves-effect waves-light deep-orange lighten-1 center-align white-text">Bem vindo #{loginBean.authenticatedUser.name}</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="#!" class="waves-effect waves-light btn deep-orange lighten-1 ">
-                        <i class="material-icons text-orange">home</i>Perfil</a></li>
-                    <li><a href="#!" class="waves-effect waves-light btn deep-orange lighten-1 ">
-                        <i class="material-icons text-orange">settings</i>Configurações</a></li>
-                    <li class="divider"></li>
-                    <li><h:commandButton action="#{loginBean.logout()}" ajax="false" value="Sair"
-                                         class="commandButton"/>
-                    </li>
-                </ul>
+                <li><a href="indexAuthClient.xhtml"
+                       class="waves-effect waves-light deep-orange lighten-1 center-align white-text">Bem vindo #{loginBean.authenticatedUser.name}</a>
+                </li>
+                <li class="divider"></li>
+                <li><a href="#encontrar" class="waves-effect waves-light btn deep-orange lighten-1 ">
+                    <i class="material-icons text-orange">home</i>Perfil</a></li>
+                <li class="divider"></li>
+                <li><h:commandButton action="#{loginBean.logout()}" ajax="false" value="Sair"
+                                     class="commandButton"/>
+                </li>
             </ul>
         </div>
     </nav>
 
     <!-- Dropdown Structure -->
     <ul id="dropdown" class="dropdown-content collection">
-        <li><a href="#!"><i class="material-icons text-orange">home</i>Perfil</a></li>
-        <li><a href="#!"><i class="material-icons text-orange">settings</i>Configurações</a></li>
+        <li><a href="#encontrar"><i class="material-icons text-orange">home</i>Perfil</a></li>
         <li class="divider"></li>
         <li><h:commandButton action="#{loginBean.logout()}" ajax="false" value="Sair"
                              class="commandButton"/>

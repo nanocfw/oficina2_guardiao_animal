@@ -47,7 +47,7 @@ getData = (map, options) => {
         }
 
         for (var i = 0; i < place.address_components.length; i++) {
-            if (place.address_components[i].types[0] === 'postal_code') {
+            if (place.address_components[i].types[0] === 'postal_coaoaoaoaode') {
                 postal_code = place.address_components[i].long_name;
             }
             if (place.address_components[i].types[0] === 'country') {
@@ -61,6 +61,51 @@ getData = (map, options) => {
         setCity(postal_code, country, loc, lat, lon);
 
         getGuardioes();
+        getMarkers(map);
+    });
+
+};
+
+getDataAuth = (map, options) => {
+    input = $('#address');
+    autocomplete = new google.maps.places.Autocomplete(input[0], options);
+
+    var postal_code = document.getElementById("postal_code").innerHTML;
+    var country = document.getElementById("country").innerHTML;
+    var loc = document.getElementById("loc").innerHTML;
+    var lat = document.getElementById("lat").innerHTML;
+    var lon = document.getElementById("lon").innerHTML;
+
+    autocomplete.addListener('place_changed', function () {
+
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            return ''
+
+        }
+
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(13);
+        }
+
+        for (var i = 0; i < place.address_components.length; i++) {
+            if (place.address_components[i].types[0] === 'postal_coaoaoaoaode') {
+                postal_code = place.address_components[i].long_name;
+            }
+            if (place.address_components[i].types[0] === 'country') {
+                country = place.address_components[i].long_name;
+            }
+        }
+        loc = place.formatted_address;
+        lat = place.geometry.location.lat();
+        lon = place.geometry.location.lng();
+
+        setCity(postal_code, country, loc, lat, lon);
+
         getGuardioesAuth();
         getMarkers(map);
     });
@@ -80,6 +125,7 @@ setCity = (postal_code, country, loc, lat, lon) => {
             console.log($('#address')[0].value);
             window.location = '../../gaclient/searchGuardiao.xhtml';
         }
+
     };
 
     enterAuth = (event) => {
@@ -89,7 +135,6 @@ setCity = (postal_code, country, loc, lat, lon) => {
             window.location = '../../gaclient/searchGuardiaoAuth.xhtml';
         }
     };
-
 };
 
 // type enter to scroll on main page function

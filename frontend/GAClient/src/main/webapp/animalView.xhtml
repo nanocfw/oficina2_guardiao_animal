@@ -42,10 +42,11 @@
 
     </div>
 
-    <input class="file-upload" type="file" accept="image/*"/>
-    <ui:include src="/components/animal.xhtml"/>
-
     <div id="content">
+        <input class="file-upload" type="file" accept="image/*"/>
+        <ui:include src="/components/animal.xhtml"/>
+        <ui:include src="/components/beGuardiao.xhtml"/>
+
         <h:form>
             <ui:include src="/components/navbarAuth.xhtml"/>
             <ui:include src="/components/sideNavGuardiao.xhtml"/>
@@ -115,6 +116,7 @@
             reader.onload = e => {
                 $('.profile-pic').attr('src', e.target.result);
                 document.getElementById("formAnimal:pic").value = e.target.result;
+                document.getElementById("gform:pic").value = e.target.result;
             };
 
 

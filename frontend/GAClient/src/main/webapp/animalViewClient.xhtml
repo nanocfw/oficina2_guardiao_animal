@@ -42,10 +42,12 @@
 
     </div>
 
-    <input class="file-upload" type="file" accept="image/*"/>
-    <ui:include src="/components/animal.xhtml"/>
-    <!--<ui:include src="/components/beGuardiao.xhtml"/>-->
     <div id="content">
+        <input class="file-upload" type="file" accept="image/*"/>
+        <ui:include src="/components/animal.xhtml"/>
+        <ui:include src="/components/beGuardiao.xhtml"/>
+        <ui:include src="/components/beClient.xhtml"/>
+
         <h:form>
             <ui:include src="/components/navbarAuthClient.xhtml"/>
             <ui:include src="/components/sideNavClient.xhtml"/>
@@ -107,21 +109,13 @@
             reader.onload = e => {
                 $('.profile-pic').attr('src', e.target.result);
                 document.getElementById("formAnimal:pic").value = e.target.result;
+                document.getElementById("fform:pic").value = e.target.result;
             };
 
 
             reader.readAsDataURL(input.files[0]);
         }
     };
-
-
-    $(".file-upload").on('change', function () {
-        readURL(this);
-    });
-
-    $(".upload-button").on('click', function () {
-        $(".file-upload").click();
-    });
 </script>
 <!--@formatter:on-->
 </html>

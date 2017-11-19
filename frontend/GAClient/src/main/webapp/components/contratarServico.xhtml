@@ -25,7 +25,7 @@
                                          a:placeholder="Tipo">
                             <f:selectItem itemLabel="Selecione um tipo do serviço" itemValue=""
                                           noSelectionOption="false"/>
-                            <f:selectItems value="#{serviceProviderAnimalTypeBean.serviceTypes}"/>
+                            <f:selectItems value="#{serviceProviderAnimalTypeBean.serviceTypes}"
                             var="item"
                             itemValue="#{item.id}"
                             itemLabel="#{item.description}"/>
@@ -50,7 +50,7 @@
                     <div class="inline">
                         <i class="icons text-grey material-icons"> date_range</i>
                         <p:calendar id="startDate" value="#{appointmentBean.currentAppointment.startService}"
-                                    pattern="dd/MM/yyyy HH:mm:ss"
+                                    pattern="dd/MM/yyyy"
                                     class="center-align"
                                     required="true" requiredMessage="Por favor preencha o campo Data"
                                     a:placeholder="Início do serviço">
@@ -61,7 +61,7 @@
                     <div class="inline">
                         <i class="icons text-grey material-icons"> date_range</i>
                         <p:calendar id="endDate" value="#{appointmentBean.currentAppointment.endService}"
-                                    pattern="dd/MM/yyyy HH:mm:ss"
+                                    pattern="dd/MM/yyyy"
                                     class="center-align"
                                     required="true" requiredMessage="Por favor preencha o campo Data"
                                     a:placeholder="Fim do serviço">
