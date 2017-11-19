@@ -21,6 +21,19 @@ body, html {
     border: 2px solid white;
 }
 
+.paragrafo-index {
+    font-size: 24px;
+    color:  #666;
+}
+
+ul.nossos-valores {
+    color: #666;
+    list-style: square;
+    padding: 0;
+    font-size: 24px;
+}
+
+
 .button-scroll {
     width: 150px;
     height: 50px;
@@ -56,7 +69,6 @@ li { margin-bottom: 5px}
     justify-content: center;
     height: 100vh;
     width: 98%;
-    margin-left: 1%;
 }
 
 .main-sobre {
@@ -81,7 +93,7 @@ li { margin-bottom: 5px}
 .border {
     border: 2px solid #616161;
     border-radius: 20px;
-    margin-left: 5% !important;
+    margin: 5% !important;
 }
 
 .margin {
@@ -91,6 +103,18 @@ li { margin-bottom: 5px}
 .slide-main {
     width: 100%;
     height: 100vh;
+}
+
+.sobre-servicos {
+    display: flex;
+    align-items: center;
+    margin-left: 5%;
+    font-size: 16px;
+    text-align: -webkit-auto;
+}
+
+.padding-card {
+    margin: 3%;
 }
 
 .commandButton {
@@ -108,7 +132,7 @@ li { margin-bottom: 5px}
     height: 100vh;
     width: 100%;
     opacity: 0.5;
-    padding-bottom: 10vh;
+    /*padding-bottom: 10vh;*/
 }
 
 .core {
@@ -405,14 +429,17 @@ p.message {
 }
 
 @media screen and (max-width: 750px) {
+    .paragrafo-index {
+        font-size: 18px;
+    }
+    ul.nossos-valores {
+        font-size: 18px;
+    }
     h3 {
         margin-top: 5%
     }
     .p-2em {
         font-size: 2em
-    }
-    .form {
-        margin-left: 25px;
     }
     .big-button {
         height: 30vh;
@@ -431,6 +458,12 @@ p.message {
 }
 
 @media screen and (max-width: 600px) {
+    .paragrafo-index {
+        font-size: 14px;
+    }
+    ul.nossos-valores {
+        font-size: 14px;
+    }
     h3 {
         margin-top: 15%;
     }

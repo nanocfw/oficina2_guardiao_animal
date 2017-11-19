@@ -46,15 +46,20 @@
 
     <div id="content">
         <input class="file-upload" type="file" accept="image/*"/>
+        <div id="map" style="display: none"></div>g
         <ui:include src="/components/beGuardiao.xhtml"/>
 
         <h:form>
             <ui:include src="/components/navbarAuth.xhtml"/>
             <ui:include src="/components/sideNavGuardiao.xhtml"/>
         </h:form>
+
         <div class="main">
-            <h1> HI PEOPLES</h1>
+            <img class="main-img" src="assets/images/grupodeanimais.jpg"/>
+            <ui:include src="components/searchCityAuth.xhtml"/>
         </div>
+
+        <div id="guardioes" style="display: none"></div>
 
     </div>
 
@@ -84,6 +89,8 @@
             $(".upload-button").on('click', function () {
                 $(".file-upload").click();
             });
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCONEgoiPhXnWsTWLE27z_wiNWxiq-j0VQ&amp;libraries=places&amp;callback=getCity">
         </script>
     <!--@formatter:on-->
 </h:body>

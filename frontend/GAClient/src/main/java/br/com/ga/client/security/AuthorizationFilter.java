@@ -38,7 +38,6 @@ public class AuthorizationFilter implements Filter {
             if (reqURI.equalsIgnoreCase("/gaclient/")
                     || reqURI.contains("/index.xhtml")
                     || reqURI.contains("/login.xhtml")
-                    || reqURI.contains("/sobreaempresa.xhtml")
                     || reqURI.contains("/searchGuardiao.xhtml")
                     || reqURI.contains("/firstRegister.xhtml")
                     || reqURI.contains("/policyPrivacy.xhtml")
