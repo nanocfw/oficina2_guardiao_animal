@@ -19,3 +19,4 @@ frontend/GAClient/src/main/java/br/com/ga/service/
 frontend/GAClient/src/main/java/br/com/ga/util
 frontend/GAClient/src/main/java/br/com/ga/web/
 
+backend/GAServer/src/main/resources/application.properties
