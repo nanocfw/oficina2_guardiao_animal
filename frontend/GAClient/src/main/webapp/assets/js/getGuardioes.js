@@ -30,7 +30,7 @@ getListadeGuardioes= () => {
             alert(textStatus)
         },
         success: function (persons) {
-           return persons;
+            return persons;
         }
     })
 }
@@ -50,9 +50,12 @@ getGuardioes = () => {
                           <h4>${person.city}</h4>
                         </div>
                     </div>
-                    <div class="valor-guardiao">
-                      <h4 class="orange-text right-align" style="margin-right: 5px; margin-top: 0">R$ 40</h4>
-                      <h6 class="grey-text right-align" style="margin-right: 5px: margin-top: 0">por noite</h6>
+                    <div class="inline-message-money ">
+                        <p class="message">${person.message}</p>
+                        <div class="valor-guardiao">
+                          <h4 class="orange-text right-align" style="margin-right: 5px; margin-top: 0">R$ 40</h4>
+                          <h6 class="grey-text right-align" style="margin-right: 5px; margin-top: 0">por noite</h6>
+                        </div>
                     </div>
                 </div>`;
         guardioes = guardioes + guardiao;
@@ -73,6 +76,10 @@ getGuardioesAuth = () => {
 
     persons.responseJSON.map( person => {
         {
+            if (person.message === null) {
+                person.message = "Nenhuma mensagem foi adicionada por este cuidador."
+            }
+
             var guardiao = `
                 <div class="card vertical size-guardiao inline-guardiao">
                     <div class="inline-component">
@@ -82,11 +89,14 @@ getGuardioesAuth = () => {
                           <h4>${person.city}</h4>
                         </div>
                     </div>
-                    <div class="valor-guardiao">
-                      <h4 class="orange-text right-align" style="margin-right: 5px; margin-top: 0">R$ 40</h4>
-                      <h6 class="grey-text right-align" style="margin-right: 5px: margin-top: 0">por noite</h6>
+                    <div class="inline-message-money ">
+                        <p class="message">${person.message}</p>
+                        <div class="valor-guardiao">
+                          <h4 class="orange-text right-align" style="margin-right: 5px; margin-top: 0">R$ 40</h4>
+                          <h6 class="grey-text right-align" style="margin-right: 5px; margin-top: 0">por noite</h6>
+                        </div>
                     </div>
-                    <div class="right-align row padding-top-bottom" style="margin-right: 5px">
+                    <div class="center-align row padding-top-bottom" style="margin-right: 5px">
                       <a class="waves-effect waves-light btn deep-orange lighten-1" href="#contratarServico">Contratar</a>
                     </div>
                 </div>`;

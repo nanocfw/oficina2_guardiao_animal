@@ -10,10 +10,6 @@ body, html {
     height: 100%;
 }
 
-h6 {
-    text-align: justify;
-}
-
 .align-right {
     position: fixed;
     bottom: 5%;
@@ -169,6 +165,12 @@ h4, h3 {
 
 .inline-component {
     margin-top: 2%;
+    display: flex;
+    justify-content: center;
+}
+
+.inline-message-money {
+    margin-top: 7%;
     display: flex;
     justify-content: center;
 }
@@ -333,6 +335,23 @@ h4, h3 {
     height: 10%;
 }
 
+p.message {
+    display: -webkit-box;
+    max-width: 100%;
+    margin: 0 auto;
+    height: 55px;
+    text-align: justify;
+    line-break: auto;
+    font-size: 18px;
+    line-height: 1;
+    margin-left: 5%;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 60%
+}
+
 #address:focus {
     border-color: #ff7043;
 }
@@ -345,6 +364,10 @@ h4, h3 {
 }
 
 @media screen and (max-width: 1250px) {
+    p.message {
+        font-size: 16px;
+        height: 48px;
+    }
     .size-guardiao {
         width: 45%;
         margin: 2%;
@@ -382,6 +405,9 @@ h4, h3 {
 }
 
 @media screen and (max-width: 750px) {
+    h3 {
+        margin-top: 5%
+    }
     .p-2em {
         font-size: 2em
     }
@@ -405,6 +431,9 @@ h4, h3 {
 }
 
 @media screen and (max-width: 600px) {
+    h3 {
+        margin-top: 15%;
+    }
     .size-guardiao {
         width: 90%;
     }
@@ -418,9 +447,6 @@ h4, h3 {
     .container .valor {
         margin-top: -5%;
     }
-    h3 {
-        margin-top: 0
-    }
     .big-button {
         height: 25vh;
     }
@@ -430,6 +456,12 @@ h4, h3 {
 }
 
 @media screen and (max-width: 500px) {
+    p.message {
+        font-size: 12px;
+    }
+    h3 {
+        margin-top: 25%
+    }
     .container .valor {
         margin-top: -15%;
     }
