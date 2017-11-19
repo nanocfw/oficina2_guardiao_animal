@@ -65,15 +65,15 @@
                             <img src="#{animal.picture}" class="logo" style="width: 120px; height: 120px;"/>
                         </p:column>
 
-                        <p:column style="text-align: center"  headerText="Nome">
+                        <p:column style="text-align: center" headerText="Nome">
                             <h:outputText value="#{animal.name}" style="font-weight: bold"/>
                         </p:column>
 
-                        <p:column style="text-align: center"  headerText="Idade">
+                        <p:column style="text-align: center" headerText="Idade">
                             <h:outputText value="#{animal.age}" style="font-weight: bold"/>
                         </p:column>
 
-                        <p:column style="text-align: center"  headerText="Raça">
+                        <p:column style="text-align: center" headerText="Raça">
                             <h:outputText value="#{animal.breed}" style="font-weight: bold"/>
                         </p:column>
 
@@ -87,6 +87,14 @@
 
                         <p:column style="text-align: center" headerText="Temperamento">
                             <h:outputText value="#{animal.temperament}" style="font-weight: bold"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Editar"
+                                             action="#{animalBean.edit(animal)}"
+                                             ajax="true"
+                                             update="formAnimal"
+                                             oncomplete="javascript:location.hash = '#animal';">
+                            </p:commandButton>
                         </p:column>
                     </p:dataTable>
                 </div>

@@ -25,10 +25,12 @@
                        style="font-size: 12px">Clique na imagem para inserir uma foto do seu animal</p>
 
                     <div class="inline">
-                        <p:inputText value="#{animalBean.birthDate}" id="data" type="date" class="center-align"
-                                     required="true" requiredMessage="Por favor preencha o campo Data"
-                                     a:placeholder="Data de nascimento">
-                        </p:inputText>
+                        <p:calendar id="data" value="#{animalBean.currentAnimal.birthDate}"
+                                    pattern="dd/MM/yyyy"
+                                    class="center-align"
+                                    required="true" requiredMessage="Por favor preencha o campo Data de Nascimento"
+                                    a:placeholder="Data de nascimento">
+                        </p:calendar>
                     </div>
 
                     <div class="inline">
@@ -42,11 +44,14 @@
                     </div>
 
                     <div class="inline">
-                        <p:selectOneMenu id="type" value="#{animalTypeBean.currentTypeName}" style="width:150px"
+                        <p:selectOneMenu id="type" value="#{animalBean.currentAnimal.animalType_id}" style="width:150px"
                                          requiredMessage="Por favor preencha o campo Tipo"
                                          a:placeholder="Tipo">
                             <f:selectItem itemLabel="Selecione um tipo" itemValue="" noSelectionOption="false"/>
-                            <f:selectItems value="#{animalTypeBean.types}"/>
+                            <f:selectItems value="#{animalTypeBean.types}"
+                                           var="item"
+                                           itemValue="#{item.id}"
+                                           itemLabel="#{item.description}"/>
                         </p:selectOneMenu>
                         -
                         <p:inputText id="breed" class="center-align" rendered="true"
@@ -81,7 +86,7 @@
                         <p:inputText id="weight" a:type="number" class="center-align" required="true"
                                      value="#{animalBean.currentAnimal.weight}"
                                      requiredMessage="Por favor preencha o campo Peso"
-                                     validatorMessage="Peso deve ser maior que 0,00 KG"
+                                     validatorMessage="Valor deve ser maior que R$ 0,00"
                                      a:placeholder="Peso em gramas">
                             <f:validateDoubleRange minimum="1"/>
                         </p:inputText>

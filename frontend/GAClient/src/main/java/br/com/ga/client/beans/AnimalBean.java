@@ -14,8 +14,10 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -36,10 +38,12 @@ public class AnimalBean extends DefaultBean {
     AnimalTypeBean animalTypeBean;
 
     private Animal currentAnimal;
-    private String birthDate;
     private Picture picture;
     private String profilePic;
     private int animalSize;
+
+    private List<SelectItem> animalsName;
+    private List<Animal> animals;
 
     public Animal getCurrentAnimal() {
         return currentAnimal;
@@ -48,18 +52,7 @@ public class AnimalBean extends DefaultBean {
     public void setCurrentAnimal(Animal currentAnimal) {
         this.currentAnimal = currentAnimal;
         this.animalSize = currentAnimal.getSize().ordinal();
-        animalTypeBean.setCurrentTypeName(currentAnimal.getAnimalType_id());
         loadPictureFromDataBase();
-
-        if (currentAnimal.getBirthDate() != null) {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            this.birthDate = df.format(currentAnimal.getBirthDate());
-        } else
-            this.birthDate = "";
-    }
-
-    public String getBirthDate() {
-        return birthDate;
     }
 
     public String getProfilePic() {
@@ -70,10 +63,6 @@ public class AnimalBean extends DefaultBean {
         this.profilePic = profilePic;
         this.picture.loadFromString(profilePic);
         this.picture.setUpdated(true);
-    }
-
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
     }
 
     public int getAnimalSize() {
@@ -101,12 +90,33 @@ public class AnimalBean extends DefaultBean {
         this.animalTypeBean = animalTypeBean;
     }
 
+    public List<SelectItem> getAnimalsName() {
+        if (animalsName.isEmpty())
+            loadAnimals();
+        return animalsName;
+    }
+
+    public void setAnimalsName(List<SelectItem> animalsName) {
+        this.animalsName = animalsName;
+    }
+
+    public List<Animal> getAnimals() {
+        return animals;
+    }
+
+    public void setAnimals(List<Animal> animals) {
+        this.animals = animals;
+    }
+
+    private void loadAnimals() {
+        this.animals = animalService.findList(loginBean.getAuthenticatedUser().getId(), 1000, 0);
+        this.animalsName.clear();
+        for (Animal a : this.animals)
+            this.animalsName.add(new SelectItem(a.getId(), a.getName()));
+    }
+
     public String createUpdate() throws Exception {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = formatter.parse(this.birthDate);
-        this.currentAnimal.setBirthDate(date);
         this.currentAnimal.setOwner_id(loginBean.getAuthenticatedUser().getId());
-        this.currentAnimal.setAnimalType_id(animalTypeBean.getCurrentIdTypeName());
 
         try {
             if (picture.isUpdated())
@@ -147,11 +157,11 @@ public class AnimalBean extends DefaultBean {
     }
 
     public List<Animal> list() {
-        List<Animal> temp;
-        temp = animalService.findList(loginBean.getAuthenticatedUser().getId(), 1000, 0);
-        for (Animal a : temp) {
+        loadAnimals();
+
+        for (Animal a : animals) {
             a.setAge(Util.dateDiff(a.getBirthDate(), Util.curDate(), Calendar.YEAR));
-            if (a.getProfilePic_id() > 0)
+            if (a.getProfilePic_id() > 0 && (a.getPicture() == null || a.getPicture().isEmpty()))
                 try {
                     Picture p = pictureService.findById(a.getProfilePic_id());
                     a.setPicture(p.asString());
@@ -159,29 +169,25 @@ public class AnimalBean extends DefaultBean {
                     e.printStackTrace();
                 }
         }
-        return temp;
+        return animals;
     }
 
     public void edit(Animal animal) {
         setCurrentAnimal(animal);
     }
 
-    public String newAnimal() {
-        clear();
-        return "#animal";
-    }
-
     public void clear() {
         currentAnimal = new Animal();
         profilePic = "";
         picture = new Picture();
-        animalTypeBean.setCurrentTypeName(-1);
     }
 
     public AnimalBean() {
         super();
         this.currentAnimal = new Animal();
         this.picture = new Picture();
+        this.animals = new ArrayList<>();
+        this.animalsName = new ArrayList<>();
     }
 
 }

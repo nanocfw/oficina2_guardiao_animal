@@ -80,6 +80,14 @@
                         <p:column style="text-align: center" headerText="Valor">
                             <h:outputText value="#{servico.value}" style="font-weight: bold"/>
                         </p:column>
+                        <p:column>
+                            <p:commandButton value="Editar"
+                                             action="#{serviceProviderAnimalTypeBean.edit(servico)}"
+                                             ajax="true"
+                                             update="formServico"
+                                             oncomplete="javascript:location.hash = '#servico';">
+                            </p:commandButton>
+                        </p:column>
                     </p:dataTable>
                 </div>
 

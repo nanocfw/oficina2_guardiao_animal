@@ -11,6 +11,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
@@ -22,15 +25,17 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
     @ManagedProperty(value = "#{loginBean}")
     LoginBean loginBean;
 
-    @ManagedProperty(value = "#{serviceTypeBean}")
-    ServiceTypeBean serviceTypeBean;
-
     @ManagedProperty(value = "#{animalTypeBean}")
     AnimalTypeBean animalTypeBean;
+
+    @ManagedProperty(value = "#{serviceTypeBean}")
+    ServiceTypeBean serviceTypeBean;
 
     private ServiceProviderAnimalType currentServiceProviderAnimalType;
     private int animalSize;
     private int billingType;
+
+    private List<SelectItem> serviceTypes;
 
     public LoginBean getLoginBean() {
         return loginBean;
@@ -38,22 +43,6 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
 
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
-    }
-
-    public ServiceTypeBean getServiceTypeBean() {
-        return serviceTypeBean;
-    }
-
-    public void setServiceTypeBean(ServiceTypeBean serviceTypeBean) {
-        this.serviceTypeBean = serviceTypeBean;
-    }
-
-    public AnimalTypeBean getAnimalTypeBean() {
-        return animalTypeBean;
-    }
-
-    public void setAnimalTypeBean(AnimalTypeBean animalTypeBean) {
-        this.animalTypeBean = animalTypeBean;
     }
 
     public ServiceProviderAnimalType getCurrentServiceProviderAnimalType() {
@@ -64,8 +53,6 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
         this.currentServiceProviderAnimalType = currentServiceProviderAnimalType;
         this.animalSize = currentServiceProviderAnimalType.getAnimalSize().ordinal();
         this.billingType = currentServiceProviderAnimalType.getBillingType().ordinal();
-        animalTypeBean.setCurrentTypeName(currentServiceProviderAnimalType.getAnimalType_id());
-        serviceTypeBean.setCurrentTypeName(currentServiceProviderAnimalType.getServiceType_id());
     }
 
     public int getAnimalSize() {
@@ -86,6 +73,14 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
         this.currentServiceProviderAnimalType.setBillingType(BillingType.values()[billingType]);
     }
 
+    public List<SelectItem> getServiceTypes() {
+        return serviceTypes;
+    }
+
+    public void setServiceTypes(List<SelectItem> serviceTypes) {
+        this.serviceTypes = serviceTypes;
+    }
+
     public List<ServiceProviderAnimalType> getListByProvider() {
         List<ServiceProviderAnimalType> aux = serviceProviderAnimalTypeService.findListByProvider(loginBean.getAuthenticatedUser().getId(), 1000, 0);
         for (ServiceProviderAnimalType s : aux) {
@@ -95,10 +90,24 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
         return aux;
     }
 
+    public AnimalTypeBean getAnimalTypeBean() {
+        return animalTypeBean;
+    }
+
+    public void setAnimalTypeBean(AnimalTypeBean animalTypeBean) {
+        this.animalTypeBean = animalTypeBean;
+    }
+
+    public ServiceTypeBean getServiceTypeBean() {
+        return serviceTypeBean;
+    }
+
+    public void setServiceTypeBean(ServiceTypeBean serviceTypeBean) {
+        this.serviceTypeBean = serviceTypeBean;
+    }
+
     public String createUpdate() throws Exception {
         this.currentServiceProviderAnimalType.setServiceProvider_id(loginBean.getAuthenticatedUser().getId());
-        this.currentServiceProviderAnimalType.setAnimalType_id(animalTypeBean.getCurrentIdTypeName());
-        this.currentServiceProviderAnimalType.setServiceType_id(serviceTypeBean.getCurrentIdTypeName());
 
         try {
             setCurrentServiceProviderAnimalType(serviceProviderAnimalTypeService.createUpdate(this.currentServiceProviderAnimalType));
@@ -113,16 +122,26 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
         }
     }
 
+    public void loadServicesForServiceProvider(long serviceProviderId) {
+        serviceTypes.clear();
+        List<ServiceProviderAnimalType> aux = serviceProviderAnimalTypeService.findListByProvider(serviceProviderId, 1000, 0);
+        for (ServiceProviderAnimalType s : aux)
+            serviceTypes.add(new SelectItem(s.getId(), s.getDescription()));
+    }
+
     public void clear() {
         this.currentServiceProviderAnimalType = new ServiceProviderAnimalType();
         this.animalSize = 0;
         this.billingType = 0;
-        animalTypeBean.setCurrentTypeName(-1);
-        serviceTypeBean.setCurrentTypeName(-1);
+    }
+
+    public void edit(ServiceProviderAnimalType serviceProviderAnimalType) {
+        setCurrentServiceProviderAnimalType(serviceProviderAnimalType);
     }
 
     public ServiceProviderAnimalTypeBean() {
         super();
         this.currentServiceProviderAnimalType = new ServiceProviderAnimalType();
+        this.serviceTypes = new ArrayList<>();
     }
 }

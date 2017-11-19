@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,61 +18,38 @@ public class ServiceTypeBean implements Serializable {
     @EJB
     IServiceTypeService serviceTypeService;
 
-    private String currentTypeName;
-    private List<String> types;
-    private List<ServiceType> serviceTypes;
+    private List<SelectItem> serviceTypes;
+    private List<ServiceType> types;
 
-    public String getCurrentTypeName() {
-        return currentTypeName;
+    public List<SelectItem> getServiceTypes() {
+        return serviceTypes;
     }
 
-    public void setCurrentTypeName(String currentTypeName) {
-        this.currentTypeName = currentTypeName;
+    public void setServiceTypes(List<SelectItem> serviceTypes) {
+        this.serviceTypes = serviceTypes;
     }
 
-    public List<String> getTypes() {
+    public List<ServiceType> getTypes() {
         return types;
     }
 
-    public void setTypes(List<String> types) {
+    public void setTypes(List<ServiceType> types) {
         this.types = types;
+    }
+
+    public String getTypeName(int id) {
+        for (ServiceType s : types)
+            if (s.getId() == id)
+                return s.getDescription();
+        return "";
     }
 
     @PostConstruct
     public void init() {
-        types.clear();
-        serviceTypes = serviceTypeService.findList();
-        for (ServiceType s : serviceTypes)
-            types.add(s.getDescription());
-    }
-
-    public void setCurrentTypeName(int id) {
-        currentTypeName = "";
-        for (ServiceType serviceType : serviceTypes)
-            if (serviceType.getId() == id) {
-                currentTypeName = serviceType.getDescription();
-                break;
-            }
-    }
-
-    public int getCurrentIdTypeName() {
-        int id = 0;
-
-        for (ServiceType serviceType : serviceTypes)
-            if (serviceType.getDescription().equals(currentTypeName)) {
-                id = serviceType.getId();
-                break;
-            }
-
-        return id;
-    }
-
-    public String getTypeName(int id) {
-        for (ServiceType serviceType : serviceTypes)
-            if (serviceType.getId() == id) {
-                return serviceType.getDescription();
-            }
-        return "";
+        serviceTypes.clear();
+        types = serviceTypeService.findList();
+        for (ServiceType s : types)
+            serviceTypes.add(new SelectItem(s.getId(), s.getDescription()));
     }
 
     public ServiceTypeBean() {

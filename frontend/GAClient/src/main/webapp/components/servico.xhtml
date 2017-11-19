@@ -16,24 +16,34 @@
 
                 <h:form id="formServico">
                     <div class="inline">
-                        <p:selectOneMenu id="serviceType" value="#{serviceTypeBean.currentTypeName}" style="width:150px"
+                        <p:selectOneMenu id="serviceType"
+                                         value="#{serviceProviderAnimalTypeBean.currentServiceProviderAnimalType.serviceType_id}"
+                                         style="width:150px"
                                          required="true"
                                          requiredMessage="Por favor preencha o campo tipo do serviço"
                                          a:placeholder="Tipo">
                             <f:selectItem itemLabel="Selecione um tipo do serviço" itemValue=""
                                           noSelectionOption="false"/>
-                            <f:selectItems value="#{serviceTypeBean.types}"/>
+                            <f:selectItems value="#{serviceTypeBean.types}"
+                                           var="item"
+                                           itemValue="#{item.id}"
+                                           itemLabel="#{item.description}"/>
                         </p:selectOneMenu>
                     </div>
 
                     <div class="inline">
-                        <p:selectOneMenu id="animalType" value="#{animalTypeBean.currentTypeName}" style="width:150px"
+                        <p:selectOneMenu id="animalType"
+                                         value="#{serviceProviderAnimalTypeBean.currentServiceProviderAnimalType.animalType_id}"
+                                         style="width:150px"
                                          required="true"
                                          requiredMessage="Por favor preencha o campo tipo do animal"
                                          a:placeholder="Tipo">
                             <f:selectItem itemLabel="Selecione um tipo do anima" itemValue=""
                                           noSelectionOption="false"/>
-                            <f:selectItems value="#{animalTypeBean.types}"/>
+                            <f:selectItems value="#{animalTypeBean.types}"
+                                           var="item"
+                                           itemLabel="#{item.id}"
+                                           itemValue="#{item.description}"/>
                         </p:selectOneMenu>
                     </div>
 

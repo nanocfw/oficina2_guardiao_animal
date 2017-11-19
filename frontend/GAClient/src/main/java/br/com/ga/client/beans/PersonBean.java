@@ -39,7 +39,6 @@ public class PersonBean extends DefaultBean {
     IPictureService pictureService;
 
     private Person currentPerson;
-    private String birthDate;
     private Picture picture;
     private String profilePic;
     private int personType;
@@ -54,14 +53,6 @@ public class PersonBean extends DefaultBean {
         this.picture.setUpdated(true);
     }
 
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
-
     public Person getCurrentPerson() {
         return currentPerson;
     }
@@ -70,11 +61,6 @@ public class PersonBean extends DefaultBean {
         this.currentPerson = currentPerson;
         this.personType = currentPerson.getType().ordinal();
         loadPictureFromDataBase();
-        if (currentPerson.getBirthDate() != null) {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            this.birthDate = df.format(currentPerson.getBirthDate());
-        } else
-            this.birthDate = "";
     }
 
     public int getPersonType() {
@@ -110,9 +96,6 @@ public class PersonBean extends DefaultBean {
     }
 
     private String updateGuardiao() throws Exception {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = formatter.parse(this.birthDate);
-        this.currentPerson.setBirthDate(date);
         this.currentPerson.setFinishedRegister(true);
 
         try {

@@ -15,8 +15,6 @@
                 <br/>
 
                 <h:form id="gform">
-                    <div style="display: none" value="#{personBean.currentPerson.serviceProvider=true}"></div>
-
                     <div class="inline">
                         <div class="upload-button">
                             <img class="profile-pic" id="picPersonB" src="#{personBean.profilePic}"/>
@@ -28,10 +26,12 @@
 
                     <div class="inline">
                         <i class="icons text-grey material-icons"> date_range</i>
-                        <p:inputText value="#{personBean.birthDate}" id="data" type="date" class="center-align"
-                                     required="true" requiredMessage="Por favor preencha o campo Data"
-                                     a:placeholder="Data de nascimento">
-                        </p:inputText>
+                        <p:calendar id="data" value="#{personBean.currentPerson.birthDate}"
+                                    pattern="dd/MM/yyyy"
+                                    class="center-align"
+                                    required="true" requiredMessage="Por favor preencha o campo Data de Nascimento"
+                                    a:placeholder="Data de nascimento">
+                        </p:calendar>
                     </div>
 
                     <div class="inline">

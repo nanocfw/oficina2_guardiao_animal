@@ -34,4 +34,8 @@ public class ServiceProviderAnimalType {
         animalSize = AnimalSize.SMALL;
         billingType = BillingType.PER_HOUR;
     }
+
+    public String getDescription() {
+        return String.valueOf(id) + String.valueOf(serviceType_id) + String.valueOf(animalType_id);
+    }
 }
