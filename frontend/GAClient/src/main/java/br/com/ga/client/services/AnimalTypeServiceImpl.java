@@ -46,10 +46,10 @@ public class AnimalTypeServiceImpl extends Service implements IAnimalTypeService
     }
 
     @Override
-    public AnimalType findById(long animalTypeId) throws Exception {
+    public AnimalType findById(int animalTypeId) throws Exception {
         BasicAuthRestTemplate rest = getNewRestTemplate();
         ResponseEntity<ResponseData<AnimalType>> response;
-        Map<String, Long> params = new HashMap<>();
+        Map<String, Integer> params = new HashMap<>();
         params.put("animalTypeId", animalTypeId);
 
         response = rest.exchange(
@@ -125,10 +125,10 @@ public class AnimalTypeServiceImpl extends Service implements IAnimalTypeService
     }
 
     @Override
-    public int deleteById(long animalTypeId) throws Exception {
+    public int deleteById(int animalTypeId) throws Exception {
         BasicAuthRestTemplate rest = getNewRestTemplate();
         ResponseEntity<ResponseData<Integer>> response;
-        Map<String, Long> params = new HashMap<>();
+        Map<String, Integer> params = new HashMap<>();
         params.put("animalTypeId", animalTypeId);
 
         response = rest.exchange(

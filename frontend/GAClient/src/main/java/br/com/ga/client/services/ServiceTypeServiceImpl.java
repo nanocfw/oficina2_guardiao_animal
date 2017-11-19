@@ -121,10 +121,10 @@ public class ServiceTypeServiceImpl extends Service implements IServiceTypeServi
     }
 
     @Override
-    public int deleteById(long serviceTypeId) throws Exception {
+    public int deleteById(int serviceTypeId) throws Exception {
         BasicAuthRestTemplate rest = getNewRestTemplate();
         ResponseEntity<ResponseData<Integer>> response;
-        Map<String, Long> params = new HashMap<>();
+        Map<String, Integer> params = new HashMap<>();
         params.put("serviceTypeId", serviceTypeId);
 
         response = rest.exchange(
