@@ -167,7 +167,8 @@ public class PersonDaoImpl implements IPersonDao {
                 em.createQuery("SELECT p FROM Person p WHERE p.id <> :currentId " +
                         " AND p.serviceProvider = :service_provider " +
                         " AND p.country = :country " +
-                        " AND p.city = :city ")
+                        " AND p.city = :city " +
+                        " AND (SELECT COUNT(s) FROM ServiceProviderAnimalType s WHERE s.serviceProvider_id = p.id) > 0")
                         .setParameter("currentId", currentId)
                         .setParameter("service_provider", true)
                         .setParameter("country", country)
@@ -187,7 +188,8 @@ public class PersonDaoImpl implements IPersonDao {
                 em.createQuery("SELECT p FROM Person p WHERE p.id <> :currentId " +
                         " AND p.serviceProvider = :service_provider " +
                         " AND p.latitude BETWEEN :lat_ini AND :lat_fim" +
-                        " AND p.longitude BETWEEN :lng_ini AND :lng_fim")
+                        " AND p.longitude BETWEEN :lng_ini AND :lng_fim" +
+                        " AND (SELECT COUNT(s) FROM ServiceProviderAnimalType s WHERE s.serviceProvider_id = p.id) > 0")
                         .setParameter("service_provider", true)
                         .setParameter("lat_ini", lat - rayLat)
                         .setParameter("lat_fim", lat + rayLat)
