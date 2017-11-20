@@ -11,7 +11,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +76,10 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
     }
 
     public List<SelectItem> getServiceTypes() {
-        loadServicesForServiceProvider(1);
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String serviceProviderId = request.getParameter("formContratarServico:serviceProviderId");
+
+        loadServicesForServiceProvider(Long.parseLong(serviceProviderId));
         return serviceTypes;
     }
 

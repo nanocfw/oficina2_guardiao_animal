@@ -93,5 +93,4 @@ public abstract class DefaultBean implements Serializable {
         extContext.redirect(url);
         return "#animal";
     }
-
 }

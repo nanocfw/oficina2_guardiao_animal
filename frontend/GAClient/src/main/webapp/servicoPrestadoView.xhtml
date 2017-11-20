@@ -58,7 +58,7 @@
             <div class="main-animals">
 
                 <div class="form">
-                    <p:dataTable var="servico" value="#{appointmentBean.getServicesListByClient()}">
+                    <p:dataTable var="servico" value="#{appointmentBean.getServicesListByProvider()}">
                         <p:column style="text-align: center" headerText="Cliente">
                             <h:outputText value="#{servico.clientName}" style="font-weight: bold"/>
                         </p:column>

@@ -196,7 +196,6 @@ public class AnimalBean extends DefaultBean {
         return animalService.findById(id);
     }
 
-
     public String getAnimalName(long id) {
         for (Animal a : getAnimals())
             if (a.getId() == id)

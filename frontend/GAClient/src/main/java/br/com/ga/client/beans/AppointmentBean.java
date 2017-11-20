@@ -1,7 +1,9 @@
 package br.com.ga.client.beans;
 
 import br.com.ga.entity.Appointment;
+import br.com.ga.exceptions.InvalidEntity;
 import br.com.ga.service.intf.IAppointmentService;
+import br.com.ga.util.FacesUtils;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -83,7 +85,21 @@ public class AppointmentBean extends DefaultBean {
 
     public String createUpdate() {
         this.currentAppointment.setClient_id(loginBean.getAuthenticatedUser().getId());
-        return "";
+        try {
+            appointmentService.createUpdate(this.currentAppointment);
+            clear();
+            return redirectToIndex();
+        } catch (InvalidEntity e) {
+            FacesUtils.addErrorMessage("form:register", e.getMessage());
+            return "cadastroInvalido";
+        } catch (Exception e) {
+            FacesUtils.addErrorMessage("form:register", e.getMessage());
+            return "erro";
+        }
+    }
+
+    private void clear() {
+        currentAppointment = new Appointment();
     }
 
     public List<Appointment> getServicesListByProvider() {

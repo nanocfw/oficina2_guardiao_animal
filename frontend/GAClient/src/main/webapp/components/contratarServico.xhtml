@@ -15,6 +15,7 @@
                 <br/>
 
                 <h:form id="formContratarServico">
+                    <h:inputHidden id="serviceProviderId" value="#{appointmentBean.currentAppointment.serviceProvider_id}"/>
                     <div class="inline">
                         <p:selectOneMenu id="serviceType"
                                          value="#{appointmentBean.currentAppointment.serviceProviderAnimalType_id}"
@@ -24,15 +25,16 @@
                                          a:placeholder="Tipo">
                             <f:selectItem itemLabel="Selecione um tipo do serviço" itemValue=""
                                           noSelectionOption="false"/>
-                            <f:selectItems value="#{serviceProviderAnimalTypeBean.serviceTypes}"
-                            var="item"
-                            itemValue="#{item.id}"
-                            itemLabel="#{item.description}"/>
+                            <f:selectItems value="#{serviceProviderAnimalTypeBean.getServiceTypes()}"
+                                           var="item"
+                                           itemValue="#{item.id}"
+                                           itemLabel="#{item.description}"/>
                         </p:selectOneMenu>
                     </div>
 
                     <div class="inline">
-                        <p:selectOneMenu id="animal" value="#{appointmentBean.currentAppointment.animal_id}" style="width:150px"
+                        <p:selectOneMenu id="animal" value="#{appointmentBean.currentAppointment.animal_id}"
+                                         style="width:150px"
                                          required="true"
                                          requiredMessage="Por favor selecione o animal"
                                          a:placeholder="Animal">
