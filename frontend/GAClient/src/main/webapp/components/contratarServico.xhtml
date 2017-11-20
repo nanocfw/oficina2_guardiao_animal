@@ -15,7 +15,6 @@
                 <br/>
 
                 <h:form id="formContratarServico">
-                    <h:inputHidden value="#{appointmentBean.currentAppointment.serviceProvider_id = 1}"/>
                     <div class="inline">
                         <p:selectOneMenu id="serviceType"
                                          value="#{appointmentBean.currentAppointment.serviceProviderAnimalType_id}"
@@ -50,8 +49,10 @@
                     <div class="inline">
                         <i class="icons text-grey material-icons"> date_range</i>
                         <p:calendar id="startDate" value="#{appointmentBean.currentAppointment.startService}"
-                                    pattern="dd/MM/yyyy"
+                                    pattern="dd/MM/yyyy HH:mm:ss"
                                     class="center-align"
+                                    locale="pt_BR"
+                                    showTodayButton="true"
                                     required="true" requiredMessage="Por favor preencha o campo Data"
                                     a:placeholder="Início do serviço">
                         </p:calendar>
@@ -61,8 +62,10 @@
                     <div class="inline">
                         <i class="icons text-grey material-icons"> date_range</i>
                         <p:calendar id="endDate" value="#{appointmentBean.currentAppointment.endService}"
-                                    pattern="dd/MM/yyyy"
+                                    pattern="dd/MM/yyyy HH:mm:ss"
                                     class="center-align"
+                                    locale="pt_BR"
+                                    showTodayButton="true"
                                     required="true" requiredMessage="Por favor preencha o campo Data"
                                     a:placeholder="Fim do serviço">
                         </p:calendar>
