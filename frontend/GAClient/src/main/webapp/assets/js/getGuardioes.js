@@ -240,8 +240,8 @@ getMarkers = (map, icon = 'assets/images/mark.png') => {
 
             google.maps.event.addListener(marker, 'mouseover', function () {
 
-                infowindow.setContent(`<p class="markMaps"> ${person.name}
-                            ${person.city} </p>`);
+                infowindow.setContent(`<div class="markMaps center-align"><img width="80" height="80" src="${person.picture}" />
+                <p class="center-align">${person.name} <br /> ${person.city}</p></div>`);
                 infowindow.open(map, marker);
 
                 marker.setIcon("assets/images/mark.png");
