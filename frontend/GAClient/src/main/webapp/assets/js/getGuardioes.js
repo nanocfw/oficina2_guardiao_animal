@@ -41,10 +41,17 @@ getGuardioes = () => {
     persons = getListadeGuardioes();
 
     persons.responseJSON.map( person => {
+        if (person.message === null) {
+            person.message = "Nenhuma mensagem foi adicionada por este cuidador."
+        }
+
+        if (person.picture === "") {
+            person.picture = "assets/images/img.jpg"
+        }
         var guardiao = `
                 <div class="card vertical size-guardiao inline-guardiao">
                     <div class="inline-component">
-                        <img class="img-guardiao" src="assets/images/img.jpg">
+                        <img class="img-guardiao" src="${person.picture}">
                         <div class="content-guardiao text-grey">
                           <h3>${person.name}</h3>
                           <h4>${person.city}</h4>
@@ -73,17 +80,22 @@ getGuardioes = () => {
 getGuardioesAuth = () => {
     var guardioes = '';
     persons = getListadeGuardioes();
-
+    console.log(persons);
     persons.responseJSON.map( person => {
         {
             if (person.message === null) {
                 person.message = "Nenhuma mensagem foi adicionada por este cuidador."
             }
 
+            if (person.picture === "") {
+                person.picture = "assets/images/img.jpg"
+            }
+
             var guardiao = `
                 <div class="card vertical size-guardiao inline-guardiao">
                     <div class="inline-component">
-                        <img class="img-guardiao" src="assets/images/img.jpg">
+                        <p style="display: block">${person}</p>
+                        <img class="img-guardiao" src="${person.picture}">
                         <div class="content-guardiao text-grey">
                           <h3>${person.name}</h3>
                           <h4>${person.city}</h4>
