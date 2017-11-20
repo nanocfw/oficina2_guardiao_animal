@@ -219,6 +219,11 @@ h4, h3 {
     max-height: 80vh;
 }
 
+.services {
+    height: 15vh;
+    overflow-y: auto;
+}
+
 .upload-button {
     padding: 4px;
     border: 1px solid black;
