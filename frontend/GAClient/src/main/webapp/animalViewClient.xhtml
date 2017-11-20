@@ -92,6 +92,14 @@
                         <p:column style="text-align: center" headerText="Temperamento">
                             <h:outputText value="#{animal.temperament}" style="font-weight: bold"/>
                         </p:column>
+                        <p:column>
+                            <p:commandButton value="Editar"
+                                             action="#{animalBean.edit(animal)}"
+                                             ajax="true"
+                                             update="formAnimal"
+                                             oncomplete="javascript:location.hash = '#animal';">
+                            </p:commandButton>
+                        </p:column>
                     </p:dataTable>
                 </div>
                 <br/>

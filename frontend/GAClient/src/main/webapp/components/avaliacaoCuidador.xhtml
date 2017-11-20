@@ -1,0 +1,46 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <div id="avaliacao" class="modalDialog">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <div class="center-align">
+                <h5 class="text-grey">Avalie o Cuidador</h5>
+
+                <br/>
+
+                <h:form id="formCuidador">
+                    <div class="inline">
+                        <h:outputText value="Avaliação: " />
+                        <p:rating  />
+                    </div>
+
+                    <div class="inline">
+                        <p:inputText id="message" class="center-align" required="true"
+
+                                     requiredMessage="Por favor preencha o campo Mensagem"
+                                     validatorMessage="O campo Mensagem deve conter no minímo 5 caracteres"
+                                     a:placeholder="Mensagem">
+                            <f:validateLength minimum="5"/>
+                        </p:inputText>
+                    </div>
+
+                    <br/>
+
+                    <div class="center-align">
+                        <p:commandButton update="@form" value="Avaliar"
+                                         ajax="true"
+                                         class="waves-effect waves-light btn deep-orange lighten-1 button"/>
+                    </div>
+
+                </h:form>
+            </div>
+        </div>
+    </div>
+
+</ui:composition>

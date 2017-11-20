@@ -18,7 +18,7 @@
                     <div class="inline">
                         <div class="upload-button">
                             <img class="profile-pic" id="picAnimal" src="#{animalBean.profilePic}"/>
-                            <h:inputHidden id="pic" value="#{animalBean.profilePic = './assets/images/pet.png'}"/>
+                            <h:inputHidden id="pic" value="#{animalBean.profilePic}"/>
                         </div>
                     </div>
                     <p class="grey-text center-align"
@@ -97,7 +97,7 @@
                     <div class="center-align">
                         <p:commandButton update="@form" value="Cadastrar Animal" action="#{animalBean.createUpdate()}"
                                          ajax="true"
-                                         class="waves-effect waves-light btn deep-orange lighten-1"/>
+                                         class="waves-effect waves-light btn deep-orange lighten-1 button"></p:commandButton>
                     </div>
                 </h:form>
             </div>
