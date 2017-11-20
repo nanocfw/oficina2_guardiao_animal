@@ -1,0 +1,36 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ul id="geoData" style="display: none">
+        <li>Full Address: <span id="loc"></span></li>
+        <li>Postal Code: <span id="postal_code"></span></li>
+        <li>Country: <span id="country"></span></li>
+        <li>Latitude: <span id="lat"></span></li>
+        <li>Longitude: <span id="lon"></span></li>
+    </ul>
+
+
+    <div class="core">
+        <h1 class="text-grey"> Encontre um <span class="text-orange">Guardião</span> para seu animal </h1>
+        <div class="form col s12 z-depth-3">
+            <h5 class="white-text">Local:</h5>
+            <div class="inline">
+                <i class="icons white-text material-icons">location_on</i>
+                <h:inputText id="address" onkeypress="enterAuthClient(event)" class="white-text controls" a:placeholder="Buscar cidade desejada"></h:inputText>
+            </div>
+
+            <div class="center-align">
+                <a href="#avaliacao" class="waves-effect waves-light btn deep-orange lighten-1">Avaliação</a>
+            </div>
+
+            <div class="center-align">
+                <a id="submit" onclick="enterAuthClient(event)" href="searchGuardiaoAuthClient.xhtml" type="button" class="waves-effect waves-light btn deep-orange lighten-1">Buscar Guardião</a>
+            </div>
+        </div>
+    </div>
+</ui:composition>

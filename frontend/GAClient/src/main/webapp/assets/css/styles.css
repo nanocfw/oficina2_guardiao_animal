@@ -212,6 +212,12 @@ h4, h3 {
     max-height: 80vh;
 }
 
+.animais {
+    margin: 3%;
+    height: 60vh;
+    overflow-y: auto;
+    max-height: 80vh;
+}
 
 .upload-button {
     padding: 4px;
@@ -429,6 +435,9 @@ p.message {
 }
 
 @media screen and (max-width: 750px) {
+    .animais {
+        margin-left: 5%;
+    }
     .paragrafo-index {
         font-size: 18px;
     }

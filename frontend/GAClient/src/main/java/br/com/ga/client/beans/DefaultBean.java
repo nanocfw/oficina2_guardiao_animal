@@ -64,6 +64,16 @@ public abstract class DefaultBean implements Serializable {
         return "animalView";
     }
 
+    public String redirectToAnimalsClient() throws IOException {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ExternalContext extContext = ctx.getExternalContext();
+        String url;
+
+        url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/animalViewClient.xhtml"));
+        extContext.redirect(url);
+        return "animalViewClient";
+    }
+
     public String redirectToServices() throws Exception {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();

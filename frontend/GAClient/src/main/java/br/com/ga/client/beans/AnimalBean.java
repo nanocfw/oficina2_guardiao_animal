@@ -1,6 +1,7 @@
 package br.com.ga.client.beans;
 
 import br.com.ga.entity.Animal;
+import br.com.ga.entity.Person;
 import br.com.ga.entity.Picture;
 import br.com.ga.entity.enums.AnimalSize;
 import br.com.ga.exceptions.EntityNotFound;
@@ -126,7 +127,14 @@ public class AnimalBean extends DefaultBean {
             this.currentAnimal.setProfilePic_id(picture.getId());
             setCurrentAnimal(animalService.createUpdate(this.currentAnimal));
             clear();
-            return redirectToAnimals();
+
+
+            if (loginBean.getAuthenticatedUser().isServiceProvider()) {
+                return redirectToAnimals();
+            } else {
+                return redirectToAnimalsClient();
+            }
+
         } catch (InvalidEntity e) {
             FacesUtils.addErrorMessage("form:register", e.getMessage());
             return "cadastroInvalido";

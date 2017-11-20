@@ -16,6 +16,7 @@
 
 #mySidenav ul:hover {
     left: 0; /* On mouse-over, make the elements appear as they should */
+    z-index: 9;
 }
 
 .style {
