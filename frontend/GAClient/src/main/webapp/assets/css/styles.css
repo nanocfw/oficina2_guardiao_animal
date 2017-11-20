@@ -368,18 +368,54 @@ h4, h3 {
 p.message {
     display: -webkit-box;
     max-width: 100%;
-    margin: 0 auto;
     height: 55px;
     text-align: justify;
     line-break: auto;
     font-size: 18px;
     line-height: 1;
-    margin-left: 5%;
+    margin: 0 5%;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 60%
+}
+
+.pulsate {
+    -webkit-animation: pulsate 3s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 1;
+}
+@-webkit-keyframes pulsate {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-guardiao {
+    top: 40px;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 99;
+}
+
+.dropdown:hover .dropdown-guardiao {
+    display: block;
 }
 
 #address:focus {
@@ -394,6 +430,9 @@ p.message {
 }
 
 @media screen and (max-width: 1250px) {
+    .dropdown-guardiao {
+        right: 3%;
+    }
     p.message {
         font-size: 16px;
         height: 48px;
@@ -467,6 +506,9 @@ p.message {
 }
 
 @media screen and (max-width: 600px) {
+    .dropdown-guardiao {
+        top: 20px;
+    }
     .paragrafo-index {
         font-size: 14px;
     }

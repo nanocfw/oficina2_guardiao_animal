@@ -41,6 +41,7 @@ getGuardioes = () => {
     persons = getListadeGuardioes();
 
     persons.responseJSON.map( person => {
+
         if (person.message === null) {
             person.message = "Nenhuma mensagem foi adicionada por este cuidador."
         }
@@ -48,9 +49,63 @@ getGuardioes = () => {
         if (person.picture === "") {
             person.picture = "assets/images/img.jpg"
         }
-        var guardiao = `
+
+        if (person.serviceList.length === 0) {
+            person.serviceList = [{
+                value: 0,
+                billingType: "Serviço Infinido",
+                serviceTypeDescription: "Tipo de Serviço",
+                animalTypeDescription: "Animal Indefinido",
+                animalSize: "Tamanho Indefinido"
+            }]
+        } else {
+            for (var i = 0; i < person.serviceList.length; i++) {
+                switch (person.serviceList[i].animalSize) {
+                    case "SMALL":
+                        person.serviceList[i].animalSize = "Pequeno";
+                        break;
+                    case "MIDDLE":
+                        person.serviceList[i].animalSize = "Médio";
+                        break;
+                    case "LARGE":
+                        person.serviceList[i].animalSize = "Grande";
+                        break;
+                    default:
+                        person.serviceList[i].animalSize ="Inválido";
+                }
+            }
+
+            for (var i = 0; i < person.serviceList.length; i++) {
+                switch (person.serviceList[i].billingType) {
+                    case "PER_HOUR":
+                        person.serviceList[i].billingType = "Por Hora";
+                        break;
+                    case "PER_DAY":
+                        person.serviceList[i].billingType = "Por Dia";
+                        break;
+                    default:
+                        person.serviceList[i].billingType ="Inválido";
+                }
+            }
+        }
+
+        for (var i = 0; i < person.serviceList.length; i++) {
+            var services = services +  `
+                          <div>
+                              <h4 class="text-orange right-align" style="margin-right: 5px; margin-top: 0">R$ ${person.serviceList[i].value}
+                                    <h6 class="grey-text right-align" style="margin-right: 5px; margin-top: 0">${person.serviceList[i].billingType}</h6></h4>
+                              <h6 class="grey-text right-align" style="margin-right: 5px; margin-top: 0">${person.serviceList[i].serviceTypeDescription} de 
+                                    ${person.serviceList[i].animalTypeDescription}</h6>
+                              <h6 class="grey-text right-align" style="margin-right: 5px; margin-top: 0">Porte ${person.serviceList[i].animalSize}</h6>
+                              <div class="divider"></div>
+                          </div>`
+        }
+
+        if (services !== undefined) {
+            var guardiao = `
                 <div class="card vertical size-guardiao inline-guardiao">
                     <div class="inline-component">
+                        <p style="display: block">${person.id}</p>
                         <img class="img-guardiao" src="${person.picture}">
                         <div class="content-guardiao text-grey">
                           <h3>${person.name}</h3>
@@ -59,13 +114,18 @@ getGuardioes = () => {
                     </div>
                     <div class="inline-message-money ">
                         <p class="message">${person.message}</p>
-                        <div class="valor-guardiao">
-                          <h4 class="orange-text right-align" style="margin-right: 5px; margin-top: 0">R$ 40</h4>
-                          <h6 class="grey-text right-align" style="margin-right: 5px; margin-top: 0">por noite</h6>
+                        <div class="valor-guardiao"> 
+                          <div class="dropdown">
+                               <h4 class="text-orange right-align pulsate" style="margin-right: 5px; margin-top: 0">SERVIÇOS</h4>
+                              <div class="dropdown-guardiao">
+                                  <p style="display: none;">${services}</p>
+                              </div>
+                            </div>
                         </div>
                     </div>
                 </div>`;
-        guardioes = guardioes + guardiao;
+            guardioes = guardioes + guardiao;
+        }
     });
     if (guardioes === '') {
         return document.querySelector('#guardioes').innerHTML = `<h4 class="text-grey center-align" style="padding: 120px 0;">Desculpe, nenhum <span class="text-orange">Guardião</span> foi encontrado nesta regiao.</h4>`;
@@ -80,9 +140,8 @@ getGuardioes = () => {
 getGuardioesAuth = () => {
     var guardioes = '';
     persons = getListadeGuardioes();
-    console.log(persons);
     persons.responseJSON.map( person => {
-        {
+
             if (person.message === null) {
                 person.message = "Nenhuma mensagem foi adicionada por este cuidador."
             }
@@ -91,10 +150,62 @@ getGuardioesAuth = () => {
                 person.picture = "assets/images/img.jpg"
             }
 
-            var guardiao = `
+            if (person.serviceList.length === 0) {
+                person.serviceList = [{
+                    value: 0,
+                    billingType: "Serviço Infinido",
+                    serviceTypeDescription: "Tipo de Serviço",
+                    animalTypeDescription: "Animal Indefinido",
+                    animalSize: "Tamanho Indefinido"
+                }]
+            } else {
+                for (var i = 0; i < person.serviceList.length; i++) {
+                    switch (person.serviceList[i].animalSize) {
+                        case "SMALL":
+                            person.serviceList[i].animalSize = "Pequeno";
+                            break;
+                        case "MIDDLE":
+                            person.serviceList[i].animalSize = "Médio";
+                            break;
+                        case "LARGE":
+                            person.serviceList[i].animalSize = "Grande";
+                            break;
+                        default:
+                            person.serviceList[i].animalSize ="Inválido";
+                    }
+                }
+
+                for (var i = 0; i < person.serviceList.length; i++) {
+                    switch (person.serviceList[i].billingType) {
+                        case "PER_HOUR":
+                            person.serviceList[i].billingType = "Por Hora";
+                            break;
+                        case "PER_DAY":
+                            person.serviceList[i].billingType = "Por Dia";
+                            break;
+                        default:
+                            person.serviceList[i].billingType ="Inválido";
+                    }
+                }
+            }
+
+            for (var i = 0; i < person.serviceList.length; i++) {
+                var services = services +  `
+                          <div>
+                              <h4 class="text-orange right-align" style="margin-right: 5px; margin-top: 0">R$ ${person.serviceList[i].value}
+                                    <h6 class="grey-text right-align" style="margin-right: 5px; margin-top: 0">${person.serviceList[i].billingType}</h6></h4>
+                              <h6 class="grey-text right-align" style="margin-right: 5px; margin-top: 0">${person.serviceList[i].serviceTypeDescription} de 
+                                    ${person.serviceList[i].animalTypeDescription}</h6>
+                              <h6 class="grey-text right-align" style="margin-right: 5px; margin-top: 0">Porte ${person.serviceList[i].animalSize}</h6>
+                              <div class="divider"></div>
+                          </div>`
+            }
+
+            if (services !== undefined) {
+                var guardiao = `
                 <div class="card vertical size-guardiao inline-guardiao">
                     <div class="inline-component">
-                        <p style="display: block">${person}</p>
+                        <p style="display: block">${person.id}</p>
                         <img class="img-guardiao" src="${person.picture}">
                         <div class="content-guardiao text-grey">
                           <h3>${person.name}</h3>
@@ -103,17 +214,21 @@ getGuardioesAuth = () => {
                     </div>
                     <div class="inline-message-money ">
                         <p class="message">${person.message}</p>
-                        <div class="valor-guardiao">
-                          <h4 class="orange-text right-align" style="margin-right: 5px; margin-top: 0">R$ 40</h4>
-                          <h6 class="grey-text right-align" style="margin-right: 5px; margin-top: 0">por noite</h6>
+                        <div class="valor-guardiao"> 
+                          <div class="dropdown">
+                               <h4 class="text-orange right-align pulsate" style="margin-right: 5px; margin-top: 0">SERVIÇOS</h4>
+                              <div class="dropdown-guardiao">
+                                  <p style="display: none;">${services}</p>
+                              </div>
+                            </div>
                         </div>
                     </div>
                     <div class="center-align row padding-top-bottom" style="margin-right: 5px">
                       <a class="waves-effect waves-light btn deep-orange lighten-1" href="#contratarServico">Contratar</a>
                     </div>
                 </div>`;
-            guardioes = guardioes + guardiao;
-        }
+                guardioes = guardioes + guardiao;
+            }
     });
     if (guardioes === '') {
         return document.querySelector('#guardioes').innerHTML = `<h4 class="text-grey center-align" style="padding: 120px 0">Desculpe, nenhum <span class="text-orange">Guardião</span> foi encontrado nesta regiao.</h4>`;
