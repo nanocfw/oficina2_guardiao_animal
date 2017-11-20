@@ -8,6 +8,7 @@ import java.util.List;
 
 @Data
 public class ServiceProviderSearch implements Serializable {
+    private long id;
     private String name;
     private String message;
     private String country;
@@ -17,8 +18,9 @@ public class ServiceProviderSearch implements Serializable {
     private double longitude;
     private List<ServiceProviderAnimalType> serviceList;
 
-    public ServiceProviderSearch(String name, String message, String country, String city, String picture, double latitude, double longitude) {
+    public ServiceProviderSearch(long id, String name, String message, String country, String city, String picture, double latitude, double longitude) {
         this.serviceList = new ArrayList<>();
+        this.id = id;
         this.name = name;
         this.message = message;
         this.country = country;

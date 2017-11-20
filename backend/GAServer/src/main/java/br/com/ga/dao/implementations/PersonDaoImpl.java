@@ -141,7 +141,7 @@ public class PersonDaoImpl implements IPersonDao {
                 e.printStackTrace();
             }
 
-            service = new ServiceProviderSearch(p.getName(), p.getMessage(), p.getCountry(), p.getCity(), picture, p.getLatitude(), p.getLongitude());
+            service = new ServiceProviderSearch(p.getId(), p.getName(), p.getMessage(), p.getCountry(), p.getCity(), picture, p.getLatitude(), p.getLongitude());
             service.getServiceList().addAll(serviceProviderAnimalTypeDao.findListByProvider(p.getId(), 1000, 0));
             for (ServiceProviderAnimalType s : service.getServiceList()) {
                 try {
