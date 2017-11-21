@@ -74,7 +74,7 @@ public abstract class DefaultBean implements Serializable {
         return "animalViewClient";
     }
 
-    public String redirectToServices() throws Exception {
+    public String redirectToServices() throws IOException {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
         String url;
@@ -84,13 +84,26 @@ public abstract class DefaultBean implements Serializable {
         return "servicoView";
     }
 
-    public String redirectToRegisterAnimal() throws IOException {
+    public String redirectToBuiedServices(boolean isServiceProvider) throws IOException {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ExternalContext extContext = ctx.getExternalContext();
         String url;
 
-        url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/animalView.xhtml#animal"));
+        if (isServiceProvider)
+            url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/servicoContratado.xhtml"));
+        else
+            url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/servicoContratadoClient.xhtml"));
         extContext.redirect(url);
-        return "#animal";
+        return "#servicos";
+    }
+
+    public String redirectToProvidedServices() throws IOException {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ExternalContext extContext = ctx.getExternalContext();
+        String url;
+
+        url = extContext.encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx, "/servicoPrestadoView.xhtml"));
+        extContext.redirect(url);
+        return "#servicos";
     }
 }

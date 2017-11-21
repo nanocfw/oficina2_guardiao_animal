@@ -102,6 +102,8 @@ public class PersonBean extends DefaultBean {
             if (picture.isUpdated())
                 picture = pictureService.createUpdate(picture);
             this.currentPerson.setProfilePic_id(picture.getId());
+            if (currentPerson.getCountry().equals("Brazil"))
+                currentPerson.setCountry("Brasil");
             setCurrentPerson(personService.createUpdate(this.currentPerson));
 
             if (currentPerson.getBirthDate() == null) {

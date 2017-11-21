@@ -45,6 +45,7 @@
     <div id="content">
         <input class="file-upload" type="file" accept="image/*"/>
         <ui:include src="/components/guardiao.xhtml"/>
+        <ui:include src="/components/avaliacaoClient.xhtml"/>
 
         <h:form>
             <ui:include src="/components/navbarAuth.xhtml"/>
@@ -57,8 +58,12 @@
 
             <div class="main-animals">
 
-                <div class="form">
+                <div>
                     <p:dataTable var="servico" value="#{appointmentBean.getServicesListByProvider()}">
+                        <p:column style="text-align: center" headerText="#">
+                            <h:outputText value="#{servico.id}" style="font-weight: bold"/>
+                        </p:column>
+
                         <p:column style="text-align: center" headerText="Cliente">
                             <h:outputText value="#{servico.clientName}" style="font-weight: bold"/>
                         </p:column>
@@ -75,8 +80,8 @@
                             <h:outputText value="#{servico.billingType.toString()}" style="font-weight: bold"/>
                         </p:column>
 
-                        <p:column style="text-align: center" headerText="Valor">
-                            <h:outputText value="#{servico.serviceCost}" style="font-weight: bold"/>
+                        <p:column style="text-align: center" headerText="Valor Total">
+                            <h:outputText value="R$ #{servico.serviceCost}" style="font-weight: bold"/>
                         </p:column>
 
                         <p:column style="text-align: center" headerText="Avaliação Recebida">
@@ -86,6 +91,15 @@
                         <p:column style="text-align: center" headerText="Avaliação Efetuada">
                             <p:rating value="#{servico.clientRating}" readonly="true"/>
                         </p:column>
+                        <p:column>
+                            <p:commandButton value="Avaliar"
+                                             action="#{appointmentBean.evaluate(servico)}"
+                                             ajax="true"
+                                             update="formCuidador"
+                                             oncomplete="javascript:location.hash = '#avaliacaoClient';"
+                                             class="waves-effect waves-light btn deep-orange lighten-1 button">
+                            </p:commandButton>
+                        </p:column>
                     </p:dataTable>
                 </div>
 
@@ -94,6 +108,7 @@
         </h:form>
         <ui:include src="/components/footer.xhtml"/>
     </div>
+    <!--@formatter:off-->
     <script>
         let readURL = function (input) {
             if (input.files &amp;&amp; input.files[0]) {
@@ -118,6 +133,6 @@
             $(".file-upload").click();
         });
     </script>
+    <!--@formatter:on-->
 </h:body>
-<!--@formatter:on-->
 </html>

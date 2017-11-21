@@ -36,6 +36,7 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
     private long currentServiceProviderId;
 
     private List<SelectItem> serviceTypes;
+    private List<ServiceProviderAnimalType> serviceProviderAnimalTypes;
 
     public LoginBean getLoginBean() {
         return loginBean;
@@ -134,10 +135,29 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
     public void loadServicesForServiceProvider(long serviceProviderId) {
         currentServiceProviderId = serviceProviderId;
         serviceTypes.clear();
-        List<ServiceProviderAnimalType> aux = serviceProviderAnimalTypeService.findListByProvider(serviceProviderId, 1000, 0);
-        for (ServiceProviderAnimalType s : aux) {
-            s.setDescription("Serviço: " + serviceTypeBean.getTypeName(s.getServiceType_id()) + " Animal: " + animalTypeBean.getTypeName(s.getAnimalType_id()) + " Valor: " + String.format("R$ %.2f", s.getValue()));
+        serviceProviderAnimalTypes = serviceProviderAnimalTypeService.findListByProvider(serviceProviderId, 1000, 0);
+        for (ServiceProviderAnimalType s : serviceProviderAnimalTypes) {
+            s.setDescription("Serviço: " + serviceTypeBean.getTypeName(s.getServiceType_id()) +
+                    " Animal: " + animalTypeBean.getTypeName(s.getAnimalType_id()) +
+                    " Tamanho: " + s.getAnimalSize().toString() +
+                    " Valor: " + String.format("R$ %.2f", s.getValue()) +
+                    " " + s.getBillingType().toString());
             serviceTypes.add(new SelectItem(s.getId(), s.getDescription()));
+        }
+    }
+
+    public ServiceProviderAnimalType getServiceProviderAnimalTypeById(long id) {
+        if (serviceProviderAnimalTypes == null || serviceProviderAnimalTypes.isEmpty())
+            return null;
+
+        for (ServiceProviderAnimalType s : serviceProviderAnimalTypes)
+            if (s.getId() == id)
+                return s;
+        try {
+            return findById(id);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
         }
     }
 

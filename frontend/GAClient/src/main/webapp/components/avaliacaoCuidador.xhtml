@@ -6,23 +6,23 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <div id="avaliacao" class="modalDialog">
+    <div id="avaliacaoCuidador" class="modalDialog">
         <div>
             <a href="#close" title="Close" class="close">X</a>
             <div class="center-align">
-                <h5 class="text-grey">Avalie o Cuidador</h5>
-
-                <br/>
+                <h5 class="text-grey">Avalie o Guardião</h5>
 
                 <h:form id="formCuidador">
+                    <h:outputLabel value="Serviço: #{appointmentBean.currentAppointment.id}"/>
+                    <br/>
                     <div class="inline">
-                        <h:outputText value="Avaliação: " />
-                        <p:rating  />
+                        <h:outputText value="Avaliação: "/>
+                        <p:rating value="#{appointmentBean.currentAppointment.serviceRating}"/>
                     </div>
 
                     <div class="inline">
                         <p:inputText id="message" class="center-align" required="true"
-
+                                     value="#{appointmentBean.currentAppointment.serviceRatingMessage}"
                                      requiredMessage="Por favor preencha o campo Mensagem"
                                      validatorMessage="O campo Mensagem deve conter no minímo 5 caracteres"
                                      a:placeholder="Mensagem">
@@ -31,9 +31,10 @@
                     </div>
 
                     <br/>
-
+                    <h:messages id="register" style="color: red"/>
                     <div class="center-align">
                         <p:commandButton update="@form" value="Avaliar"
+                                         action="#{appointmentBean.evaluateServiceProvider()}"
                                          ajax="true"
                                          class="waves-effect waves-light btn deep-orange lighten-1 button"/>
                     </div>

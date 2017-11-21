@@ -106,7 +106,7 @@
                     <div class="inline">
                         <i class="icons text-grey material-icons">location_on</i>
                         <p:inputText value="#{personBean.currentPerson.complement}" id="complement" class="center-align"
-                                     a:placeholder="Complemeneto"/>
+                                     a:placeholder="Complemento"/>
 
                         <i class="icons text-grey material-icons">location_on</i>
                         <p:inputText value="#{personBean.currentPerson.addressNumber}" id="addressNumber"
@@ -149,6 +149,12 @@
                                      required="true" requiredMessage="Por favor compartilhe sua Longitude"
                                      a:placeholder="Longitude" a:name="longitude">
                         </p:inputText>
+                    </div>
+
+                    <div class="inline" id="message">
+                        <p:inputTextarea value="#{personBean.currentPerson.message}" id="mensagem"
+                                         class="center-align"
+                                         a:placeholder="Digite uma mensagem"/>
                     </div>
 
                     <h:messages id="register" style="color: red"/>

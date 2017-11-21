@@ -26,14 +26,16 @@ public class AppointmentServiceImpl implements IAppointmentService {
         if (appointment.getServiceProvider_id() == 0)
             throw new InvalidEntity("Id do prestador de serviços não foi informado");
 
-        if (appointment.getEndService().before(appointment.getStartService()))
-            throw new InvalidEntity("Hora de início do serviço deve ser anterior a hora final.");
+        if (appointment.getId() == 0) {
+            if (appointment.getEndService().before(appointment.getStartService()))
+                throw new InvalidEntity("Hora de início do serviço deve ser anterior a hora final.");
 
-        if (appointment.getStartService().before(Util.curDate()) || appointment.getEndService().before(Util.curDate()))
-            throw new InvalidEntity("Horário de início e fim do serviço devem ser posteriores a hora atual");
+            if (appointment.getStartService().before(Util.curDate()) || appointment.getEndService().before(Util.curDate()))
+                throw new InvalidEntity("Horário de início e fim do serviço devem ser posteriores a hora atual");
 
-        if (!availableSchedule(appointment.getId(), appointment.getServiceProvider_id(), appointment.getStartService(), appointment.getEndService()))
-            throw new InvalidEntity("Horário não está disponível para agendamento.");
+            if (!availableSchedule(appointment.getId(), appointment.getServiceProvider_id(), appointment.getStartService(), appointment.getEndService()))
+                throw new InvalidEntity("Horário não está disponível para agendamento.");
+        }
 
         return appointmentDao.createUpdate(appointment);
     }

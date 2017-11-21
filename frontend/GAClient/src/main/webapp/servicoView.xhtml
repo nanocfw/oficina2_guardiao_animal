@@ -62,8 +62,12 @@
 
             <div class="main-animals animais">
 
-                <div class="form">
+                <div>
                     <p:dataTable var="servico" value="#{serviceProviderAnimalTypeBean.getListByProvider()}">
+                        <p:column style="text-align: center" headerText="#">
+                            <h:outputText value="#{servico.id}" style="font-weight: bold"/>
+                        </p:column>
+
                         <p:column style="text-align: center" headerText="Tipo de Serviço">
                             <h:outputText value="#{servico.serviceTypeDescription}" style="font-weight: bold"/>
                         </p:column>
@@ -80,8 +84,8 @@
                             <h:outputText value="#{servico.billingType.toString()}" style="font-weight: bold"/>
                         </p:column>
 
-                        <p:column style="text-align: center" headerText="Valor">
-                            <h:outputText value="#{servico.value}" style="font-weight: bold"/>
+                        <p:column style="text-align: center" headerText="Valor por Hora/Dia">
+                            <h:outputText value="R$ #{servico.value}" style="font-weight: bold"/>
                         </p:column>
                         <p:column>
                             <p:commandButton value="Editar"

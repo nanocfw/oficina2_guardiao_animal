@@ -97,6 +97,16 @@ public class Util {
         return current.getTime() - old.getTime();
     }
 
+    public static long timeDiffInHours(Date current, Date old) {
+        long diff = timeDiff(current, old);
+        return Math.round(Math.ceil(diff / (60 * 60 * 1000.0)));
+    }
+
+    public static long dateDiffInDays(Date current, Date old) {
+        long diff = timeDiff(current, old);
+        return Math.round(Math.ceil(diff / (24 * 60 * 60 * 1000.0)));
+    }
+
     public static int dateDiff(Date startDate, Date endDate, int field) {
         Calendar startCalendar = new GregorianCalendar();
         startCalendar.setTime(startDate);

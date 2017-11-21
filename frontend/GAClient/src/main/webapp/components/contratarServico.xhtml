@@ -15,7 +15,8 @@
                 <br/>
 
                 <h:form id="formContratarServico">
-                    <h:inputHidden id="serviceProviderId" value="#{appointmentBean.currentAppointment.serviceProvider_id}"/>
+                    <h:inputHidden id="serviceProviderId"
+                                   value="#{appointmentBean.currentAppointment.serviceProvider_id}"/>
                     <div class="inline">
                         <p:selectOneMenu id="serviceType"
                                          value="#{appointmentBean.currentAppointment.serviceProviderAnimalType_id}"
@@ -51,11 +52,11 @@
                     <div class="inline">
                         <i class="icons text-grey material-icons"> date_range</i>
                         <p:calendar id="startDate" value="#{appointmentBean.currentAppointment.startService}"
-                                    pattern="dd/MM/yyyy HH:mm:ss"
+                                    pattern="dd/MM/yyyy HH:mm"
                                     class="center-align"
                                     locale="pt_BR"
                                     showTodayButton="true"
-                                    required="true" requiredMessage="Por favor preencha o campo Data"
+                                    required="true" requiredMessage="Por favor preencha o campo Data de início do serviço"
                                     a:placeholder="Início do serviço">
                         </p:calendar>
                     </div>
@@ -64,11 +65,11 @@
                     <div class="inline">
                         <i class="icons text-grey material-icons"> date_range</i>
                         <p:calendar id="endDate" value="#{appointmentBean.currentAppointment.endService}"
-                                    pattern="dd/MM/yyyy HH:mm:ss"
+                                    pattern="dd/MM/yyyy HH:mm"
                                     class="center-align"
                                     locale="pt_BR"
                                     showTodayButton="true"
-                                    required="true" requiredMessage="Por favor preencha o campo Data"
+                                    required="true" requiredMessage="Por favor preencha o campo Data final do serviço"
                                     a:placeholder="Fim do serviço">
                         </p:calendar>
                     </div>
