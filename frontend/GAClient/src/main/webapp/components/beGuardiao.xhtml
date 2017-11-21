@@ -24,6 +24,7 @@
                     <p class="grey-text center-align"
                        style="font-size: 12px">Clique na imagem para inserir uma foto sua</p>
 
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Data de Nascimento"/>
                     <div class="inline">
                         <i class="icons text-grey material-icons"> date_range</i>
                         <p:calendar id="data" value="#{personBean.currentPerson.birthDate}"
@@ -35,6 +36,7 @@
                         </p:calendar>
                     </div>
 
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Rua"/>
                     <div class="inline">
                         <i class="icons text-grey material-icons">location_on</i>
                         <p:inputText value="#{personBean.currentPerson.street}" id="street" class="center-align"
@@ -45,6 +47,8 @@
                         </p:inputText>
                     </div>
 
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e; margin-right: 10%;" value="Complemento"/>
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e; margin-left: 10%;" value="Número"/>
                     <div class="inline">
                         <i class="icons text-grey material-icons">location_on</i>
                         <p:inputText value="#{personBean.currentPerson.complement}" id="complement" class="center-align"
@@ -57,6 +61,7 @@
                         </p:inputText>
                     </div>
 
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Sexo"/>
                     <div class="inline">
                         <p:selectOneRadio id="console" value="#{personBean.personType}">
                             <f:selectItem itemLabel="Masculino" itemValue="0"/>
@@ -64,6 +69,7 @@
                         </p:selectOneRadio>
                     </div>
 
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Celular/WhatsApp"/>
                     <div class="inline">
                         <i class="icons text-grey material-icons">phone</i>
                         <p:inputText value="#{personBean.currentPerson.cellPhone}" id="tel" a:type="number"
@@ -92,10 +98,12 @@
                                      a:placeholder="Longitude" a:name="longitude">
                         </p:inputText>
                     </div>
+
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Mensagem Sobre Você"/>
                     <div class="inline" id="message">
                         <p:inputTextarea value="#{personBean.currentPerson.message}" id="mensagem"
                                          class="center-align"
-                                         a:placeholder="Digite uma mensagem"/>
+                                         a:placeholder="Digite uma Mensagem"/>
                     </div>
 
                     <h:messages id="register" style="color: red"/>

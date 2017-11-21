@@ -15,6 +15,7 @@
                 <br/>
 
                 <h:form id="formServico">
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Tipo de Serviço"/>
                     <div class="inline">
                         <p:selectOneMenu id="serviceType"
                                          value="#{serviceProviderAnimalTypeBean.currentServiceProviderAnimalType.serviceType_id}"
@@ -31,6 +32,7 @@
                         </p:selectOneMenu>
                     </div>
 
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Tipo do Animal"/>
                     <div class="inline">
                         <p:selectOneMenu id="animalType"
                                          value="#{serviceProviderAnimalTypeBean.currentServiceProviderAnimalType.animalType_id}"
@@ -58,6 +60,7 @@
                         </p:selectOneRadio>
                     </div>
 
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Tipo de Pagamento"/>
                     <div class="inline">
                         <p:selectOneRadio id="billingType" value="#{serviceProviderAnimalTypeBean.billingType}"
                                           required="true"
@@ -67,6 +70,7 @@
                         </p:selectOneRadio>
                     </div>
 
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Valor"/>
                     <div class="inline">
                         <p:inputText id="valor" a:type="number" class="center-align" required="true"
                                      value="#{serviceProviderAnimalTypeBean.currentServiceProviderAnimalType.value}"

@@ -14,6 +14,7 @@
 
                 <br/>
                 <h:form id="lform">
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Email"/>
                     <div class="inline">
                         <i class="icons text-grey material-icons">mail_outline</i>
                         <p:inputText value="#{loginBean.authenticatedUser.email}" id="email" class="center-align"
@@ -24,6 +25,7 @@
                         </p:inputText>
                     </div>
 
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Senha"/>
                     <div class="inline">
                         <i class="icons text-grey material-icons">vpn_key</i>
                         <p:password value="#{loginBean.authenticatedUser.password}" id="pass"

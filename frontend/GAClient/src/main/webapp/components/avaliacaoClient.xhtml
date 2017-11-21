@@ -15,11 +15,13 @@
                 <h:form id="formCuidador">
                     <h:outputLabel value="Serviço: #{appointmentBean.currentAppointment.id}"/>
                     <br/>
+
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Avaliação"/>
                     <div class="inline">
-                        <h:outputText value="Avaliação: "/>
                         <p:rating value="#{appointmentBean.currentAppointment.clientRating}"/>
                     </div>
 
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Mensagem de Retorno"/>
                     <div class="inline">
                         <p:inputText id="message" class="center-align" required="true"
                                      value="#{appointmentBean.currentAppointment.clientRatingMessage}"
