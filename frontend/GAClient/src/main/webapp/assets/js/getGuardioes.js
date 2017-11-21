@@ -95,7 +95,7 @@ getGuardioes = () => {
             var guardiao = `
                 <div class="card vertical size-guardiao inline-guardiao">
                     <div class="inline-component">
-                        <p style="display: block">${person.id}</p>
+                        <p style="display: none">${person.id}</p>
                         <img class="img-guardiao" src="${person.picture}">
                         <div class="content-guardiao text-grey">
                           <h3>${person.name}</h3>

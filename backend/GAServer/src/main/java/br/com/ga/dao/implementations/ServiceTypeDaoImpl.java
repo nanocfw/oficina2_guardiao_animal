@@ -117,5 +117,47 @@ public class ServiceTypeDaoImpl implements IServiceTypeDao {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+        svc = null;
+        try {
+            svc = findByDescription("Visita domiciliar");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (svc == null)
+            try {
+                createUpdate(new ServiceType("Visita domiciliar"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        svc = null;
+        try {
+            svc = findByDescription("Adestrador");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (svc == null)
+            try {
+                createUpdate(new ServiceType("Adestrador"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        svc = null;
+        try {
+            svc = findByDescription("Banho");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (svc == null)
+            try {
+                createUpdate(new ServiceType("Banho"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 }

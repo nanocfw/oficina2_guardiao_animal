@@ -210,6 +210,7 @@ h4, h3 {
     height: 60vh;
     overflow-y: auto;
     max-height: 80vh;
+    margin-bottom: 10%;
 }
 
 .animais {
@@ -220,7 +221,7 @@ h4, h3 {
 }
 
 .services {
-    height: 15vh;
+    height: 25vh;
     overflow-y: auto;
 }
 

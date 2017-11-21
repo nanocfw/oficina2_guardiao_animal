@@ -17,9 +17,9 @@
                 <h:form id="formContratarServico">
                     <h:inputHidden id="serviceProviderId"
                                    value="#{appointmentBean.currentAppointment.serviceProvider_id}"/>
+                    <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Tipo de Serviço"/>
+                    <br/>
                     <div class="inline">
-
-                        <h:outputText style="font-size: .8rem; color: #9e9e9e;" value="Tipo de Serviço"/>
                         <p:selectOneMenu id="serviceType"
                                          value="#{appointmentBean.currentAppointment.serviceProviderAnimalType_id}"
                                          style="width:150px"
