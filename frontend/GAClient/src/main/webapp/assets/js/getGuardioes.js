@@ -186,7 +186,7 @@ getGuardioesAuth = () => {
             var guardiao = `
             <div class="card vertical size-guardiao inline-guardiao">
                 <div class="inline-component">
-                    <inputHidden id="id_guardiao" style="display: block" value="${person.id}"></inputHidden>
+                    <p style="display: block">${person.id}</p>
                     <img class="img-guardiao" src="${person.picture}">
                     <div class="content-guardiao text-grey">
                       <h3>${person.name}</h3>
@@ -206,13 +206,9 @@ getGuardioesAuth = () => {
                         </div>
                     </div>
                 </div>
-                   <p:commandButton value="Contratar"
-                         action="#{serviceProviderAnimalTypeBean.loadServicesForServiceProvider(${person.id})}"
-                         ajax="true"
-                         update="formContratarServico"
-                         oncomplete="javascript:location.hash = '#formContratarServico';"
-                         class="waves-effect waves-light btn deep-orange lighten-1 button">
-                   </p:commandButton>
+                <div class="center-align row padding-top-bottom" style="margin-right: 5px">
+                  <a class="waves-effect waves-light btn deep-orange lighten-1" href="#contratarServico">Contratar</a>
+                </div>
             </div>`;
             guardioes = guardioes + guardiao;
         }
