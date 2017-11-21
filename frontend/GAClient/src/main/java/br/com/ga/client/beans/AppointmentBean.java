@@ -84,6 +84,7 @@ public class AppointmentBean extends DefaultBean {
     }
 
     public String createUpdate() {
+        this.currentAppointment.setServiceProvider_id(serviceProviderAnimalTypeBean.getCurrentServiceProviderId());
         this.currentAppointment.setClient_id(loginBean.getAuthenticatedUser().getId());
         try {
             appointmentService.createUpdate(this.currentAppointment);

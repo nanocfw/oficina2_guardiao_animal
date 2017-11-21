@@ -11,10 +11,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +33,7 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
     private ServiceProviderAnimalType currentServiceProviderAnimalType;
     private int animalSize;
     private int billingType;
+    private long currentServiceProviderId;
 
     private List<SelectItem> serviceTypes;
 
@@ -76,10 +74,7 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
     }
 
     public List<SelectItem> getServiceTypes() {
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        String serviceProviderId = request.getParameter("formContratarServico:serviceProviderId");
-
-        loadServicesForServiceProvider(Long.parseLong(serviceProviderId));
+        loadServicesForServiceProvider(1);//ajustar p pegar do guardião selecionado na página
         return serviceTypes;
     }
 
@@ -112,6 +107,14 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
         this.serviceTypeBean = serviceTypeBean;
     }
 
+    public long getCurrentServiceProviderId() {
+        return currentServiceProviderId;
+    }
+
+    public void setCurrentServiceProviderId(long currentServiceProviderId) {
+        this.currentServiceProviderId = currentServiceProviderId;
+    }
+
     public String createUpdate() throws Exception {
         this.currentServiceProviderAnimalType.setServiceProvider_id(loginBean.getAuthenticatedUser().getId());
 
@@ -129,6 +132,7 @@ public class ServiceProviderAnimalTypeBean extends DefaultBean {
     }
 
     public void loadServicesForServiceProvider(long serviceProviderId) {
+        currentServiceProviderId = serviceProviderId;
         serviceTypes.clear();
         List<ServiceProviderAnimalType> aux = serviceProviderAnimalTypeService.findListByProvider(serviceProviderId, 1000, 0);
         for (ServiceProviderAnimalType s : aux) {
